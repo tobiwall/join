@@ -1,3 +1,22 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.max-width {
+    max-width: 1440px;
+}
+
+.sideboard-desktop {
+    width: 232px;
+    height: 100vh;
+    background-color: rgb(42, 54, 71);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 h1 {
     font-size: 64px;
     margin: 0;
@@ -6,8 +25,9 @@ h1 {
 .board-header {
     display: flex;
     justify-content: space-between;
+    gap: 26px;
     align-items: center;
-    margin: 65px 48px 16px 48px;
+    margin: 65px 48px 16px 296px;
 }
 
 .searchbar {
@@ -77,7 +97,10 @@ h1 {
     height: 48px;
     width: 160px;
     font-size: 21px;
+}
 
+#addTaskBtn:hover {
+    cursor: pointer;
 }
 
 .plus {
@@ -87,10 +110,10 @@ h1 {
 
 .table-header {
     display: flex;
-    justify-content: center;
-    gap: 26px;
-    padding: 0 64px 0 64px;
+    justify-content: space-between;
+    padding: 0 64px 0 296px;
     margin-top: 48px;
+    gap: 26px;
 }
 
 .table-head {
@@ -103,4 +126,24 @@ h1 {
 
 .table-plus {
     height: 18px;
+}
+
+.table-plus:hover {
+    cursor: pointer;
+}
+
+.board {
+    margin-top: 16px;
+    height: 100vh;
+    display: flex;
+    gap: 26px;
+    padding: 0 64px 0 296px;
+}
+
+.card {
+    width: 252px;
+    height: 263px;
+    border-radius: 24px;
+    padding: 16px;
+    box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }

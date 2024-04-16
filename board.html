@@ -4,46 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="stylesheet" href="./board.css" />
+    <link rel="stylesheet" href="./css/board.css" />
+    <script src="./js/board.js"></script>
   </head>
 
-
-  <body>
+  <body onload="init()">
     <div w3-include-html="./assets/templates/desktop_header.html"></div>
-    <div w3-include-html="./assets/templates/desktop_sideboard.html"></div>
+    <div class="sideboard-desktop" w3-include-html="./assets/templates/desktop_sideboard.html"></div>
 
-    <div class="board-header">
-      <h1>Board</h1>
-      <div class="board-right-header">
-        <div class="searchbar">
-          <input type="text" placeholder="Find Task" />
-          <div class="searchbar-right-part">
-            <div class="border-between-input"></div>
-            <button id="searchBtn"><img src="./assets/img/search.svg" alt="" /></button>
+    <div class="max-width">
+      <div class="board-header">
+        <h1>Board</h1>
+        <div class="board-right-header">
+          <div class="searchbar">
+            <input type="text" placeholder="Find Task" />
+            <div class="searchbar-right-part">
+              <div class="border-between-input"></div>
+              <button id="searchBtn">
+                <img src="./assets/img/search.svg" alt="" />
+              </button>
+            </div>
           </div>
+          <button id="addTaskBtn">
+            Add task <img class="plus" src="./assets/img/add.svg" alt="" />
+          </button>
         </div>
-        <button id="addTaskBtn">Add task <img class="plus" src="./assets/img/add.svg" alt=""></button>
       </div>
-    </div>
 
-    <div class="table-header">
+      <div class="table-header">
         <div class="table-head">
-            <span>To do</span>
-            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+          <span>To do</span>
+          <img class="table-plus" src="./assets/img/plus.svg" alt="" />
         </div>
         <div class="table-head">
-            <span>In progress</span>
-            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+          <span>In progress</span>
+          <img class="table-plus" src="./assets/img/plus.svg" alt="" />
         </div>
         <div class="table-head">
-            <span>Await feedback</span>
-            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+          <span>Await feedback</span>
+          <img class="table-plus" src="./assets/img/plus.svg" alt="" />
         </div>
         <div class="table-head">
-            <span>Done</span>
-            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+          <span>Done</span>
         </div>
-
+      </div>
+      <div class="board">
+        <div class="card" id="toDoContainer">
+            <div>User Story</div>
+            <h3>Kochwelt</h3>
+            <p>Built start page</p>
+        </div>
+        <div class="card" id="inProgressContainer"></div>
+        <div class="card" id="awaitFeedbackContainer"></div>
+        <div class="card" id="doneContainer"></div>
     </div>
   </body>
 </html>
