@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="stylesheet" href="./board.css" />
+  </head>
+
+
+  <body>
+    <div w3-include-html="./assets/templates/desktop_header.html"></div>
+    <div w3-include-html="./assets/templates/desktop_sideboard.html"></div>
+
+    <div class="board-header">
+      <h1>Board</h1>
+      <div class="board-right-header">
+        <div class="searchbar">
+          <input type="text" placeholder="Find Task" />
+          <div class="searchbar-right-part">
+            <div class="border-between-input"></div>
+            <button id="searchBtn"><img src="./assets/img/search.svg" alt="" /></button>
+          </div>
+        </div>
+        <button id="addTaskBtn">Add task <img class="plus" src="./assets/img/add.svg" alt=""></button>
+      </div>
+    </div>
+
+    <div class="table-header">
+        <div class="table-head">
+            <span>To do</span>
+            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+        </div>
+        <div class="table-head">
+            <span>In progress</span>
+            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+        </div>
+        <div class="table-head">
+            <span>Await feedback</span>
+            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+        </div>
+        <div class="table-head">
+            <span>Done</span>
+            <img class="table-plus" src="./assets/img/plus.svg" alt="">
+        </div>
+
+    </div>
+  </body>
+</html>
