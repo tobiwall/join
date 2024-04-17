@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summary</title>
+  <script src="./js/board.js"></script>
+  <script src="./js/dropdown.js"></script>
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/summary.css">
+  <link rel="stylesheet" href="./css/header.css">
+  <link rel="stylesheet" href="./css/sideboard.css">
+</head>
+
+<body onload="init()">
+  <div w3-include-html="./assets/templates/desktop_header.html"></div>
+    <div class="sideboard-desktop" w3-include-html="./assets/templates/desktop_sideboard.html"></div>
+
+  <div class="summary-content">
+    <div class="summary-text-container">
+      <h2>Join 360</h2>
+      <img src="./assets/icons/seperator.png" alt="">
+      <span>Key Metrics at a Glance</span>
+    </div>
+    <div class="summary-display">
+      <div class="summary-container">
+        <div class="summary-top-section">
+          <div class="top-card">
+            <div class="img-div"><img src="./assets/icons/edit.png" alt="EDIT"></div>
+            <div class="card-numb-text">
+              <span class="number">1</span>
+              <span class="task-text">To-do</span>
+            </div>
+          </div>
+          <div class="top-card">
+            <div class="img-div"><img src="./assets/icons/check.png" alt="CHECK"></div>
+            <div class="card-numb-text">
+              <span class="number">1</span>
+              <span class="task-text">Done</span>
+            </div>
+          </div>
+        </div>
+        <div class="summary-mid-section">
+          <div class="mid-card">
+            <div><img src="./assets/icons/urgent.png" alt="URGENT"></div>
+            <div class="card-numb-text">
+              <span class="number">1</span>
+              <span>Urgent</span>
+            </div>
+            <img src="./assets/icons/grey_seperator.png" alt="LINE">
+            <div class="summary-deadline">
+              <span>Date</span>
+              <span>Upcoming Deadline</span>
+            </div>
+          </div>
+        </div>
+        <div class="summary-bot-section">
+          <div class="bot-card">
+            <span class="number">3</span>
+            <span class="task-text">Task in<br>Board</span>
+          </div>
+          <div class="bot-card">
+            <span class="number">4</span>
+            <span class="task-text">Task in<br>Progress</span>
+          </div>
+          <div class="bot-card">
+            <span class="number">5</span>
+            <span class="task-text">Awaiting<br>Feedback</span>
+          </div>
+        </div>
+      </div>
+      <div class="summary-greeting">
+        <span id="greeting-time">Good morning,</span>
+        <span id="greeting-name">Wladimir Lange</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
