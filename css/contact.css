@@ -1,0 +1,93 @@
+body {
+    width: 100%;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.contact:hover {
+    cursor: pointer;
+    background-color: rgb(213, 213, 213);
+}
+
+.contact img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-name {
+    font-weight: bold;
+}
+
+.contact-email {
+    color: rgb(162, 162, 162);
+}
+
+#scrollable-container {
+    max-height: calc(100vh - 116px);
+    width: 500px;
+    margin-top: 116px;
+    overflow-y: auto;
+    left: 0;
+}
+
+.initialien-round-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 24px;
+}
+
+#contactBox {
+    margin-top: 190px;
+    padding-left: 48px;
+}
+
+.flex-box {
+    display: flex;
+}
+
+.min-width-contacts {
+    width: calc(100% - 260px);
+    margin-left: 260px;
+}
+
+.alphabet-letter {
+    margin: 24px 0 8px 16px;
+}
+
+.line-lightgray {
+    height: 1px;
+    background-color: lightgray;
+    margin-bottom:16px;
+}
+
+.contact-box-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+#contactBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.blue-vertical-line-contacts {
+    width: 2px;
+    height: 48px;
+    background-color: rgb(42,171,226);
+}
