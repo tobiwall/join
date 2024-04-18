@@ -3,6 +3,7 @@ h2 {
   font-weight: 700;
   line-height: 73.2px;
   text-align: left;
+  margin-right: 30px;
 }
 
 .number {
@@ -27,13 +28,14 @@ h2 {
 .summary-text-container {
   display: flex;
   align-items: center;
+  margin-bottom: 56px;
 }
 
 .summary-text-container span {
   font-size: 27px;
   font-weight: 400;
   line-height: 32.4px;
-  text-align: left;
+  margin-left: 30px;
 }
 
 .summary-display {
