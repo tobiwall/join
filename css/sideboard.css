@@ -15,6 +15,7 @@ nav {
 
 .logo-container {
   display: flex;
+  margin-top: 64px;
 }
 
 .logo-container img {
@@ -28,12 +29,25 @@ nav {
   flex-direction: column;
 }
 
-.nav-top-section div {
+.nav-top-section a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
   cursor: pointer;
   padding: 8px 56px 8px 56px;
+  width: 232px;
+  height: 46px;
+  gap: 8px;
 }
 
-.nav-top-section div:hover {
+.nav-top-section img {
+  height: 30px;
+  padding: 2.5px;
+  margin-right: 5px;
+}
+
+.nav-top-section a:hover {
   background-color: #091931;
 }
 
