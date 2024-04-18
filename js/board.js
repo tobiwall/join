@@ -1,10 +1,10 @@
 const STORAGE_TOKEN = "LBRCE7ZOJGJE5A61XE03E0RA3FUCZKJ11X9OKHSK";
 let STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-let cardsToDo = [];
-let cardsInProgress = [];
-let cardsAwaitFeedback = [];
-let cardsDone = [];
+let cardsToDo = ['aggaga','fafafaff'];
+let cardsInProgress = ['afaf'];
+let cardsAwaitFeedback = ['agcxvxvxv'];
+let cardsDone = ['vyvyvyv'];
 
 function init() {
   includeHTML();
