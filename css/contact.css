@@ -5,12 +5,21 @@ body {
 .contact {
     display: flex;
     align-items: center;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 15px 24px 15px 24px;
 }
 
 .contact:hover {
     cursor: pointer;
-    background-color: rgb(213, 213, 213);
+    background-color: rgb(42, 54, 71);
+}
+
+.contact:hover .contact-email {
+    color: rgb(63, 155, 240);
+}
+
+.contact:hover .contact-name {
+    color: white;
 }
 
 .contact img {
@@ -30,12 +39,30 @@ body {
     color: rgb(162, 162, 162);
 }
 
+.add-new-contact-btn {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    background-color: rgb(42, 54, 71);
+    border: none;
+    color: white;
+    padding: 12px 0 12px 0;
+    border-radius: 10px;
+}
+
 #scrollable-container {
-    max-height: calc(100vh - 116px);
-    width: 500px;
-    margin-top: 116px;
+    max-height: calc(100vh - 96px);
+    margin-top: 96px;
+    width: fit-content;
+    padding: 15px 24px 15px 24px;
     overflow-y: auto;
-    left: 0;
+    position: absolute;
+    left: 232px;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
 }
 
 .initialien-round-container {
@@ -46,10 +73,13 @@ body {
     justify-content: center;
     align-items: center;
     margin-right: 24px;
+    font-size: 12px;
+    color: white;
 }
 
 #contactBox {
     margin-top: 190px;
+    margin-left: 360px;
     padding-left: 48px;
 }
 
@@ -69,12 +99,11 @@ body {
 .line-lightgray {
     height: 1px;
     background-color: lightgray;
-    margin-bottom:16px;
+    margin-bottom: 16px;
 }
 
 .contact-box-header {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 16px;
 }
@@ -82,12 +111,73 @@ body {
 #contactBox {
     display: flex;
     flex-direction: column;
-    align-items: center;
+
     width: 100%;
 }
 
 .blue-vertical-line-contacts {
     width: 2px;
     height: 48px;
-    background-color: rgb(42,171,226);
+    background-color: rgb(42, 171, 226);
+}
+
+#contactBoxName {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 16px;
+    margin: 24px 0 24px 0;
+}
+
+.initialien-big-round-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 24px;
+    font-size: 48px;
+    color: white;
+}
+
+.white-border {
+    border: 2px white solid;
+}
+
+.contact-box-name {
+    font-size: 48px;
+}
+
+.contact-box-edit-delete {
+    display: flex;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+#edit {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#delete {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contact-info-headline {
+    margin-bottom: 28px;
+    font-size: 20px;
+}
+
+.bold {
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.email {
+    color: rgb(63, 155, 240);
+    margin-bottom: 16px;
 }
