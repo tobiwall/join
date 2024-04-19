@@ -246,7 +246,7 @@ function generateContactAlphabetListHTML(foundcontact) {
  */
 function generateContactListHTML(contact) {
   return /*html*/ `
-        <div class="contact" onclick="findContactById(${contact.id})">
+        <div class="contact" onclick="openContact(${contact})">
             <div 
             class="initialien-round-container" 
             style="background-color: ${contact.color};">${contact.initials}
@@ -269,15 +269,16 @@ function findContactById(id) {
     return null;
 }
 
-function openContact(id) {
-    
+function openContact(contact) {
+    let name = contact.name;
     let contactBoxName = document.getElementById('contactBoxName');
+
     contactBoxName.innerHTML = '';
-    //contactBoxName.innerHTML += generateContactBoxHTML(contact[i]);
+    contactBoxName.innerHTML += generateContactBoxHTML(contact);
 }
 
 function generateContactBoxHTML(contact) {
     return /*html*/`
-        <h2>${contact.name}</h2>
+        <h2>${contact}</h2>
     `
 }
