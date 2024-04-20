@@ -2,4 +2,50 @@
     position: fixed;
     top: 206px;
     left: 328px;
+    width: 100%;
   }
+
+form {
+  display: flex;
+  width: 90%;
+}
+
+.form-left-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-left-section div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-right-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-right-section div {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+}
+/*
+input {
+  width: 440px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px;
+}
+
+textarea {
+  width: 440px;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px;
+}
+*/

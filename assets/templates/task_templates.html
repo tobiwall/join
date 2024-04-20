@@ -1,6 +1,6 @@
-<div>
-    <h1>Add Task</h1>
-    <form action="">
+<h1>Add Task</h1>
+<form action="">
+    <div class="form-left-section">
         <div>
             <label>Title</label>
             <input id="taskTitle" type="text">
@@ -13,32 +13,39 @@
             <label>Assigned to</label>
             <input id="taskAssigned" type="text">
         </div>
+    </div>
+    <div>
+        <img src="./assets/icons/long_seperator.png" alt="">
+    </div>
+    <div class="form-right-section">
         <div>
             <label>Due date</label>
             <input id="taskDate" type="date">
         </div>
         <div>
             <label>Prio</label>
-            <button>Urgent</button>
-            <button>Medium</button>
-            <button>Low</button>
+            <div class="buttons-container">
+                <button id="urgentButton">Urgent<img src="" alt=""></button>
+                <button id="mediumButton">Medium<img src="" alt=""></button>
+                <button id="lowButton">Low<img src="" alt=""></button>
+            </div>
         </div>
         <div>
             <label>Category</label>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown button
+                Dropdown button
                 </button>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
-              </div>
+            </div>
         <div>
             <label>Subtasks</label>
             <input id="taskSubtasks" type="text">
             <div id="contentSubtasks"></div>
         </div>
-    </form>
-</div>
+    </div>
+</form>
