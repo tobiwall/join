@@ -23,6 +23,7 @@ body {
 
 .sign-up-area {
     display: flex;
+    align-items: center;
     gap: 35px;
 }
 
@@ -41,6 +42,41 @@ body {
 .login-form {
     display: flex;
     flex-direction: column;
+    gap: 20px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 12px 21px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    width: 380px;
+}
+
+.input-container img {
+    height: 20px;
+}
+
+.remember-me {
+    display: flex;
+    padding: 0px 0px 0px 39px;
+    gap: 8px;
+}
+
+.remember-me img {
+    height: 16px;
+    width: 16px;
+}
+
+.remember-me p {
+    font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
 }
 
 .login-footer {
@@ -63,23 +99,19 @@ body {
 .btn {
     padding: 15px 24px 15px 24px;
     border-radius: 8px;
-    font-family: Inter;
     font-size: 21px;
-    font-weight: 700;
-    line-height: 25.2px;
     text-align: left;
-
 }
 
 .black {
     background: #2A3647;
+    border: 1px solid #2A3647;
     color: #FFFFFF;
 }
 
 .white {
     border: 1px solid #2A3647;
     background: #FFFFFF;
-
 }
 
 h1 {
@@ -88,4 +120,11 @@ h1 {
 
 p {
     margin: 0;
+}
+
+input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
 }
