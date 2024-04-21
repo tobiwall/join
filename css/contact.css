@@ -1,5 +1,6 @@
 body {
     width: 100%;
+    font-family: inter;
 }
 
 .contact {
@@ -52,6 +53,10 @@ body {
     border-radius: 10px;
 }
 
+.add-new-contact-btn:hover {
+    cursor: pointer;
+}
+
 #scrollable-container {
     max-height: calc(100vh - 96px);
     margin-top: 96px;
@@ -78,9 +83,9 @@ body {
 }
 
 #contactBox {
-    margin-top: 190px;
-    margin-left: 360px;
-    padding-left: 48px;
+    position: absolute;
+    left: 743px;
+    top: 206px;
 }
 
 .flex-box {
@@ -180,4 +185,149 @@ body {
 .email {
     color: rgb(63, 155, 240);
     margin-bottom: 16px;
+}
+
+.add-contact {
+    width: 1212px;
+    height: 592px;
+    position: absolute;
+    left: calc(50% - 606px);
+    top: calc(50vh - 292px);
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+    display: none;
+}
+
+.add-contact-left-section {
+    background-color: rgb(42, 54, 71);
+    width: 467px;
+    height: 100%;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding: 66px 48px 66px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+}
+
+.add-contact-logo {
+    height: 66px;
+    width: 55px;
+}
+
+.add-contact-headline {
+    font-size: 61px;
+    font-weight: 700;
+    color: white;
+}
+
+.add-contact-text {
+    color: white;
+    font-size: 27px;
+}
+
+.add-contact-vector {
+    width: 90px;
+}
+
+.add-contact-right-section {
+
+}
+
+.add-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: absolute;
+    top: 137px;
+    left: 742px;
+}
+
+.add-contact-form input {
+    width: 422px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid rgb(209, 209, 209);
+    padding: 13px 21px 13px 21px;
+    font-size: 20px;
+    outline: none;
+}
+
+.add-contact-form input::placeholder {
+    color: rgb(209, 209, 209);
+}
+
+.contact-logo {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    top: 204px;
+    left: 550px;
+}
+
+.add-contact-close {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    left: 1132px;
+    top: 32px;
+}
+
+.add-contact-close:hover {
+    background-color: rgb(209, 209, 209);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.create-contact {
+    width: 214px;
+    height: 57px;
+    padding: 16px;
+    gap: 4px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 150px;
+    top: 250px;
+}
+
+.create-contact img {
+    width: 15.49px;
+    height: 11.22px;
+}
+
+.cancel-btn {
+    width: 126px;
+    height: 57px;
+    position: absolute;
+    top: 250px;
+    left: 0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 21px;
+    border: 1px solid rgb(42, 54, 71);
+}
+
+.cancel-btn:hover {
+    border: solid 1px rgb(42, 171, 226);
+    color: rgb(42, 171, 226);
+}
+
+.cancel-btn:hover .cancel-blue {
+    display: block;
+}
+
+.create-contact:hover {
+    cursor: pointer;
+    background-color: rgb(42, 171, 226);
 }

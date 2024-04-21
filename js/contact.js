@@ -237,7 +237,7 @@ function renderContactListAlphabet() {
 
 function createButtonAddContact() {
   return /*html*/ `
-    <button class="add-new-contact-btn">Add new contact <img src="./assets/img/person_add.svg" alt=""></button>
+    <button onclick="openAddContact()" class="add-new-contact-btn">Add new contact <img src="./assets/img/person_add.svg" alt=""></button>
   `;
 }
 
@@ -285,7 +285,6 @@ function openContact(id) {
   let klickedContact = findContactById(id);
   let contactBoxName = document.getElementById("contactBoxName");
   let contactInformation = document.getElementById("contactInformation");
-  console.log(klickedContact);
   contactBoxName.innerHTML = "";
   contactBoxName.innerHTML += generateContactBoxHTML(klickedContact);
   contactInformation.innerHTML = "";
@@ -325,4 +324,16 @@ function displayContactInfo(klickedContact) {
       <p class="phonenumber">${klickedContact.phone}</p>
     </div>
   `;
+}
+
+function openAddContact() {
+  let addContact = document.getElementById('addContact');
+
+  addContact.style.display = 'block'
+}
+
+function closeAddContact() {
+  let addContact = document.getElementById('addContact');
+
+  addContact.style.display = 'none'
 }
