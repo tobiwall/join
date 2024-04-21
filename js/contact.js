@@ -128,10 +128,12 @@ function initContact() {
  *
  */
 function renderContacts() {
+  getLocalStorage();
   sortContacts();
   extractInitials(contacts);
   randomBackgroundColor();
   orderFirstLetter();
+  clearFoundContacts();
   findContactsByFirstLetter();
   renderContactListAlphabet();
 }
@@ -194,6 +196,10 @@ function orderFirstLetter() {
       firstLetterArray.push(firstLetter);
     }
   }
+}
+
+function clearFoundContacts() {
+  foundContacts.length = 0;
 }
 
 function findContactsByFirstLetter() {
@@ -286,12 +292,19 @@ function openContact(id) {
   let contactBoxName = document.getElementById("contactBoxName");
   let contactInformation = document.getElementById("contactInformation");
   contactBoxName.innerHTML = "";
-  contactBoxName.innerHTML += generateContactBoxHTML(klickedContact);
+  contactBoxName.innerHTML += generateContactBoxHTML(klickedContact, id);
   contactInformation.innerHTML = "";
   contactInformation.innerHTML += displayContactInfo(klickedContact);
 }
 
-function generateContactBoxHTML(contact) {
+function closeContactBox() {
+  let contactBoxName = document.getElementById("contactBoxName");
+  let contactInformation = document.getElementById("contactInformation");
+  contactBoxName.innerHTML = "";
+  contactInformation.innerHTML = "";
+}
+
+function generateContactBoxHTML(contact, id) {
   return /*html*/ `
         <div 
           class="initialien-big-round-container white-border" 
@@ -304,7 +317,7 @@ function generateContactBoxHTML(contact) {
               <img src="../assets/img/edit.svg" alt="">
               <p>Edit</p>
             </div>
-            <div id="delete">
+            <div onclick="deleteContact(${id})" id="delete">
               <img src="../assets/img/delete.svg" alt="">
               <p>Delete</p>
             </div>
@@ -327,13 +340,73 @@ function displayContactInfo(klickedContact) {
 }
 
 function openAddContact() {
-  let addContact = document.getElementById('addContact');
-
-  addContact.style.display = 'block'
+  let addContact = document.getElementById("addContact");
+  addContact.style.display = "block";
 }
 
 function closeAddContact() {
-  let addContact = document.getElementById('addContact');
+  clearInput();
+  let addContact = document.getElementById("addContact");
+  addContact.style.display = "none";
+}
 
-  addContact.style.display = 'none'
+function saveContactsLocal() {
+  localStorage.setItem("contacts", JSON.stringify(contacts));
+}
+
+function getLocalStorage() {
+  let storedContacts = localStorage.getItem("contacts");
+  if (storedContacts) {
+    contacts = JSON.parse(storedContacts);
+  }
+}
+
+lastContactId = 18;
+
+async function createContact() {
+  let nameInput = document.getElementById("nameInput");
+  let emailInput = document.getElementById("emailInput");
+  let phoneInput = document.getElementById("phoneInput");
+  await saveAndDisplayContacts(nameInput, emailInput, phoneInput);
+}
+
+async function saveAndDisplayContacts(nameInput, emailInput, phoneInput) {
+  let newContact = createNewContact(nameInput, emailInput, phoneInput);
+  contacts.push(newContact);
+  await saveContactsLocal();
+  renderContacts();
+  clearInput();
+}
+
+function createNewContact(nameInput, emailInput, phoneInput) {
+  lastContactId++;
+  let newContact = {
+    name: nameInput.value,
+    email: emailInput.value,
+    phone: phoneInput.value,
+    id: lastContactId,
+  };
+  return newContact;
+}
+
+function clearInput() {
+  let nameInput = document.getElementById("nameInput");
+  let emailInput = document.getElementById("emailInput");
+  let phoneInput = document.getElementById("phoneInput");
+  nameInput.value = "";
+  emailInput.value = "";
+  phoneInput.value = "";
+}
+
+function deleteContact(id) {
+  let openContact = findContactById(id);
+  let contactId = findIndexById(openContact);
+  contacts.splice(contactId, 1);
+  saveContactsLocal();
+  renderContacts();
+  closeContactBox();
+}
+
+function findIndexById(openContact) {
+  return contacts.findIndex(contact => contact === openContact);
 }
