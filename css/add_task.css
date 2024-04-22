@@ -2,17 +2,31 @@
     position: fixed;
     top: 206px;
     left: 328px;
-    width: 100%;
   }
 
 form {
   display: flex;
-  width: 90%;
+}
+
+input {
+  width: 440px;
+  height: 48px;
+  border-radius: 10px;
+  border: 1px;
+}
+
+textarea {
+  width: 440px;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px;
+  resize: none;
 }
 
 .form-left-section {
   display: flex;
   flex-direction: column;
+  margin-right: 48px;
 }
 
 .form-left-section div {
@@ -28,24 +42,24 @@ form {
 .form-right-section div {
   display: flex;
   flex-direction: column;
+  margin-left: 48px;
 }
 
 .buttons-container {
   display: flex;
-  flex-direction: row;
-}
-/*
-input {
-  width: 440px;
-  height: 48px;
-  border-radius: 10px;
-  border: 1px;
 }
 
-textarea {
-  width: 440px;
-  height: 120px;
+.prio-button {
+  background-color: white;
+  border: none;
+  width: 136px;
+  height: 56px;
+  padding: 16px 10px 16px 10px;
+  gap: 8px;
   border-radius: 10px;
-  border: 1px;
+  box-shadow: 0px 0px 4px 0px #0000001A;
 }
-*/
+
+
+
+

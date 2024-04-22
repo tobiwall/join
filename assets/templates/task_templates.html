@@ -11,7 +11,9 @@
         </div>
         <div>
             <label>Assigned to</label>
-            <input id="taskAssigned" type="text">
+            <div>
+                <input type="text" onclick="openContactList(event)" placeholder="Select contacts to assign">    
+            </div>
         </div>
     </div>
     <div>
@@ -22,30 +24,26 @@
             <label>Due date</label>
             <input id="taskDate" type="date">
         </div>
-        <div>
+        <div class="prio-container">
             <label>Prio</label>
             <div class="buttons-container">
-                <button id="urgentButton">Urgent<img src="" alt=""></button>
-                <button id="mediumButton">Medium<img src="" alt=""></button>
-                <button id="lowButton">Low<img src="" alt=""></button>
+                <button class="prio-button" id="urgentButton">Urgent<img src="./assets/icons/prio_urgent.png" alt=""></button>
+                <button class="prio-button" id="mediumButton">Medium<img src="./assets/icons/prio_medium.png" alt=""></button>
+                <button class="prio-button" id="lowButton">Low<img src="./assets/icons/prio_low.png" alt=""></button>
             </div>
         </div>
         <div>
             <label>Category</label>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
-                </button>
-                <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </div>
+            <select required name="category-input" id="categoryInput" class="category-input">
+                <option value="1" disabled selected hidden>Select task category</option>
+                <option value="User Story">User Story</option>
+                <option value="Technical Task">Technical Task</option>
+            </select>
+        </div>
         <div>
             <label>Subtasks</label>
-            <input id="taskSubtasks" type="text">
-            <div id="contentSubtasks"></div>
+            <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask">
+            <ul id="contentSubtasks"></ul>
         </div>
     </div>
 </form>
