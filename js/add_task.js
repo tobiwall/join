@@ -1,5 +1,3 @@
-
-
 function createTask() {
   let title = document.getElementById('taskTitle');
   let discription = document.getElementById('taskDiscription');
