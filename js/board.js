@@ -1,6 +1,7 @@
 const STORAGE_TOKEN = "LBRCE7ZOJGJE5A61XE03E0RA3FUCZKJ11X9OKHSK";
 let STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
+let tasks = [];
 let cardsToDo = ['aggaga','fafafaff'];
 let cardsInProgress = ['afaf'];
 let cardsAwaitFeedback = ['agcxvxvxv'];
@@ -53,7 +54,12 @@ function renderCards() {
   renderDone();
 }
 
-function renderToDo() {}
+function renderToDo() {
+  let task = document.getElementById('toDoContainer');
+  for (let i = 0; i < tasks.length; i++) {
+    tasks.innerHTML += generateCardHTML(i);
+  }
+}
 
 function renderInProgress() {}
 
@@ -61,12 +67,12 @@ function renderAwaitFeedback() {}
 
 function renderDone() {}
 
-function generateCardHTML() {
+function generateCardHTML(i) {
   return /*html*/ `
     <div class="card">
-        <div>${category}</div>
-        <h3>${title}</h3>
-        <p>${description}</p>
+        <div>${tasks[i]['category']}</div>
+        <h3>${tasks[i]['title']}</h3>
+        <p>${tasks[i]['description']}</p>
     </div>
     `;
 }

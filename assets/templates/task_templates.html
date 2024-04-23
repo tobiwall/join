@@ -27,9 +27,9 @@
         <div class="prio-container">
             <label>Prio</label>
             <div class="buttons-container">
-                <button class="prio-button urgent" id="urgentButton">Urgent<img src="./assets/icons/prio_urgent.png" alt=""></button>
-                <button class="prio-button medium" id="mediumButton">Medium<img src="./assets/icons/prio_medium.png" alt=""></button>
-                <button class="prio-button low" id="lowButton">Low<img src="./assets/icons/prio_low.png" alt=""></button>
+                <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_urgent_red.png" alt=""></button>
+                <button type="button" class="prio-button" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_medium_yellow.png" alt=""></button>
+                <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_low_green.png" alt=""></button>
             </div>
         </div>
         <div>
@@ -42,7 +42,14 @@
         </div>
         <div>
             <label>Subtasks</label>
-            <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask">
+            <div class="subtask-container">
+                <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask">
+                <div class="subtask-icon-container">
+                    <img src="" alt="X" onclick="clearInput()">
+                    <img src="" alt="I">
+                    <img src="./assets/icons/add.png" alt="ADD" onclick="addSubtask()">
+                </div>
+            </div>
             <ul id="contentSubtasks"></ul>
         </div>
     </div>
