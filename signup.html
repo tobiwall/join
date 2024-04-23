@@ -19,23 +19,24 @@
             <h1>Sign up</h1>
         </div>
 
-        <form class="signup-form" onsubmit="" action="">
+        <form class="signup-form" onsubmit="addUser(); return false" action="">
             <div class="input-container">
-                <input placeholder="Name" type="text">
+                <input placeholder="Name" id="user_name" type="text" required>
                 <img src="./assets/icons/person.png" alt="">
             </div>
             <div class="input-container">
-                <input placeholder="Email" type="email">
+                <input placeholder="Email" id="user_email" type="email" required>
                 <img src="./assets/icons/mail.png" alt="">
             </div>
             <div class="input-container">
-                <input placeholder="Password" type="text">
+                <input placeholder="Password" id="user_password" type="text" required>
                 <img src="./assets/icons/lock.png" alt="">
             </div>
             <div class="input-container">
-                <input placeholder="Confirm Password" type="text">
+                <input placeholder="Confirm Password" id="user_password_confirm" type="text" required>
                 <img src="./assets/icons/lock.png" alt="">
             </div>
+            <span></span>
             <div class="button-container">
                 <div class="privacy-container">
                     <img src="./assets/icons/rectangle.png" alt="">
