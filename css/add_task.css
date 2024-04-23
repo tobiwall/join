@@ -92,9 +92,21 @@ select {
 
 .subtask-icon-container {
   position: absolute;
-  right: 5px;
-  top: 34%;
+  right: 10px;
+  top: 36%;
 }
+
+.subtask-icon-container img {
+  height: 14px;
+  width: 14px;
+}
+
+.subtask {
+  display: flex;
+  justify-content: space-between;
+}
+
+
 
 
 
