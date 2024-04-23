@@ -37,7 +37,14 @@ body {
 
 .arrow {
     position: absolute;
-    left: 0;    
+    left: 0;
+    top: 30px;
+}
+
+.arrow:hover {
+    scale: 1.05;
+    border-radius: 50%;
+    background-color: #f6f6f6;
 }
 
 .signup-card h1 {
@@ -75,6 +82,14 @@ body {
     gap: 8px;
 }
 
+.privacy-container a {
+    text-decoration: none;
+}
+
+.privacy-container a:hover {
+    text-decoration: underline;
+}
+
 .signup-footer {
     position: absolute;
     bottom: 0;
@@ -92,6 +107,11 @@ body {
     color: #A8A8A8;
 }
 
+.signup-footer a:hover {
+    scale: 1.05;
+    color: #29ABE2;
+}
+
 .btn {
     padding: 15px 24px 15px 24px;
     border-radius: 8px;
@@ -103,6 +123,11 @@ body {
     background: #2A3647;
     border: 1px solid #2A3647;
     color: #FFFFFF;
+}
+
+.black:hover {
+    background-color: #29ABE2;
+    border: 1px solid #29ABE2;
 }
 
 h1 {
