@@ -3,7 +3,7 @@
     <div class="form-left-section">
         <div>
             <label>Title</label>
-            <input value="Peter" id="taskTitle" type="text">
+            <input id="taskTitle" type="text">
         </div>
         <div>
             <label>Discription</label>
@@ -11,9 +11,17 @@
         </div>
         <div>
             <label>Assigned to</label>
-            <div>
-                <input type="text" onclick="openContactList(event)" placeholder="Select contacts to assign">    
+            <div class="assigned-container">
+                <input type="text" onclick="openUserList(event)" placeholder="Select contacts to assign">
+                <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN">
             </div>
+            <div class="dropdown-user">
+                
+            </div>
+            <div id="content-assigned-user">
+
+            </div>    
+            
         </div>
     </div>
     <div>
@@ -28,7 +36,7 @@
             <label>Prio</label>
             <div class="buttons-container">
                 <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_urgent_red.png" alt=""></button>
-                <button type="button" class="prio-button" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_medium_yellow.png" alt=""></button>
+                <button type="button" class="prio-button medium-active" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_medium.png" alt=""></button>
                 <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_low_green.png" alt=""></button>
             </div>
         </div>
