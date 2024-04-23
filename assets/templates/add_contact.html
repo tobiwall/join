@@ -1,0 +1,27 @@
+<div class="add-contact-left-section">
+    <img class="add-contact-logo" src="./assets/icons/logo.png" alt="">
+    <span class="add-contact-headline">Add contact</span>
+    <p class="add-contact-text">Tasks are better with a team!</p>
+    <img class="add-contact-vector" src="./assets/icons/Vector 5.png" alt="">
+  </div>
+  <div class="add-contact-right-section">
+    <img onclick="closeContactPopup()" class="add-contact-close" src="./assets/icons/Close.png" alt="">
+    <img src="./assets/icons/contact_logo.png" alt="" class="contact-logo">
+    <form class="add-contact-form" onsubmit="createContact()">
+        <div class="input-container">
+          <input id="nameInput" required type="text" placeholder="Name">
+          <img src="./assets/icons/person.png" alt="Name Icon" class="input-icon">
+        </div>
+        <div class="input-container">
+          <input id="emailInput" required type="email" placeholder="Email">
+          <img src="./assets/icons/mail.png" alt="Email Icon" class="input-icon">
+        </div>
+        <div class="input-container">
+          <input id="phoneInput" required type="tel" placeholder="Phone">
+          <img src="./assets/icons/call.png" alt="Phone Icon" class="input-icon">
+        </div>
+        <button type="button" onclick="closeContactPopup()" class="cancel-btn">Cancel</button>
+        <button type="submit" class="create-contact">Create contact <img src="./assets/icons/check.png" alt=""></button>
+      </form>
+      
+  </div>

@@ -117,6 +117,7 @@ let contacts = [
 
 let firstLetterArray = [];
 let foundContacts = [];
+let openEditContactId = [];
 
 function initContact() {
   includeHTML();
@@ -313,12 +314,14 @@ function generateContactBoxHTML(contact, id) {
         <div class="contact-box-name-container">
           <p class="contact-box-name">${contact.name}</p>
           <div class="contact-box-edit-delete">
-            <div id="edit">
-              <img src="../assets/img/edit.svg" alt="">
+            <div class="edit-delete" id="edit" onclick="editContact(${id})">
+              <img class="img-black" src="../assets/img/edit.svg" alt="">
+              <img class="img-blue" src="../assets/icons/edit_blue.png" alt="">
               <p>Edit</p>
             </div>
-            <div onclick="deleteContact(${id})" id="delete">
-              <img src="../assets/img/delete.svg" alt="">
+            <div class="edit-delete" onclick="deleteContact(${id})" id="delete">
+              <img class="img-black" src="../assets/img/delete.svg" alt="">
+              <img class="img-blue" src="../assets/icons/delete_blue.png" alt="">
               <p>Delete</p>
             </div>
           </div>
@@ -341,13 +344,30 @@ function displayContactInfo(klickedContact) {
 
 function openAddContact() {
   let addContact = document.getElementById("addContact");
+  let overlay = document.getElementById("overlay");
   addContact.style.display = "block";
+  overlay.style.display = "block";
+  overlay.addEventListener("click", closeContactPopupByOverlay);
 }
 
-function closeAddContact() {
+function closeContactPopup() {
   clearInput();
   let addContact = document.getElementById("addContact");
-  addContact.style.display = "none";
+  let editContact = document.getElementById("editContact");
+  let overlay = document.getElementById("overlay");
+  if (addContact.style.display !== "none") {
+    addContact.style.display = "none";
+  }
+  if (editContact.style.display !== "none") {
+    editContact.style.display = "none";
+  }
+  overlay.style.display = "none";
+}
+
+function closeContactPopupByOverlay(event) {
+  if (event.target.id === "overlay") {
+    closeContactPopup();
+  }
 }
 
 function saveContactsLocal() {
@@ -360,8 +380,6 @@ function getLocalStorage() {
     contacts = JSON.parse(storedContacts);
   }
 }
-
-lastContactId = 18;
 
 async function createContact() {
   let nameInput = document.getElementById("nameInput");
@@ -378,7 +396,18 @@ async function saveAndDisplayContacts(nameInput, emailInput, phoneInput) {
   clearInput();
 }
 
+function findHighestId() {
+  let maxId = contacts[0].id;
+  for (let i = 1; i < contacts.length; i++) {
+    if (contacts[i].id > maxId) {
+      maxId = contacts[i].id;
+    }
+  }
+  return maxId;
+}
+
 function createNewContact(nameInput, emailInput, phoneInput) {
+  lastContactId = findHighestId();
   lastContactId++;
   let newContact = {
     name: nameInput.value,
@@ -401,12 +430,54 @@ function clearInput() {
 function deleteContact(id) {
   let openContact = findContactById(id);
   let contactId = findIndexById(openContact);
+  let editContact = document.getElementById("editContact");
   contacts.splice(contactId, 1);
   saveContactsLocal();
   renderContacts();
+  if (editContact.style.display !== "none") {
+    closeContactPopup();
+  }
   closeContactBox();
 }
 
 function findIndexById(openContact) {
-  return contacts.findIndex(contact => contact === openContact);
+  return contacts.findIndex((contact) => contact === openContact);
+}
+
+function editContact(id) {
+  let editContact = document.getElementById("editContact");
+  let overlay = document.getElementById("overlay");
+  editContact.style.display = "block";
+  overlay.style.display = "block";
+  overlay.addEventListener("click", closeContactPopupByOverlay);
+  createInputValue(id);
+
+}
+
+function createInputValue(id) {
+  let contact = findContactById(id);
+  let editNameInput = document.getElementById('editNameInput');
+  let editEmailInput = document.getElementById('editEmailInput');
+  let editPhoneInput = document.getElementById('editPhoneInput');
+  editNameInput.value = `${contact.name}`;
+  editEmailInput.value = `${contact.email}`;
+  editPhoneInput.value = `${contact.phone}`;
+  openEditContactId = contact.id;
+}
+
+function changeContact(id) {
+  let nameInput = document.getElementById("editNameInput").value;
+  let emailInput = document.getElementById("editEmailInput").value;
+  let phoneInput = document.getElementById("editPhoneInput").value;
+  changeContactDetails(nameInput, emailInput, phoneInput, id);
+}
+
+async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
+  let contact = findContactById(id);
+  contact.name = `${nameInput}`;
+  contact.email = `${emailInput}`;
+  contact.phone = `${phoneInput}`;
+  await saveContactsLocal();
+  renderContacts();
+  closeContactPopup();
 }
