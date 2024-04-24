@@ -2,6 +2,7 @@ taskId = 0;
 let selectedPriority;
 let subtasks = [];
 let subtaskId = 0;
+let users = ['User1', 'User2'];
 
 
 function createTask() {
@@ -26,27 +27,50 @@ function createTask() {
 
 function toggleButton(priority) {
   if (priority === 'urgent') {
-    document.getElementById(priority).classList.add('urgent-active');
-    document.getElementById(priority + 'Img').src = ('./assets/icons/prio_urgent.png');
-    document.getElementById('medium').classList.remove('medium-active');
-    document.getElementById('low').classList.remove('low-active');
-    selectedPriority = priority;
+    prioUrgent(priority);
   } else if (priority === 'medium') {
-    document.getElementById(priority).classList.add('medium-active');
-    document.getElementById(priority + 'Img').src = ('./assets/icons/prio_medium.png');
-    document.getElementById('urgent').classList.remove('urgent-active');
-    document.getElementById('low').classList.remove('low-active');
-    selectedPriority = priority;
+    prioMedium(priority);
   } else if (priority === 'low') {
-    document.getElementById(priority).classList.add('low-active');
-    document.getElementById('urgent').classList.remove('urgent-active');
-    document.getElementById('medium').classList.remove('medium-active');
-    selectedPriority = priority;
+    prioLow(priority);
   }
+}
+
+function prioUrgent(priority) {
+  document.getElementById(priority).classList.add('urgent-active');
+  document.getElementById(priority + 'Img').src = ('./assets/icons/prio_buttons/prio_urgent.png');
+  document.getElementById('medium').classList.remove('medium-active');
+  document.getElementById('medium').src = ('./assets/icons/prio_buttons/prio_medium_yellow.png');
+  document.getElementById('low').classList.remove('low-active');
+  document.getElementById('low').src = ('./assets/icons/prio_buttons/prio_low_green.png');
+  selectedPriority = priority;
+}
+
+function prioMedium(priority) {
+  document.getElementById(priority).classList.add('medium-active');
+  document.getElementById(priority + 'Img').src = ('./assets/icons/prio_buttons/prio_medium.png');
+  document.getElementById('urgent').classList.remove('urgent-active');
+  document.getElementById('urgent').src = ('./assets/icons/prio_buttons/prio_urgent_red.png');
+  selectedPriority = priority;
+  document.getElementById('low').classList.remove('low-active');
+  document.getElementById('low').src = ('./assets/icons/prio_buttons/prio_low_green.png');
+  selectedPriority = priority;
+}
+
+function prioLow(priority) {
+  document.getElementById(priority).classList.add('low-active');
+  document.getElementById(priority + 'Img').src = ('./assets/icons/prio_buttons/prio_low.png');
+  document.getElementById('urgent').classList.remove('urgent-active');
+  document.getElementById('urgent').src = ('./assets/icons/prio_buttons/prio_urgent_red.png');
+  selectedPriority = priority;
+  document.getElementById('medium').classList.remove('medium-active');
+  selectedPriority = priority;
+  document.getElementById('medium').src = ('./assets/icons/prio_buttons/prio_medium_yellow.png');
 }
 
 function renderSubtasks() {
   let subtasksList = document.getElementById('contentSubtasks');
+  subtasksList.innerHTML = '';
+
   for (let i = 0; i < subtasks.length; i++) {
     const task = subtasks[i];
     subtasksList.innerHTML += subtaskTemplate(task, i);
@@ -70,8 +94,8 @@ function subtaskTemplate(task, i) {
   <div id="subtask${i}" class="subtask">
     <li>${task}</li>
     <div class="subtask-edit-icons">
-      <img src="" alt="EDIT" onclick="editSubtask('${task}', ${i})">
-      <img src="" alt="X" onclick="deleteSubtask(${i})">
+      <img src="./assets/icons/edit_black.png" alt="EDIT" onclick="editSubtask('${task}', ${i})">
+      <img src="./assets/icons/delete.png" alt="X" onclick="deleteSubtask(${i})">
     </div>
   </div>
 `;
@@ -85,10 +109,11 @@ function editSubtask(task, i) {
   let subtask = document.getElementById(`subtask${i}`);
 
   subtask.innerHTML = `
-    <div id="subtask${i}" class="subtask">
+    <div class="edit-input" id="subtask${i}" class="subtask">
       <input id="changedSubtask${i}" value="${task}">
-        <img src="" alt="X" onclick="deleteSubtask(${i})">
-        <img src="" alt="OK" onclick="addChangedSubtask(${i})">
+        <div class="edit-icons">
+          <img src="./assets/icons/delete.png" alt="X" onclick="deleteSubtask(${i})">
+          <img src="./assets/icons/check1.png" alt="OK" onclick="addChangedSubtask(${i})">
       </div>
     </div>
   `;
@@ -102,56 +127,31 @@ function deleteSubtask(i) {
 function addChangedSubtask(i) {
   let input = document.getElementById(`changedSubtask${i}`);
   let subtaskText = input.value.trim();
-  
-  let subtasksList = document.getElementById('contentSubtasks');
-  subtasksList.innerHTML += subtaskTemplate(subtaskText, i);
   subtasks.splice(i, 1, subtaskText);
-  input.value = ''; 
+  input.value = '';
+  renderSubtasks();
 }
 
-// Das Array mit Benutzern
-const users = ["User1", "User2", "User3", "User4", "User5"];
-
-// Die Funktion, um die Benutzerliste zu öffnen und anzuzeigen
-function openUserList(event) {
-    event.stopPropagation(); // Stoppt die Ausbreitung des Klickereignisses
-    const dropdownUser = document.querySelector('.dropdown-user');
-    dropdownUser.innerHTML = ''; // Leert den Inhalt des Dropdown-Menüs
-    const userList = document.createElement('ul'); // Erstellt eine ungeordnete Liste für Benutzer
-    userList.classList.add('user-list');
-
-    // Fügt jedem Benutzer eine Checkbox hinzu
-    users.forEach(user => {
-        const listItem = document.createElement('li');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = user;
-        listItem.appendChild(checkbox);
-        listItem.appendChild(document.createTextNode(user));
-        userList.appendChild(listItem);
-    });
-
-    // Fügt die Benutzerliste dem Dropdown-Menü hinzu
-    dropdownUser.appendChild(userList);
-
-    // Zeigt das Dropdown-Menü an
-    dropdownUser.style.display = 'block';
-
-    // Schließt das Dropdown-Menü, wenn außerhalb davon geklickt wird
-    document.addEventListener('click', closeUserList);
+function clearInput() {
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDiscription').value = '';
+  document.getElementById('taskDate').value = '';
+  document.getElementById('categoryInput').value = '';
+  subtasks = [];
 }
 
-// Die Funktion, um das Dropdown-Menü zu schließen, wenn außerhalb davon geklickt wird
-function closeUserList() {
-    const dropdownUser = document.querySelector('.dropdown-user');
-    dropdownUser.style.display = 'none';
-    document.removeEventListener('click', closeUserList);
-}
+function showUsers() {
+  let userList = document.getElementById('dropdown-user');
+  userList.innerHTML = '';
 
-// Verhindert, dass das Klicken innerhalb des Dropdown-Menüs es schließt
-function stopPropagation(event) {
-    event.stopPropagation();
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    
+    userList.innerHTML += `
+      <label>
+        <input type="checkbox" name="assignedUser" value="${user}">
+        ${user}
+      </label><br>
+    `;
+  }
 }
-
-// Fügt den Eventlistener zum Klicken auf das Eingabefeld hinzu, um die Benutzerliste zu öffnen
-document.getElementById('taskTitle').addEventListener('click', openUserList);

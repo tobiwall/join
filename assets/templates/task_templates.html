@@ -1,8 +1,8 @@
-<h1>Add Task</h1>
+<h2>Add Task</h1>
 <form action="">
     <div class="form-left-section">
         <div>
-            <label>Title</label>
+            <label>Title*</label>
             <input id="taskTitle" type="text">
         </div>
         <div>
@@ -12,10 +12,10 @@
         <div>
             <label>Assigned to</label>
             <div class="assigned-container">
-                <input type="text" onclick="openUserList(event)" placeholder="Select contacts to assign">
+                <input type="text" onclick="showUsers()" placeholder="Select contacts to assign">
                 <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN">
             </div>
-            <div class="dropdown-user">
+            <div id="dropdown-user" class="dropdown-user">
                 
             </div>
             <div id="content-assigned-user">
@@ -29,19 +29,19 @@
     </div>
     <div class="form-right-section">
         <div>
-            <label>Due date</label>
+            <label>Due date*</label>
             <input id="taskDate" type="date">
         </div>
         <div class="prio-container">
             <label>Prio</label>
             <div class="buttons-container">
-                <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_urgent_red.png" alt=""></button>
-                <button type="button" class="prio-button medium-active" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_medium.png" alt=""></button>
-                <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_low_green.png" alt=""></button>
+                <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_buttons/prio_urgent_red.png" alt=""></button>
+                <button type="button" class="prio-button medium-active" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_buttons/prio_medium.png" alt=""></button>
+                <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_buttons/prio_low_green.png" alt=""></button>
             </div>
         </div>
         <div>
-            <label>Category</label>
+            <label>Category*</label>
             <select required name="category-input" id="categoryInput" class="category-input">
                 <option value="1" disabled selected hidden>Select task category</option>
                 <option value="User Story">User Story</option>
@@ -53,8 +53,8 @@
             <div class="subtask-container">
                 <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask">
                 <div class="subtask-icon-container">
-                    <img src="./assets\icons\buchstabe-x.png" alt="X" onclick="clearInput()">
-                    <img src="./assets/icons/add.png" alt="ADD" onclick="addSubtask()">
+                    <img src="./assets/icons/close.png" alt="X" onclick="clearInput()">
+                    <img src="./assets/icons/check1.png" alt="ADD" onclick="addSubtask()">
                 </div>
             </div>
             <ul id="contentSubtasks"></ul>

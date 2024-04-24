@@ -23,10 +23,12 @@
     <div class="content">
         <div w3-include-html="./assets/templates/task_templates.html"></div>
 
-        <span>This field is required</span>
-        <div>
-            <button>Clear</button>
-            <button onclick="createTask()">Create Task</button>
+        <div class="bottom-content">
+            <span>This field is required</span>
+            <div>
+                <button class="clear-button">Clear <img src="./assets/icons/close.png" alt="X"></button>
+                <button class="task-button" onclick="createTask()">Create Task <img src="./assets/icons/check.png" alt="OK"></button>
+            </div>
         </div>
 
     </div>

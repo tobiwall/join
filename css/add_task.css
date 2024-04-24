@@ -4,9 +4,20 @@
     left: 328px;
   }
 
+  h2 {
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+    text-align: left;
+    margin-right: 30px;
+  }
+
 label {
   font-weight: 400;
   font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 8px;
 }
 
 form {
@@ -29,6 +40,9 @@ input {
   border-radius: 10px;
 	padding: 12px 21px;
 	max-height: 48px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
 }
 
 select {
@@ -104,17 +118,76 @@ select {
 .subtask-icon-container {
   position: absolute;
   right: 10px;
-  top: 36%;
+  top: 20%;
+  display: flex;
+  align-items: center;
 }
 
-.subtask-icon-container img {
-  height: 14px;
-  width: 14px;
+#contentSubtasks {
+  margin-top: 8px;
 }
 
 .subtask {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+li:hover {
+  background-color: lightgray;
+}
+
+.edit-input {
+  position: relative;
+}
+
+.edit-input input {
+  border: none;
+}
+
+.edit-icons {
+  position: absolute;
+  top: 30%;
+  right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-button {
+  cursor: pointer;
+  width: 110px;
+  height: 56px;
+  padding: 16px;
+  gap: 4px;
+  border-radius: 10px;
+  border: 1px;
+  border: 1px solid #2A3647;
+}
+
+.clear-button:hover {
+  border-color: #29ABE2;
+  color: #29ABE2;
+}
+
+.task-button {
+  cursor: pointer;
+  background-color: #2A3647;
+  color: white;
+  width: 183px;
+  height: 56px;
+  padding: 16px;
+  gap: 4px;
+  border-radius: 10px;
+}
+
+.task-button:hover {
+  background-color: #29ABE2;
 }
 
 
