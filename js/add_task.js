@@ -5,7 +5,7 @@ let subtaskId = 0;
 let users = ['User1', 'User2'];
 
 
-function createTask() {
+function createTask(tasksColumn) {
   let title = document.getElementById('taskTitle');
   let discription = document.getElementById('taskDiscription');
   let date = document.getElementById('taskDate');
@@ -22,7 +22,7 @@ function createTask() {
     'subtasks': subtasks
   };
 
-  tasks.push(newTask);
+  tasksColumn.push(newTask);
   title.value = '';
   discription.value = '';
   date.value = '';

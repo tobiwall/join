@@ -1,8 +1,9 @@
 let tasks = [];
-let cardsToDo = ['aggaga', 'fafafaff'];
-let cardsInProgress = ['afaf'];
-let cardsAwaitFeedback = ['agcxvxvxv'];
-let cardsDone = ['vyvyvyv'];
+let cardsToDo = [];
+let cardsInProgress = [];
+let cardsAwaitFeedback = [];
+let cardsDone = [];
+let tasksColumn;
 
 function init() {
   includeHTML();
@@ -45,31 +46,55 @@ function includeHTML() {
  *
  */
 function renderCards() {
-  renderToDo();
+  renderBoardCard();
   renderInProgress();
   renderAwaitFeedback();
   renderDone();
 }
 
-function renderToDo() {
-  let task = document.getElementById('toDoContainer');
+function renderBoardCard(numberContainer) {
+  let task = document.getElementById("toDoContainer");
   for (let i = 0; i < tasks.length; i++) {
     tasks.innerHTML += generateCardHTML(i);
   }
 }
 
-function renderInProgress() { }
-
-function renderAwaitFeedback() { }
-
-function renderDone() { }
-
 function generateCardHTML(i) {
   return /*html*/ `
     <div class="card">
-        <div>${tasks[i]['category']}</div>
-        <h3>${tasks[i]['title']}</h3>
-        <p>${tasks[i]['description']}</p>
+        <div>${tasks[i]["category"]}</div>
+        <h3>${tasks[i]["title"]}</h3>
+        <p>${tasks[i]["description"]}</p>
     </div>
     `;
+}
+
+function openAddTask(taskContainer) {
+  tasksColumn = taskContainer;
+  let addTaskTemplate = document.getElementById("addTaskTemplate");
+  let overlay = document.getElementById("overlay");
+  let buttonContainer = document.getElementById("buttonContainer");
+  addTaskTemplate.style.display = "flex";
+  overlay.style.display = "block";
+  //overlay.addEventListener("click", closeContactPopupByOverlay);
+  buttonContainer.innerHTML = '';
+  buttonContainer.innerHTML += generateButtonAddTaskHTML();
+}
+
+function generateButtonAddTaskHTML() {
+  return /*html*/ `
+        <img onclick="closeAddTaskPopup()" class="add-contact-close" src="./assets/icons/Close.png" alt="">
+
+    <div>
+      <button class="clear-button">Clear <img src="./assets/icons/close.png" alt="X"></button>
+      <button class="task-button" onclick="createTask(tasksColumn)">Create Task <img src="./assets/icons/check.png" alt="OK"></button>
+    </div>
+  `;
+}
+
+function closeAddTaskPopup() {
+  let addTaskTemplate = document.getElementById("addTaskTemplate");
+  let overlay = document.getElementById("overlay");
+  addTaskTemplate.style.display = "none";
+  overlay.style.display = "none";
 }

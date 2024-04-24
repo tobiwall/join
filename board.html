@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
     <link rel="stylesheet" href="./css/board.css" />
+    <link rel="stylesheet" href="./css/contact.css" />
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/summary.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/sideboard.css">
+    <link rel="stylesheet" href="./css/add_task.css">
+
     <script src="./js/board.js"></script>
+    <script src="./js/json_cards.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="./js/contact.js"></script>
     <script src="./js/dropdown.js"></script>
   </head>
 
@@ -39,15 +45,15 @@
       <div class="table-header">
         <div class="table-head">
           <span>To do</span>
-          <img class="table-plus" src="./assets/img/plus.svg" alt="" />
+          <img onclick="openAddTask(cardsToDo)" class="table-plus" src="./assets/img/plus.svg" alt="" />
         </div>
         <div class="table-head">
           <span>In progress</span>
-          <img class="table-plus" src="./assets/img/plus.svg" alt="" />
+          <img onclick="openAddTask(cardsInProgress)" class="table-plus" src="./assets/img/plus.svg" alt="" />
         </div>
         <div class="table-head">
           <span>Await feedback</span>
-          <img class="table-plus" src="./assets/img/plus.svg" alt="" />
+          <img onclick="openAddTask(cardsAwaitFeedback)" class="table-plus" src="./assets/img/plus.svg" alt="" />
         </div>
         <div class="table-head">
           <span>Done</span>
@@ -62,6 +68,10 @@
         <div class="card" id="inProgressContainer"></div>
         <div class="card" id="awaitFeedbackContainer"></div>
         <div class="card" id="doneContainer"></div>
+        <div id="overlay"></div>
+      <div id="addTaskTemplate" class="add-task-popup">
+        <div w3-include-html="./assets/templates/task_templates.html"></div>
+      </div>
     </div>
   </body>
 </html>

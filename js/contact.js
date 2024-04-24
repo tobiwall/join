@@ -451,14 +451,13 @@ function editContact(id) {
   overlay.style.display = "block";
   overlay.addEventListener("click", closeContactPopupByOverlay);
   createInputValue(id);
-
 }
 
 function createInputValue(id) {
   let contact = findContactById(id);
-  let editNameInput = document.getElementById('editNameInput');
-  let editEmailInput = document.getElementById('editEmailInput');
-  let editPhoneInput = document.getElementById('editPhoneInput');
+  let editNameInput = document.getElementById("editNameInput");
+  let editEmailInput = document.getElementById("editEmailInput");
+  let editPhoneInput = document.getElementById("editPhoneInput");
   editNameInput.value = `${contact.name}`;
   editEmailInput.value = `${contact.email}`;
   editPhoneInput.value = `${contact.phone}`;
