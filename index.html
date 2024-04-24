@@ -15,18 +15,18 @@
         <img src="./assets/icons/logo-black.png" alt="Logo">
         <div class="sign-up-area">
             <p href="">Not a Join user?</p>
-            <button class="btn black">Sign up</button>
+            <button class="btn black" onclick="changePage()">Sign up</button>
         </div>
     </nav>
     <div class="login-card">
         <h1>Log in</h1>
-        <form class="login-form" action="">
+        <form class="login-form" onsubmit="login(); return false" action="">
             <div class="input-container">
-                <input placeholder="Email" type="email">
+                <input placeholder="Email" type="email" required>
                 <img src="./assets/icons/mail.png" alt="Mail">
             </div>
             <div class="input-container">
-                <input placeholder="Password" type="text">
+                <input placeholder="Password" type="text" required>
                 <img src="./assets/icons/lock.png" alt="Lock">
             </div>
             <div class="remember-me">

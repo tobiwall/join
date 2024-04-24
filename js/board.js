@@ -2,7 +2,7 @@ const STORAGE_TOKEN = "LBRCE7ZOJGJE5A61XE03E0RA3FUCZKJ11X9OKHSK";
 let STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
 let tasks = [];
-let cardsToDo = ['aggaga','fafafaff'];
+let cardsToDo = ['aggaga', 'fafafaff'];
 let cardsInProgress = ['afaf'];
 let cardsAwaitFeedback = ['agcxvxvxv'];
 let cardsDone = ['vyvyvyv'];
@@ -61,11 +61,11 @@ function renderToDo() {
   }
 }
 
-function renderInProgress() {}
+function renderInProgress() { }
 
-function renderAwaitFeedback() {}
+function renderAwaitFeedback() { }
 
-function renderDone() {}
+function renderDone() { }
 
 function generateCardHTML(i) {
   return /*html*/ `
@@ -77,6 +77,13 @@ function generateCardHTML(i) {
     `;
 }
 
-function setItem(key, value) {}
+async function setItem(key, value) {
+  const payload = { key, value, token: STORAGE_TOKEN };
+  return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
+  .then(res => res.json());
+}
 
-function getItem(key) {}
+async function getItem(key) {
+  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
+  return fetch(url).then(res => res.json());
+}
