@@ -153,14 +153,19 @@ function showUsers() {
   let userList = document.getElementById('dropdown-user');
   userList.innerHTML = '';
 
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
+  getLocalStorage();
+  extractInitials(contacts);
+  randomBackgroundColor();
+  sortContacts();
+
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
     
     userList.innerHTML += `
       <label>
         <div>
-          ${user}
-          <input type="checkbox" name="assignedUser" value="${user}">
+          ${contact.name}
+          <input type="checkbox" name="assignedUser" value="${contact}">
         </div>
       </label><br>
     `;
