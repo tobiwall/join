@@ -26,5 +26,5 @@ function login() {
 }
 
 function changePage() {
-    
+    window.location.href = 'signup.html?msg=Log dich ein';
 }
