@@ -23,6 +23,17 @@ function createTask() {
   };
 
   tasks.push(newTask);
+  title.value = '';
+  discription.value = '';
+  date.value = '';
+  category.value = '';
+  selectedPriority = prioMedium('medium');
+  subtasks = [];
+  subtaskId = 0;
+}
+
+function clearForm() {
+  
 }
 
 function toggleButton(priority) {
@@ -39,9 +50,9 @@ function prioUrgent(priority) {
   document.getElementById(priority).classList.add('urgent-active');
   document.getElementById(priority + 'Img').src = ('./assets/icons/prio_buttons/prio_urgent.png');
   document.getElementById('medium').classList.remove('medium-active');
-  document.getElementById('medium').src = ('./assets/icons/prio_buttons/prio_medium_yellow.png');
+  document.getElementById('mediumImg').src = ('./assets/icons/prio_buttons/prio_medium_yellow.png');
   document.getElementById('low').classList.remove('low-active');
-  document.getElementById('low').src = ('./assets/icons/prio_buttons/prio_low_green.png');
+  document.getElementById('lowImg').src = ('./assets/icons/prio_buttons/prio_low_green.png');
   selectedPriority = priority;
 }
 
@@ -49,10 +60,9 @@ function prioMedium(priority) {
   document.getElementById(priority).classList.add('medium-active');
   document.getElementById(priority + 'Img').src = ('./assets/icons/prio_buttons/prio_medium.png');
   document.getElementById('urgent').classList.remove('urgent-active');
-  document.getElementById('urgent').src = ('./assets/icons/prio_buttons/prio_urgent_red.png');
-  selectedPriority = priority;
+  document.getElementById('urgentImg').src = ('./assets/icons/prio_buttons/prio_urgent_red.png');
   document.getElementById('low').classList.remove('low-active');
-  document.getElementById('low').src = ('./assets/icons/prio_buttons/prio_low_green.png');
+  document.getElementById('lowImg').src = ('./assets/icons/prio_buttons/prio_low_green.png');
   selectedPriority = priority;
 }
 
@@ -60,11 +70,10 @@ function prioLow(priority) {
   document.getElementById(priority).classList.add('low-active');
   document.getElementById(priority + 'Img').src = ('./assets/icons/prio_buttons/prio_low.png');
   document.getElementById('urgent').classList.remove('urgent-active');
-  document.getElementById('urgent').src = ('./assets/icons/prio_buttons/prio_urgent_red.png');
-  selectedPriority = priority;
+  document.getElementById('urgentImg').src = ('./assets/icons/prio_buttons/prio_urgent_red.png');
   document.getElementById('medium').classList.remove('medium-active');
+  document.getElementById('mediumImg').src = ('./assets/icons/prio_buttons/prio_medium_yellow.png');
   selectedPriority = priority;
-  document.getElementById('medium').src = ('./assets/icons/prio_buttons/prio_medium_yellow.png');
 }
 
 function renderSubtasks() {
@@ -149,8 +158,10 @@ function showUsers() {
     
     userList.innerHTML += `
       <label>
-        <input type="checkbox" name="assignedUser" value="${user}">
-        ${user}
+        <div>
+          ${user}
+          <input type="checkbox" name="assignedUser" value="${user}">
+        </div>
       </label><br>
     `;
   }
