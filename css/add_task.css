@@ -4,19 +4,21 @@
     left: 328px;
   }
 
-  h2 {
-    font-size: 61px;
-    font-weight: 700;
-    line-height: 73.2px;
-    text-align: left;
-    margin-right: 30px;
-  }
+h2 {
+  font-size: 61px;
+  font-weight: 700;
+  line-height: 73.2px;
+  text-align: left;
+  margin-right: 30px;
+}
 
 label {
+  display:inline-block;
   font-weight: 400;
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
+  margin: 8px 0px;
 }
 
 form {
@@ -25,6 +27,7 @@ form {
 
 textarea {
 	width: 100%;
+  margin-top: 8px;
 	height: 120px;
 	border: 1px solid #d1d1d1;
 	border-radius: 10px;
@@ -98,6 +101,7 @@ select {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  margin-right: 8px;
 }
 
 .user {

@@ -129,16 +129,26 @@ h1 {
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }
 
+#category {
+    margin-bottom: 24px;
+}
+
 .card h3 {
     font-size: 16px;
     font-weight: 700;
     line-height: 19.2px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    margin-bottom: 24px;
 }
 
 .subtasks-info {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 24px;
 }
 
 .progressbar {

@@ -4,6 +4,11 @@ let subtasks = [];
 let subtaskId = 0;
 let users = [];
 
+function initAddTask() {
+  includeHTML();
+  load();
+}
+
 function createTask(tasksColumn) {
   let title = document.getElementById('taskTitle');
   let discription = document.getElementById('taskDiscription');
@@ -37,8 +42,18 @@ function createTask(tasksColumn) {
   save();
 }
 
-function clearForm() {
-  
+function clearAddTaskInput() {
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDiscription').value = '';
+  document.getElementById('taskDate').value = '';
+  document.getElementById('categoryInput').value = '';
+  document.getElementById('subtasksInput').value = '';
+  subtasks = [''];
+  subtaskId = 0;
+  users = [''];
+
+  renderSubtasks();
+  renderAssignedUser();
 }
 
 function toggleButton(priority) {
@@ -115,20 +130,6 @@ function subtaskTemplate(task, i) {
 `;
 }
 
-function clearAddTaskInput() {
-  document.getElementById('taskTitle').value = '';
-  document.getElementById('taskDiscription').value = '';
-  document.getElementById('taskDate').value = '';
-  document.getElementById('categoryInput').value = '';
-  document.getElementById('subtasksInput').value = '';
-  subtasks = [''];
-  subtaskId = 0;
-  users = [''];
-
-  renderSubtasks();
-  renderAssignedUser();
-}
-
 function editSubtask(task, i) {
   let subtask = document.getElementById(`subtask${i}`);
 
@@ -183,6 +184,22 @@ function showUsers() {
   }
 }
 
+//Close Funktion für Assigned USer funktioniert nicht...
+/*
+document.addEventListener('click', function(event) {
+  var dropdownUsers = document.getElementById('dropdown-users');
+  var assignedIcon = document.querySelector('.assigned-icon');
+  var isClickInsideDropdown = dropdownUsers.contains(event.target);
+  var isClickOnIcon = assignedIcon.contains(event.target);
+
+  if (!isClickInsideDropdown && !isClickOnIcon) {
+      // Wenn der Klick außerhalb des Dropdowns oder des Icons liegt, schließe das Dropdown
+      dropdownUsers.style.display = 'none';
+  }
+});
+
+*/
+
 function handleCheckboxChange(event) {
   const checkbox = event.target;
   const contactData = JSON.parse(checkbox.getAttribute('data-contact'));
@@ -194,6 +211,7 @@ function handleCheckboxChange(event) {
     const index = users.findIndex(user => user.name === contactData.name);
     if (index !== -1) {
       users.splice(index, 1);
+      renderAssignedUser();
     }
   }
 }
