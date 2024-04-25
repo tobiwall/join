@@ -2,7 +2,6 @@ taskId = 0;
 let selectedPriority;
 let subtasks = [];
 let subtaskId = 0;
-let users = ['User1', 'User2'];
 
 
 function createTask(tasksColumn) {
@@ -15,7 +14,6 @@ function createTask(tasksColumn) {
     'id': taskId++,
     'title': title.value,
     'description': discription.value,
-    'assignedTo': '',
     'dueDate': date.value,
     'prio': selectedPriority,
     'category': category.value,
@@ -28,7 +26,6 @@ function createTask(tasksColumn) {
   date.value = '';
   category.value = '';
   selectedPriority = prioMedium('medium');
-  subtasks = [];
   subtaskId = 0;
 }
 
@@ -149,10 +146,6 @@ function clearInput() {
   subtasks = [];
 }
 
-function showUsers() {
-  let userList = document.getElementById('dropdown-user');
-  userList.innerHTML = '';
-
   getLocalStorage();
   extractInitials(contacts);
   randomBackgroundColor();
@@ -162,12 +155,9 @@ function showUsers() {
     const contact = contacts[i];
     
     userList.innerHTML += `
-      <label>
         <div>
           ${contact.name}
-          <input type="checkbox" name="assignedUser" value="${contact}">
         </div>
-      </label><br>
     `;
   }
 }
