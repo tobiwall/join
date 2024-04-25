@@ -78,6 +78,28 @@ select {
   top: 45%;
 }
 
+.dropdown-users {
+  background-color: white;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.user-container {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
+
+#contentAssignedUsers {
+  display: flex;
+}
+
 .buttons-container {
   display: flex;
   justify-content: space-between;

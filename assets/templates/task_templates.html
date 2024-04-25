@@ -12,11 +12,13 @@
         <div>
             <label>Assigned to</label>
             <div class="assigned-container">
-                <input type="text" onclick="showUsers()" placeholder="Select contacts to assign">
-                <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN">
+                <input id="userInput" type="text" onchange="searchUser()" onclick="showUsers()" placeholder="Select contacts to assign">
+                <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showUsers()">
             </div>
+            <div id="dropdown-users" class="dropdown-users">
                 
             </div>
+            <div id="contentAssignedUsers">
 
             </div>    
             

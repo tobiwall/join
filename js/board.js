@@ -1,3 +1,6 @@
+const STORAGE_TOKEN = "LBRCE7ZOJGJE5A61XE03E0RA3FUCZKJ11X9OKHSK";
+let STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+
 let tasks = [];
 let cardsToDo = [];
 let cardsInProgress = [];
@@ -59,12 +62,12 @@ function renderBoardCard(numberContainer) {
   }
 }
 
-function generateCardHTML(i) {
+function generateCardHTML(i, toDo) {
   return /*html*/ `
     <div class="card">
-        <div>${tasks[i]["category"]}</div>
-        <h3>${tasks[i]["title"]}</h3>
-        <p>${tasks[i]["description"]}</p>
+        <div>${tasks[i]['category']}</div>
+        <h3>${tasks[i]['title']}</h3>
+        <p>${tasks[i]['description']}</p>
     </div>
     `;
 }

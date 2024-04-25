@@ -2,7 +2,7 @@ taskId = 0;
 let selectedPriority;
 let subtasks = [];
 let subtaskId = 0;
-
+let users = [];
 
 function createTask(tasksColumn) {
   let title = document.getElementById('taskTitle');
@@ -14,6 +14,7 @@ function createTask(tasksColumn) {
     'id': taskId++,
     'title': title.value,
     'description': discription.value,
+    'assignedTo': users,
     'dueDate': date.value,
     'prio': selectedPriority,
     'category': category.value,
@@ -21,12 +22,18 @@ function createTask(tasksColumn) {
   };
 
   tasksColumn.push(newTask);
+
   title.value = '';
   discription.value = '';
   date.value = '';
   category.value = '';
   selectedPriority = prioMedium('medium');
+  subtasks = [''];
   subtaskId = 0;
+  users = [''];
+
+  renderSubtasks();
+  renderAssignedUser();
 }
 
 function clearForm() {
@@ -107,8 +114,18 @@ function subtaskTemplate(task, i) {
 `;
 }
 
-function clearInput() {
+function clearAddTaskInput() {
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDiscription').value = '';
+  document.getElementById('taskDate').value = '';
+  document.getElementById('categoryInput').value = '';
   document.getElementById('subtasksInput').value = '';
+  subtasks = [''];
+  subtaskId = 0;
+  users = [''];
+
+  renderSubtasks();
+  renderAssignedUser();
 }
 
 function editSubtask(task, i) {
@@ -146,18 +163,83 @@ function clearInput() {
   subtasks = [];
 }
 
+function loadContacts() {
   getLocalStorage();
   extractInitials(contacts);
   randomBackgroundColor();
   sortContacts();
+}
+
+function showUsers() {
+  let userList = document.getElementById('dropdown-users');
+  userList.innerHTML = '';
+  loadContacts();
 
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
     
-    userList.innerHTML += `
-        <div>
-          ${contact.name}
-        </div>
+    userList.innerHTML += userTemplate(contact);
+  }
+}
+
+function handleCheckboxChange(event) {
+  const checkbox = event.target;
+  const contactData = JSON.parse(checkbox.getAttribute('data-contact'));
+
+  if (checkbox.checked) {
+    users.push(contactData);
+    renderAssignedUser();
+  } else {
+    const index = users.findIndex(user => user.name === contactData.name);
+    if (index !== -1) {
+      users.splice(index, 1);
+    }
+  }
+}
+
+function userTemplate(contact) {
+  return `
+  <div class="user-container">
+    <div class="user">
+      <div class="initialien-round-container" style="background-color: ${contact.color};">
+        ${contact.initials}
+      </div>
+      <div>
+        ${contact.name}
+      </div>
+    </div>
+    <div>
+      <input type="checkbox" name="assignedUser" value="${contact.name}" data-contact='${JSON.stringify(contact)}' onchange="handleCheckboxChange(event)">
+    </div>
+  </div>
+`;
+}
+
+function searchUser() {
+  let searchValue = document.getElementById('userInput').value.trim().toLowerCase();
+  let userList = document.getElementById('dropdown-users');
+  userList.innerHTML = '';
+  loadContacts();
+
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (((contact.name).trim().toLowerCase()).includes(searchValue)) {
+      userList.innerHTML += userTemplate(contact);
+    }
+  }
+}
+
+function renderAssignedUser() {
+  let assignedUsers = document.getElementById('contentAssignedUsers');
+  assignedUsers.innerHTML = '';
+
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    
+    assignedUsers.innerHTML += `
+    <div class="initialien-round-container" style="background-color: ${user.color};">
+      ${user.initials}
+    </div>
     `;
   }
 }
