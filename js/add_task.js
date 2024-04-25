@@ -39,6 +39,7 @@ function createTask(tasksColumn) {
 
   renderSubtasks();
   renderAssignedUser();
+  renderCards();
   save();
 }
 

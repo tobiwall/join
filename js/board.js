@@ -58,6 +58,7 @@ function renderCards() {
 
 function renderBoardCard(numberContainer) {
   let toDoContainer = document.getElementById("toDoContainer");
+  toDoContainer.innerHTML = '';
   
   for (let i = 0; i < cardsToDo.length; i++) {
     const task = cardsToDo[i]
