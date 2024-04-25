@@ -1,7 +1,6 @@
 const STORAGE_TOKEN = "LBRCE7ZOJGJE5A61XE03E0RA3FUCZKJ11X9OKHSK";
 let STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
-let tasks = [];
 let cardsToDo = [];
 let cardsInProgress = [];
 let cardsAwaitFeedback = [];
@@ -10,6 +9,8 @@ let tasksColumn;
 
 function init() {
   includeHTML();
+  load();
+  renderCards();
 }
 
 function includeHTML() {
@@ -50,24 +51,35 @@ function includeHTML() {
  */
 function renderCards() {
   renderBoardCard();
-  renderInProgress();
-  renderAwaitFeedback();
-  renderDone();
+  //renderInProgress();
+  //renderAwaitFeedback();
+  //renderDone();
 }
 
 function renderBoardCard(numberContainer) {
-  let task = document.getElementById("toDoContainer");
-  for (let i = 0; i < tasks.length; i++) {
-    tasks.innerHTML += generateCardHTML(i);
+  let toDoContainer = document.getElementById("toDoContainer");
+  for (let i = 0; i < cardsToDo.length; i++) {
+    const task = cardsToDo[i]
+    for (let j = 0; j < cardsToDo[i].users.length; j++) {
+      const user = cardsToDo[i].users[j];
+      toDoContainer.innerHTML += generateCardHTML(task ,user);
+    }
   }
 }
 
-function generateCardHTML(i, toDo) {
+function generateCardHTML(task, user) {
   return /*html*/ `
     <div class="card">
-        <div>${tasks[i]['category']}</div>
-        <h3>${tasks[i]['title']}</h3>
-        <p>${tasks[i]['description']}</p>
+        <div>${task['category']}</div>
+        <h3>${task['title']}</h3>
+        <p>${task['description']}</p>
+        <div>${task['subtasks']}</div>
+        <div>
+          <div class="initialien-round-container" style="background-color: ${user.color};">
+            ${user.initials}
+          </div>
+          <div>${task['prio']}</div>
+        </div>
     </div>
     `;
 }

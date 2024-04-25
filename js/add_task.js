@@ -14,7 +14,7 @@ function createTask(tasksColumn) {
     'id': taskId++,
     'title': title.value,
     'description': discription.value,
-    'assignedTo': users,
+    'users': users,
     'dueDate': date.value,
     'prio': selectedPriority,
     'category': category.value,
@@ -34,6 +34,7 @@ function createTask(tasksColumn) {
 
   renderSubtasks();
   renderAssignedUser();
+  save();
 }
 
 function clearForm() {
@@ -241,5 +242,18 @@ function renderAssignedUser() {
       ${user.initials}
     </div>
     `;
+  }
+}
+
+
+function save() {
+  let toDoAsText = JSON.stringify(cardsToDo);
+  localStorage.setItem('toDos', toDoAsText);
+}
+
+function load() {
+  let toDoAsText = localStorage.getItem('toDos');
+  if(toDoAsText) {
+    cardsToDo = JSON.parse(toDoAsText);
   }
 }
