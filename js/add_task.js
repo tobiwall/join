@@ -202,7 +202,7 @@ function userTemplate(contact) {
   return `
   <div class="user-container">
     <div class="user">
-      <div class="initialien-round-container" style="background-color: ${contact.color};">
+      <div class="user-initials" style="background-color: ${contact.color};">
         ${contact.initials}
       </div>
       <div>

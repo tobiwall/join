@@ -48,6 +48,10 @@ nav {
 }
 
 .nav-top-section a:hover {
+  background-color: #284168;
+}
+
+.nav-top-section a:active {
   background-color: #091931;
 }
 

@@ -58,30 +58,52 @@ function renderCards() {
 
 function renderBoardCard(numberContainer) {
   let toDoContainer = document.getElementById("toDoContainer");
+  
   for (let i = 0; i < cardsToDo.length; i++) {
     const task = cardsToDo[i]
-    for (let j = 0; j < cardsToDo[i].users.length; j++) {
-      const user = cardsToDo[i].users[j];
-      toDoContainer.innerHTML += generateCardHTML(task ,user);
-    }
+    toDoContainer.innerHTML += generateCardHTML(task, i);
+    renderUsers(i);
   }
 }
 
-function generateCardHTML(task, user) {
+function renderUsers(i) {
+  let userContainer = document.getElementById(`userContainer${i}`);
+  userContainer.innerHTML = '';
+
+  for (let j = 0; j < cardsToDo[i].users.length; j++) {
+    const user = cardsToDo[i].users[j];
+
+    userContainer.innerHTML += `
+      <div class="user-initials" style="background-color: ${user.color};">
+        ${user.initials}
+      </div>
+    `;
+  }
+}
+
+function generateCardHTML(task, i) {
   return /*html*/ `
     <div class="card">
-        <div>${task['category']}</div>
+        <div id="category">${task['category']}</div>
         <h3>${task['title']}</h3>
         <p>${task['description']}</p>
-        <div>${task['subtasks']}</div>
-        <div>
-          <div class="initialien-round-container" style="background-color: ${user.color};">
-            ${user.initials}
+        <div class="subtasks-info">
+          <div class="progressbar">
+            <div id="subtaskProgressbar" style="width:0%;"></div>
+          </div>${task['subtasks'].length}
+        </div>
+        <div class="card-bottom-section">
+          <div class="userContainer" id="userContainer${i}">
           </div>
           <div>${task['prio']}</div>
         </div>
     </div>
     `;
+}
+
+function generateProgressbar() {
+  let progressbar = document.getElementById('subtaskProgressbar');
+
 }
 
 function openAddTask(taskContainer) {
