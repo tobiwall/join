@@ -1,3 +1,14 @@
+function initSummary() {
+  includeHTML();
+  load();
+  loadTodoTasks();
+  loadTaskInProgress();
+  loadTasksFeedback();
+  loadDoneTasks();
+  loadTasksUrgent();
+  loadTaskInBoard();
+}
+
 function loadTodoTasks() {
   let todoAmount = cardsToDo.length;
   let displayedTodo = document.getElementById('toDoAmount');
@@ -34,7 +45,7 @@ function loadTasksUrgent() {
 }
 
 function loadTaskInBoard() {
-  let allAmount = cardsToDo.length + cardsInProgress.length + cardsAwaitFeedback.length;
+  let allAmount = allTasks.length;
   let displayedAll = document.getElementById('allAmount');
 
   displayedAll.innerHTML = allAmount;

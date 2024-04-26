@@ -129,10 +129,6 @@ h1 {
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }
 
-#category {
-    margin-bottom: 24px;
-}
-
 .card h3 {
     font-size: 16px;
     font-weight: 700;
@@ -188,3 +184,38 @@ h1 {
     padding-top: 16px;
     z-index: 101;
 }
+
+.task-popup {
+    width: 525px;
+    height: 931px;
+    padding: 40px;
+    border-radius: 30px;
+    position: absolute;
+    left: calc(50% - 300px);
+    top: calc(30vh - 292px);
+    background-color: rgb(255, 255, 255);
+    display: none;
+    flex-direction: column;
+    z-index: 101;
+}
+
+.task-popup-top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-popup h3 {
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73.2px;
+}
+
+.task-popup p {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+
+

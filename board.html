@@ -37,7 +37,7 @@
                 </button>
               </div>
             </div>
-            <button id="addTaskBtn">
+            <button id="addTaskBtn" onclick="openAddTask(cardsToDo)">
               Add task <img class="plus" src="./assets/img/add.svg" alt="" />
             </button>
           </div>
@@ -51,28 +51,29 @@
             </div>
             <div class="taskRow" id="toDoContainer"></div>
           </div>
-          <div>
+          <div class="taskContainer">
             <div class="table-head">
               <span>In progress</span>
               <img onclick="openAddTask(cardsInProgress)" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
             <div class="taskRow" id="inProgressContainer"></div>
           </div>
-          <div>
+          <div class="taskContainer">
             <div class="table-head">
               <span>Await feedback</span>
               <img onclick="openAddTask(cardsAwaitFeedback)" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
             <div class="taskRow" id="awaitFeedbackContainer"></div>
           </div>
-          <div>
+          <div class="taskContainer">
             <div class="table-head">
               <span>Done</span>
             </div>
             <div class="taskRow" id="doneContainer"></div>
           </div>
-          <div id="overlay"></div>
+          <div id="overlayAddTask"></div>
         </div>
+        <div id="taskPopup" class="task-popup"></div>
         <div id="addTaskTemplate" class="add-task-popup">
           <div w3-include-html="./assets/templates/task_templates.html"></div>
         </div>

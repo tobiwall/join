@@ -152,9 +152,20 @@ select {
 .subtask-icon-container {
   position: absolute;
   right: 10px;
-  top: 20%;
+  top: 24%;
   display: flex;
   align-items: center;
+  gap: 4px;
+}
+
+.subtask-icon-container div {
+  cursor: pointer;
+  height: 24px;
+}
+
+.subtask-icon-container div:hover {
+  background-color: #D9D9D9;
+  border-radius: 12px;
 }
 
 #contentSubtasks {
@@ -165,10 +176,7 @@ select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-li:hover {
-  background-color: lightgray;
+  cursor: pointer;
 }
 
 .edit-input {
@@ -191,6 +199,22 @@ li:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.subtask-edit-icons {
+  display: flex;
+  gap: 4px
+}
+
+.subtask-edit-icons div {
+  cursor: pointer;
+  height: 24px;
+}
+
+.subtask-edit-icons div:hover {
+  background-color: #D9D9D9;
+  border-radius: 12px;
+  scale: 1.05;
 }
 
 .clear-button {

@@ -1,5 +1,5 @@
 taskId = 0;
-let selectedPriority;
+let selectedPriority = 'medium';
 let subtasks = [];
 let subtaskId = 0;
 let users = [];
@@ -26,13 +26,18 @@ function createTask(tasksColumn) {
     subtasks: subtasks,
   };
 
+  if (selectedPriority === 'urgent') {
+    cardsUrgent.push(newTask);
+  }
+  
   tasksColumn.push(newTask);
+  allTasks.push(newTask);
 
   title.value = "";
   discription.value = "";
   date.value = "";
   category.value = "";
-  selectedPriority = prioMedium("medium");
+  selectedPriority = prioMedium('medium');
   subtasks = [""];
   subtaskId = 0;
   users = [""];
@@ -133,8 +138,9 @@ function subtaskTemplate(task, i) {
   <div id="subtask${i}" class="subtask">
     <li>${task}</li>
     <div class="subtask-edit-icons">
-      <img src="./assets/icons/edit_black.png" alt="EDIT" onclick="editSubtask('${task}', ${i})">
-      <img src="./assets/icons/delete.png" alt="X" onclick="deleteSubtask(${i})">
+      <div onclick="editSubtask('${task}', ${i})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
+      <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
+      <div onclick="deleteSubtask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
     </div>
   </div>
 `;
@@ -144,11 +150,11 @@ function editSubtask(task, i) {
   let subtask = document.getElementById(`subtask${i}`);
 
   subtask.innerHTML = `
-    <div class="edit-input" id="subtask${i}" class="subtask">
+    <div class="edit-input" id="subtask${i}">
       <input id="changedSubtask${i}" value="${task}">
         <div class="edit-icons">
-          <img src="./assets/icons/delete.png" alt="X" onclick="deleteSubtask(${i})">
-          <img src="./assets/icons/check1.png" alt="OK" onclick="addChangedSubtask(${i})">
+          <img src="./assets/icons/subtask_icons/delete.png" alt="X" onclick="deleteSubtask(${i})">
+          <img src="./assets/icons/subtask_icons/check.png" alt="OK" onclick="addChangedSubtask(${i})">
       </div>
     </div>
   `;
@@ -208,22 +214,6 @@ function hideUsers() {
   let userList = document.getElementById("dropdown-users");
   userList.innerHTML = "";
 }
-
-//Close Funktion für Assigned USer funktioniert nicht...
-/*
-document.addEventListener('click', function(event) {
-  var dropdownUsers = document.getElementById('dropdown-users');
-  var assignedIcon = document.querySelector('.assigned-icon');
-  var isClickInsideDropdown = dropdownUsers.contains(event.target);
-  var isClickOnIcon = assignedIcon.contains(event.target);
-
-  if (!isClickInsideDropdown && !isClickOnIcon) {
-      // Wenn der Klick außerhalb des Dropdowns oder des Icons liegt, schließe das Dropdown
-      dropdownUsers.style.display = 'none';
-  }
-});
-
-*/
 
 function handleCheckboxChange(event) {
   const checkbox = event.target;
@@ -295,14 +285,28 @@ function renderAssignedUser() {
   }
 }
 
+function enableInput() {
+  let input = document.querySelector('.subtask-icon-container');
+  document.getElementById('subtasksInput').removeAttribute('disabled');
+  input.innerHTML = `
+    <div onclick="clearInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
+    <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
+    <div onclick="addSubtask()"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
+  `;
+}
+
 function save() {
   let toDoAsText = JSON.stringify(cardsToDo);
+  let allTasksAsText = JSON.stringify(allTasks);
   localStorage.setItem("toDos", toDoAsText);
+  localStorage.setItem("allTasks", allTasksAsText);
 }
 
 function load() {
   let toDoAsText = localStorage.getItem("toDos");
-  if (toDoAsText) {
+  let allTasksAsText = localStorage.getItem("allTasks");
+  if (toDoAsText && allTasksAsText) {
     cardsToDo = JSON.parse(toDoAsText);
+    allTasks = JSON.parse(allTasksAsText);
   }
 }

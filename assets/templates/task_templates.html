@@ -57,10 +57,9 @@
         <div>
             <label>Subtasks</label>
             <div class="subtask-container">
-                <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask">
+                <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" disabled onclick="enableInput()">
                 <div class="subtask-icon-container">
-                    <img src="./assets/icons/close.png" alt="X" onclick="clearInput()">
-                    <img src="./assets/icons/check1.png" alt="ADD" onclick="addSubtask()">
+                    <img src="./assets/icons/subtask_icons/add.png" onclick="enableInput()"></img>
                 </div>
             </div>
             <ul id="contentSubtasks"></ul>
