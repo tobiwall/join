@@ -119,6 +119,7 @@ h1 {
 }
 
 .card {
+    cursor: pointer;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -138,6 +139,7 @@ h1 {
 
 .card p {
     margin-bottom: 24px;
+    word-break: break-all;
 }
 
 .subtasks-info {
@@ -187,7 +189,7 @@ h1 {
 
 .task-popup {
     width: 525px;
-    height: 931px;
+    max-height: 931px;
     padding: 40px;
     border-radius: 30px;
     position: absolute;
@@ -197,6 +199,7 @@ h1 {
     display: none;
     flex-direction: column;
     z-index: 101;
+    gap: 24px;
 }
 
 .task-popup-top-section {
@@ -205,16 +208,45 @@ h1 {
     justify-content: space-between;
 }
 
+.task-popup-top-section img {
+    cursor: pointer;
+}
+
+.task-popup-top-section img:hover {
+    background-color: #D9D9D9;
+    border-radius: 12px;
+}
+
 .task-popup h3 {
+    word-break: break-all;
     font-size: 61px;
     font-weight: 700;
     line-height: 73.2px;
 }
 
 .task-popup p {
+    word-break: break-all;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
+}
+
+.task-popup-bottom-section {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+    justify-content: end;
+}
+
+.task-popup-bottom-section div {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.task-popup-bottom-section div:hover {
+    color: #29abe2;
+    scale: 1.05;
 }
 
 

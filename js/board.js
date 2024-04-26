@@ -119,7 +119,7 @@ function renderUsers(i) {
 
 function generateCardHTML(task, i) {
   return /*html*/ `
-    <div class="card" id="card${task['id']}" onclick="openTask(${i})">
+    <div draggable="true" class="card" id="card${task['id']}" onclick="openTask(${i})">
         <div id="category">${task['category']}</div>
         <h3>${task['title']}</h3>
         <p>${task['description']}</p>
@@ -177,7 +177,7 @@ function openTask(i) {
   taskContainer.innerHTML = '';
   taskContainer.style.display = 'flex';
   const task = cardsToDo[i];
-
+  renderUsers(i);
   taskContainer.innerHTML = taskPopup(task, i);
 }
 
@@ -191,13 +191,12 @@ function taskPopup(task ,i) {
     <p>${task['description']}</p>
     <p>Due Date: ${task['dueDate']}</p>
     <p>Priority: ${task['prio']}</p>
-    <div class="userContainer" id="userContainer${i}">
-    </div>
+    <div class="userContainer" id="userContainer${i}"></div>
     <div>
-      <div>Subtasks<div>
+      <div>Subtasks</div>
       <div>${task['subtasks']}</div>
     </div>
-    <div>
+    <div class="task-popup-bottom-section">
       <div><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
       <img src="./assets/icons/mini_seperator.png" alt="/">
       <div><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT">Edit</div>
@@ -209,3 +208,4 @@ function closeTaskPopup() {
   let taskContainer = document.getElementById('taskPopup');
   taskContainer.style.display = 'none';
 }
+

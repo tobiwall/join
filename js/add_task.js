@@ -298,15 +298,33 @@ function enableInput() {
 function save() {
   let toDoAsText = JSON.stringify(cardsToDo);
   let allTasksAsText = JSON.stringify(allTasks);
+  let cardsInProgressAsText = JSON.stringify(cardsInProgress);
+  let cardsAwaitFeedbackAsText = JSON.stringify(cardsAwaitFeedback);
+  let cardsDoneAsText = JSON.stringify(cardsDone );
+  let urgendTasks = JSON.stringify(cardsUrgent);
+
   localStorage.setItem("toDos", toDoAsText);
   localStorage.setItem("allTasks", allTasksAsText);
+  localStorage.setItem("inProgress", cardsInProgressAsText);
+  localStorage.setItem("awaitFeedback", cardsAwaitFeedbackAsText);
+  localStorage.setItem("done", cardsDoneAsText);
+  localStorage.setItem("urgent", urgendTasks);
 }
 
 function load() {
   let toDoAsText = localStorage.getItem("toDos");
   let allTasksAsText = localStorage.getItem("allTasks");
-  if (toDoAsText && allTasksAsText) {
+  let cardsInProgressAsText = localStorage.getItem("inProgress");
+  let cardsAwaitFeedbackAsText = localStorage.getItem("awaitFeedback");
+  let cardsDoneAsText = localStorage.getItem("done");
+  let urgendTasks = localStorage.getItem("urgent");
+  
+  if (toDoAsText && allTasksAsText && cardsInProgressAsText &&    cardsAwaitFeedbackAsText && cardsDoneAsText && urgendTasks) {
     cardsToDo = JSON.parse(toDoAsText);
     allTasks = JSON.parse(allTasksAsText);
+    cardsAwaitFeedback = JSON.parse(cardsInProgressAsText);
+    cardsDone = JSON.parse(cardsAwaitFeedbackAsText);
+    cardsUrgent = JSON.parse(cardsDoneAsText);
+    allTasks = JSON.parse(urgendTasks);
   }
 }
