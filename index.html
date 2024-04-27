@@ -8,9 +8,10 @@
 
     <link rel="stylesheet" href="./css/login.css">
     <script src="./js/login-signup.js"></script>
+    <script src="./js/storage.js"></script>
 </head>
 
-<body>
+<body onload="initLogin()">
     <nav class="login-navbar">
         <img src="./assets/icons/logo-black.png" alt="Logo">
         <div class="sign-up-area">
@@ -20,13 +21,13 @@
     </nav>
     <div class="login-card">
         <h1>Log in</h1>
-        <form class="login-form" onsubmit="login(); return false" action="">
+        <form class="login-form" onsubmit="login(); return false">
             <div class="input-container">
                 <input placeholder="Email" type="email" required>
                 <img src="./assets/icons/mail.png" alt="Mail">
             </div>
             <div class="input-container">
-                <input placeholder="Password" type="text" required>
+                <input placeholder="Password" type="password" required>
                 <img src="./assets/icons/lock.png" alt="Lock">
             </div>
             <div class="remember-me">

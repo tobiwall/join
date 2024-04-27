@@ -70,6 +70,11 @@ body {
     height: 20px;
 }
 
+.hidden-container {
+    color: #ff0000;
+    font-size: 12px;
+}
+
 .button-container {
     display: flex;
     flex-direction: column;
@@ -141,4 +146,12 @@ input {
     outline: none;
     width: 100%;
     font-size: 20px;
+}
+
+.d-none {
+    display: none;
+}
+
+.red-border {
+    border-color: #ff0000;
 }

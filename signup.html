@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
 
-    <link rel="stylesheet" href="./css/signup.css">
-    <script src="./js/login-signup.js"></script>
+    <link rel="stylesheet" href="./css/signup.css">    
 </head>
 
-<body>
+<body">
     <img class="logo" src="./assets/icons/logo-black.png" alt="">
 
     <div class="signup-card">
         <div class="flex-container">
-            <a class="arrow" href="#"><img src="./assets/icons/arrow.png" alt=""></a>
+            <img class="arrow" id="arrow" src="./assets/icons/arrow.png" alt="">
             <h1>Sign up</h1>
         </div>
 
-        <form class="signup-form" onsubmit="addUser(); return false" action="">
+        <form class="signup-form" id="myForm">
             <div class="input-container">
                 <input placeholder="Name" id="user_name" type="text" required>
                 <img src="./assets/icons/person.png" alt="">
@@ -29,20 +28,20 @@
                 <img src="./assets/icons/mail.png" alt="">
             </div>
             <div class="input-container">
-                <input placeholder="Password" id="user_password" type="text" required>
+                <input placeholder="Password" id="user_password" type="password" required>
                 <img src="./assets/icons/lock.png" alt="">
             </div>
-            <div class="input-container">
-                <input placeholder="Confirm Password" id="user_password_confirm" type="text" required>
+            <div class="input-container" id="confirm-input">
+                <input placeholder="Confirm Password" id="user_password_confirm" type="password" required>
                 <img src="./assets/icons/lock.png" alt="">
             </div>
-            <span></span>
+            <div class="hidden-container d-none" id="hidden-container">Your password doesn't match.</div>
             <div class="button-container">
                 <div class="privacy-container">
                     <img src="./assets/icons/rectangle.png" alt="">
                     <span>I accept the <a href="#">Privacy policy</a></span>
                 </div>
-                <button class="btn black">Sign up</button>
+                <button class="btn black" id="signup-btn">Sign up</button>
             </div>
         </form>
     </div>
@@ -51,6 +50,9 @@
         <a href="#">Privacy Policy</a>
         <a href="#">Legal notice</a>
     </footer>
+
+    <script src="./js/signup.js"></script>
+    <script src="./js/storage.js"></script>
 </body>
 
 </html>
