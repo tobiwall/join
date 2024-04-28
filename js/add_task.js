@@ -1,4 +1,4 @@
-let taskId = 0;
+let taskId = findHighestId();
 let selectedPriority = 'medium';
 let subtasks = [];
 let subtaskId = 0;
@@ -7,6 +7,20 @@ let users = [];
 function initAddTask() {
   includeHTML();
   load();
+}
+
+function showHighestId() {
+  console.log("Die höchste ID ist:", taskId)
+}
+
+function findHighestId() {
+  let highestId = 0;
+  for (let i = 0; i < allTasks.length; i++) {
+      if (allTasks[i].id > highestId) {
+          highestId = allTasks[i].id;
+      }
+  }
+  return highestId;
 }
 
 function createTask(tasksColumn) {
@@ -328,6 +342,6 @@ function load() {
     cardsAwaitFeedback = JSON.parse(cardsInProgressAsText);
     cardsDone = JSON.parse(cardsAwaitFeedbackAsText);
     cardsUrgent = JSON.parse(cardsDoneAsText);
-    allTasks = JSON.parse(urgendTasks);
+    allTasks = JSON.parse(allTasks);
   }
 }
