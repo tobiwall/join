@@ -1,4 +1,4 @@
-taskId = 0;
+let taskId = 0;
 let selectedPriority = 'medium';
 let subtasks = [];
 let subtaskId = 0;
@@ -136,12 +136,14 @@ function addSubtask() {
 function subtaskTemplate(task, i) {
   return `
   <div id="subtask${i}" class="subtask">
-    <li>${task}</li>
-    <div class="subtask-edit-icons">
-      <div onclick="editSubtask('${task}', ${i})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
-      <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
-      <div onclick="deleteSubtask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
+    <li>
+      <div>${task}</div>
+      <div class="subtask-edit-icons">
+        <div onclick="editSubtask('${task}', ${i})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
+        <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
+        <div onclick="deleteSubtask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
     </div>
+  </li>
   </div>
 `;
 }
@@ -285,10 +287,11 @@ function renderAssignedUser() {
   }
 }
 
-function enableInput() {
-  let input = document.querySelector('.subtask-icon-container');
-  document.getElementById('subtasksInput').removeAttribute('disabled');
-  input.innerHTML = `
+function enableIcons() {
+  let iconContainer = document.querySelector('.subtask-icon-container');
+  iconContainer.querySelector('img').removeAttribute('onclick');
+
+  iconContainer.innerHTML = `
     <div onclick="clearInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
     <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
     <div onclick="addSubtask()"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
