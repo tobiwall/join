@@ -1,54 +1,37 @@
-document.addEventListener("DOMContentLoaded", async function () {
-    //Array Section
-    let users = [];
+const users = [];
 
-    //Function Section
-    async function loadUsers() {
-        let loadedUsers = [];
-        loadedUsers = await getItem('users');
+async function loadUsers() {
+    let loadedUsers = [];
+    loadedUsers = await getItem('users');
 
-        if (loadedUsers.data && loadedUsers.data.value != "null") {
-            users.push(JSON.parse(loadedUsers.data.value));
-        }
+    if (loadedUsers.data && loadedUsers.data.value != "null") {
+        users.push(JSON.parse(loadedUsers.data.value));
     }
+}
 
-    async function checkConfirm(formData, email, password, confirm) {
-        if (password == confirm) {
-            await checkEmail(formData, email);
-        } else {
-            console.error('Registrierung fehlgeschlagen');
-            addHiddenContainer();
-        }
-    }
+function userEmailExists(email) {
+    for (const user of users)
+        if (user.email === email)
+            return true;
 
-    async function checkEmail(formData, email) {
-        let check = false;
-        for (let i = 0; i < users.length; i++) {
-            let userCheck = users[i].email;
-            if (email == userCheck) {
-                check = true;
-                break;
-            }
-        }
-        if (check == false) {
-            formDataSave(formData)
-            const dataAsText = JSON.stringify(users);
-            await setItem('users', dataAsText);
-        }
-    }
+    return false;
+}
 
-    function formDataSave(formData) {
-        formData.forEach(function (value) {
-            users.push(value);
-        });
-    }
+function formDataSave(formData) {
+    formData.forEach(function (value) {
+        console.log(value);
+        users.push(value);
+    });
+}
 
-    function addHiddenContainer() {
-        document.getElementById('hidden-container').classList.remove('d-none');
-        document.getElementById('confirm-input').classList.add('red-border');
-    }
+function addHiddenContainer() {
+    document.getElementById('hidden-container').classList.remove('d-none');
+    document.getElementById('confirm-input').classList.add('red-border');
+}
 
 
+
+document.addEventListener("DOMContentLoaded", async function () { 
     //EventListener Section
     await loadUsers();
 
@@ -60,16 +43,33 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 
-    document.getElementById("signup-btn").addEventListener("click", async function () {
+    document.getElementById("myForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
         const formData = new FormData(document.getElementById("myForm"));
         
         const email = formData.get("user_email");
         const password = formData.get("user_password");
         const confirm = formData.get("user_password_confirm");
 
-        await checkConfirm(formData, email, password, confirm);
+        console.log(confirm, password);
+        if (password !== confirm) {
+            console.error('Registrierung fehlgeschlagen, Passw confirm');
+            addHiddenContainer();
+            return;
+        }
 
-        
+        if (userEmailExists(email)) {
+            console.error('Registrierung fehlgeschlagen, Doppelte email');
+            addHiddenContainer();
+            return;
+        }
+
+        let data = {};
+        formData.forEach((value, id) => data[id] = value);
+        console.log(JSON.stringify(data));
+        //formDataSave(formData);
+        //const dataAsText = JSON.stringify(users);
+        //await setItem('users', dataAsText);
 
         console.log(formData);
         console.log(users);
