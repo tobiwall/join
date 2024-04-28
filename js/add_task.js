@@ -14,7 +14,7 @@ function createTask(tasksColumn) {
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
-
+  
   let newTask = {
     id: taskId++,
     title: title.value,
@@ -44,7 +44,6 @@ function createTask(tasksColumn) {
 
   renderSubtasks();
   renderAssignedUser();
-  renderCards();
   save();
 }
 
@@ -303,7 +302,7 @@ function save() {
   let allTasksAsText = JSON.stringify(allTasks);
   let cardsInProgressAsText = JSON.stringify(cardsInProgress);
   let cardsAwaitFeedbackAsText = JSON.stringify(cardsAwaitFeedback);
-  let cardsDoneAsText = JSON.stringify(cardsDone );
+  let cardsDoneAsText = JSON.stringify(cardsDone);
   let urgendTasks = JSON.stringify(cardsUrgent);
 
   localStorage.setItem("toDos", toDoAsText);
