@@ -23,6 +23,7 @@ label {
 
 form {
   display: flex;
+  margin-bottom: 146px;
 }
 
 textarea {
@@ -187,6 +188,9 @@ li {
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  padding: 6px 16px;
 }
 
 li::before {
@@ -209,12 +213,14 @@ li:hover {
 
 .edit-input input {
   border: none;
+  height: 32px;
+  padding: 6px 16px;
 }
 
 .edit-icons {
   position: absolute;
-  top: 30%;
-  right: 10px;
+  top: 15%;
+  right: 15px;
   display: flex;
   align-items: center;
 }

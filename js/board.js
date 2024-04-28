@@ -58,7 +58,7 @@ function renderCards() {
   renderDoneCards();
 }
 
-function renderToDoCards(numberContainer) {
+function renderToDoCards() {
   let toDoContainer = document.getElementById("toDoContainer");
   toDoContainer.innerHTML = '';
   
