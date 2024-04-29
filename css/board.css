@@ -165,12 +165,12 @@ h1 {
     width: 100%;
     background-color: #f4f4f4;
     height: 10px;
-    border-radius: 2px;
 }
 
-#subtaskProgressbar {
+.subtaskProgressbar {
     position: absolute;
     background-color: #29abe2;
+    height: 10px;
 }
 
 .card-bottom-section {
@@ -219,6 +219,16 @@ h1 {
     justify-content: space-between;
 }
 
+.popupCategory {
+    color: white;
+    max-width: fit-content;
+    padding: 4px 24px;
+    border-radius: 8px;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 27.6px;
+}
+
 .task-popup-top-section img {
     cursor: pointer;
 }
@@ -240,6 +250,11 @@ h1 {
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
+}
+
+.popup-subtask-container {
+    display: flex;
+    align-items: center;
 }
 
 .task-popup-bottom-section {

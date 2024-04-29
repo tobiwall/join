@@ -28,6 +28,7 @@ function createTask(tasksColumn) {
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
+  let subtasksList = document.getElementById("contentSubtasks");
   
   let newTask = {
     id: taskId++,
@@ -37,7 +38,7 @@ function createTask(tasksColumn) {
     dueDate: date.value,
     prio: selectedPriority,
     category: category.value,
-    subtasks: subtasks,
+    subtasks: subtasks
   };
 
   if (selectedPriority === 'urgent') {
@@ -55,6 +56,7 @@ function createTask(tasksColumn) {
   subtasks = [""];
   subtaskId = 0;
   users = [""];
+  subtasksList.innerHTML = "";
 
   renderSubtasks();
   renderAssignedUser();

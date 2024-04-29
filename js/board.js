@@ -8,6 +8,7 @@ let cardsDone = [];
 let cardsUrgent = [];
 let allTasks = [];
 let tasksColumn;
+let doneSubtasks = 0;
 
 function init() {
   includeHTML();
@@ -141,25 +142,37 @@ function renderPopupSubtasks(i) {
     const subtask = cardsToDo[i].subtasks[j];
 
     subtaskContainer.innerHTML += `
-      <div>
-        <input type="checkbox" name="" value="${subtask}">
+      <div class="popup-subtask-container">
+        <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${subtask}" onclick="toggleSubtask(${i}, ${j})"></div>
         <div>${subtask}</div>
       </div>
     `;
   }
 }
 
+function toggleSubtask(i, j) {
+  const subtaskCheckbox = document.getElementById(`subtaskCheckbox${i}_${j}`);
+  const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
+
+  if (subtaskCheckbox.checked) {
+    doneSubtasksContainer.innerHTML = parseInt(doneSubtasksContainer.innerHTML) + 1;
+  } else {
+    doneSubtasksContainer.innerHTML = parseInt(doneSubtasksContainer.innerHTML) - 1;
+  }
+  generateProgressbar(i);
+}
+
 function generateCardHTML(task, i) {
   return /*html*/ `
-    <div draggable="true" class="card" id="card${task['id']}" onclick="openTask(${i})">
+    <div draggable="true" class="card" id="card${task['id']}" onclick="openTaskPopup(${i})">
         <div class="small-card-category" id="category${i}">${task['category']}</div>
         <h3>${task['title']}</h3>
         <p>${task['description']}</p>
         <div class="subtasks-info">
           <div class="progressbar">
-            <div id="subtaskProgressbar" style="width:0%;"></div>
+            <div id="subtaskProgressbar${i}" class="subtaskProgressbar" style="width:0%"></div>
           </div>
-          0/${task['subtasks'].length} Subtasks
+          <p id="doneSubtasks${i}">${doneSubtasks}</p>/${task['subtasks'].length} Subtasks
         </div>
         <div class="card-bottom-section">
           <div class="userContainer" id="userContainer${i}">
@@ -170,13 +183,40 @@ function generateCardHTML(task, i) {
     `;
 }
 
-function generateProgressbar() {
-  let progressbar = document.getElementById('subtaskProgressbar');
+function generateProgressbar(i) {
+  let progressbar = document.getElementById(`subtaskProgressbar${i}`);
+  let amountSubtasks = parseInt(cardsToDo[i]['subtasks'].length);
+  let amountDoneSubtasks = parseInt(document.getElementById(`doneSubtasks${i}`).innerHTML);
+
+  progressbar.style.width = ((amountDoneSubtasks/amountSubtasks)*100) + "%";
 }
 
 function categoryColor(i) {
   let categoryElement = document.getElementById(`category${i}`);
   let category = document.getElementById(`category${i}`).innerHTML;
+
+  if(category === 'Technical Task') {
+    categoryElement.style.backgroundColor = '#1FD7C1';
+  } else if(category === 'User Story') {
+    categoryElement.style.backgroundColor = '#0038FF';
+  } else if(category === 'Feature') {
+    categoryElement.style.backgroundColor = '#FF7A00';
+  } else if(category === 'Bug') {
+    categoryElement.style.backgroundColor = '#FF4646';
+  } else if(category === 'Documentation') {
+    categoryElement.style.backgroundColor = '#6E52FF';
+  } else if(category === 'Design') {
+    categoryElement.style.backgroundColor = '#00BEE8';
+  } else if(category === 'Testing QA') {
+    categoryElement.style.backgroundColor = '#FFE62B';
+  } else if(category === 'Analyse/Research') {
+    categoryElement.style.backgroundColor = '#C3FF2B';
+  }
+}
+
+function popupCategoryColor(i) {
+  let categoryElement = document.getElementById(`popupCategory${i}`);
+  let category = document.getElementById(`popupCategory${i}`).innerHTML;
 
   if(category === 'Technical Task') {
     categoryElement.style.backgroundColor = '#1FD7C1';
@@ -227,20 +267,21 @@ function closeAddTaskPopup() {
   overlay.style.display = "none";
 }
 
-function openTask(i) {
+function openTaskPopup(i) {
   let taskContainer = document.getElementById('taskPopup');
   taskContainer.innerHTML = '';
   taskContainer.style.display = 'flex';
   const task = cardsToDo[i];
   taskContainer.innerHTML = taskPopup(task, i);
   renderPopupUsers(i);
-  renderPopupSubtasks(i)
+  renderPopupSubtasks(i);
+  popupCategoryColor(i);
 }
 
 function taskPopup(task ,i) {
   return `
     <div class="task-popup-top-section">
-      <div id="category">${task['category']}</div>
+      <div class="popupCategory" id="popupCategory${i}">${task['category']}</div>
       <img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeTaskPopup()">
     </div>
     <h3>${task['title']}</h3>
@@ -250,7 +291,6 @@ function taskPopup(task ,i) {
     <div class="userContainer" id="popupUserContainer${i}"></div>
     <div id="task-popup-subtask-container${i}">
       <span>Subtasks</span>
-      
     </div>
     <div class="task-popup-bottom-section">
       <div><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
