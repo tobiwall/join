@@ -7,31 +7,30 @@
     <title>Login</title>
 
     <link rel="stylesheet" href="./css/login.css">
-    <script src="./js/login-signup.js"></script>
-    <script src="./js/storage.js"></script>
+    
 </head>
 
-<body onload="initLogin()">
+<body>
     <nav class="login-navbar">
         <img src="./assets/icons/logo-black.png" alt="Logo">
         <div class="sign-up-area">
             <p href="">Not a Join user?</p>
-            <button class="btn black" onclick="changePage()">Sign up</button>
+            <a href="./signup.html" class="btn black">Sign up</a>
         </div>
     </nav>
     <div class="login-card">
         <h1>Log in</h1>
-        <form class="login-form" onsubmit="login(); return false">
+        <form class="login-form" id="myForm">
             <div class="input-container">
-                <input placeholder="Email" type="email" required>
+                <input placeholder="Email" name="user_email" type="email" required>
                 <img src="./assets/icons/mail.png" alt="Mail">
             </div>
             <div class="input-container">
-                <input placeholder="Password" type="password" required>
+                <input placeholder="Password" name="user_password" type="password" required>
                 <img src="./assets/icons/lock.png" alt="Lock">
             </div>
             <div class="remember-me">
-                <img src="./assets/icons/rectangle.png" alt="">
+                <input type="checkbox" name="user_checkbox" id="user_checkbox">
                 <p>Remember me</p>
             </div>
             <div class="button-container">
@@ -44,6 +43,9 @@
         <a href="#">Privacy Policy</a>
         <a href="#">Legal notice</a>
     </footer>
+    
+    <script src="./js/storage.js"></script>
+    <script defer src="./js/login.js"></script>
 </body>
 
 </html>

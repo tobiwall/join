@@ -54,6 +54,13 @@ body {
     width: 380px;
 }
 
+.input-container input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+}
+
 .input-container img {
     height: 20px;
 }
@@ -136,13 +143,6 @@ h1 {
 
 p {
     margin: 0;
-}
-
-input {
-    border: none;
-    outline: none;
-    width: 100%;
-    font-size: 20px;
 }
 
 .d-none {
