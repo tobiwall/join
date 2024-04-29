@@ -118,6 +118,37 @@ function renderUsers(i) {
   }
 }
 
+function renderPopupUsers(i) {
+  let userContainer = document.getElementById(`popupUserContainer${i}`);
+  userContainer.innerHTML = '';
+
+  for (let j = 0; j < cardsToDo[i].users.length; j++) {
+    const user = cardsToDo[i].users[j];
+
+    userContainer.innerHTML += `
+      <div class="user-initials" style="background-color: ${user.color};">
+        ${user.initials}
+      </div>
+    `;
+  }
+}
+
+function renderPopupSubtasks(i) {
+  let subtaskContainer = document.getElementById(`task-popup-subtask-container${i}`);
+  subtaskContainer.innerHTML = '';
+
+  for (let j = 0; j < cardsToDo[i]['subtasks'].length; j++) {
+    const subtask = cardsToDo[i].subtasks[j];
+
+    subtaskContainer.innerHTML += `
+      <div>
+        <input type="checkbox" name="" value="${subtask}">
+        <div>${subtask}</div>
+      </div>
+    `;
+  }
+}
+
 function generateCardHTML(task, i) {
   return /*html*/ `
     <div draggable="true" class="card" id="card${task['id']}" onclick="openTask(${i})">
@@ -127,7 +158,8 @@ function generateCardHTML(task, i) {
         <div class="subtasks-info">
           <div class="progressbar">
             <div id="subtaskProgressbar" style="width:0%;"></div>
-          </div>${task['subtasks'].length}
+          </div>
+          0/${task['subtasks'].length} Subtasks
         </div>
         <div class="card-bottom-section">
           <div class="userContainer" id="userContainer${i}">
@@ -165,8 +197,6 @@ function categoryColor(i) {
   }
 }
 
-
-
 function openAddTask(taskContainer) {
   tasksColumn = taskContainer;
   let addTaskTemplate = document.getElementById("addTaskTemplate");
@@ -202,8 +232,9 @@ function openTask(i) {
   taskContainer.innerHTML = '';
   taskContainer.style.display = 'flex';
   const task = cardsToDo[i];
-  renderUsers(i);
   taskContainer.innerHTML = taskPopup(task, i);
+  renderPopupUsers(i);
+  renderPopupSubtasks(i)
 }
 
 function taskPopup(task ,i) {
@@ -216,10 +247,10 @@ function taskPopup(task ,i) {
     <p>${task['description']}</p>
     <p>Due Date: ${task['dueDate']}</p>
     <p>Priority: ${task['prio']}</p>
-    <div class="userContainer" id="userContainer${i}"></div>
-    <div>
-      <div>Subtasks</div>
-      <div>${task['subtasks']}</div>
+    <div class="userContainer" id="popupUserContainer${i}"></div>
+    <div id="task-popup-subtask-container${i}">
+      <span>Subtasks</span>
+      
     </div>
     <div class="task-popup-bottom-section">
       <div><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>

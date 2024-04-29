@@ -84,6 +84,7 @@ select {
 }
 
 .dropdown-users {
+  z-index: 50;
   background-color: white;
   border-radius: 12px;
   max-height: 120px;
@@ -112,8 +113,15 @@ select {
   align-items: center;
 }
 
+.assignedto-container {
+  position: relative;
+}
+
 #contentAssignedUsers {
+  z-index: 20;
+  position: absolute;
   display: flex;
+  top: 95px;
 }
 
 .buttons-container {
