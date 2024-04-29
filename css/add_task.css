@@ -85,6 +85,7 @@ select {
 
 .dropdown-users {
   background-color: white;
+  border-radius: 12px;
   max-height: 120px;
   overflow-y: auto;
 }
@@ -233,7 +234,7 @@ li:hover {
 
 .subtask-edit-icons {
   display: flex;
-  gap: 4px
+  gap: 4px;
 }
 
 .subtask-edit-icons div {

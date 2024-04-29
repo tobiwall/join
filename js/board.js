@@ -66,6 +66,7 @@ function renderToDoCards() {
     const task = cardsToDo[i]
     toDoContainer.innerHTML += generateCardHTML(task, i);
     renderUsers(i);
+    categoryColor(i);
   }
 }
 
@@ -120,7 +121,7 @@ function renderUsers(i) {
 function generateCardHTML(task, i) {
   return /*html*/ `
     <div draggable="true" class="card" id="card${task['id']}" onclick="openTask(${i})">
-        <div id="category">${task['category']}</div>
+        <div class="small-card-category" id="category${i}">${task['category']}</div>
         <h3>${task['title']}</h3>
         <p>${task['description']}</p>
         <div class="subtasks-info">
@@ -139,8 +140,32 @@ function generateCardHTML(task, i) {
 
 function generateProgressbar() {
   let progressbar = document.getElementById('subtaskProgressbar');
-
 }
+
+function categoryColor(i) {
+  let categoryElement = document.getElementById(`category${i}`);
+  let category = document.getElementById(`category${i}`).innerHTML;
+
+  if(category === 'Technical Task') {
+    categoryElement.style.backgroundColor = '#1FD7C1';
+  } else if(category === 'User Story') {
+    categoryElement.style.backgroundColor = '#0038FF';
+  } else if(category === 'Feature') {
+    categoryElement.style.backgroundColor = '#FF7A00';
+  } else if(category === 'Bug') {
+    categoryElement.style.backgroundColor = '#FF4646';
+  } else if(category === 'Documentation') {
+    categoryElement.style.backgroundColor = '#6E52FF';
+  } else if(category === 'Design') {
+    categoryElement.style.backgroundColor = '#00BEE8';
+  } else if(category === 'Testing QA') {
+    categoryElement.style.backgroundColor = '#FFE62B';
+  } else if(category === 'Analyse/Research') {
+    categoryElement.style.backgroundColor = '#C3FF2B';
+  }
+}
+
+
 
 function openAddTask(taskContainer) {
   tasksColumn = taskContainer;
