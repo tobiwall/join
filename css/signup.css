@@ -67,6 +67,13 @@ body {
     width: 380px;
 }
 
+.input-container input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 20px;
+}
+
 .input-container img {
     height: 20px;
 }
@@ -87,11 +94,6 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.privacy-container span {
-    display: flex;
-    width: 100%;
 }
 
 .privacy-container a {
@@ -175,13 +177,6 @@ h1 {
     font-size: 61px;
     margin: 0;
     margin-bottom: 48px;
-}
-
-input {
-    border: none;
-    outline: none;
-    width: 100%;
-    font-size: 20px;
 }
 
 .d-none {

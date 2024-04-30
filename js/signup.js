@@ -22,27 +22,17 @@ function emailExistError() {
     document.getElementById('email-input').classList.add('red-border');
 }
 
-
-
 document.addEventListener("DOMContentLoaded", async function () {
     await loadUsers();
-
-    document.getElementById("arrow").addEventListener("click", function () {
-        if (window.location.pathname !== '/signup.html') {
-            window.location.href = 'signup.html';
-        } else {
-            window.location.href = 'index.html';
-        }
-    });
 
     document.getElementById("myForm").addEventListener("submit", async function (e) {
         e.preventDefault();
         const formData = new FormData(document.getElementById("myForm"));
-        
+
         const email = formData.get("user_email");
         const password = formData.get("user_password");
         const confirm = formData.get("user_password_confirm");
-        
+
         if (password !== confirm) {
             console.error('Registrierung fehlgeschlagen, Passw confirm');
             passwordConfirmError();
@@ -58,9 +48,23 @@ document.addEventListener("DOMContentLoaded", async function () {
         const userData = {};
         formData.forEach((value, id) => userData[id] = value);
         users.push(userData);
-       
+
         const dataAsText = JSON.stringify(users);
         await setItem('users', dataAsText);
+    });
+
+    document.getElementById("user_password_confirm").addEventListener('keyup', function () {
+        if (document.getElementById('confirm-input').classList.contains('red-border')) {
+            document.getElementById('confirm-input').classList.remove('red-border');
+            document.getElementById('password-error').classList.add('d-none');
+        }
+    });
+
+    document.getElementById("user_email").addEventListener('keyup', function () {
+        if (document.getElementById('email-input').classList.contains('red-border')) {
+            document.getElementById('email-input').classList.remove('red-border');
+            document.getElementById('email-error').classList.add('d-none');
+        }
     });
 
     document.getElementById("myForm").addEventListener("submit", function (event) {

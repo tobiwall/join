@@ -1,0 +1,23 @@
+/* Breite und Farbe des Scrollbalkens */
+.content::-webkit-scrollbar {
+  width: 10px; /* Breite des Scrollbalkens */
+  background: #CDCDCD;
+}
+
+/* Track (Hintergrund des Scrollbalkens) */
+.content::-webkit-scrollbar-track {
+  background: #CDCDCD;/* Hintergrundfarbe des Scrollbalkens */
+}
+
+/* Griff des Scrollbalkens */
+.content::-webkit-scrollbar-thumb {
+  background: #2A3647; /* Farbe des Griffs des Scrollbalkens */
+  border-radius: 5px; /* Radius des Griffs des Scrollbalkens */
+}
+
+/* Hover-Effekt des Griffs des Scrollbalkens */
+.content::-webkit-scrollbar-thumb:hover {
+  background: #CDCDCD; /* Farbe des Griffs des Scrollbalkens bei Hover */
+}
+
+

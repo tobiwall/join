@@ -1,8 +1,8 @@
-let selectedPriority = "medium";
+let taskId = findHighestId();
+let selectedPriority = 'medium';
 let subtasks = [];
 let subtaskId = 0;
 let users = [];
-let taskId;
 
 function initAddTask() {
   includeHTML();
@@ -10,26 +10,17 @@ function initAddTask() {
 }
 
 function showHighestId() {
-  console.log("Die höchste ID ist:", taskId);
+  console.log("Die höchste ID ist:", taskId)
 }
 
 function findHighestId() {
   let highestId = 0;
   for (let i = 0; i < allTasks.length; i++) {
-    if (allTasks[i].id > highestId) {
-      highestId = allTasks[i].id;
-    }
+      if (allTasks[i].id > highestId) {
+          highestId = allTasks[i].id;
+      }
   }
   return highestId;
-}
-
-function loadAllTasksAndFindHighestId() {
-  load();
-  if (allTasks.length === 0) {
-    taskId = 0;
-  } else {
-    taskId = findHighestId();
-  }
 }
 
 function createTask(tasksColumn) {
@@ -37,22 +28,23 @@ function createTask(tasksColumn) {
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
-  taskId++;
+  let subtasksList = document.getElementById("contentSubtasks");
+  
   let newTask = {
-    id: taskId,
+    id: taskId++,
     title: title.value,
     description: discription.value,
     users: users,
     dueDate: date.value,
     prio: selectedPriority,
     category: category.value,
-    subtasks: subtasks,
+    subtasks: subtasks
   };
 
-  if (selectedPriority === "urgent") {
+  if (selectedPriority === 'urgent') {
     cardsUrgent.push(newTask);
   }
-
+  
   tasksColumn.push(newTask);
   allTasks.push(newTask);
 
@@ -60,10 +52,11 @@ function createTask(tasksColumn) {
   discription.value = "";
   date.value = "";
   category.value = "";
-  selectedPriority = prioMedium("medium");
+  selectedPriority = prioMedium('medium');
   subtasks = [""];
   subtaskId = 0;
   users = [""];
+  subtasksList.innerHTML = "";
 
   renderSubtasks();
   renderAssignedUser();
@@ -310,8 +303,8 @@ function renderAssignedUser() {
 }
 
 function enableIcons() {
-  let iconContainer = document.querySelector(".subtask-icon-container");
-  iconContainer.querySelector("img").removeAttribute("onclick");
+  let iconContainer = document.querySelector('.subtask-icon-container');
+  iconContainer.querySelector('img').removeAttribute('onclick');
 
   iconContainer.innerHTML = `
     <div onclick="clearInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
@@ -326,14 +319,14 @@ function save() {
   let cardsInProgressAsText = JSON.stringify(cardsInProgress);
   let cardsAwaitFeedbackAsText = JSON.stringify(cardsAwaitFeedback);
   let cardsDoneAsText = JSON.stringify(cardsDone);
-  let urgendTasks = JSON.stringify(cardsUrgent);
+  let urgendTasksAsText = JSON.stringify(cardsUrgent);
 
   localStorage.setItem("toDos", toDoAsText);
   localStorage.setItem("allTasks", allTasksAsText);
   localStorage.setItem("inProgress", cardsInProgressAsText);
   localStorage.setItem("awaitFeedback", cardsAwaitFeedbackAsText);
   localStorage.setItem("done", cardsDoneAsText);
-  localStorage.setItem("urgent", urgendTasks);
+  localStorage.setItem("urgent", urgendTasksAsText);
 }
 
 function load() {
@@ -342,21 +335,14 @@ function load() {
   let cardsInProgressAsText = localStorage.getItem("inProgress");
   let cardsAwaitFeedbackAsText = localStorage.getItem("awaitFeedback");
   let cardsDoneAsText = localStorage.getItem("done");
-  let urgendTasks = localStorage.getItem("urgent");
-
-  if (
-    toDoAsText &&
-    allTasksAsText &&
-    cardsInProgressAsText &&
-    cardsAwaitFeedbackAsText &&
-    cardsDoneAsText &&
-    urgendTasks
-  ) {
+  let urgendTasksAsText = localStorage.getItem("urgent");
+  
+  if (toDoAsText && allTasksAsText && cardsInProgressAsText &&    cardsAwaitFeedbackAsText && cardsDoneAsText && urgendTasksAsText) {
     cardsToDo = JSON.parse(toDoAsText);
     allTasks = JSON.parse(allTasksAsText);
-    cardsAwaitFeedback = JSON.parse(cardsInProgressAsText);
-    cardsDone = JSON.parse(cardsAwaitFeedbackAsText);
-    cardsUrgent = JSON.parse(cardsDoneAsText);
-    allTasks = JSON.parse(allTasksAsText);
+    cardsInProgress = JSON.parse(cardsInProgressAsText);
+    cardsAwaitFeedback = JSON.parse(cardsAwaitFeedbackAsText);
+    cardsDone = JSON.parse(cardsDoneAsText);
+    cardsUrgent = JSON.parse(urgendTasksAsText);
   }
 }
