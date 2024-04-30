@@ -2,6 +2,8 @@
     position: fixed;
     top: 206px;
     left: 328px;
+    overflow-y: scroll;
+    height: 100vh;
   }
 
 h2 {

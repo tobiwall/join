@@ -66,8 +66,9 @@ function renderToDoCards() {
   for (let i = 0; i < cardsToDo.length; i++) {
     const task = cardsToDo[i]
     toDoContainer.innerHTML += generateCardHTML(task, i);
-    renderUsers(i);
     categoryColor(i);
+    renderUsers(i);
+    generateCardPrio(task, i);
   }
 }
 
@@ -112,7 +113,7 @@ function renderUsers(i) {
     const user = cardsToDo[i].users[j];
 
     userContainer.innerHTML += `
-      <div class="user-initials" style="background-color: ${user.color};">
+      <div class="user-initials-card" style="background-color: ${user.color};">
         ${user.initials}
       </div>
     `;
@@ -127,8 +128,11 @@ function renderPopupUsers(i) {
     const user = cardsToDo[i].users[j];
 
     userContainer.innerHTML += `
-      <div class="user-initials" style="background-color: ${user.color};">
-        ${user.initials}
+      <div class="popup-user">
+        <div class="popuser-initials-card" style="background-color: ${user.color};">
+          ${user.initials}
+        </div>
+        <div>${user.name}</div>
       </div>
     `;
   }
@@ -170,14 +174,19 @@ function generateCardHTML(task, i) {
         <p>${task['description']}</p>
         <div class="subtasks-info">
           <div class="progressbar">
-            <div id="subtaskProgressbar${i}" class="subtaskProgressbar" style="width:0%"></div>
+            <div id="subtaskProgressbar${i}" class="done-subtask-progressbar" style="width:0%"></div>
           </div>
-          <p id="doneSubtasks${i}">${doneSubtasks}</p>/${task['subtasks'].length} Subtasks
+          <div class="progressbar-text-container">
+            <span id="doneSubtasks${i}">${doneSubtasks}</span>
+            <span>/</span>
+            <span>${task['subtasks'].length}</span> 
+            <span>Subtasks</span> 
+          </div>
         </div>
         <div class="card-bottom-section">
           <div class="userContainer" id="userContainer${i}">
           </div>
-          <div>${task['prio']}</div>
+          <div><img id="cardPrioImg${task, i}" src="" alt="PRIO"></div>
         </div>
     </div>
     `;
@@ -237,6 +246,32 @@ function popupCategoryColor(i) {
   }
 }
 
+function generateCardPrio(task, i) {
+  let prioImage = document.getElementById(`cardPrioImg${i}`);
+  let taskPrio = task.prio;
+
+  if(taskPrio === 'urgent') {
+    prioImage.src = './assets/icons/prio_buttons/prio_urgent_red.png';
+  } else if(taskPrio === 'medium') {
+    prioImage.src = './assets/icons/prio_buttons/prio_medium_yellow.png';
+  } else if(taskPrio === 'low') {
+    prioImage.src = './assets/icons/prio_buttons/prio_low_green.png';
+  }
+}
+
+function generatepopupCardPrio(task, i) {
+  let prioImage = document.getElementById(`popupCardPrioImg${task, i}`);
+  let taskPrio = task.prio;
+
+  if(taskPrio === 'urgent') {
+    prioImage.src = './assets/icons/prio_buttons/prio_urgent_red.png';
+  } else if(taskPrio === 'medium') {
+    prioImage.src = './assets/icons/prio_buttons/prio_medium_yellow.png';
+  } else if(taskPrio === 'low') {
+    prioImage.src = './assets/icons/prio_buttons/prio_low_green.png';
+  }
+}
+
 function openAddTask(taskContainer) {
   tasksColumn = taskContainer;
   let addTaskTemplate = document.getElementById("addTaskTemplate");
@@ -272,13 +307,15 @@ function openTaskPopup(i) {
   taskContainer.innerHTML = '';
   taskContainer.style.display = 'flex';
   const task = cardsToDo[i];
-  taskContainer.innerHTML = taskPopup(task, i);
+  const prio = (cardsToDo[i].prio).charAt(0).toUpperCase() + (cardsToDo[i].prio).slice(1);
+  taskContainer.innerHTML = taskPopup(task, i, prio);
+  popupCategoryColor(i);
+  generatepopupCardPrio(task, i)
   renderPopupUsers(i);
   renderPopupSubtasks(i);
-  popupCategoryColor(i);
 }
 
-function taskPopup(task ,i) {
+function taskPopup(task ,i ,prio) {
   return `
     <div class="task-popup-top-section">
       <div class="popupCategory" id="popupCategory${i}">${task['category']}</div>
@@ -287,13 +324,16 @@ function taskPopup(task ,i) {
     <h3>${task['title']}</h3>
     <p>${task['description']}</p>
     <p>Due Date: ${task['dueDate']}</p>
-    <p>Priority: ${task['prio']}</p>
-    <div class="userContainer" id="popupUserContainer${i}"></div>
-    <div id="task-popup-subtask-container${i}">
-      <span>Subtasks</span>
+    <div class"pupup-prio-container">
+      <span>Priority: ${prio}</span>
+      <img id="popupCardPrioImg${task, i}" src="" alt="PRIO">
     </div>
+    <span>Assigned to:</span>
+    <div class="popup-user-container" id="popupUserContainer${i}"></div>
+    <span>Subtasks</span>
+    <div id="task-popup-subtask-container${i}"></div>
     <div class="task-popup-bottom-section">
-      <div><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
+      <div onclick="deleteTask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
       <img src="./assets/icons/mini_seperator.png" alt="/">
       <div><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT">Edit</div>
     </div>
@@ -303,5 +343,12 @@ function taskPopup(task ,i) {
 function closeTaskPopup() {
   let taskContainer = document.getElementById('taskPopup');
   taskContainer.style.display = 'none';
+}
+
+function deleteTask(i) {
+  cardsToDo.splice(i, 1);
+  closeTaskPopup();
+  renderCards();
+  save();
 }
 
