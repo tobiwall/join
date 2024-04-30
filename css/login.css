@@ -1,6 +1,7 @@
 body {
     margin: 0;
     box-sizing: border-box;
+    font-family: Inter;
     height: 100vh;
     background-color: #F6F7F8;
     display: flex;
@@ -25,6 +26,10 @@ body {
     display: flex;
     align-items: center;
     gap: 35px;
+}
+
+.sign-up-area a {
+    text-decoration: none;
 }
 
 .login-card {
@@ -71,9 +76,8 @@ body {
     gap: 8px;
 }
 
-.remember-me img {
-    height: 16px;
-    width: 16px;
+.remember-me input:hover {
+    cursor: pointer;
 }
 
 .remember-me p {
@@ -113,6 +117,7 @@ body {
     border-radius: 8px;
     font-size: 21px;
     text-align: left;
+    cursor: pointer;
 }
 
 .black {

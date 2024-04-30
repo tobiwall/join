@@ -48,9 +48,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         const userData = {};
         formData.forEach((value, id) => userData[id] = value);
         users.push(userData);
-
         const dataAsText = JSON.stringify(users);
         await setItem('users', dataAsText);
+
+        document.getElementById('popup-container').classList.add('show');
+        document.getElementById('popup').classList.add('show');
+        
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 4000);
     });
 
     document.getElementById("user_password_confirm").addEventListener('keyup', function () {
