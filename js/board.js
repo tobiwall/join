@@ -11,7 +11,7 @@ let tasksColumn;
 
 function init() {
   includeHTML();
-  load();
+  loadAllTasksAndFindHighestId();
   renderCards();
 }
 
@@ -60,10 +60,10 @@ function renderCards() {
 
 function renderToDoCards() {
   let toDoContainer = document.getElementById("toDoContainer");
-  toDoContainer.innerHTML = '';
-  
+  toDoContainer.innerHTML = "";
+
   for (let i = 0; i < cardsToDo.length; i++) {
-    const task = cardsToDo[i]
+    const task = cardsToDo[i];
     toDoContainer.innerHTML += generateCardHTML(task, i);
     renderUsers(i);
   }
@@ -71,21 +71,23 @@ function renderToDoCards() {
 
 function renderInProgressCards(numberContainer) {
   let inProgressContainer = document.getElementById("inProgressContainer");
-  inProgressContainer.innerHTML = '';
-  
+  inProgressContainer.innerHTML = "";
+
   for (let i = 0; i < cardsInProgress.length; i++) {
-    const task = cardsInProgress[i]
+    const task = cardsInProgress[i];
     inProgressContainer.innerHTML += generateCardHTML(task, i);
     renderUsers(i);
   }
 }
 
 function renderAwaitFeedbackCards(numberContainer) {
-  let awaitFeedbackContainer = document.getElementById("awaitFeedbackContainer");
-  awaitFeedbackContainer.innerHTML = '';
-  
+  let awaitFeedbackContainer = document.getElementById(
+    "awaitFeedbackContainer"
+  );
+  awaitFeedbackContainer.innerHTML = "";
+
   for (let i = 0; i < cardsAwaitFeedback.length; i++) {
-    const task = cardsAwaitFeedback[i]
+    const task = cardsAwaitFeedback[i];
     awaitFeedbackContainer.innerHTML += generateCardHTML(task, i);
     renderUsers(i);
   }
@@ -93,10 +95,10 @@ function renderAwaitFeedbackCards(numberContainer) {
 
 function renderDoneCards(numberContainer) {
   let doneContainer = document.getElementById("doneContainer");
-  doneContainer.innerHTML = '';
-  
+  doneContainer.innerHTML = "";
+
   for (let i = 0; i < cardsDone.length; i++) {
-    const task = cardsDone[i]
+    const task = cardsDone[i];
     doneContainer.innerHTML += generateCardHTML(task, i);
     renderUsers(i);
   }
@@ -104,42 +106,43 @@ function renderDoneCards(numberContainer) {
 
 function renderUsers(i) {
   let userContainer = document.getElementById(`userContainer${i}`);
-  userContainer.innerHTML = '';
+  userContainer.innerHTML = "";
 
-  for (let j = 0; j < cardsToDo[i].users.length; j++) {
-    const user = cardsToDo[i].users[j];
+  if (cardsToDo[i] !== undefined) {
+    for (let j = 0; j < cardsToDo[i].users.length; j++) {
+      const user = cardsToDo[i].users[j];
 
-    userContainer.innerHTML += `
+      userContainer.innerHTML += `
       <div class="user-initials" style="background-color: ${user.color};">
         ${user.initials}
       </div>
     `;
+    }
   }
 }
 
 function generateCardHTML(task, i) {
   return /*html*/ `
-    <div draggable="true" class="card" id="card${task['id']}" onclick="openTask(${i})">
-        <div id="category">${task['category']}</div>
-        <h3>${task['title']}</h3>
-        <p>${task['description']}</p>
+    <div draggable="true" class="card" id="card${task["id"]}" onclick="openTask(${i})">
+        <div id="category">${task["category"]}</div>
+        <h3>${task["title"]}</h3>
+        <p>${task["description"]}</p>
         <div class="subtasks-info">
           <div class="progressbar">
             <div id="subtaskProgressbar" style="width:0%;"></div>
-          </div>${task['subtasks'].length}
+          </div>${task["subtasks"].length}
         </div>
         <div class="card-bottom-section">
           <div class="userContainer" id="userContainer${i}">
           </div>
-          <div>${task['prio']}</div>
+          <div>${task["prio"]}</div>
         </div>
     </div>
     `;
 }
 
 function generateProgressbar() {
-  let progressbar = document.getElementById('subtaskProgressbar');
-
+  let progressbar = document.getElementById("subtaskProgressbar");
 }
 
 function openAddTask(taskContainer) {
@@ -150,7 +153,7 @@ function openAddTask(taskContainer) {
   addTaskTemplate.style.display = "flex";
   overlay.style.display = "block";
   //overlay.addEventListener("click", closeContactPopupByOverlay);
-  buttonContainer.innerHTML = '';
+  buttonContainer.innerHTML = "";
   buttonContainer.innerHTML += generateButtonAddTaskHTML();
 }
 
@@ -173,28 +176,28 @@ function closeAddTaskPopup() {
 }
 
 function openTask(i) {
-  let taskContainer = document.getElementById('taskPopup');
-  taskContainer.innerHTML = '';
-  taskContainer.style.display = 'flex';
+  let taskContainer = document.getElementById("taskPopup");
+  taskContainer.innerHTML = "";
+  taskContainer.style.display = "flex";
   const task = cardsToDo[i];
   renderUsers(i);
   taskContainer.innerHTML = taskPopup(task, i);
 }
 
-function taskPopup(task ,i) {
+function taskPopup(task, i) {
   return `
     <div class="task-popup-top-section">
-      <div id="category">${task['category']}</div>
+      <div id="category">${task["category"]}</div>
       <img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeTaskPopup()">
     </div>
-    <h3>${task['title']}</h3>
-    <p>${task['description']}</p>
-    <p>Due Date: ${task['dueDate']}</p>
-    <p>Priority: ${task['prio']}</p>
+    <h3>${task["title"]}</h3>
+    <p>${task["description"]}</p>
+    <p>Due Date: ${task["dueDate"]}</p>
+    <p>Priority: ${task["prio"]}</p>
     <div class="userContainer" id="userContainer${i}"></div>
     <div>
       <div>Subtasks</div>
-      <div>${task['subtasks']}</div>
+      <div>${task["subtasks"]}</div>
     </div>
     <div class="task-popup-bottom-section">
       <div><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
@@ -205,7 +208,6 @@ function taskPopup(task ,i) {
 }
 
 function closeTaskPopup() {
-  let taskContainer = document.getElementById('taskPopup');
-  taskContainer.style.display = 'none';
+  let taskContainer = document.getElementById("taskPopup");
+  taskContainer.style.display = "none";
 }
-

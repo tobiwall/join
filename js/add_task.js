@@ -1,8 +1,8 @@
-let taskId = findHighestId();
-let selectedPriority = 'medium';
+let selectedPriority = "medium";
 let subtasks = [];
 let subtaskId = 0;
 let users = [];
+let taskId;
 
 function initAddTask() {
   includeHTML();
@@ -10,17 +10,26 @@ function initAddTask() {
 }
 
 function showHighestId() {
-  console.log("Die höchste ID ist:", taskId)
+  console.log("Die höchste ID ist:", taskId);
 }
 
 function findHighestId() {
   let highestId = 0;
   for (let i = 0; i < allTasks.length; i++) {
-      if (allTasks[i].id > highestId) {
-          highestId = allTasks[i].id;
-      }
+    if (allTasks[i].id > highestId) {
+      highestId = allTasks[i].id;
+    }
   }
   return highestId;
+}
+
+function loadAllTasksAndFindHighestId() {
+  load();
+  if (allTasks.length === 0) {
+    taskId = 0;
+  } else {
+    taskId = findHighestId();
+  }
 }
 
 function createTask(tasksColumn) {
@@ -28,9 +37,9 @@ function createTask(tasksColumn) {
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
-  
+  taskId++;
   let newTask = {
-    id: taskId++,
+    id: taskId,
     title: title.value,
     description: discription.value,
     users: users,
@@ -40,10 +49,10 @@ function createTask(tasksColumn) {
     subtasks: subtasks,
   };
 
-  if (selectedPriority === 'urgent') {
+  if (selectedPriority === "urgent") {
     cardsUrgent.push(newTask);
   }
-  
+
   tasksColumn.push(newTask);
   allTasks.push(newTask);
 
@@ -51,7 +60,7 @@ function createTask(tasksColumn) {
   discription.value = "";
   date.value = "";
   category.value = "";
-  selectedPriority = prioMedium('medium');
+  selectedPriority = prioMedium("medium");
   subtasks = [""];
   subtaskId = 0;
   users = [""];
@@ -301,8 +310,8 @@ function renderAssignedUser() {
 }
 
 function enableIcons() {
-  let iconContainer = document.querySelector('.subtask-icon-container');
-  iconContainer.querySelector('img').removeAttribute('onclick');
+  let iconContainer = document.querySelector(".subtask-icon-container");
+  iconContainer.querySelector("img").removeAttribute("onclick");
 
   iconContainer.innerHTML = `
     <div onclick="clearInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
@@ -334,13 +343,20 @@ function load() {
   let cardsAwaitFeedbackAsText = localStorage.getItem("awaitFeedback");
   let cardsDoneAsText = localStorage.getItem("done");
   let urgendTasks = localStorage.getItem("urgent");
-  
-  if (toDoAsText && allTasksAsText && cardsInProgressAsText &&    cardsAwaitFeedbackAsText && cardsDoneAsText && urgendTasks) {
+
+  if (
+    toDoAsText &&
+    allTasksAsText &&
+    cardsInProgressAsText &&
+    cardsAwaitFeedbackAsText &&
+    cardsDoneAsText &&
+    urgendTasks
+  ) {
     cardsToDo = JSON.parse(toDoAsText);
     allTasks = JSON.parse(allTasksAsText);
     cardsAwaitFeedback = JSON.parse(cardsInProgressAsText);
     cardsDone = JSON.parse(cardsAwaitFeedbackAsText);
     cardsUrgent = JSON.parse(cardsDoneAsText);
-    allTasks = JSON.parse(allTasks);
+    allTasks = JSON.parse(allTasksAsText);
   }
 }
