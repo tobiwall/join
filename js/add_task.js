@@ -1,26 +1,12 @@
-let taskId = findHighestId();
 let selectedPriority = 'medium';
 let subtasks = [];
 let subtaskId = 0;
 let users = [];
 
-function initAddTask() {
+async function initAddTask() {
   includeHTML();
-  load();
-}
-
-function showHighestId() {
-  console.log("Die höchste ID ist:", taskId)
-}
-
-function findHighestId() {
-  let highestId = 0;
-  for (let i = 0; i < allTasks.length; i++) {
-      if (allTasks[i].id > highestId) {
-          highestId = allTasks[i].id;
-      }
-  }
-  return highestId;
+  await load();
+  taskId = findHighestTaskId();
 }
 
 function createTask(tasksColumn) {
@@ -29,9 +15,9 @@ function createTask(tasksColumn) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
-  
+  taskId++;
   let newTask = {
-    id: taskId++,
+    id: taskId,
     title: title.value,
     description: discription.value,
     users: users,
@@ -57,7 +43,6 @@ function createTask(tasksColumn) {
   subtaskId = 0;
   users = [""];
   subtasksList.innerHTML = "";
-
   renderSubtasks();
   renderAssignedUser();
   save();
