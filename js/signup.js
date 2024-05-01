@@ -22,13 +22,18 @@ function emailExistError() {
     document.getElementById('email-input').classList.add('red-border');
 }
 
+function generateRandomId() {
+    const min = 100;
+    const max = 999;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
     await loadUsers();
 
     document.getElementById("myForm").addEventListener("submit", async function (e) {
         e.preventDefault();
         const formData = new FormData(document.getElementById("myForm"));
-
         const email = formData.get("user_email");
         const password = formData.get("user_password");
         const confirm = formData.get("user_password_confirm");
@@ -47,6 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const userData = {};
         formData.forEach((value, id) => userData[id] = value);
+        userData.id = generateRandomId();
         users.push(userData);
         const dataAsText = JSON.stringify(users);
         await setItem('users', dataAsText);

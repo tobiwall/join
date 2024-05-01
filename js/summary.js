@@ -7,6 +7,41 @@ function initSummary() {
   loadDoneTasks();
   loadTasksUrgent();
   loadTaskInBoard();
+  greeting();
+}
+
+function changeTodoCard(card, newSrc) {
+  let img = card.querySelector('img');
+  img.src = newSrc;
+}
+
+function resetTodoCard(card, newSrc) {
+  let img = card.querySelector('img');
+  img.src = newSrc;
+}
+
+function changeDoneCard(card, newSrc) {
+  let img = card.querySelector('img');
+  img.src = newSrc;
+}
+
+function resetDoneCard(card, newSrc) {
+  let img = card.querySelector('img');
+  img.src = newSrc;
+}
+
+function greeting() {
+  let greetingContainer = document.getElementById('greeting-time');
+  let date = new Date();
+  let actualHour = date.getHours();
+  
+  if (actualHour >= 5 && actualHour <= 11) {
+    greetingContainer.innerHTML = 'Good morning,';
+  } else if (actualHour >= 12 && actualHour <= 17) {
+    greetingContainer.innerHTML = 'Good afternoon,';
+  } else {
+    greetingContainer.innerHTML = 'Good evening,';
+  }
 }
 
 function loadTodoTasks() {

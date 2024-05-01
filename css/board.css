@@ -298,14 +298,9 @@ h1 {
 
 .pupup-prio-container {
     display: flex;
-    flex-direction: row;
     font-size: 20px;
     font-weight: 400;
     line-height: 24px;
-}
-
-.pupup-prio-container span {
-    margin-right: 25px;
 }
 
 .popup-user-container {

@@ -378,6 +378,7 @@ function closeTaskPopup() {
 
 function deleteTask(i) {
   cardsToDo.splice(i, 1);
+  allTasks.splice(i, 1);
   closeTaskPopup();
   renderCards();
   save();
