@@ -28,15 +28,15 @@
     <div class="summary-display">
       <div class="summary-container">
         <div class="summary-top-section">
-          <div class="top-card">
-            <div class="img-div"><img src="./assets/icons/edit.png" alt="EDIT"></div>
+          <div class="top-card" onmouseover="changeTodoCard(this, './assets/icons/summary_icons/check_whiteb.png')" onmouseout="resetTodoCard(this, './assets/icons/summary_icons/check_blueb.png')">
+            <img src="./assets/icons/summary_icons/check_blueb.png" alt="EDIT">
             <div class="card-numb-text">
               <span id="toDoAmount" class="number">0</span>
               <span class="task-text">To-do</span>
             </div>
           </div>
-          <div class="top-card">
-            <div class="img-div"><img src="./assets/icons/check.png" alt="CHECK"></div>
+          <div class="top-card" onmouseover="changeDoneCard(this, './assets/icons/summary_icons/edit_whiteb.png')" onmouseout="resetDoneCard(this, './assets/icons/summary_icons/edit_blueb.png')">
+            <img src="./assets/icons/summary_icons/edit_blueb.png" alt="CHECK">
             <div class="card-numb-text">
               <span id="doneAmount" class="number">0</span>
               <span class="task-text">Done</span>
@@ -45,7 +45,7 @@
         </div>
         <div class="summary-mid-section">
           <div class="mid-card">
-            <div><img src="./assets/icons/urgent.png" alt="URGENT"></div>
+            <div><img src="./assets/icons/summary_icons/urgent.png" alt="URGENT"></div>
             <div class="card-numb-text">
               <span id="urgentAmount" class="number">0</span>
               <span>Urgent</span>
