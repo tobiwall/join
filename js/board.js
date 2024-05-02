@@ -2,6 +2,7 @@ let allTasks = [];
 let tasksColumn;
 let doneSubtasks = 0;
 let taskId;
+let currentDraggedTask;
 
 async function init() {
   includeHTML();
@@ -58,26 +59,22 @@ function createTaskOnBoard(status) {
     dueDate: date.value,
     prio: selectedPriority,
     category: category.value,
-    subtasks: subtasks
+    subtasks: subtasks,
   };
-  
+
   allTasks.push(newTask);
 
   title.value = "";
   discription.value = "";
   date.value = "";
   category.value = "";
-  selectedPriority = prioMedium('medium');
+  selectedPriority = prioMedium("medium");
   subtasks = [""];
   subtaskId = 0;
   users = [""];
   subtasksList.innerHTML = "";
   renderCards();
   save();
-}
-
-function showHighestId() {
-  console.log("Die höchste ID ist:", taskId);
 }
 
 function findHighestTaskId() {
@@ -109,7 +106,7 @@ function renderToDoCards() {
     const task = allTasks[i];
     const taskId = allTasks[i].id;
 
-      if(task.status === 'todo') {
+    if (task.status === "todo") {
       toDoContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
       renderUsers(i, taskId);
@@ -126,7 +123,7 @@ function renderInProgressCards() {
     const task = allTasks[i];
     const taskId = allTasks[i].id;
 
-    if (task.status === 'progress') {
+    if (task.status === "progress") {
       inProgressContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
       renderUsers(i, taskId);
@@ -145,7 +142,7 @@ function renderAwaitFeedbackCards() {
     const task = allTasks[i];
     const taskId = allTasks[i].id;
 
-    if (task.status === 'feedback') {
+    if (task.status === "feedback") {
       awaitFeedbackContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
       renderUsers(i, taskId);
@@ -162,7 +159,7 @@ function renderDoneCards() {
     const task = allTasks[i];
     const taskId = allTasks[i].id;
 
-    if (task.status === 'done') {
+    if (task.status === "done") {
       doneContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
       renderUsers(i, taskId);
@@ -241,12 +238,8 @@ function toggleSubtask(i, j) {
 
 function generateCardHTML(task, i, taskId) {
   return /*html*/ `
-    <div draggable="true" class="card" id="card${
-      task["id"]
-    }" onclick="openTaskPopup(${i})">
-        <div class="small-card-category" id="category${i}_${taskId}">${
-    task["category"]
-  }</div>
+    <div draggable="true" ondragstart="startDragging(${task['id']})" class="card" id="card${task["id"]}" onclick="openTaskPopup(${i})">
+        <div class="small-card-category" id="category${i}_${taskId}">${task["category"]}</div>
         <h3>${task["title"]}</h3>
         <p>${task["description"]}</p>
         <div class="subtasks-info">
@@ -389,7 +382,7 @@ function openTaskPopup(i) {
   taskContainer.style.display = "flex";
   const task = allTasks[i];
   const prio =
-  allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
+    allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
   taskContainer.innerHTML = taskPopup(task, i, prio);
   popupCategoryColor(i);
   generatepopupCardPrio(task, i);
@@ -439,10 +432,30 @@ function deleteTask(i) {
 function addHighlight(id) {
   let container = document.getElementById(id);
 
-  container.classList.add('highlightContainer');
+  container.classList.add("highlightContainer");
 }
 
 function removeHighlight(id) {
   let container = document.getElementById(id);
-  container.classList.remove('highlightContainer');
+  container.classList.remove("highlightContainer");
+}
+
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function moveTo(statusContainer, index) {
+  let id = findTaskById();
+  id.status = statusContainer;
+  renderCards();
+  removeHighlight(index);
+  save();
+}
+
+function findTaskById() {
+  return allTasks.find(task => task.id === currentDraggedTask);
+}
+
+function startDragging(id) {
+  currentDraggedTask = id;
 }
