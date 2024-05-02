@@ -1,3 +1,5 @@
+let dueDates = [];
+
 function initSummary() {
   includeHTML();
   load();
@@ -8,6 +10,7 @@ function initSummary() {
   loadTasksUrgent();
   loadTaskInBoard();
   greeting();
+  loadUpcomingDeadline();
 }
 
 function changeTodoCard(card, newSrc) {
@@ -44,45 +47,123 @@ function greeting() {
   }
 }
 
-function loadTodoTasks() {
-  let todoAmount = cardsToDo.length;
-  let displayedTodo = document.getElementById('toDoAmount');
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  let month = today.getMonth() + 1; // Monat ist nullbasiert, daher +1
+  let day = today.getDate();
 
-  displayedTodo.innerHTML = todoAmount;
+  // Füge eine führende Null hinzu, wenn der Monat oder Tag einstellig ist
+  if (month < 10) {
+      month = '0' + month;
+  }
+  if (day < 10) {
+      day = '0' + day;
+  }
+
+  return `${year}-${month}-${day}`;
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
+}
+
+function loadUpcomingDeadline() {
+  let deadlineContainer = document.getElementById('deadlineContainer');
+  const currentDate = getCurrentDate();
+  console.log(currentDate);
+
+  for (let i = 0; i < allTasks.length; i++) {
+    const taskDate = allTasks[i].dueDate;
+    
+    dueDates.push(taskDate)
+  }
+  dueDates.sort();
+  let deadline = formatDate(dueDates[0]);
+
+  if (dueDates.length > 0) {
+    deadlineContainer.innerHTML = `
+      <span class="deadline-date">${deadline}</span>
+      <span>Upcoming deadline</span>
+    `;
+  } else {
+    deadlineContainer.innerHTML = `
+      <span>No upcoming Deadline</span>
+    `;
+  }
+}
+
+function loadTodoTasks() {
+  let displayedTodo = document.getElementById('toDoAmount');
+  let todoCount = 0;
+
+  for (let i = 0; i < allTasks.length; i++) {
+    
+    if (allTasks[i].status === 'todo') {
+      todoCount++;
+    }  
+  }
+  displayedTodo.innerHTML = todoCount;  
 }
 
 function loadTaskInProgress() {
-  let progressAmount = cardsInProgress.length;
   let displayedProgress = document.getElementById('progressAmount');
+  let progressCount = 0;
 
-  displayedProgress.innerHTML = progressAmount;
+  for (let i = 0; i < allTasks.length; i++) {
+    
+    if (allTasks[i].status === 'progress') {
+      progressCount++;
+    }  
+  }
+  displayedProgress.innerHTML = progressCount;
 }
 
 function loadTasksFeedback() {
-  let feedbackAmount = cardsAwaitFeedback.length;
   let displayedFeedback = document.getElementById('feedbackAmount');
+  let feedbackCount = 0;
 
-  displayedFeedback.innerHTML = feedbackAmount;
+  for (let i = 0; i < allTasks.length; i++) {
+    
+    if (allTasks[i].status === 'feedback') {
+      feedbackCount++;
+    }  
+  }
+  displayedFeedback.innerHTML = feedbackCount;
 }
 
 function loadDoneTasks() {
-  let doneAmount = cardsDone.length;
   let displayedDone = document.getElementById('doneAmount');
+  let doneCount = 0;
 
-  displayedDone.innerHTML = doneAmount;
+  for (let i = 0; i < allTasks.length; i++) {
+    
+    if (allTasks[i].status === 'progress') {
+      doneCount++;
+    }  
+  }
+  displayedDone.innerHTML = doneCount;
 }
 
 function loadTasksUrgent() {
-  let urgentAmount = cardsUrgent.length;
   let displayedUrgent = document.getElementById('urgentAmount');
+  let urgentCount = 0;
 
-  displayedUrgent.innerHTML = urgentAmount;
+  for (let i = 0; i < allTasks.length; i++) {
+    
+    if (allTasks[i].prio === 'urgent') {
+      urgentCount++;
+    }  
+  }
+  displayedUrgent.innerHTML = urgentCount;
 }
 
 function loadTaskInBoard() {
-  let allAmount = allTasks.length;
+  let allCount = allTasks.length;
   let displayedAll = document.getElementById('allAmount');
 
-  displayedAll.innerHTML = allAmount;
+  displayedAll.innerHTML = allCount;
 }
 
