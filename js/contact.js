@@ -137,6 +137,7 @@ function renderContacts() {
   clearFoundContacts();
   findContactsByFirstLetter();
   renderContactListAlphabet();
+  saveContactsLocal();
 }
 
 /**
@@ -181,11 +182,14 @@ function extractInitials(contactList) {
 function randomBackgroundColor() {
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
-    let red = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
-    let green = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
-    let blue = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
-    let color = "#" + red.toString(16) + green.toString(16) + blue.toString(16);
-    contact.color = color;
+    if (!contact.color) {
+      let red = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
+      let green = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
+      let blue = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
+      let color =
+        "#" + red.toString(16) + green.toString(16) + blue.toString(16);
+      contact.color = color;
+    }
   }
 }
 
