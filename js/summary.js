@@ -74,7 +74,6 @@ function formatDate(dateString) {
 function loadUpcomingDeadline() {
   let deadlineContainer = document.getElementById('deadlineContainer');
   const currentDate = getCurrentDate();
-  console.log(currentDate);
 
   for (let i = 0; i < allTasks.length; i++) {
     const taskDate = allTasks[i].dueDate;

@@ -366,6 +366,23 @@ h1 {
     scale: 1.05;
 }
 
+.edit-task-popup {
+    width: 525px;
+    max-height: 931px;
+    padding: 40px;
+    border-radius: 30px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    display: none;
+    flex-direction: column;
+    z-index: 500;
+    gap: 24px;
+    box-shadow: 0px 0px 4px 0px #00000029;
+}
+
 .taskRow {
     min-height: 100vh;
     min-width: 252px;

@@ -170,14 +170,6 @@ function addChangedSubtask(i) {
   renderSubtasks();
 }
 
-function clearInput() {
-  document.getElementById("taskTitle").value = "";
-  document.getElementById("taskDiscription").value = "";
-  document.getElementById("taskDate").value = "";
-  document.getElementById("categoryInput").value = "";
-  subtasks = [];
-}
-
 function loadContacts() {
   getLocalStorage();
   extractInitials(contacts);
@@ -293,6 +285,16 @@ function enableIcons() {
   `;
 }
 
+function changeClearButton(button, newSrc) {
+  let img = button.querySelector('img');
+  img.src = newSrc;
+}
+
+function resetClearButton(button, newSrc) {
+  let img = button.querySelector('img');
+  img.src = newSrc;
+}
+ 
 function save() {
   let allTasksAsText = JSON.stringify(allTasks);
   localStorage.setItem("allTasks", allTasksAsText);
