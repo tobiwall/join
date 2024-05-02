@@ -41,7 +41,7 @@
                 </button>
               </div>
             </div>
-            <button id="addTaskBtn" onclick="openAddTask(cardsToDo)">
+            <button id="addTaskBtn" onclick="openAddTask('todo')">
               Add task <img class="plus" src="./assets/img/add.svg" alt="" />
             </button>
           </div>
@@ -51,21 +51,21 @@
           <div class="taskContainer">
             <div class="table-head">
               <span>To do</span>
-              <img onclick="openAddTask(cardsToDo)" class="table-plus" src="./assets/img/plus.svg" alt="" />
+              <img onclick="openAddTask('todo')" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
             <div class="taskRow" id="toDoContainer"></div>
           </div>
           <div class="taskContainer">
             <div class="table-head">
               <span>In progress</span>
-              <img onclick="openAddTask(cardsInProgress)" class="table-plus" src="./assets/img/plus.svg" alt="" />
+              <img onclick="openAddTask('progress')" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
             <div class="taskRow" id="inProgressContainer"></div>
           </div>
           <div class="taskContainer">
             <div class="table-head">
               <span>Await feedback</span>
-              <img onclick="openAddTask(cardsAwaitFeedback)" class="table-plus" src="./assets/img/plus.svg" alt="" />
+              <img onclick="openAddTask('feedback')" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
             <div class="taskRow" id="awaitFeedbackContainer"></div>
           </div>

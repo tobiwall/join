@@ -23,14 +23,14 @@
     <div w3-include-html="./assets/templates/desktop_header.html"></div>
     <div class="sideboard-desktop" w3-include-html="./assets/templates/desktop_sideboard.html"></div>
 
-    <div class="content">
+    <div class="content-addtask">
         <div w3-include-html="./assets/templates/task_templates.html"></div>
 
         <div class="bottom-content">
-            <span>This field is required</span>
+            <span><span style="color: #FF8190">*</span>This field is required</span>
             <div>
-                <button class="clear-button" onclick="clearAddTaskInput()">Clear <img src="./assets/icons/close.png" alt="X"></button>
-                <button class="task-button" onclick="createTask(cardsToDo)">Create Task <img src="./assets/icons/check.png" alt="OK"></button>
+                <button class="clear-button" onclick="clearAddTaskInput()">CLEAR<img src="./assets/icons/subtask_icons/close.png" alt="X"></button>
+                <button class="task-button" onclick="createTask('todo')">CREATE TASK<img src="./assets/icons/check_white1.png" alt="OK"></button>
             </div>
         </div>
 

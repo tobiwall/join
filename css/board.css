@@ -1,3 +1,11 @@
+.content {
+    position: fixed;
+    top: 206px;
+    left: 328px;
+    overflow-y: scroll;
+    height: 100vh;
+  }
+
 h1 {
     font-size: 64px;
     margin: 0;

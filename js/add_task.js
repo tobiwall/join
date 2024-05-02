@@ -9,7 +9,7 @@ async function initAddTask() {
   taskId = findHighestTaskId();
 }
 
-function createTask(tasksColumn) {
+function createTask(status) {
   let title = document.getElementById("taskTitle");
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
@@ -18,6 +18,7 @@ function createTask(tasksColumn) {
   taskId++;
   let newTask = {
     id: taskId,
+    status: status,
     title: title.value,
     description: discription.value,
     users: users,
@@ -26,12 +27,7 @@ function createTask(tasksColumn) {
     category: category.value,
     subtasks: subtasks
   };
-
-  if (selectedPriority === 'urgent') {
-    cardsUrgent.push(newTask);
-  }
   
-  tasksColumn.push(newTask);
   allTasks.push(newTask);
 
   title.value = "";
@@ -43,8 +39,7 @@ function createTask(tasksColumn) {
   subtaskId = 0;
   users = [""];
   subtasksList.innerHTML = "";
-  renderSubtasks();
-  renderAssignedUser();
+  renderCards();
   save();
 }
 
@@ -299,35 +294,14 @@ function enableIcons() {
 }
 
 function save() {
-  let toDoAsText = JSON.stringify(cardsToDo);
   let allTasksAsText = JSON.stringify(allTasks);
-  let cardsInProgressAsText = JSON.stringify(cardsInProgress);
-  let cardsAwaitFeedbackAsText = JSON.stringify(cardsAwaitFeedback);
-  let cardsDoneAsText = JSON.stringify(cardsDone);
-  let urgendTasksAsText = JSON.stringify(cardsUrgent);
-
-  localStorage.setItem("toDos", toDoAsText);
   localStorage.setItem("allTasks", allTasksAsText);
-  localStorage.setItem("inProgress", cardsInProgressAsText);
-  localStorage.setItem("awaitFeedback", cardsAwaitFeedbackAsText);
-  localStorage.setItem("done", cardsDoneAsText);
-  localStorage.setItem("urgent", urgendTasksAsText);
 }
 
 function load() {
-  let toDoAsText = localStorage.getItem("toDos");
   let allTasksAsText = localStorage.getItem("allTasks");
-  let cardsInProgressAsText = localStorage.getItem("inProgress");
-  let cardsAwaitFeedbackAsText = localStorage.getItem("awaitFeedback");
-  let cardsDoneAsText = localStorage.getItem("done");
-  let urgendTasksAsText = localStorage.getItem("urgent");
-  
-  if (toDoAsText && allTasksAsText && cardsInProgressAsText &&    cardsAwaitFeedbackAsText && cardsDoneAsText && urgendTasksAsText) {
-    cardsToDo = JSON.parse(toDoAsText);
+
+  if (allTasksAsText) {
     allTasks = JSON.parse(allTasksAsText);
-    cardsInProgress = JSON.parse(cardsInProgressAsText);
-    cardsAwaitFeedback = JSON.parse(cardsAwaitFeedbackAsText);
-    cardsDone = JSON.parse(cardsDoneAsText);
-    cardsUrgent = JSON.parse(urgendTasksAsText);
   }
 }

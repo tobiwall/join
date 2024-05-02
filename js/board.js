@@ -1,8 +1,3 @@
-let cardsToDo = [];
-let cardsInProgress = [];
-let cardsAwaitFeedback = [];
-let cardsDone = [];
-let cardsUrgent = [];
 let allTasks = [];
 let tasksColumn;
 let doneSubtasks = 0;
@@ -76,58 +71,80 @@ function renderToDoCards() {
   let toDoContainer = document.getElementById("toDoContainer");
   toDoContainer.innerHTML = "";
 
-  for (let i = 0; i < cardsToDo.length; i++) {
-    const task = cardsToDo[i];
-    toDoContainer.innerHTML += generateCardHTML(task, i);
-    categoryColor(i);
-    renderUsers(i);
-    generateCardPrio(task, i);
+  for (let i = 0; i < allTasks.length; i++) {
+    const task = allTasks[i];
+    const taskId = allTasks[i].id;
+
+      if(task.status === 'todo') {
+      toDoContainer.innerHTML += generateCardHTML(task, i, taskId);
+      categoryColor(i, taskId);
+      renderUsers(i, taskId);
+      generateCardPrio(task, i, taskId);
+    }
   }
 }
 
-function renderInProgressCards(numberContainer) {
+function renderInProgressCards() {
   let inProgressContainer = document.getElementById("inProgressContainer");
   inProgressContainer.innerHTML = "";
 
-  for (let i = 0; i < cardsInProgress.length; i++) {
-    const task = cardsInProgress[i];
-    inProgressContainer.innerHTML += generateCardHTML(task, i);
-    renderUsers(i);
+  for (let i = 0; i < allTasks.length; i++) {
+    const task = allTasks[i];
+    const taskId = allTasks[i].id;
+
+    if (task.status === 'progress') {
+      inProgressContainer.innerHTML += generateCardHTML(task, i, taskId);
+      categoryColor(i, taskId);
+      renderUsers(i, taskId);
+      generateCardPrio(task, i, taskId);
+    }
   }
 }
 
-function renderAwaitFeedbackCards(numberContainer) {
+function renderAwaitFeedbackCards() {
   let awaitFeedbackContainer = document.getElementById(
     "awaitFeedbackContainer"
   );
   awaitFeedbackContainer.innerHTML = "";
 
-  for (let i = 0; i < cardsAwaitFeedback.length; i++) {
-    const task = cardsAwaitFeedback[i];
-    awaitFeedbackContainer.innerHTML += generateCardHTML(task, i);
-    renderUsers(i);
+  for (let i = 0; i < allTasks.length; i++) {
+    const task = allTasks[i];
+    const taskId = allTasks[i].id;
+
+    if (task.status === 'feedback') {
+      awaitFeedbackContainer.innerHTML += generateCardHTML(task, i, taskId);
+      categoryColor(i, taskId);
+      renderUsers(i, taskId);
+      generateCardPrio(task, i, taskId);
+    }
   }
 }
 
-function renderDoneCards(numberContainer) {
+function renderDoneCards() {
   let doneContainer = document.getElementById("doneContainer");
   doneContainer.innerHTML = "";
 
-  for (let i = 0; i < cardsDone.length; i++) {
-    const task = cardsDone[i];
-    doneContainer.innerHTML += generateCardHTML(task, i);
-    renderUsers(i);
+  for (let i = 0; i < allTasks.length; i++) {
+    const task = allTasks[i];
+    const taskId = allTasks[i].id;
+
+    if (task.status === 'done') {
+      doneContainer.innerHTML += generateCardHTML(task, i, taskId);
+      categoryColor(i, taskId);
+      renderUsers(i, taskId);
+      generateCardPrio(task, i, taskId);
+    }
   }
 }
 
-function renderUsers(i) {
-  let userContainer = document.getElementById(`userContainer${i}`);
+function renderUsers(i, taskId) {
+  let userContainer = document.getElementById(`userContainer${i}_${taskId}`);
   userContainer.innerHTML = "";
 
   // Überprüfe, ob cardsToDo[i].users definiert ist, bevor du versuchst, über sie zu iterieren
-  if (cardsToDo[i] !== undefined) {
-    for (let j = 0; j < cardsToDo[i].users.length; j++) {
-      const user = cardsToDo[i].users[j];
+  if (allTasks[i] !== undefined) {
+    for (let j = 0; j < allTasks[i].users.length; j++) {
+      const user = allTasks[i].users[j];
 
       userContainer.innerHTML += `
         <div class="user-initials-card" style="background-color: ${user.color};">
@@ -142,8 +159,8 @@ function renderPopupUsers(i) {
   let userContainer = document.getElementById(`popupUserContainer${i}`);
   userContainer.innerHTML = "";
 
-  for (let j = 0; j < cardsToDo[i].users.length; j++) {
-    const user = cardsToDo[i].users[j];
+  for (let j = 0; j < allTasks[i].users.length; j++) {
+    const user = allTasks[i].users[j];
 
     userContainer.innerHTML += `
       <div class="popup-user">
@@ -162,8 +179,8 @@ function renderPopupSubtasks(i) {
   );
   subtaskContainer.innerHTML = "";
 
-  for (let j = 0; j < cardsToDo[i]["subtasks"].length; j++) {
-    const subtask = cardsToDo[i].subtasks[j];
+  for (let j = 0; j < allTasks[i]["subtasks"].length; j++) {
+    const subtask = allTasks[i].subtasks[j];
 
     subtaskContainer.innerHTML += `
       <div class="popup-subtask-container">
@@ -188,12 +205,12 @@ function toggleSubtask(i, j) {
   generateProgressbar(i);
 }
 
-function generateCardHTML(task, i) {
+function generateCardHTML(task, i, taskId) {
   return /*html*/ `
     <div draggable="true" class="card" id="card${
       task["id"]
     }" onclick="openTaskPopup(${i})">
-        <div class="small-card-category" id="category${i}">${
+        <div class="small-card-category" id="category${i}_${taskId}">${
     task["category"]
   }</div>
         <h3>${task["title"]}</h3>
@@ -210,9 +227,9 @@ function generateCardHTML(task, i) {
           </div>
         </div>
         <div class="card-bottom-section">
-          <div class="userContainer" id="userContainer${i}">
+          <div class="userContainer" id="userContainer${i}_${taskId}">
           </div>
-          <div><img id="cardPrioImg${(task, i)}" src="" alt="PRIO"></div>
+          <div><img id="cardPrioImg${i}_${taskId}" src="" alt="PRIO"></div>
         </div>
     </div>
     `;
@@ -220,7 +237,7 @@ function generateCardHTML(task, i) {
 
 function generateProgressbar(i) {
   let progressbar = document.getElementById(`subtaskProgressbar${i}`);
-  let amountSubtasks = parseInt(cardsToDo[i]["subtasks"].length);
+  let amountSubtasks = parseInt(allTasks[i]["subtasks"].length);
   let amountDoneSubtasks = parseInt(
     document.getElementById(`doneSubtasks${i}`).innerHTML
   );
@@ -228,9 +245,9 @@ function generateProgressbar(i) {
   progressbar.style.width = (amountDoneSubtasks / amountSubtasks) * 100 + "%";
 }
 
-function categoryColor(i) {
-  let categoryElement = document.getElementById(`category${i}`);
-  let category = document.getElementById(`category${i}`).innerHTML;
+function categoryColor(i, taskId) {
+  let categoryElement = document.getElementById(`category${i}_${taskId}`);
+  let category = document.getElementById(`category${i}_${taskId}`).innerHTML;
 
   if (category === "Technical Task") {
     categoryElement.style.backgroundColor = "#1FD7C1";
@@ -274,8 +291,8 @@ function popupCategoryColor(i) {
   }
 }
 
-function generateCardPrio(task, i) {
-  let prioImage = document.getElementById(`cardPrioImg${i}`);
+function generateCardPrio(task, i, taskId) {
+  let prioImage = document.getElementById(`cardPrioImg${i}_${taskId}`);
   let taskPrio = task.prio;
 
   if (taskPrio === "urgent") {
@@ -301,7 +318,6 @@ function generatepopupCardPrio(task, i) {
 }
 
 function openAddTask(taskContainer) {
-  tasksColumn = taskContainer;
   let addTaskTemplate = document.getElementById("addTaskTemplate");
   let overlay = document.getElementById("overlayAddTask");
   let buttonContainer = document.getElementById("buttonContainer");
@@ -309,16 +325,16 @@ function openAddTask(taskContainer) {
   overlay.style.display = "block";
   //overlay.addEventListener("click", closeContactPopupByOverlay);
   buttonContainer.innerHTML = "";
-  buttonContainer.innerHTML += generateButtonAddTaskHTML();
+  buttonContainer.innerHTML += generateButtonAddTaskHTML(taskContainer);
 }
 
-function generateButtonAddTaskHTML() {
+function generateButtonAddTaskHTML(taskContainer) {
   return /*html*/ `
         <img onclick="closeAddTaskPopup()" class="add-contact-close" src="./assets/icons/Close.png" alt="">
 
     <div>
       <button class="clear-button">Clear <img src="./assets/icons/close.png" alt="X"></button>
-      <button class="task-button" onclick="createTask(tasksColumn)">Create Task <img src="./assets/icons/check.png" alt="OK"></button>
+      <button class="task-button" onclick="createTask(taskContainer)">Create Task <img src="./assets/icons/check.png" alt="OK"></button>
     </div>
   `;
 }
@@ -334,9 +350,9 @@ function openTaskPopup(i) {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.innerHTML = "";
   taskContainer.style.display = "flex";
-  const task = cardsToDo[i];
+  const task = allTasks[i];
   const prio =
-    cardsToDo[i].prio.charAt(0).toUpperCase() + cardsToDo[i].prio.slice(1);
+  allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
   taskContainer.innerHTML = taskPopup(task, i, prio);
   popupCategoryColor(i);
   generatepopupCardPrio(task, i);
@@ -377,7 +393,6 @@ function closeTaskPopup() {
 }
 
 function deleteTask(i) {
-  cardsToDo.splice(i, 1);
   allTasks.splice(i, 1);
   closeTaskPopup();
   renderCards();

@@ -2,8 +2,8 @@
 <form action="displayNewCard(0)">
     <div class="form-left-section">
         <div>
-            <label>Title*</label>
-            <input id="taskTitle" type="text">
+            <label>Title<span style="color: #FF8190">*</span></label>
+            <input required id="taskTitle" type="text">
         </div>
         <div>
             <label>Discription</label>
@@ -23,13 +23,13 @@
             </div>    
         </div>
     </div>
-    <div>
+    <div class="addtask-seperator">
         <img src="./assets/icons/long_seperator.png" alt="">
     </div>
     <div class="form-right-section">
         <div>
-            <label>Due date*</label>
-            <input id="taskDate" type="date">
+            <label>Due date<span style="color: #FF8190">*</span></label>
+            <input required id="taskDate" type="date">
         </div>
         <div class="prio-container">
             <label>Prio</label>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div>
-            <label>Category*</label>
+            <label>Category<span style="color: #FF8190">*</span></label>
             <select required name="category-input" id="categoryInput" class="category-input">
                 <option value="1" disabled selected hidden>Select task category</option>
                 <option value="User Story">User Story</option>
