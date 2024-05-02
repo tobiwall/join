@@ -181,6 +181,11 @@ h1 {
     font-size: 16px;
     font-weight: 400;
     line-height: 19.2px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
 }
 
 .subtasks-info {

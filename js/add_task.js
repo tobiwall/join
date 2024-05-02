@@ -35,7 +35,7 @@ function createTask(status) {
   discription.value = "";
   date.value = "";
   category.value = "";
-  selectedPriority = prioMedium('medium');
+  selectedPriority = selectedPriority;
   subtasks = [""];
   subtaskId = 0;
   users = [""];

@@ -51,6 +51,7 @@ input {
 }
 
 select {
+  cursor: pointer;
   font-size: 20px;
 	width: 100%;
   border-radius: 10px;
@@ -91,10 +92,12 @@ select {
 
 .dropdown-users {
   z-index: 50;
+  width: 100%;
   background-color: white;
   border-radius: 12px;
   max-height: 120px;
   overflow-y: auto;
+  position: absolute;
 }
 
 .user-container {
