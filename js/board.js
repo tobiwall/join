@@ -5,6 +5,7 @@ let taskId;
 
 async function init() {
   includeHTML();
+  await loadCurrentUsers();
   await load();
   taskId = findHighestTaskId();
   renderCards();

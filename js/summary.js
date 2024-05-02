@@ -1,7 +1,8 @@
 let dueDates = [];
 
-function initSummary() {
+async function initSummary() {
   includeHTML();
+  await loadCurrentUsers();
   load();
   loadTodoTasks();
   loadTaskInProgress();

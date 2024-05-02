@@ -119,8 +119,9 @@ let firstLetterArray = [];
 let foundContacts = [];
 let openEditContactId = [];
 
-function initContact() {
+async function initContact() {
   includeHTML();
+  await loadCurrentUsers();
   renderContacts();
 }
 
