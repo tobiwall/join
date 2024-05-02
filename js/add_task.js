@@ -5,6 +5,7 @@ let users = [];
 
 async function initAddTask() {
   includeHTML();
+  await loadCurrentUsers();
   await load();
   taskId = findHighestTaskId();
 }
