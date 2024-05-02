@@ -140,7 +140,7 @@ function loadDoneTasks() {
 
   for (let i = 0; i < allTasks.length; i++) {
     
-    if (allTasks[i].status === 'progress') {
+    if (allTasks[i].status === 'done') {
       doneCount++;
     }  
   }

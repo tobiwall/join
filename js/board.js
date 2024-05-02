@@ -382,7 +382,8 @@ function openTaskPopup(i) {
   taskContainer.innerHTML = "";
   taskContainer.style.display = "flex";
   const task = allTasks[i];
-  const prio = allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
+  const prio =
+    allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
   taskContainer.innerHTML = taskPopup(task, i, prio);
   popupCategoryColor(i);
   generatepopupCardPrio(task, i);
@@ -412,7 +413,7 @@ function taskPopup(task, i, prio) {
     <div class="task-popup-bottom-section">
       <div onclick="deleteTask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
       <img src="./assets/icons/mini_seperator.png" alt="/">
-      <div onclick="editTask(${i})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT">Edit</div>
+      <div><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT">Edit</div>
     </div>
   `;
 }
@@ -427,69 +428,6 @@ function deleteTask(i) {
   closeTaskPopup();
   renderCards();
   save();
-}
-
-function editTask(i) {
-  let taskContainer = document.getElementById("taskPopup");
-  taskContainer.style.display = "none";
-  let editTaskContainer = document.getElementById('editTaskPopup');
-  editTaskContainer.innerHTML = '';
-  taskContainer.style.display = "flex";
-
-  const task = allTasks[i];
-  const prio = allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
-  editTaskContainer.innerHTML = editTaskPopup(task, i, prio);
-}
-
-function editTaskPopup(task, i, prio) {
-  return /*html*/`
-  <form action="">
-  <div>
-      <label for="">Title<span style="color: #FF8190">*</span></label>
-      <input type="text">
-  </div>
-  <div>
-      <label for="">Description</label>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
-  </div>
-  <div>
-      <label for="">Due Date<span style="color: #FF8190">*</span></label>
-      <input required id="" type="date">
-  </div>
-  <div class="prio-container">
-      <label>Prio</label>
-      <div class="buttons-container">
-          <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_buttons/prio_urgent_red.png" alt=""></button>
-          <button type="button" class="prio-button medium-active" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_buttons/prio_medium.png" alt=""></button>
-          <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_buttons/prio_low_green.png" alt=""></button>
-      </div>
-  </div>
-  <div class="assignedto-container">
-      <label>Assigned to</label>
-      <div class="assigned-container" id="assignedContainer">
-          <input id="userInput" type="text" onkeyup="searchUser()" onclick="showUsers()" placeholder="Select contacts to assign">
-          <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showUsers()">
-      </div>
-      <div id="dropdown-users" class="dropdown-users">
-          
-      </div>
-      <div id="contentAssignedUsers">
-
-      </div>    
-  </div>
-  <div>
-      <label>Subtasks</label>
-      <div class="subtask-container">
-          <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" onclick="enableIcons()">
-          <div class="subtask-icon-container">
-              <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
-          </div>
-      </div>
-      <ul id="contentSubtasks"></ul>
-  </div>
-  <button>OK<img src="./assets/icons/check_white1.png" alt=""></button>
-</form>
-  `;
 }
 
 function addHighlight(id) {
@@ -534,10 +472,8 @@ function filterTitle(search) {
   let progress = document.getElementById("inProgressContainer");
   let feedback = document.getElementById("awaitFeedbackContainer");
   let done = document.getElementById("doneContainer");
-
   clearTaskContainer(todo, progress, feedback, done)
   displayFilteredTasks(todo, progress, feedback, done, search);
-
 }
 
 function clearTaskContainer(todo, progress, feedback, done) {
