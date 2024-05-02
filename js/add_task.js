@@ -39,7 +39,6 @@ function createTask(status) {
   subtaskId = 0;
   users = [""];
   subtasksList.innerHTML = "";
-  renderCards();
   save();
 }
 

@@ -42,6 +42,40 @@ function includeHTML() {
   }
 }
 
+function createTaskOnBoard(status) {
+  let title = document.getElementById("taskTitle");
+  let discription = document.getElementById("taskDiscription");
+  let date = document.getElementById("taskDate");
+  let category = document.getElementById("categoryInput");
+  let subtasksList = document.getElementById("contentSubtasks");
+  taskId++;
+  let newTask = {
+    id: taskId,
+    status: status,
+    title: title.value,
+    description: discription.value,
+    users: users,
+    dueDate: date.value,
+    prio: selectedPriority,
+    category: category.value,
+    subtasks: subtasks
+  };
+  
+  allTasks.push(newTask);
+
+  title.value = "";
+  discription.value = "";
+  date.value = "";
+  category.value = "";
+  selectedPriority = prioMedium('medium');
+  subtasks = [""];
+  subtaskId = 0;
+  users = [""];
+  subtasksList.innerHTML = "";
+  renderCards();
+  save();
+}
+
 function showHighestId() {
   console.log("Die höchste ID ist:", taskId);
 }
@@ -336,7 +370,7 @@ function generateButtonAddTaskHTML(taskContainer) {
         <span><span style="color: #FF8190">*</span>This field is required</span>
         <div>
             <button class="clear-button" onclick="clearAddTaskInput()">CLEAR<img src="./assets/icons/subtask_icons/close.png" alt="X"></button>
-            <button class="task-button" onclick="createTask('${taskContainer}')">CREATE TASK<img src="./assets/icons/check_white1.png" alt="OK"></button>
+            <button class="task-button" onclick="createTaskOnBoard('${taskContainer}')">CREATE TASK<img src="./assets/icons/check_white1.png" alt="OK"></button>
         </div>
     </div>
   `;
