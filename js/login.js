@@ -1,20 +1,8 @@
 const users = [];
 
-async function loadUsers() {
-    let loadedUsers = await getItem('users');
-    let loadedCurrentUser = await getItem('currentUser')
-
-    if (loadedUsers.data && loadedUsers.data.value != "null") {
-        users.push(...JSON.parse(loadedUsers.data.value));
-    }
-
-    if (loadedCurrentUser.data && loadedCurrentUser.data.value != "null") {
-        currentUser = JSON.parse(loadedCurrentUser.data.value);
-    }
-}
-
 document.addEventListener("DOMContentLoaded", async function () {
     await loadUsers();
+    await loadCurrentUsers();
 
     document.getElementById("myForm").addEventListener("submit", async function (e) {
         e.preventDefault();
