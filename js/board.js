@@ -332,9 +332,12 @@ function generateButtonAddTaskHTML(taskContainer) {
   return /*html*/ `
         <img onclick="closeAddTaskPopup()" class="add-contact-close" src="./assets/icons/Close.png" alt="">
 
-    <div>
-      <button class="clear-button">Clear <img src="./assets/icons/close.png" alt="X"></button>
-      <button class="task-button" onclick="createTask(taskContainer)">Create Task <img src="./assets/icons/check.png" alt="OK"></button>
+        <div class="bottom-content">
+        <span><span style="color: #FF8190">*</span>This field is required</span>
+        <div>
+            <button class="clear-button" onclick="clearAddTaskInput()">CLEAR<img src="./assets/icons/subtask_icons/close.png" alt="X"></button>
+            <button class="task-button" onclick="createTask('${taskContainer}')">CREATE TASK<img src="./assets/icons/check_white1.png" alt="OK"></button>
+        </div>
     </div>
   `;
 }
