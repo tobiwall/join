@@ -41,6 +41,7 @@ function createTask(status) {
   users = [""];
   subtasksList.innerHTML = "";
   save();
+  window.location.href = "./board.html";
 }
 
 function clearAddTaskInput() {
