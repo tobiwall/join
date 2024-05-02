@@ -358,5 +358,12 @@ h1 {
     scale: 1.05;
 }
 
+.taskRow {
+    min-height: 100vh;
+    min-width: 252px;
+    border-radius: 16px;
+}
 
-
+.highlightContainer {
+    background-color: rgba(0, 0, 0, 0.1);
+}

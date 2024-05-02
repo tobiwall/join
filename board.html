@@ -53,27 +53,27 @@
               <span>To do</span>
               <img onclick="openAddTask(cardsToDo)" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
-            <div class="taskRow" id="toDoContainer"></div>
+            <div class="taskRow" id="toDoContainer" ondrop="moveTo('toDoContainer')" ondragover="addHighlight('toDoContainer')" ondragleave="removeHighlight('toDoContainer')"></div>
           </div>
           <div class="taskContainer">
             <div class="table-head">
               <span>In progress</span>
               <img onclick="openAddTask(cardsInProgress)" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
-            <div class="taskRow" id="inProgressContainer"></div>
+            <div class="taskRow" id="inProgressContainer" ondrop="moveTo('inProgressContainer')" ondragover="addHighlight('inProgressContainer')" ondragleave="removeHighlight('inProgressContainer')"></div>
           </div>
           <div class="taskContainer">
             <div class="table-head">
               <span>Await feedback</span>
               <img onclick="openAddTask(cardsAwaitFeedback)" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
-            <div class="taskRow" id="awaitFeedbackContainer"></div>
+            <div class="taskRow" id="awaitFeedbackContainer" ondrop="moveTo('awaitFeedbackContainer')" ondragover="addHighlight('awaitFeedbackContainer')" ondragleave="removeHighlight('awaitFeedbackContainer')"></div>
           </div>
           <div class="taskContainer">
             <div class="table-head">
               <span>Done</span>
             </div>
-            <div class="taskRow" id="doneContainer"></div>
+            <div class="taskRow" id="doneContainer" ondrop="moveTo('doneContainer')" ondragover="addHighlight('doneContainer')" ondragleave="removeHighlight('doneContainer')"></div>
           </div>
           <div id="overlayAddTask"></div>
         </div>
