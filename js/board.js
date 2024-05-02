@@ -398,3 +398,14 @@ function deleteTask(i) {
   renderCards();
   save();
 }
+
+function addHighlight(id) {
+  let container = document.getElementById(id);
+
+  container.classList.add('highlightContainer');
+}
+
+function removeHighlight(id) {
+  let container = document.getElementById(id);
+  container.classList.remove('highlightContainer');
+}
