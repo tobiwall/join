@@ -1,31 +1,49 @@
-const STORAGE_TOKEN = 'LBRCE7ZOJGJE5A61XE03E0RA3FUCZKJ11X9OKHSK';
-const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
+const STORAGE_URL = "https://join-gruppenarbeit-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let currentUser = null;
 
-async function setItem(key, value) {
-  const payload = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
-    .then(res => res.json());
+async function postData(path = "", data = {}) {
+  let response = await fetch(STORAGE_URL + path + ".json", {
+    method: 'POST',
+    header: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data)
+  });
+  return responseToJson = await response.json();
 }
 
-async function getItem(key) {
-  const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
-  return fetch(url).then(res => res.json());
+async function getData(path = "") {
+  let response = await fetch(STORAGE_URL + path + ".json");
+  return responseToJson = await response.json();
 }
+
+async function deleteData(path = "") {
+  let response = await fetch(STORAGE_URL + path + ".json", {
+    method: 'DELETE',
+  });
+  return responseToJson = await response.json();
+}
+
+
+
+
+
 
 async function loadUsers() {
-  let loadedUsers = await getItem('users');
-
-  if (loadedUsers.data && loadedUsers.data.value != "null") {
-    users.push(...JSON.parse(loadedUsers.data.value));
+  let loadedUsers = await getData("/users");
+  for (const key in loadedUsers) {
+    if (Object.hasOwnProperty.call(loadedUsers, key)) {
+      users.push(loadedUsers[key]);
+    }
   }
 }
 
 async function loadCurrentUsers() {
-  let loadedCurrentUser = await getItem('currentUser')
-
-  if (loadedCurrentUser.data && loadedCurrentUser.data.value != "null") {
-      currentUser = JSON.parse(loadedCurrentUser.data.value);
+  let loadedCurrentUser = await getData("/currentUser")
+  for (const key in loadedCurrentUser) {
+    if (Object.hasOwnProperty.call(loadedCurrentUser, key)) {
+      currentUser = loadedCurrentUser;
+    }
   }
 }

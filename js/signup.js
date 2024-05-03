@@ -44,10 +44,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const userData = {};
         formData.forEach((value, id) => userData[id] = value);
-        userData.id = generateRandomId();
-        users.push(userData);
-        const dataAsText = JSON.stringify(users);
-        await setItem('users', dataAsText);
+        userData.id = generateRandomId();        
+        
+        await postData("users", userData);
 
         document.getElementById('popup-container').classList.add('show');
         document.getElementById('popup').classList.add('show');

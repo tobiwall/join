@@ -1,5 +1,12 @@
 const users = [];
 
+async function deleteCurrentUser() {
+    let response = await fetch(STORAGE_URL + "currentUser.json", {
+        method: 'DELETE',
+    });
+    return responseToJson = await response.json();
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
     await loadUsers();
     await loadCurrentUsers();
@@ -24,9 +31,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         if (found) {
-            const currentUserAsText = JSON.stringify(currentUser);
-            await setItem('currentUser', currentUserAsText);
-            window.location.href = 'summary.html';
+            await deleteCurrentUser();
+            await postData("/currentUser", currentUser);
+            //window.location.href = 'summary.html';
         } else {
             alert("Falsche E-Mail-Adresse oder Passwort. Bitte versuchen Sie es erneut.");
         }
