@@ -313,7 +313,7 @@ h1 {
     line-height: 24px;
 }
 
-.pupup-prio-container {
+.popup-prio-container {
     display: flex;
     font-size: 20px;
     font-weight: 400;
@@ -375,9 +375,8 @@ h1 {
     scale: 1.05;
 }
 
-.edit-task-popup {
+.edit-task-popup form {
     width: 525px;
-    max-height: 931px;
     padding: 40px;
     border-radius: 30px;
     position: fixed;
@@ -385,11 +384,15 @@ h1 {
     top: 50%;
     transform: translate(-50%, -50%);
     background-color: rgb(255, 255, 255);
-    display: none;
     flex-direction: column;
     z-index: 500;
     gap: 24px;
     box-shadow: 0px 0px 4px 0px #00000029;
+}
+
+.edit-task-popup-top {
+    display: flex;
+    justify-content: end;
 }
 
 .taskRow {

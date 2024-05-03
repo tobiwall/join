@@ -148,7 +148,7 @@ function editSubtask(task, i) {
   let subtask = document.getElementById(`subtask${i}`);
 
   subtask.innerHTML = `
-    <div class="edit-input" id="subtask${i}">
+    <div class="edit-input">
       <input id="changedSubtask${i}" value="${task}">
         <div class="edit-icons">
           <img src="./assets/icons/subtask_icons/delete.png" alt="X" onclick="deleteSubtask(${i})">

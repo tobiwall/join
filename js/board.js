@@ -382,27 +382,26 @@ function openTaskPopup(i) {
   taskContainer.innerHTML = "";
   taskContainer.style.display = "flex";
   const task = allTasks[i];
+  const taskId = allTasks[i].id;
   const prio =
-    allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
-  taskContainer.innerHTML = taskPopup(task, i, prio);
+    task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
+  taskContainer.innerHTML = taskPopup(task, i, taskId, prio);
   popupCategoryColor(i);
   generatepopupCardPrio(task, i);
   renderPopupUsers(i);
   renderPopupSubtasks(i);
 }
 
-function taskPopup(task, i, prio) {
+function taskPopup(task, i, taskId, prio) {
   return /*html*/`
-        <div class="task-popup-top-section">
-      <div class="popupCategory" id="popupCategory${i}">${
-    task["category"]
-  }</div>
+    <div class="task-popup-top-section">
+      <div class="popupCategory" id="popupCategory${i}">${task["category"]}</div>
       <img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeTaskPopup()">
     </div>
     <h3>${task["title"]}</h3>
     <p>${task["description"]}</p>
     <p>Due Date: ${task["dueDate"]}</p>
-    <div class"pupup-prio-container">
+    <div class"popup-prio-container">
       <span>Priority: ${prio}</span>
       <img id="popupCardPrioImg${(task, i)}" src="" alt="PRIO">
     </div>
@@ -413,7 +412,7 @@ function taskPopup(task, i, prio) {
     <div class="task-popup-bottom-section">
       <div onclick="deleteTask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
       <img src="./assets/icons/mini_seperator.png" alt="/">
-      <div onclick="editTask(${i})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT">Edit</div>
+      <div onclick="editTask(${i}, ${taskId})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT">Edit</div>
     </div>
   `;
 }
@@ -430,66 +429,121 @@ function deleteTask(i) {
   save();
 }
 
-function editTask(i) {
+function editTask(i, taskId) {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.style.display = "none";
   let editTaskContainer = document.getElementById('editTaskPopup');
   editTaskContainer.innerHTML = '';
-  taskContainer.style.display = "flex";
+  editTaskContainer.style.display = "flex";
 
   const task = allTasks[i];
-  const prio = allTasks[i].prio.charAt(0).toUpperCase() + allTasks[i].prio.slice(1);
-  editTaskContainer.innerHTML = editTaskPopup(task, i, prio);
+  editTaskContainer.innerHTML = editTaskPopup(task, i, taskId);
+  renderEditPopupSubtasks(task, i, taskId);
 }
 
 function editTaskPopup(task, i, prio) {
   return /*html*/`
+  
   <form action="">
-  <div>
-      <label for="">Title<span style="color: #FF8190">*</span></label>
-      <input type="text">
-  </div>
-  <div>
-      <label for="">Description</label>
-      <textarea name="" id="" cols="30" rows="10"></textarea>
-  </div>
-  <div>
-      <label for="">Due Date<span style="color: #FF8190">*</span></label>
-      <input required id="" type="date">
-  </div>
-  <div class="prio-container">
-      <label>Prio</label>
-      <div class="buttons-container">
-          <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_buttons/prio_urgent_red.png" alt=""></button>
-          <button type="button" class="prio-button medium-active" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_buttons/prio_medium.png" alt=""></button>
-          <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_buttons/prio_low_green.png" alt=""></button>
-      </div>
-  </div>
-  <div class="assignedto-container">
-      <label>Assigned to</label>
-      <div class="assigned-container" id="assignedContainer">
-          <input id="userInput" type="text" onkeyup="searchUser()" onclick="showUsers()" placeholder="Select contacts to assign">
-          <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showUsers()">
-      </div>
-      <div id="dropdown-users" class="dropdown-users">
-          
-      </div>
-      <div id="contentAssignedUsers">
-      </div>    
-  </div>
-  <div>
-      <label>Subtasks</label>
-      <div class="subtask-container">
-          <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" onclick="enableIcons()">
-          <div class="subtask-icon-container">
-              <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
-          </div>
-      </div>
-      <ul id="contentSubtasks"></ul>
-  </div>
-  <button>OK<img src="./assets/icons/check_white1.png" alt=""></button>
-</form>
+    <div class="edit-task-popup-top"><img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeEditTaskPopup()"></div>
+    <div>
+        <label for="">Title<span style="color: #FF8190">*</span></label>
+        <input type="text" value="${task.title}">
+    </div>
+    <div>
+        <label for="">Description</label>
+        <textarea name="" id="" cols="30" rows="10">${task.description}</textarea>
+    </div>
+    <div>
+        <label for="">Due Date<span style="color: #FF8190">*</span></label>
+        <input required id="" type="date" value="${task.dueDate}">
+    </div>
+    <div class="prio-container">
+        <label>Prio</label>
+        <div class="buttons-container">
+            <button type="button" class="prio-button" id="urgentEdit" onclick="toggleButton('urgent')">Urgent<img id="urgentImgEdit" src="./assets/icons/prio_buttons/prio_urgent_red.png" alt=""></button>
+            <button type="button" class="prio-button medium-active" id="mediumEdit" onclick="toggleButton('medium')">Medium<img id="mediumImgEdit" src="./assets/icons/prio_buttons/prio_medium.png" alt=""></button>
+            <button type="button" class="prio-button" id="lowEdit" onclick="toggleButton('low')">Low<img id="lowImgEdit" src="./assets/icons/prio_buttons/prio_low_green.png" alt=""></button>
+        </div>
+    </div>
+    <div class="assignedto-container">
+        <label>Assigned to</label>
+        <div class="assigned-container" id="assignedContainer">
+            <input id="userInput" type="text" onkeyup="searchUser()" onclick="showUsers()" placeholder="Select contacts to assign">
+            <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showUsers()">
+        </div>
+        <div id="dropdown-users" class="dropdown-users">
+        </div>  
+    </div>
+    <div>
+        <label>Subtasks</label>
+        <div class="subtask-container">
+            <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" onclick="enableIcons()">
+            <div class="subtask-icon-container">
+                <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
+            </div>
+        </div>
+        <ul id="edit-popup-contentSubtasks">${task.subtasks}</ul>
+    </div>
+    <button onclick="submitChanges()">OK<img src="./assets/icons/check_white1.png" alt=""></button>
+  </form>
   `;
+}
+
+function renderEditPopupSubtasks(task, i, taskId) {
+  let subtaskContainer = document.getElementById(
+    `edit-popup-contentSubtasks`
+  );
+  subtaskContainer.innerHTML = "";
+
+  for (let j = 0; j < task.subtasks.length; j++) {
+    const subtask = task.subtasks[j];
+
+    subtaskContainer.innerHTML += `
+    <div id="subtask${j}_${taskId}" class="subtask">
+    <li>
+      <div>${subtask}</div>
+      <div class="subtask-edit-icons">
+        <div onclick="editPopupSubtask('${subtask}', ${i}, ${j}, ${taskId})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
+        <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
+        <div onclick="deletePopupSubtask(${j}, ${j})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
+    </div>
+  </li>
+  </div>
+    `;
+  }
+}
+
+function editPopupSubtask(subtask, i, j, taskId) {
+  let subtaskbox = document.getElementById(`subtask${j}_${taskId}`);
+
+  subtaskbox.innerHTML = `
+    <div class="edit-input">
+      <input id="changedSubtask${j}_${taskId}" value="${subtask}">
+        <div class="edit-icons">
+          <img src="./assets/icons/subtask_icons/delete.png" alt="X" onclick="deletePopupSubtask(${i}, ${j}, ${taskId})">
+          <img src="./assets/icons/subtask_icons/check.png" alt="OK" onclick="addChangedPopupSubtask(${i}, ${j}, ${taskId})">
+      </div>
+    </div>
+  `;
+}
+
+function deletePopupSubtask(i, j, taskId) {
+  allTasks[i].subtasks.splice(j, 1);
+  editTask(i, taskId);
+}
+
+function addChangedPopupSubtask(i, j, taskId) {
+  let input = document.getElementById(`changedSubtask${j}_${taskId}`);
+  let subtaskText = input.value.trim();
+  allTasks[i].subtasks.splice(j, 1, subtaskText);
+  input.value = "";
+  editTask(i, taskId);
+}
+
+function closeEditTaskPopup() {
+  let taskContainer = document.getElementById("editTaskPopup");
+  taskContainer.style.display = "none";
 }
 
 function addHighlight(id) {
