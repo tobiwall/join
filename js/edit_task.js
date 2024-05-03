@@ -86,22 +86,22 @@ function prioLow(priority) {
     "./assets/icons/prio_buttons/prio_medium_yellow.png";
 }
 
-function showUsers() {
+function showEditUsers(i) {
   let userList = document.getElementById("editDropdownUsers");
   userList.innerHTML = "";
   loadContacts();
   if (!assignedContainerClicked) {
-    displayUserList(userList);
+    displayEditUserList(i, userList);
   } else {
     hideUsers();
   }
 }
 
-function displayUserList(userList) {
+function displayEditUserList(j, userList) {
   assignedContainerClicked = true;
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
-    userList.innerHTML += userTemplate(contact);
+    userList.innerHTML += editUserTemplate(j, contact);
   }
 }
 
@@ -111,23 +111,22 @@ function hideUsers() {
   userList.innerHTML = "";
 }
 
-function handleCheckboxChange(event) {
+function handleCheckboxChangeEditTask(j, event) {
+  const task = allTasks[j];
   const checkbox = event.target;
   const contactData = JSON.parse(checkbox.getAttribute("data-contact"));
 
   if (checkbox.checked) {
-    users.push(contactData);
-    renderAssignedUser();
+    task.users.push(contactData);
   } else {
     const index = users.findIndex((user) => user.name === contactData.name);
     if (index !== -1) {
-      users.splice(index, 1);
-      renderAssignedUser();
+      task.users.splice(index, 1);
     }
   }
 }
 
-function userTemplate(contact) {
+function editUserTemplate(j, contact) {
   return `
   <div class="user-container">
     <div class="user">
@@ -143,18 +142,18 @@ function userTemplate(contact) {
         contact.name
       }" data-contact='${JSON.stringify(
     contact
-  )}' onchange="handleCheckboxChange(event)">
+  )}' onchange="handleCheckboxChangeEditTask(${j}, event)">
     </div>
   </div>
 `;
 }
 
-function searchUser() {
+function searchEditUser() {
   let searchValue = document
-    .getElementById("userInput")
+    .getElementById("popupUserInput")
     .value.trim()
     .toLowerCase();
-  let userList = document.getElementById("dropdown-users");
+  let userList = document.getElementById("editDropdownUsers");
   userList.innerHTML = "";
   loadContacts();
 
@@ -186,15 +185,15 @@ function editTaskPopup(task, i, taskId) {
     <div class="edit-task-popup-top"><img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeEditTaskPopup()"></div>
     <div>
       <label for="">Title<span style="color: #FF8190">*</span></label>
-      <input type="text" value="${task.title}">
+      <input id="editTaskTitle" type="text" value="${task.title}">
     </div>
     <div>
       <label for="">Description</label>
-      <textarea name="" id="" cols="30" rows="10">${task.description}</textarea>
+      <textarea name="" id="editTaskDescription" cols="30" rows="10">${task.description}</textarea>
     </div>
     <div>
       <label for="">Due Date<span style="color: #FF8190">*</span></label>
-      <input required id="" type="date" value="${task.dueDate}">
+      <input required id="editTaskDate" type="date" value="${task.dueDate}">
     </div>
     <div class="prio-container">
       <label>Prio</label>
@@ -204,8 +203,8 @@ function editTaskPopup(task, i, taskId) {
     <div class="assignedto-container">
       <label>Assigned to</label>
       <div class="assigned-container" id="popupAssignedContainer">
-        <input id="popupUserInput" type="text" onkeyup="searchUser()" onclick="showUsers()" placeholder="Select contacts to assign">
-        <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showUsers()">
+        <input id="popupUserInput" type="text" onkeyup="searchEditUser()" onclick="showEditUsers(${i})" placeholder="Select contacts to assign">
+        <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showEditUsers(${i})">
       </div>
       <div id="editDropdownUsers" class="dropdown-users">
       </div>  
@@ -220,7 +219,7 @@ function editTaskPopup(task, i, taskId) {
         </div>
         <ul id="edit-popup-contentSubtasks">${task.subtasks}</ul>
     </div>
-    <button onclick="submitChanges(${i})">OK<img src="./assets/icons/check_white1.png" alt=""></button>
+    <div class="edit-task-bottom-section"><button class="edit-task-button" onclick="submitChanges(${i})">OK<img src="./assets/icons/check_white1.png" alt=""></button></div>
   </form>
   `;
 }
@@ -250,19 +249,23 @@ function renderEditPopupSubtasks(task, i, taskId) {
   for (let j = 0; j < task.subtasks.length; j++) {
     const subtask = task.subtasks[j];
 
-    subtaskContainer.innerHTML += `
-    <div id="subtask${j}_${taskId}" class="subtask">
-    <li>
-      <div>${subtask}</div>
-      <div class="subtask-edit-icons">
-        <div onclick="editPopupSubtask('${subtask}', ${i}, ${j}, ${taskId})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
-        <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
-        <div onclick="deletePopupSubtask(${j}, ${j})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
-    </div>
-  </li>
-  </div>
-    `;
+    subtaskContainer.innerHTML += editSubtaskTamplete(i, j, subtask, taskId);
   }
+}
+
+function editSubtaskTamplete(i, j, subtask, taskId) {
+  return `
+    <div id="subtask${j}_${taskId}" class="subtask">
+      <li>
+        <div>${subtask}</div>
+        <div class="subtask-edit-icons">
+          <div onclick="editPopupSubtask('${subtask}', ${i}, ${j}, ${taskId})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
+          <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
+          <div onclick="deletePopupSubtask(${j}, ${j})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
+      </div>
+      </li>
+    </div>
+  `;
 }
 
 function editPopupSubtask(subtask, i, j, taskId) {
@@ -280,16 +283,18 @@ function editPopupSubtask(subtask, i, j, taskId) {
 }
 
 function deletePopupSubtask(i, j, taskId) {
-  allTasks[i].subtasks.splice(j, 1);
-  editTask(i, taskId);
+  const task = allTasks[i];
+  task.subtasks.splice(j, 1);
+  renderEditPopupSubtasks(task, i, taskId);
 }
 
 function addChangedPopupSubtask(i, j, taskId) {
+  const task = allTasks[i];
   let input = document.getElementById(`changedSubtask${j}_${taskId}`);
   let subtaskText = input.value.trim();
   allTasks[i].subtasks.splice(j, 1, subtaskText);
   input.value = "";
-  editTask(i, taskId);
+  renderEditPopupSubtasks(task, i, taskId);
 }
 
 function closeEditTaskPopup() {
@@ -306,32 +311,18 @@ function deleteTask(i) {
 
 function submitChanges(i) {
   const task = allTasks[i];
-
-  const form = document.querySelector('form');
-  const formData = new FormData(form);
-
-  // Die Werte aus dem Formular extrahieren
-  const title = formData.get('title');
-  const description = formData.get('description');
-  const dueDate = formData.get('dueDate');
-  const subtasks = getSubtasks();
-
+  let title = document.getElementById('editTaskTitle').value;
+  let description = document.getElementById('editTaskDescription').value;
+  let date = document.getElementById('editTaskDate').value;
+  let users
+  let subtasks
+  
   task.title = title;
   task.description = description;
-  task.dueDate = dueDate;
-  task.subtasks = subtasks;
+  task.dueDate = date;
 
   save();
   renderCards();
   closeEditTaskPopup();
 }
 
-function getSubtasks() {
-  const subtaskElements = document.querySelectorAll('.subtask');
-  const subtasks = [];
-  subtaskElements.forEach(element => {
-    const subtaskText = element.querySelector('input').value;
-    subtasks.push(subtaskText);
-  });
-  return subtasks;
-}
