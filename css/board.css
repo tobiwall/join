@@ -390,9 +390,33 @@ h1 {
     box-shadow: 0px 0px 4px 0px #00000029;
 }
 
+.edit-subtask-icon-container {
+    position: absolute;
+    right: 10px;
+    top: 24%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .edit-subtask-icon-container div {
+    cursor: pointer;
+    height: 24px;
+  }
+  
+  .edit-subtask-icon-container div:hover {
+    background-color: #D9D9D9;
+    border-radius: 12px;
+  }
+
 .edit-task-popup-top {
     display: flex;
     justify-content: end;
+}
+
+#edit-popup-contentSubtasks {
+    gap: 4px;
+    margin-top: 4px;
 }
 
 .taskRow {

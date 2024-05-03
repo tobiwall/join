@@ -280,10 +280,15 @@ function enableIcons() {
   iconContainer.querySelector('img').removeAttribute('onclick');
 
   iconContainer.innerHTML = `
-    <div onclick="clearInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
+    <div onclick="clearSubtaskInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
     <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
     <div onclick="addSubtask()"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
   `;
+}
+
+function clearSubtaskInput() {
+  input = document.getElementById('subtasksInput');
+  input.value = '';
 }
 
 function changeClearButton(button, newSrc) {
