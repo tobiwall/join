@@ -1,9 +1,18 @@
+.full-screen {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
 .content {
     position: fixed;
-    top: 206px;
-    left: 328px;
-    overflow-y: scroll;
-    height: 100vh;
+    overflow-y: auto;
+    height: calc(100vh - 206px);
+    margin-top: 206px;
+    padding-right: 16px;
+    margin-left: 248px;
+    max-width: 1440px;
   }
 
 h1 {
@@ -118,7 +127,7 @@ h1 {
 
 .board {
     margin-top: 16px;
-    height: 100vh;
+    height: fit-content;
     display: flex; 
 }
 
