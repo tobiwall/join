@@ -35,7 +35,7 @@ function resetDoneCard(card, newSrc) {
 }
 
 function greeting() {
-  let greetingContainer = document.getElementById('greeting-time');
+  let greetingContainer = document.querySelector('.greeting-time');
   let date = new Date();
   let actualHour = date.getHours();
   
@@ -46,6 +46,10 @@ function greeting() {
   } else {
     greetingContainer.innerHTML = 'Good evening,';
   }
+}
+
+function userName() {
+  let nameContainer = document.getElementById('greeting-name');
 }
 
 function getCurrentDate() {
@@ -166,4 +170,3 @@ function loadTaskInBoard() {
 
   displayedAll.innerHTML = allCount;
 }
-

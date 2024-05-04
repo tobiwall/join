@@ -2,14 +2,13 @@ h2 {
   font-size: 61px;
   font-weight: 700;
   line-height: 73.2px;
-  text-align: left;
   margin-right: 30px;
 }
 
 .number {
   font-size: 64px;
   font-weight: 600;
-  line-height: 76.8px;
+  line-height: 50px;
   text-align: center;
 }
 
@@ -21,8 +20,8 @@ h2 {
 
 .summary-content {
   position: fixed;
-  top: 206px;
-  left: 328px;
+  top: 14%;
+  left: 20%;
 }
 
 .summary-text-container {
@@ -66,6 +65,7 @@ h2 {
 .card-numb-text {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .top-card {
@@ -166,7 +166,7 @@ h2 {
   margin-left: 80px;
 }
 
-#greeting-time {
+.greeting-time {
   font-size: 47px;
   font-weight: 500;
   line-height: 56.4px;
@@ -177,4 +177,323 @@ h2 {
   font-size: 64px;
   font-weight: 700;
   line-height: 76.8px;
+}
+
+@media(max-width: 1200px) {
+
+  .summary-content {
+    position: fixed;
+    top: 14%;
+    left: 33%;
+  }
+
+  .summary-greeting {
+    display: none;
+  }
+}
+
+@media(max-width: 900px) {
+
+  h2 {
+    font-size: 42px;
+    font-weight: 700;
+    text-align: left;
+    margin-right: 30px;
+  }
+  
+  .number {
+    font-size: 43px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .task-text {
+    font-size: 18px;
+    font-weight: 400;
+  }
+  
+  .summary-content {
+    position: fixed;
+    top: 14%;
+    left: 28%;
+  }
+
+  .summary-text-container {
+    justify-content: center;
+  }
+  
+  .summary-text-container span {
+    font-size: 19px;
+    font-weight: 400;
+    margin-left: 30px;
+  }
+  
+  .summary-display {
+    display: flex;
+    align-items: center;
+  }
+  
+  .summary-container {
+    width: 560px;
+    height: 562px;
+    gap: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .summary-top-section {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .summary-bot-section {
+    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-numb-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-card {
+    cursor: pointer;
+    width: 210px;
+    height: 150px;
+    padding: 38px 19px;
+    gap: 18px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .top-card:hover {
+    background-color: #2A3647;
+    color: white;
+    scale: 1.02;
+  }
+  
+  .img-div {
+    background-color: #2A3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 69px;
+    width: 69px;
+    border-radius: 34px;
+  }
+  
+  .img-div img {
+    height: 24px;
+  }
+  
+  .mid-card {
+    cursor: pointer;
+    width: 440px;
+    height: 150px;
+    top: 196px;
+    padding: 28px 48px;
+    gap: 61px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    align-items: center;
+  }
+  
+  .mid-card img {
+    height: 60px;
+  }
+  
+  .mid-card:hover {
+    background-color: #2A3647;
+    color: white;
+    scale: 1.02;
+  }
+  
+  #deadlineContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+    gap: 13px;
+  }
+  
+  .deadline-date {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 25.2px;
+  }
+  
+  .bot-card {
+    cursor: pointer;
+    width: 135px;
+    height: 150px;
+    top: 1px;
+    padding: 8px 2px;
+    gap: 13px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .bot-card:hover {
+    background-color: #2A3647;
+    color: white;
+    scale: 1.02;
+  }
+}
+
+@media(max-width: 900px) {
+  .summary-content {
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .summary-text-container {
+    display: none;
+  }
+  
+  .number {
+    font-size: 38px;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .task-text {
+    font-size: 15px;
+    font-weight: 400;
+  }
+    
+  .summary-display {
+    display: flex;
+    align-items: center;
+  }
+  
+  .summary-container {
+    width: 560px;
+    height: 562px;
+    gap: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .summary-top-section {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .summary-bot-section {
+    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-numb-text {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .top-card {
+    cursor: pointer;
+    width: 140px;
+    height: 120px;
+    padding: 8px;
+    gap: 4px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .top-card:hover {
+    background-color: #2A3647;
+    color: white;
+    scale: 1.02;
+  }
+
+  .top-card img {
+    height: 45px;
+  }
+  
+  .img-div {
+    background-color: #2A3647;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 69px;
+    width: 69px;
+    border-radius: 34px;
+  }
+  
+  .img-div img {
+    height: 24px;
+  }
+  
+  .mid-card {
+    cursor: pointer;
+    width: 300px;
+    height: 120px;
+    padding: 8px;
+    gap: 16px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    align-items: center;
+  }
+  
+  .mid-card img {
+    height: 45px;
+  }
+  
+  .mid-card:hover {
+    background-color: #2A3647;
+    color: white;
+    scale: 1.02;
+  }
+  
+  #deadlineContainer {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 19.2px;
+    gap: 10px;
+  }
+  
+  .deadline-date {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 25.2px;
+  }
+  
+  .bot-card {
+    cursor: pointer;
+    width: 90px;
+    height: 150px;
+    padding: 8px 2px;
+    gap: 4px;
+    border-radius: 30px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .bot-card:hover {
+    background-color: #2A3647;
+    color: white;
+    scale: 1.02;
+  }
 }

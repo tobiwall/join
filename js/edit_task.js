@@ -314,8 +314,6 @@ function submitChanges(i) {
   let title = document.getElementById('editTaskTitle').value;
   let description = document.getElementById('editTaskDescription').value;
   let date = document.getElementById('editTaskDate').value;
-  let users
-  let subtasks
   
   task.title = title;
   task.description = description;

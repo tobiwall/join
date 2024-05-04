@@ -13,6 +13,21 @@ header {
   align-items: center;
 }
 
+.logo-header {
+  cursor: pointer;
+  display: none;
+  height: 50px;
+}
+
+.header-icon-div {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-content a.display-help {
+  display: none;
+}
+
 /* Dropdown Button */
 .dropdown-button {
   height: 56px;
@@ -24,6 +39,7 @@ header {
   padding: 16px;
   font-size: 16px;
   cursor: pointer;
+  margin-left: 8px;
 }
 
 /* Dropdown button on hover & focus */
@@ -44,6 +60,7 @@ header {
   top: 76px;
   right: -35px;
   background-color: #2A3647;
+  border-radius: 20px 0px 20px 20px;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -62,3 +79,41 @@ header {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+@media(max-width: 700px) {
+  header {
+    background-color: white;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 2px solid rgb(226, 226, 226);
+    height: 96px;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo-header {
+    display: block;
+  }
+
+  header span {
+    display: none;
+  }
+
+  .dropdown-content a.display-help {
+    display: block;
+  }
+
+  .dropdown-content {
+    top: 76px;
+    right: -35px;
+  }
+
+  .help-icon {
+    display: none;
+  }
+}
