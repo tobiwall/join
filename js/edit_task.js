@@ -212,9 +212,9 @@ function editTaskPopup(task, i, taskId) {
     <div>
         <label>Subtasks</label>
         <div class="subtask-container">
-          <input id="editSubtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" onclick="enableSubtaskIcons()">
+          <input id="editSubtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" onclick="enableSubtaskIcons(${i}, ${taskId})">
           <div class="edit-subtask-icon-container">
-            <img src="./assets/icons/subtask_icons/add.png" onclick="enableSubtaskIcons()"></img>
+            <img src="./assets/icons/subtask_icons/add.png" onclick="enableSubtaskIcons(${i}, ${taskId})"></img>
           </div>
         </div>
         <ul id="edit-popup-contentSubtasks">${task.subtasks}</ul>
@@ -224,20 +224,32 @@ function editTaskPopup(task, i, taskId) {
   `;
 }
 
-function enableSubtaskIcons() {
+function enableSubtaskIcons(i, taskId) {
   let iconContainer = document.querySelector('.edit-subtask-icon-container');
   iconContainer.querySelector('img').removeAttribute('onclick');
 
   iconContainer.innerHTML = `
     <div onclick="clearEditSubtaskInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
     <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
-    <div onclick="addSubtask()"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
+    <div onclick="addEditSubtask(${i}, ${taskId})"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
   `;
 }
 
 function clearEditSubtaskInput() {
   input = document.getElementById('editSubtasksInput');
   input.value = '';
+}
+
+function addEditSubtask(i, taskId) {
+  let input = document.getElementById("editSubtasksInput");
+  let subtaskText = input.value.trim();
+  const task = allTasks[i];
+
+  if (subtaskText !== "") {
+    task.subtasks.push(subtaskText);
+    input.value = "";
+  }
+  renderEditPopupSubtasks(task, i, taskId);
 }
 
 function renderEditPopupSubtasks(task, i, taskId) {

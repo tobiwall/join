@@ -1,6 +1,5 @@
 let selectedPriority = 'medium';
 let subtasks = [];
-let subtaskId = 0;
 let users = [];
 
 async function initAddTask() {
@@ -123,7 +122,6 @@ function addSubtask() {
 
   if (subtaskText !== "") {
     subtasks.push(subtaskText);
-    subtaskId++;
     input.value = "";
   }
   renderSubtasks();
