@@ -3,10 +3,8 @@ let subtasks = [];
 let users = [];
 
 async function initAddTask() {
-  debugger;
   await includeHTML();
   await loadCurrentUsers();
-  debugger;
   await load();
   taskId = findHighestTaskId();
 }

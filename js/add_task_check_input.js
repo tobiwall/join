@@ -14,7 +14,7 @@ function checkInputs() {
       createTaskButton.disabled = true;
     }
   }
-debugger;
+
   document.getElementById("taskTitle").addEventListener("input", checkInputs);
   document.getElementById("taskDate").addEventListener("change", checkInputs);
   document.getElementById("categoryInput").addEventListener("change", checkInputs);
