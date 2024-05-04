@@ -22,14 +22,15 @@
     <div class="login-card">
         <h1>Log in</h1>
         <form class="login-form" id="myForm">
-            <div class="input-container">
-                <input placeholder="Email" name="user_email" type="email" required>
+            <div class="input-container" id="email-input">
+                <input placeholder="Email" name="user_email" id="user_email" type="email" required>
                 <img src="./assets/icons/mail.png" alt="Mail">
             </div>
-            <div class="input-container">
-                <input placeholder="Password" name="user_password" type="password" required>
+            <div class="input-container" id="password-input">
+                <input placeholder="Password" name="user_password" id="user_password" type="password" required>
                 <img src="./assets/icons/lock.png" alt="Lock">
             </div>
+            <div class="hidden-container d-none" id="login-error">Your Email or Password doesn't exist.</div>
             <div class="remember-me">
                 <input type="checkbox" name="user_checkbox" id="user_checkbox">
                 <p>Remember me</p>

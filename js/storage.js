@@ -25,11 +25,6 @@ async function deleteData(path = "") {
   return responseToJson = await response.json();
 }
 
-
-
-
-
-
 async function loadUsers() {
   let loadedUsers = await getData("/users");
   for (const key in loadedUsers) {
