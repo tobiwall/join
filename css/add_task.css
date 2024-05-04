@@ -1,7 +1,7 @@
 .content-addtask {
     position: fixed;
-    top: 206px;
-    left: 328px;
+    top: 14%;
+    left: 20%;
   }
 
 h2 {
@@ -62,7 +62,6 @@ select {
 .form-left-section {
   display: flex;
   flex-direction: column;
-  max-width: 440px;
   width: 100%;
   margin-right: 48px;
 }
@@ -74,7 +73,6 @@ select {
 .form-right-section {
   display: flex;
   flex-direction: column;
-  max-width: 440px;
   width: 100%;
   margin-left: 48px;
 }
@@ -352,7 +350,78 @@ li:hover {
   border: 1px solid #29ABE2;
 }
 
+@media(max-width: 1350px) { 
 
+  .content-addtask {
+    position: fixed;
+    top: 14%;
+    left: 35%;
+    overflow-y: auto;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .addtask-seperator {
+    display: none;
+  }
+
+  .form-left-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 0px;
+  }
+
+  .form-right-section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-left: 0px;
+  }
+
+  .bottom-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items:start;
+  }
+}
+
+@media(max-width: 700px) { 
+  .content-addtask {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    overflow-y: auto;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+@media(max-width: 440px) { 
+  .content-addtask {
+    position: fixed;
+    top: 10%;
+    left: 70%;
+    transform: translate(-70%);
+    overflow-y: auto;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+}
 
 
 

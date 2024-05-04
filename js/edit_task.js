@@ -273,7 +273,7 @@ function editSubtaskTamplete(i, j, subtask, taskId) {
         <div class="subtask-edit-icons">
           <div onclick="editPopupSubtask('${subtask}', ${i}, ${j}, ${taskId})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
           <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
-          <div onclick="deletePopupSubtask(${j}, ${j})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
+          <div onclick="deletePopupSubtask(${j}, ${j}), ${taskId}"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
       </div>
       </li>
     </div>
