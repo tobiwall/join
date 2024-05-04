@@ -192,12 +192,13 @@ body {
     width: 1212px;
     min-width: fit-content;
     height: 592px;
-    position: absolute;
-    left: calc(50% - 606px);
-    top: calc(50vh - 292px);
+    position: fixed;
+    right: -100%;
+    transform: translateY(-50%);
+    transition: right 0.5s ease;
+    top: 50%;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
-    display: none;
     z-index: 101;
 }
 
