@@ -7,7 +7,7 @@ let currentDraggedTask;
 async function init() {
   includeHTML();
   await loadCurrentUsers();
-  await load();
+  await loadAllTasks();
   taskId = findHighestTaskId();
   renderCards();
 }
@@ -44,7 +44,7 @@ async function includeHTML() {
   }
 }
 
-function createTaskOnBoard(status) {
+async function createTaskOnBoard(status) {
   let title = document.getElementById("taskTitle");
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
@@ -63,7 +63,7 @@ function createTaskOnBoard(status) {
     subtasks: subtasks,
   };
 
-  allTasks.push(newTask);
+  await postData("/allTasks", newTask);
 
   title.value = "";
   discription.value = "";
@@ -73,8 +73,7 @@ function createTaskOnBoard(status) {
   subtasks = [""];
   users = [""];
   subtasksList.innerHTML = "";
-  renderCards();
-  save();
+  renderCards(); 
 }
 
 function findHighestTaskId() {

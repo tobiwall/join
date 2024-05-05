@@ -13,7 +13,7 @@ let contacts = [
   },
   {
     name: "Julia Wagner",
-    email: "julia.wagner@example.com",
+    email: "julia.wagner@example.com", 
     phone: "+491234567893",
     id: 2,
   },
@@ -129,8 +129,8 @@ async function initContact() {
  * renderContacts() reads all function to create the perfect contact list
  *
  */
-function renderContacts() {
-  getLocalStorage();
+async function renderContacts() {
+  await loadAllContacts();
   sortContacts();
   extractInitials(contacts);
   randomBackgroundColor();
@@ -374,13 +374,6 @@ function closeContactPopupByOverlay(event) {
 
 function saveContactsLocal() {
   localStorage.setItem("contacts", JSON.stringify(contacts));
-}
-
-function getLocalStorage() {
-  let storedContacts = localStorage.getItem("contacts");
-  if (storedContacts) {
-    contacts = JSON.parse(storedContacts);
-  }
 }
 
 async function createContact() {

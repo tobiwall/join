@@ -35,10 +35,28 @@ async function loadUsers() {
 }
 
 async function loadCurrentUsers() {
-  let loadedCurrentUser = await getData("/currentUser")
+  let loadedCurrentUser = await getData("/currentUser");
   for (const key in loadedCurrentUser) {
     if (Object.hasOwnProperty.call(loadedCurrentUser, key)) {
-      currentUser = loadedCurrentUser;
+      currentUser = loadedCurrentUser[key];
+    }
+  }
+}
+
+async function loadAllTasks() {
+  let loadedAllTasks = await getData("/allTasks");
+  for (const key in loadedAllTasks) {
+    if (Object.hasOwnProperty.call(loadedAllTasks, key)) {
+      allTasks.push(loadedAllTasks[key]);
+    }
+  }
+}
+
+async function loadAllContacts() {
+  let loadedContacts = await getData("/contacts");
+  for (const key in loadedContacts) {
+    if (Object.hasOwnProperty.call(loadedContacts, key)) {
+      contacts.push(loadedContacts[key]);
     }
   }
 }
