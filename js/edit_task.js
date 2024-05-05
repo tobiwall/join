@@ -251,7 +251,7 @@ function addSubtaskInPopup(taskIndex, taskId) {
   const task = allTasks[taskIndex];
 
   if (subtaskText !== "") {
-    task.subtasks.push(subtaskText);
+    task.subtasks.push({name: subtaskText, completed: false});
     input.value = "";
   }
   renderEditPopupSubtasks(task, taskIndex, taskId);
@@ -274,9 +274,9 @@ function editSubtaskTamplete(taskIndex, subtaskId, subtask, taskId) {
   return `
     <div id="subtask${subtaskId}_${taskId}" class="subtask">
       <li>
-        <div>${subtask}</div>
+        <div>${subtask.name}</div>
         <div class="subtask-edit-icons">
-          <div onclick="editPopupSubtask('${subtask}', ${taskIndex}, ${subtaskId}, ${taskId})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
+          <div onclick="editPopupSubtask('${subtask.name}', ${taskIndex}, ${subtaskId}, ${taskId})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
           <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
           <div onclick="deletePopupSubtask(${taskIndex}, ${subtaskId}, ${taskId})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
       </div>
@@ -310,7 +310,7 @@ function addChangedPopupSubtask(taskIndex, subtaskId, taskId) {
   const task = allTasks[taskIndex];
   let input = document.getElementById(`changedSubtask${subtaskId}_${taskId}`);
   let subtaskText = input.value.trim();
-  task.subtasks.splice(subtaskId, 1, subtaskText);
+  task.subtasks[subtaskId]['name'] = subtaskText;
   input.value = "";
   renderEditPopupSubtasks(task, taskIndex, taskId);
 }

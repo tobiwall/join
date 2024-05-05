@@ -29,7 +29,7 @@ function taskPopup(task, i, taskId, prio) {
     <span>Assigned to:</span>
     <div class="popup-user-container" id="popupUserContainer${i}"></div>
     <span>Subtasks</span>
-    <div id="task-popup-subtask-container${i}"></div>
+    <div class="task-popup-subtask-container" id="task-popup-subtask-container${i}"></div>
     <div class="task-popup-bottom-section">
       <div onclick="deleteTask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="DEL">Delete</div>
       <img src="./assets/icons/mini_seperator.png" alt="/">
@@ -98,9 +98,7 @@ function renderPopupUsers(i) {
 }
 
 function renderPopupSubtasks(i) {
-  let subtaskContainer = document.getElementById(
-    `task-popup-subtask-container${i}`
-  );
+  let subtaskContainer = document.getElementById(`task-popup-subtask-container${i}`);
   subtaskContainer.innerHTML = "";
 
   for (let j = 0; j < allTasks[i]["subtasks"].length; j++) {
@@ -108,8 +106,8 @@ function renderPopupSubtasks(i) {
 
     subtaskContainer.innerHTML += `
       <div class="popup-subtask-container">
-        <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${subtask}" onclick="toggleSubtask(${i}, ${j})"></div>
-        <div>${subtask}</div>
+        <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${subtask}" onclick="toggleSubtask(${i}, ${j})" ${subtask.completed ? 'checked' : ''}></div>
+        <div>${subtask.name}</div>
       </div>
     `;
   }
@@ -118,13 +116,16 @@ function renderPopupSubtasks(i) {
 function toggleSubtask(i, j) {
   const subtaskCheckbox = document.getElementById(`subtaskCheckbox${i}_${j}`);
   const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
+  const subtask = allTasks[i].subtasks[j];
+
+  subtask.completed = !subtask.completed;
+  subtaskCheckbox.checked = subtask.completed;
 
   if (subtaskCheckbox.checked) {
     doneSubtasksContainer.innerHTML =
-      parseInt(doneSubtasksContainer.innerHTML) + 1;
+    doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
   } else {
-    doneSubtasksContainer.innerHTML =
-      parseInt(doneSubtasksContainer.innerHTML) - 1;
+    doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
   }
   generateProgressbar(i);
 }

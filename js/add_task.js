@@ -107,6 +107,17 @@ function prioLow(priority) {
   selectedPriority = priority;
 }
 
+function addSubtask() {
+  let input = document.getElementById("subtasksInput");
+  let subtaskText = input.value.trim();
+
+  if (subtaskText !== "") {
+    subtasks.push({name: subtaskText, completed: false});
+    input.value = "";
+  }
+  renderSubtasks();
+}
+
 function renderSubtasks() {
   let subtasksList = document.getElementById("contentSubtasks");
   subtasksList.innerHTML = "";
@@ -117,24 +128,13 @@ function renderSubtasks() {
   }
 }
 
-function addSubtask() {
-  let input = document.getElementById("subtasksInput");
-  let subtaskText = input.value.trim();
-
-  if (subtaskText !== "") {
-    subtasks.push(subtaskText);
-    input.value = "";
-  }
-  renderSubtasks();
-}
-
 function subtaskTemplate(task, i) {
   return `
   <div id="subtask${i}" class="subtask">
     <li>
-      <div>${task}</div>
+      <div>${task.name}</div>
       <div class="subtask-edit-icons">
-        <div onclick="editSubtask('${task}', ${i})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
+        <div onclick="editSubtask('${task.name}', ${i})"><img src="./assets/icons/subtask_icons/edit.png" alt="EDIT"></div>
         <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
         <div onclick="deleteSubtask(${i})"><img src="./assets/icons/subtask_icons/delete.png" alt="X"></div>
     </div>
@@ -158,16 +158,16 @@ function editSubtask(task, i) {
   `;
 }
 
-function deleteSubtask(i) {
-  subtasks.splice(i, 1);
-  renderSubtasks();
-}
-
 function addChangedSubtask(i) {
   let input = document.getElementById(`changedSubtask${i}`);
   let subtaskText = input.value.trim();
-  subtasks.splice(i, 1, subtaskText);
+  subtasks[i]['name'] = subtaskText;
   input.value = "";
+  renderSubtasks();
+}
+
+function deleteSubtask(i) {
+  subtasks.splice(i, 1);
   renderSubtasks();
 }
 

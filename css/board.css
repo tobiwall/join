@@ -357,13 +357,16 @@ h1 {
     line-height: 14.4px;
 }
 
+.task-popup-subtask-container{
+    font-size: 16px;
+    font-weight: 400;
+}
+
 .popup-subtask-container {
     display: flex;
     align-items: center;
     gap: 16px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 19.2px;
+    padding: 6px 16px;
 }
 
 .task-popup-bottom-section {
