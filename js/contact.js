@@ -120,9 +120,11 @@ let foundContacts = [];
 let openEditContactId = [];
 
 async function initContact() {
+  contacts = await loadAllContacts();
   includeHTML();
   await loadCurrentUsers();
   renderContacts();
+  showHeaderUser();
 }
 
 /**

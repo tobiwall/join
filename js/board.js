@@ -5,11 +5,18 @@ let doneSubtasks = 0;
 let currentDraggedTask;
 
 async function init() {
-  includeHTML();
+  await includeHTML();
   await loadCurrentUsers();
   await loadAllTasks();
   taskId = findHighestTaskId();
   renderCards();
+  showHeaderUser();
+}
+
+async function initHeader() {
+  await includeHTML();
+  await loadCurrentUsers();
+  showHeaderUser();
 }
 
 async function includeHTML() {
@@ -42,6 +49,13 @@ async function includeHTML() {
       return;
     }
   }
+}
+
+function showHeaderUser() {
+  let names = currentUser.user_name.split(" ");
+  let firstNameInitial = names[0].charAt(0).toUpperCase();
+  let lastNameInitial = names[names.length - 1].charAt(0).toUpperCase();
+  document.getElementById('headerInitialUser').innerHTML = firstNameInitial + lastNameInitial;
 }
 
 async function createTaskOnBoard(status) {

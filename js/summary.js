@@ -3,7 +3,7 @@ let dueDates = [];
 async function initSummary() {
   includeHTML();
   await loadCurrentUsers();
-  load();
+  //load();
   loadTodoTasks();
   loadTaskInProgress();
   loadTasksFeedback();
@@ -12,6 +12,8 @@ async function initSummary() {
   loadTaskInBoard();
   greeting();
   loadUpcomingDeadline();
+  userName();
+  showHeaderUser();
 }
 
 function changeTodoCard(card, newSrc) {
@@ -50,6 +52,7 @@ function greeting() {
 
 function userName() {
   let nameContainer = document.getElementById('greeting-name');
+  nameContainer.innerHTML = currentUser.user_name;
 }
 
 function getCurrentDate() {

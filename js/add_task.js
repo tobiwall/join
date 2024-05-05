@@ -9,6 +9,7 @@ async function initAddTask() {
   await loadCurrentUsers();
   await loadAllTasks();
   taskId = findHighestTaskId();
+  showHeaderUser();
 }
 
 async function createTask(status) {
