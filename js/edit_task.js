@@ -103,6 +103,33 @@ function displayEditUserList(j, userList) {
     const contact = contacts[i];
     userList.innerHTML += editUserTemplate(j, contact);
   }
+  // Wiederherstellen des Status der ausgewählten Benutzer
+  selectedUsers.forEach(user => {
+    const checkbox = document.querySelector(`input[data-contact='${JSON.stringify(user)}']`);
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+}
+
+function editUserTemplate(j, contact) {
+  const task = allTasks[j];
+  const isChecked = task.users.some(user => user.name === contact.name);
+  return `
+  <div class="user-container">
+      <div class="user">
+        <div class="user-initials" style="background-color: ${contact.color};">
+          ${contact.initials}
+        </div>
+        <div>
+          ${contact.name}
+        </div>
+      </div>
+      <div>
+        <input type="checkbox" name="assignedUser" value="${contact.name}" data-contact='${JSON.stringify(contact)}' onchange="handleCheckboxChangeEditTask(${j}, event)" ${isChecked ? 'checked' : ''}>
+      </div>
+    </div>
+  `;
 }
 
 function hideUsers() {
@@ -119,33 +146,11 @@ function handleCheckboxChangeEditTask(j, event) {
   if (checkbox.checked) {
     task.users.push(contactData);
   } else {
-    const index = users.findIndex((user) => user.name === contactData.name);
-    if (index !== -1) {
-      task.users.splice(index, 1);
+    const userIndex = task.users.findIndex(user => user.name === contactData.name);
+    if (userIndex !== -1) {
+      task.users.splice(userIndex, 1);
     }
   }
-}
-
-function editUserTemplate(j, contact) {
-  return `
-  <div class="user-container">
-    <div class="user">
-      <div class="user-initials" style="background-color: ${contact.color};">
-        ${contact.initials}
-      </div>
-      <div>
-        ${contact.name}
-      </div>
-    </div>
-    <div>
-      <input type="checkbox" name="assignedUser" value="${
-        contact.name
-      }" data-contact='${JSON.stringify(
-    contact
-  )}' onchange="handleCheckboxChangeEditTask(${j}, event)">
-    </div>
-  </div>
-`;
 }
 
 function searchEditUser() {
@@ -185,7 +190,7 @@ function editTaskPopup(task, taskIndex, taskId) {
     <div class="edit-task-popup-top"><img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeEditTaskPopup()"></div>
     <div>
       <label for="">Title<span style="color: #FF8190">*</span></label>
-      <input id="editTaskTitle" type="text" value="${task.title}">
+      <input required id="editTaskTitle" type="text" value="${task.title}">
     </div>
     <div>
       <label for="">Description</label>
@@ -219,7 +224,7 @@ function editTaskPopup(task, taskIndex, taskId) {
         </div>
         <ul id="edit-popup-contentSubtasks">${task.subtasks}</ul>
     </div>
-    <div class="edit-task-bottom-section"><button class="edit-task-button" onclick="submitChanges(${taskIndex})">OK<img src="./assets/icons/check_white1.png" alt=""></button></div>
+    <div class="edit-task-bottom-section"><button type="submit" class="edit-task-button" onclick="submitChanges(${taskIndex})">OK<img src="./assets/icons/check_white1.png" alt=""></button></div>
   </form>
   `;
 }

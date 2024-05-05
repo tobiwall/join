@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+/*document.addEventListener("DOMContentLoaded", function () {
 
 function checkInputs() {
     const title = document.getElementById("taskTitle").value;
@@ -20,3 +20,4 @@ function checkInputs() {
   document.getElementById("categoryInput").addEventListener("change", checkInputs);
 
 });
+*/

@@ -2,6 +2,7 @@ let selectedPriority = 'medium';
 let subtasks = [];
 let users = [];
 let selectedUsers = [];
+let assignedContainerClicked = false;
 
 async function initAddTask() {
   await includeHTML();
@@ -177,8 +178,6 @@ function loadContacts() {
   sortContacts();
 }
 
-let assignedContainerClicked = false;
-
 function showUsers() {
   let userList = document.getElementById("dropdown-users");
   userList.innerHTML = "";
@@ -196,6 +195,14 @@ function displayUserList(userList) {
     const contact = contacts[i];
     userList.innerHTML += userTemplate(contact);
   }
+
+  // Wiederherstellen des Status der ausgewählten Benutzer
+  selectedUsers.forEach(user => {
+    const checkbox = document.querySelector(`input[data-contact='${JSON.stringify(user)}']`);
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
 }
 
 function userTemplate(contact) {
@@ -210,11 +217,7 @@ function userTemplate(contact) {
       </div>
     </div>
     <div>
-      <input id="confirm" type="checkbox" name="assignedUser" value="${
-        contact.name
-      }" data-contact='${JSON.stringify(
-    contact
-  )}' onchange="handleCheckboxChange(event)">
+      <input id="confirm" type="checkbox" name="assignedUser" value="${contact.name}" data-contact='${JSON.stringify(contact)}' onchange="handleCheckboxChange(event)"><label for="confirm"></label>
     </div>
   </div>
 `;
@@ -231,12 +234,17 @@ function handleCheckboxChange(event) {
   const contactData = JSON.parse(checkbox.getAttribute("data-contact"));
 
   if (checkbox.checked) {
-    users.push(contactData);
+    selectedUsers.push(contactData); // Aktualisieren des Status der ausgewählten Benutzer
+    users.push(contactData); // Hinzufügen des ausgewählten Benutzers zum users-Array
     renderAssignedUser();
   } else {
-    const index = users.findIndex((user) => user.name === contactData.name);
-    if (index !== -1) {
-      users.splice(index, 1);
+    const selectedUserIndex = selectedUsers.findIndex(user => user.name === contactData.name);
+    if (selectedUserIndex !== -1) {
+      selectedUsers.splice(selectedUserIndex, 1); // Aktualisieren des Status der ausgewählten Benutzer
+    }
+    const userIndex = users.findIndex(user => user.name === contactData.name);
+    if (userIndex !== -1) {
+      users.splice(userIndex, 1); // Entfernen des ausgewählten Benutzers aus dem users-Array
       renderAssignedUser();
     }
   }
