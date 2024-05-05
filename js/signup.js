@@ -31,13 +31,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         const confirm = formData.get("user_password_confirm");
 
         if (password !== confirm) {
-            console.error('Registrierung fehlgeschlagen, Passw confirm');
             passwordConfirmError();
             return;
         }
 
         if (userEmailExists(email)) {
-            console.error('Registrierung fehlgeschlagen, Doppelte email');
             emailExistError();
             return;
         }

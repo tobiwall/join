@@ -350,7 +350,8 @@ function displayContactInfo(klickedContact) {
 function openAddContact() {
   let addContact = document.getElementById("addContact");
   let overlay = document.getElementById("overlay");
-  addContact.style.display = "block";
+  addContact.style.right = "-100%";
+  addContact.style.right = "0";
   overlay.style.display = "block";
   overlay.addEventListener("click", closeContactPopupByOverlay);
 }
@@ -360,12 +361,8 @@ function closeContactPopup() {
   let addContact = document.getElementById("addContact");
   let editContact = document.getElementById("editContact");
   let overlay = document.getElementById("overlay");
-  if (addContact.style.display !== "none") {
-    addContact.style.display = "none";
-  }
-  if (editContact.style.display !== "none") {
-    editContact.style.display = "none";
-  }
+  addContact.style.right = "-100%";
+  editContact.style.right = "-100%";
   overlay.style.display = "none";
 }
 

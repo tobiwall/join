@@ -255,7 +255,7 @@ h1 {
     width: 1212px;
     min-width: fit-content;
     height: 592px;
-    position: absolute;
+    position: fixed;
     left: calc(50% - 606px);
     top: calc(50vh - 292px);
     border-radius: 30px;

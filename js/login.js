@@ -7,6 +7,24 @@ async function deleteCurrentUser() {
     return responseToJson = await response.json();
 }
 
+function loginError() {
+    document.getElementById('login-error').classList.remove('d-none');
+    document.getElementById('password-input').classList.add('red-border');
+    document.getElementById('email-input').classList.add('red-border');
+}
+
+function removeClasses() {
+    document.getElementById('email-input').classList.remove('red-border');
+    document.getElementById('password-input').classList.remove('red-border');
+
+    if (!document.getElementById('login-error').classList.contains('d-none') &&
+        !document.getElementById('email-input').classList.contains('red-border') &&
+        !document.getElementById('password-input').classList.contains('red-border')) {
+        
+        document.getElementById('login-error').classList.add('d-none');
+    }
+}
+
 document.addEventListener("DOMContentLoaded", async function () {
     await loadUsers();
     await loadCurrentUsers();
@@ -25,7 +43,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (user.user_email === email && user.user_password === password) {
                 currentUser = user;
                 found = true;
-                console.log(currentUser);
                 break;
             }
         }
@@ -35,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             await postData("/currentUser", currentUser);
             //window.location.href = 'summary.html';
         } else {
-            alert("Falsche E-Mail-Adresse oder Passwort. Bitte versuchen Sie es erneut.");
+            loginError();
         }
     });
 
@@ -49,4 +66,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             event.preventDefault();
         }
     });
+
+    document.getElementById('user_email').addEventListener('keyup', removeClasses);
+
+    document.getElementById('user_password').addEventListener('keyup', removeClasses);
 });

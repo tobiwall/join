@@ -3,7 +3,7 @@ let subtasks = [];
 let users = [];
 
 async function initAddTask() {
-  includeHTML();
+  await includeHTML();
   await loadCurrentUsers();
   await load();
   taskId = findHighestTaskId();
@@ -303,7 +303,7 @@ function save() {
   localStorage.setItem("allTasks", allTasksAsText);
 }
 
-function load() {
+async function load() {
   let allTasksAsText = localStorage.getItem("allTasks");
 
   if (allTasksAsText) {

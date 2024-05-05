@@ -112,6 +112,11 @@ body {
     color: #29ABE2;
 }
 
+.hidden-container {
+    color: #ff0000;
+    font-size: 12px;
+}
+
 .btn {
     padding: 15px 24px 15px 24px;
     border-radius: 8px;
@@ -152,4 +157,8 @@ p {
 
 .d-none {
     display: none;
+}
+
+.red-border {
+    border-color: #ff0000;
 }
