@@ -23,7 +23,6 @@ label {
 
 form {
   display: flex;
-  margin-bottom: 138px;
 }
 
 textarea {
@@ -38,6 +37,10 @@ textarea {
   margin-bottom: 32px;
 }
 
+textarea:focus {
+  outline-color: #29ABE2;
+}
+
 input {
   cursor: pointer;
 	font-size: 20px;
@@ -48,6 +51,39 @@ input {
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
+  border: 1px solid #D1D1D1;
+}
+
+input:focus {
+  outline-color: #29ABE2;
+}
+
+[type="checkbox"] {
+  position: relative;
+  left: 0px;
+  top: -18px;
+  z-index: 0;
+  -webkit-appearance: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 0px;
+  max-height: 0px;
+  border: none;
+}
+
+
+[type="checkbox"]::before {
+  width: 25px;
+  height: 25px;
+  background-image: url("../assets/icons/unchecked.png");
+  display: block;
+  content: "";
+  z-index: 5;
+  position: relative;
+}
+
+[type="checkbox"]:checked::before {
+  background-image: url("../assets/icons/checked.png");
 }
 
 select {
@@ -57,6 +93,11 @@ select {
   border-radius: 10px;
 	padding: 12px 21px;
 	max-height: 48px;
+}
+
+select:focus {
+  border: 3px solid #29ABE2;
+  outline-color: #29ABE2;
 }
 
 .form-left-section {
@@ -92,17 +133,26 @@ select {
   z-index: 50;
   width: 100%;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 15px;
   max-height: 120px;
   overflow-y: auto;
   position: absolute;
 }
 
 .user-container {
+  cursor: pointer;
   padding: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.user-container:hover {
+  background-color: #D9D9D9;
+}
+
+.user-container:checked {
+  background-color: #2A3647;
 }
 
 .user-initials {
@@ -131,6 +181,10 @@ select {
   top: 95px;
 }
 
+.addtask-seperator img{
+  height: 80%;
+}
+
 #taskDate {
   margin-bottom: 40px;
 }
@@ -142,6 +196,7 @@ select {
 .buttons-container {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .prio-button {
@@ -221,8 +276,8 @@ select {
 }
 
 #contentSubtasks {
-  margin-top: 8px;
-  max-height: 120px;
+  height: 130px;
+  max-height: 130px;
   overflow-y: auto;
 }
 
@@ -232,6 +287,8 @@ select {
 
 ul {
   list-style: none;
+  padding: 8px 0 8px 8px;
+  margin-bottom: 16px;
 }
 
 li {
@@ -272,7 +329,7 @@ li:hover {
 .edit-icons {
   position: absolute;
   top: 15%;
-  right: 15px;
+  right: 10px;
   gap: 4px;
   display: flex;
   align-items: center;
@@ -286,6 +343,7 @@ li:hover {
 .subtask-edit-icons {
   display: flex;
   gap: 4px;
+  margin-right: -6px;
 }
 
 .subtask-edit-icons div {
@@ -363,6 +421,7 @@ li:hover {
     top: 14%;
     left: 35%;
     overflow-y: auto;
+    height: calc(100vh - 350px);
   }
 
   form {

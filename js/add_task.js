@@ -1,6 +1,7 @@
 let selectedPriority = 'medium';
 let subtasks = [];
 let users = [];
+let selectedUsers = [];
 
 async function initAddTask() {
   await includeHTML();
@@ -148,8 +149,9 @@ function editSubtask(task, i) {
     <div class="edit-input">
       <input id="changedSubtask${i}" value="${task}">
         <div class="edit-icons">
-          <img src="./assets/icons/subtask_icons/delete.png" alt="X" onclick="deleteSubtask(${i})">
           <img src="./assets/icons/subtask_icons/check.png" alt="OK" onclick="addChangedSubtask(${i})">
+          <img src="./assets/icons/mini_seperator.png" alt="/">
+          <img src="./assets/icons/subtask_icons/delete.png" alt="X" onclick="deleteSubtask(${i})">  
       </div>
     </div>
   `;
@@ -196,6 +198,28 @@ function displayUserList(userList) {
   }
 }
 
+function userTemplate(contact) {
+  return `
+  <div class="user-container">
+    <div class="user">
+      <div class="user-initials" style="background-color: ${contact.color};">
+        ${contact.initials}
+      </div>
+      <div>
+        ${contact.name}
+      </div>
+    </div>
+    <div>
+      <input id="confirm" type="checkbox" name="assignedUser" value="${
+        contact.name
+      }" data-contact='${JSON.stringify(
+    contact
+  )}' onchange="handleCheckboxChange(event)">
+    </div>
+  </div>
+`;
+}
+
 function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("dropdown-users");
@@ -216,28 +240,6 @@ function handleCheckboxChange(event) {
       renderAssignedUser();
     }
   }
-}
-
-function userTemplate(contact) {
-  return `
-  <div class="user-container">
-    <div class="user">
-      <div class="user-initials" style="background-color: ${contact.color};">
-        ${contact.initials}
-      </div>
-      <div>
-        ${contact.name}
-      </div>
-    </div>
-    <div>
-      <input type="checkbox" name="assignedUser" value="${
-        contact.name
-      }" data-contact='${JSON.stringify(
-    contact
-  )}' onchange="handleCheckboxChange(event)">
-    </div>
-  </div>
-`;
 }
 
 function searchUser() {
