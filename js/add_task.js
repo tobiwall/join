@@ -36,7 +36,6 @@ function createTask(status) {
   category.value = "";
   selectedPriority = selectedPriority;
   subtasks = [""];
-  subtaskId = 0;
   users = [""];
   subtasksList.innerHTML = "";
   save();
