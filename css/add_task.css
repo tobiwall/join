@@ -273,8 +273,14 @@ li:hover {
   position: absolute;
   top: 15%;
   right: 15px;
+  gap: 4px;
   display: flex;
   align-items: center;
+}
+
+.edit-icons img:hover {
+  border-radius: 12px;
+  scale: 1.05;
 }
 
 .subtask-edit-icons {
