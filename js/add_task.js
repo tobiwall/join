@@ -7,11 +7,11 @@ let assignedContainerClicked = false;
 async function initAddTask() {
   await includeHTML();
   await loadCurrentUsers();
-  await load();
+  await loadAllTasks();
   taskId = findHighestTaskId();
 }
 
-function createTask(status) {
+async function createTask(status) {
   let title = document.getElementById("taskTitle");
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
@@ -30,7 +30,7 @@ function createTask(status) {
     subtasks: subtasks
   };
   
-  allTasks.push(newTask);
+  await postData("/allTasks", newTask);
 
   title.value = "";
   discription.value = "";
@@ -40,7 +40,7 @@ function createTask(status) {
   subtasks = [""];
   users = [""];
   subtasksList.innerHTML = "";
-  save();
+  
   window.location.href = "./board.html";
 }
 
@@ -171,8 +171,8 @@ function deleteSubtask(i) {
   renderSubtasks();
 }
 
-function loadContacts() {
-  getLocalStorage();
+async function loadContacts() {
+  await loadAllContacts();
   extractInitials(contacts);
   randomBackgroundColor();
   sortContacts();
@@ -306,17 +306,4 @@ function changeClearButton(button, newSrc) {
 function resetClearButton(button, newSrc) {
   let img = button.querySelector('img');
   img.src = newSrc;
-}
- 
-function save() {
-  let allTasksAsText = JSON.stringify(allTasks);
-  localStorage.setItem("allTasks", allTasksAsText);
-}
-
-async function load() {
-  let allTasksAsText = localStorage.getItem("allTasks");
-
-  if (allTasksAsText) {
-    allTasks = JSON.parse(allTasksAsText);
-  }
 }
