@@ -13,6 +13,27 @@ async function postData(path = "", data = {}) {
   return responseToJson = await response.json();
 }
 
+async function addContactToFirebase(contact) {
+  try {
+    const response = await fetch(`${STORAGE_URL}/contacts/${contact.id}.json`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(contact),
+    });
+
+    if (!response.ok) {
+      throw new Error('Fehler beim Hinzufügen des Kontakts zu Firebase');
+    }
+
+    const responseData = await response.json();
+    console.log('Kontakt erfolgreich zu Firebase hinzugefügt:', responseData);
+  } catch (error) {
+    console.error('Fehler beim Hinzufügen des Kontakts zu Firebase:', error);
+  }
+}
+
 async function getData(path = "") {
   let response = await fetch(STORAGE_URL + path + ".json");
   return responseToJson = await response.json();

@@ -74,14 +74,11 @@ async function createTaskOnBoard(status) {
   subtasks = [""];
   users = [""];
   subtasksList.innerHTML = "";
-<<<<<<< HEAD
   assignedUsers.innerHTML = "";
   selectedUsers = [""];
   renderCards();
   save();
-=======
   renderCards(); 
->>>>>>> 521f05d08f8965a4d91966353efba9519c36aa40
 }
 
 function findHighestTaskId() {
