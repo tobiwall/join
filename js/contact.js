@@ -130,15 +130,22 @@ async function initContact() {
  *
  */
 async function renderContacts() {
-  await loadAllContacts();
+  contacts = await loadAllContacts();
+  orderContacts();
+  displayContactsList();
+}
+
+function orderContacts() {
   sortContacts();
   extractInitials(contacts);
   randomBackgroundColor();
   orderFirstLetter();
+}
+
+function displayContactsList() {
   clearFoundContacts();
   findContactsByFirstLetter();
   renderContactListAlphabet();
-  saveContactsLocal();
 }
 
 /**
@@ -386,8 +393,12 @@ async function createContact() {
 async function saveAndDisplayContacts(nameInput, emailInput, phoneInput) {
   let newContact = createNewContact(nameInput, emailInput, phoneInput);
   contacts.push(newContact);
-  await saveContactsLocal();
-  renderContacts();
+  orderContacts();
+  displayContactsList();
+  let newContactId = newContact.id;
+  newContact = findContactById(newContactId);
+  debugger;
+  await addContactToFirebase(newContact);
   clearInput();
 }
 

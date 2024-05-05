@@ -1,49 +1,58 @@
-const STORAGE_URL = "https://join-gruppenarbeit-default-rtdb.europe-west1.firebasedatabase.app/";
+const STORAGE_URL =
+  "https://join-gruppenarbeit-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let currentUser = null;
 
 async function postData(path = "", data = {}) {
   let response = await fetch(STORAGE_URL + path + ".json", {
-    method: 'POST',
+    method: "POST",
     header: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
-  return responseToJson = await response.json();
+  return (responseToJson = await response.json());
+}
+
+async function saveContactsOnFirebase() {
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    await addContactToFirebase(contact);
+  }
 }
 
 async function addContactToFirebase(contact) {
   try {
     const response = await fetch(`${STORAGE_URL}/contacts/${contact.id}.json`, {
-      method: 'PUT',
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(contact),
     });
 
     if (!response.ok) {
-      throw new Error('Fehler beim Hinzufügen des Kontakts zu Firebase');
+      throw new Error("Fehler beim Hinzufügen des Kontakts zu Firebase");
     }
 
     const responseData = await response.json();
-    console.log('Kontakt erfolgreich zu Firebase hinzugefügt:', responseData);
+    console.log("Kontakt erfolgreich zu Firebase hinzugefügt:", responseData);
   } catch (error) {
-    console.error('Fehler beim Hinzufügen des Kontakts zu Firebase:', error);
+    debugger;
+    console.error("Fehler beim Hinzufügen des Kontakts zu Firebase:", error);
   }
 }
 
 async function getData(path = "") {
   let response = await fetch(STORAGE_URL + path + ".json");
-  return responseToJson = await response.json();
+  return (responseToJson = await response.json());
 }
 
 async function deleteData(path = "") {
   let response = await fetch(STORAGE_URL + path + ".json", {
-    method: 'DELETE',
+    method: "DELETE",
   });
-  return responseToJson = await response.json();
+  return (responseToJson = await response.json());
 }
 
 async function loadUsers() {
@@ -75,9 +84,10 @@ async function loadAllTasks() {
 
 async function loadAllContacts() {
   let loadedContacts = await getData("/contacts");
-  for (const key in loadedContacts) {
-    if (Object.hasOwnProperty.call(loadedContacts, key)) {
-      contacts.push(loadedContacts[key]);
-    }
-  }
+  /*for (const key in loadedContacts) {
+          if (Object.hasOwnProperty.call(loadedContacts, key)) {
+        contacts.push(loadedContacts[key]);
+      }
+  }*/
+  return loadedContacts;
 }
