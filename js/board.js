@@ -50,6 +50,7 @@ function createTaskOnBoard(status) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
+  let assignedUsers = document.getElementById("contentAssignedUsers");
   taskId++;
   let newTask = {
     id: taskId,
@@ -73,6 +74,8 @@ function createTaskOnBoard(status) {
   subtasks = [""];
   users = [""];
   subtasksList.innerHTML = "";
+  assignedUsers.innerHTML = "";
+  selectedUsers = [""];
   renderCards();
   save();
 }
