@@ -113,6 +113,10 @@ select {
   background-position-y: 50%;
 }
 
+select option {
+  border-radius: 10px;
+}
+
 select:focus {
   border: 3px solid #29ABE2;
   outline-color: #29ABE2;
