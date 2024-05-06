@@ -2,6 +2,7 @@ let selectedPriority = 'medium';
 let subtasks = [];
 let users = [];
 let selectedUsers = [];
+let categorys = ['User Story', 'Technical Task', 'Feature', 'Bug', 'Documentation', 'Design', 'Testing QA', 'Analyse/Research'];
 let assignedContainerClicked = false;
 
 async function initAddTask() {
@@ -186,8 +187,10 @@ function showUsers() {
   icon.style.transform = "rotate(180deg)";
   loadContacts();
   if (!assignedContainerClicked) {
+    userList.style.border = "1px solid #CDCDCD";
     displayUserList(userList);
   } else {
+    userList.style.border = "0px";
     hideUsers();
   }
 }
@@ -198,7 +201,6 @@ function displayUserList(userList) {
     const contact = contacts[i];
     userList.innerHTML += userTemplate(contact);
   }
-
   // Wiederherstellen des Status der ausgewählten Benutzer
   selectedUsers.forEach(user => {
     const checkbox = document.querySelector(`input[data-contact='${JSON.stringify(user)}']`);
@@ -230,7 +232,7 @@ function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("dropdown-users");
   let icon = document.getElementById("openUserIcon");
-  icon.style.transform = "rotate(180deg)";
+  icon.style.transform = "rotate(0deg)";
   userList.innerHTML = "";
 }
 
@@ -280,7 +282,7 @@ function renderAssignedUser() {
     const user = users[i];
 
     assignedUsers.innerHTML += `
-    <div class="initialien-round-container" style="background-color: ${user.color};">
+    <div class="initialien-addtask-container" style="background-color: ${user.color};">
       ${user.initials}
     </div>
     `;
@@ -312,3 +314,25 @@ function resetClearButton(button, newSrc) {
   let img = button.querySelector('img');
   img.src = newSrc;
 }
+/*
+function renderCategorys() {
+  let categoryContainer = document.getElementById('dropdown-categorys');
+  categoryContainer.innerHTML = '';
+
+  for (let i = 0; i < categorys.length; i++) {
+    const category = categorys[i];
+    
+    categoryContainer.innerHTML += `
+      <div class="task-category" onclick="selectCategory(${category})">
+        ${category}
+      </div>
+    `;
+  }
+}
+
+function selectCategory(categoryText) {
+  let categoryContainer = document.getElementById('selectedCategory');
+
+  categoryContainer.innerHTML = categoryText;
+}
+*/
