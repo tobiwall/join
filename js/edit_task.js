@@ -88,11 +88,15 @@ function prioLow(priority) {
 
 function showEditUsers(i) {
   let userList = document.getElementById("editDropdownUsers");
+  let icon = document.getElementById("openEditUserIcon");
   userList.innerHTML = "";
+  icon.style.transform = "rotate(180deg)";
   loadContacts();
   if (!assignedContainerClicked) {
+    userList.style.border = "1px solid #CDCDCD";
     displayEditUserList(i, userList);
   } else {
+    userList.style.border = "0px";
     hideUsers();
   }
 }
@@ -135,6 +139,8 @@ function editUserTemplate(j, contact) {
 function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("editDropdownUsers");
+  let icon = document.getElementById("openEditUserIcon");
+  icon.style.transform = "rotate(0deg)";
   userList.innerHTML = "";
 }
 
@@ -209,7 +215,7 @@ function editTaskPopup(task, taskIndex, taskId) {
       <label>Assigned to</label>
       <div class="assigned-container" id="popupAssignedContainer">
         <input id="popupUserInput" type="text" onkeyup="searchEditUser()" onclick="showEditUsers(${taskIndex})" placeholder="Select contacts to assign">
-        <img class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showEditUsers(${taskIndex})">
+        <img id="openEditUserIcon" class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showEditUsers(${taskIndex})">
       </div>
       <div id="editDropdownUsers" class="dropdown-users">
       </div>  

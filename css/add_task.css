@@ -26,6 +26,7 @@ form {
 }
 
 textarea {
+  cursor: pointer;
 	width: 100%;
   margin-top: 8px;
 	height: 120px;
@@ -35,6 +36,12 @@ textarea {
 	font-size: 20px;
   resize: none;
   margin-bottom: 32px;
+}
+
+textarea::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: #D1D1D1;
 }
 
 textarea:focus {
@@ -52,6 +59,12 @@ input {
   font-weight: 400;
   line-height: 24px;
   border: 1px solid #D1D1D1;
+}
+
+input::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: #D1D1D1;
 }
 
 input:focus {
@@ -101,6 +114,10 @@ select {
   background-position-y: 50%;
 }
 
+select option {
+  border-radius: 10px;
+}
+
 select:focus {
   border: 3px solid #29ABE2;
   outline-color: #29ABE2;
@@ -128,6 +145,12 @@ select:focus {
   position: relative;
 }
 
+#userInput::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: black;
+}
+
 .assigned-icon {
   cursor: pointer;
   position: absolute;
@@ -139,7 +162,6 @@ select:focus {
   z-index: 50;
   width: 100%;
   background-color: white;
-  border: 1px solid #CDCDCD;
   border-radius: 12px 8px 8px 12px;
   max-height: 120px;
   overflow-y: auto;
@@ -186,6 +208,19 @@ select:focus {
   position: absolute;
   display: flex;
   top: 95px;
+  margin-left: 4px;
+}
+
+.initialien-addtask-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  font-size: 12px;
+  color: white;
 }
 
 .addtask-seperator img{
@@ -194,6 +229,7 @@ select:focus {
 
 #taskDate {
   margin-bottom: 40px;
+  color: #D1D1D1;
 }
 
 .prio-container {
@@ -253,6 +289,31 @@ select:focus {
   font-size: 21px;
   font-weight: 700;
   line-height: 25.2px;
+}
+
+.dropdown-categorys {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  z-index: 50;
+  width: 100%;
+  border-radius: 12px 8px 8px 12px;
+  border: 1px solid #D9D9D9;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.task-category {
+  font-size: 16px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.task-category:hover {
+  cursor: pointer;
+  background-color: #D9D9D9;
 }
 
 .category-input {

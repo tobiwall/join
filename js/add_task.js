@@ -2,6 +2,7 @@ let selectedPriority = 'medium';
 let subtasks = [];
 let users = [];
 let selectedUsers = [];
+let categorys = ['User Story', 'Technical Task', 'Feature', 'Bug', 'Documentation', 'Design', 'Testing QA', 'Analyse/Research'];
 let assignedContainerClicked = false;
 
 async function initAddTask() {
@@ -18,10 +19,12 @@ async function createTask(status) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
+<<<<<<< HEAD
   let subtasks = {};
 
+=======
+>>>>>>> ffddb7ffc220f6524e43dc7a1bb0545eb6439a90
   taskId++;
-debugger;
   let newTask = {
     id: taskId,
     status: status,
@@ -184,11 +187,15 @@ async function loadContacts() {
 
 function showUsers() {
   let userList = document.getElementById("dropdown-users");
+  let icon = document.getElementById("openUserIcon");
   userList.innerHTML = "";
+  icon.style.transform = "rotate(180deg)";
   loadContacts();
   if (!assignedContainerClicked) {
+    userList.style.border = "1px solid #CDCDCD";
     displayUserList(userList);
   } else {
+    userList.style.border = "0px";
     hideUsers();
   }
 }
@@ -199,7 +206,6 @@ function displayUserList(userList) {
     const contact = contacts[i];
     userList.innerHTML += userTemplate(contact);
   }
-
   // Wiederherstellen des Status der ausgewählten Benutzer
   selectedUsers.forEach(user => {
     const checkbox = document.querySelector(`input[data-contact='${JSON.stringify(user)}']`);
@@ -230,6 +236,8 @@ function userTemplate(contact) {
 function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("dropdown-users");
+  let icon = document.getElementById("openUserIcon");
+  icon.style.transform = "rotate(0deg)";
   userList.innerHTML = "";
 }
 
@@ -279,7 +287,7 @@ function renderAssignedUser() {
     const user = users[i];
 
     assignedUsers.innerHTML += `
-    <div class="initialien-round-container" style="background-color: ${user.color};">
+    <div class="initialien-addtask-container" style="background-color: ${user.color};">
       ${user.initials}
     </div>
     `;
@@ -311,3 +319,25 @@ function resetClearButton(button, newSrc) {
   let img = button.querySelector('img');
   img.src = newSrc;
 }
+/*
+function renderCategorys() {
+  let categoryContainer = document.getElementById('dropdown-categorys');
+  categoryContainer.innerHTML = '';
+
+  for (let i = 0; i < categorys.length; i++) {
+    const category = categorys[i];
+    
+    categoryContainer.innerHTML += `
+      <div class="task-category" onclick="selectCategory(${category})">
+        ${category}
+      </div>
+    `;
+  }
+}
+
+function selectCategory(categoryText) {
+  let categoryContainer = document.getElementById('selectedCategory');
+
+  categoryContainer.innerHTML = categoryText;
+}
+*/
