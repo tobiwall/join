@@ -1,8 +1,17 @@
-let selectedPriority = 'medium';
+let selectedPriority = "medium";
 let subtasks = [];
 let users = [];
 let selectedUsers = [];
-let categorys = ['User Story', 'Technical Task', 'Feature', 'Bug', 'Documentation', 'Design', 'Testing QA', 'Analyse/Research'];
+let categorys = [
+  "User Story",
+  "Technical Task",
+  "Feature",
+  "Bug",
+  "Documentation",
+  "Design",
+  "Testing QA",
+  "Analyse/Research",
+];
 let assignedContainerClicked = false;
 
 async function initAddTask() {
@@ -19,11 +28,13 @@ async function createTask(status) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
-<<<<<<< HEAD
-  let subtasks = {};
-
-=======
->>>>>>> ffddb7ffc220f6524e43dc7a1bb0545eb6439a90
+  debugger;
+  if (subtasks.length == 0) {
+    subtasks = "";
+  }
+  if (users.length == 0) {
+    users = "";
+  }
   taskId++;
   let newTask = {
     id: taskId,
@@ -34,9 +45,9 @@ async function createTask(status) {
     dueDate: date.value,
     prio: selectedPriority,
     category: category.value,
-    subtasks: subtasks
+    subtasks: subtasks,
   };
-  
+
   await postData("/allTasks", newTask);
 
   title.value = "";
@@ -47,7 +58,7 @@ async function createTask(status) {
   subtasks = [""];
   users = [""];
   subtasksList.innerHTML = "";
-  
+
   window.location.href = "./board.html";
 }
 
@@ -119,7 +130,7 @@ function addSubtask() {
   let subtaskText = input.value.trim();
 
   if (subtaskText !== "") {
-    subtasks.push({name: subtaskText, completed: false});
+    subtasks.push({ name: subtaskText, completed: false });
     input.value = "";
   }
   renderSubtasks();
@@ -168,7 +179,7 @@ function editSubtask(task, i) {
 function addChangedSubtask(i) {
   let input = document.getElementById(`changedSubtask${i}`);
   let subtaskText = input.value.trim();
-  subtasks[i]['name'] = subtaskText;
+  subtasks[i]["name"] = subtaskText;
   input.value = "";
   renderSubtasks();
 }
@@ -207,8 +218,10 @@ function displayUserList(userList) {
     userList.innerHTML += userTemplate(contact);
   }
   // Wiederherstellen des Status der ausgewählten Benutzer
-  selectedUsers.forEach(user => {
-    const checkbox = document.querySelector(`input[data-contact='${JSON.stringify(user)}']`);
+  selectedUsers.forEach((user) => {
+    const checkbox = document.querySelector(
+      `input[data-contact='${JSON.stringify(user)}']`
+    );
     if (checkbox) {
       checkbox.checked = true;
     }
@@ -227,7 +240,11 @@ function userTemplate(contact) {
       </div>
     </div>
     <div>
-      <input id="confirm" type="checkbox" name="assignedUser" value="${contact.name}" data-contact='${JSON.stringify(contact)}' onchange="handleCheckboxChange(event)"><label for="confirm"></label>
+      <input id="confirm" type="checkbox" name="assignedUser" value="${
+        contact.name
+      }" data-contact='${JSON.stringify(
+    contact
+  )}' onchange="handleCheckboxChange(event)"><label for="confirm"></label>
     </div>
   </div>
 `;
@@ -250,11 +267,13 @@ function handleCheckboxChange(event) {
     users.push(contactData); // Hinzufügen des ausgewählten Benutzers zum users-Array
     renderAssignedUser();
   } else {
-    const selectedUserIndex = selectedUsers.findIndex(user => user.name === contactData.name);
+    const selectedUserIndex = selectedUsers.findIndex(
+      (user) => user.name === contactData.name
+    );
     if (selectedUserIndex !== -1) {
       selectedUsers.splice(selectedUserIndex, 1); // Aktualisieren des Status der ausgewählten Benutzer
     }
-    const userIndex = users.findIndex(user => user.name === contactData.name);
+    const userIndex = users.findIndex((user) => user.name === contactData.name);
     if (userIndex !== -1) {
       users.splice(userIndex, 1); // Entfernen des ausgewählten Benutzers aus dem users-Array
       renderAssignedUser();
@@ -295,8 +314,8 @@ function renderAssignedUser() {
 }
 
 function enableIcons() {
-  let iconContainer = document.querySelector('.subtask-icon-container');
-  iconContainer.querySelector('img').removeAttribute('onclick');
+  let iconContainer = document.querySelector(".subtask-icon-container");
+  iconContainer.querySelector("img").removeAttribute("onclick");
 
   iconContainer.innerHTML = `
     <div onclick="clearSubtaskInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
@@ -306,17 +325,17 @@ function enableIcons() {
 }
 
 function clearSubtaskInput() {
-  input = document.getElementById('subtasksInput');
-  input.value = '';
+  input = document.getElementById("subtasksInput");
+  input.value = "";
 }
 
 function changeClearButton(button, newSrc) {
-  let img = button.querySelector('img');
+  let img = button.querySelector("img");
   img.src = newSrc;
 }
 
 function resetClearButton(button, newSrc) {
-  let img = button.querySelector('img');
+  let img = button.querySelector("img");
   img.src = newSrc;
 }
 /*
