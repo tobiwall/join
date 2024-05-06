@@ -1,12 +1,5 @@
 const users = [];
 
-async function deleteCurrentUser() {
-    let response = await fetch(STORAGE_URL + "currentUser.json", {
-        method: 'DELETE',
-    });
-    return responseToJson = await response.json();
-}
-
 function loginError() {
     document.getElementById('login-error').classList.remove('d-none');
     document.getElementById('password-input').classList.add('red-border');
@@ -48,9 +41,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         if (found) {
-            await deleteCurrentUser();
+            await deleteData("/currentUser");
             await postData("/currentUser", currentUser);
-            //window.location.href = 'summary.html';
+            window.location.href = 'summary.html';
         } else {
             loginError();
         }
