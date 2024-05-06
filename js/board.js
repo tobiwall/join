@@ -9,7 +9,7 @@ async function init() {
   await loadCurrentUsers();
   await loadAllTasks();
   taskId = findHighestTaskId();
-  renderCards();
+  await renderCards();
   showHeaderUser();
 }
 
@@ -109,7 +109,7 @@ function findHighestTaskId() {
  * Diese funktion rendert alle Spalten nacheinander
  *
  */
-function renderCards() {
+async function renderCards() {
   renderToDoCards();
   renderInProgressCards();
   renderAwaitFeedbackCards();
