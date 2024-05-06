@@ -13,7 +13,7 @@ let contacts = [
   },
   {
     name: "Julia Wagner",
-    email: "julia.wagner@example.com", 
+    email: "julia.wagner@example.com",
     phone: "+491234567893",
     id: 2,
   },
@@ -157,13 +157,15 @@ function displayContactsList() {
  */
 function sortContacts() {
   contacts.sort((a, b) => {
-    const nameA = a.name.toUpperCase();
-    const nameB = b.name.toUpperCase();
-    if (nameA < nameB) {
-      return -1;
-    }
-    if (nameA > nameB) {
-      return 1;
+    if (a && b !== null) {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
     }
     return 0;
   });
@@ -178,10 +180,12 @@ function sortContacts() {
 function extractInitials(contactList) {
   for (let i = 0; i < contactList.length; i++) {
     let contact = contactList[i];
-    let names = contact.name.split(" ");
-    let firstNameInitial = names[0].charAt(0).toUpperCase();
-    let lastNameInitial = names[names.length - 1].charAt(0).toUpperCase();
-    contact.initials = firstNameInitial + lastNameInitial;
+    if (contact !== null) {
+      let names = contact.name.split(" ");
+      let firstNameInitial = names[0].charAt(0).toUpperCase();
+      let lastNameInitial = names[names.length - 1].charAt(0).toUpperCase();
+      contact.initials = firstNameInitial + lastNameInitial;
+    }
   }
 }
 
@@ -192,13 +196,15 @@ function extractInitials(contactList) {
 function randomBackgroundColor() {
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
-    if (!contact.color) {
-      let red = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
-      let green = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
-      let blue = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
-      let color =
-        "#" + red.toString(16) + green.toString(16) + blue.toString(16);
-      contact.color = color;
+    if (contact !== null) {
+      if (!contact.color) {
+        let red = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
+        let green = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
+        let blue = Math.floor(Math.random() * 128) + 128; // Wert zwischen 128 und 255 für eine hellere Farbe
+        let color =
+          "#" + red.toString(16) + green.toString(16) + blue.toString(16);
+        contact.color = color;
+      }
     }
   }
 }
@@ -206,9 +212,11 @@ function randomBackgroundColor() {
 function orderFirstLetter() {
   for (let i = 0; i < contacts.length; i++) {
     let contact = contacts[i];
-    let firstLetter = contact.name.charAt(0);
-    if (!firstLetterArray.includes(firstLetter)) {
-      firstLetterArray.push(firstLetter);
+    if (contact !== null) {
+      let firstLetter = contact.name.charAt(0);
+      if (!firstLetterArray.includes(firstLetter)) {
+        firstLetterArray.push(firstLetter);
+      }
     }
   }
 }
@@ -223,8 +231,10 @@ function findContactsByFirstLetter() {
     let contactsWithFirstLetter = [];
     for (let j = 0; j < contacts.length; j++) {
       let contact = contacts[j];
-      if (contact.name.charAt(0).toUpperCase() === firstLetter) {
-        contactsWithFirstLetter.push(contact);
+      if (contact !== null) {
+        if (contact.name.charAt(0).toUpperCase() === firstLetter) {
+          contactsWithFirstLetter.push(contact);
+        }
       }
     }
     if (contactsWithFirstLetter.length > 0) {
@@ -243,15 +253,17 @@ function renderContactListAlphabet() {
   scrollableContainer.innerHTML += createButtonAddContact();
   for (let i = 0; i < foundContacts.length; i++) {
     let foundcontact = foundContacts[i];
-    scrollableContainer.innerHTML +=
-      generateContactAlphabetListHTML(foundcontact);
-    let alphabetListBox = document.getElementById(
-      `alphabetList${foundcontact.letter}`
-    );
-    alphabetListBox.innerHTML = "";
-    for (let j = 0; j < foundcontact.contacts.length; j++) {
-      let eachFoundContact = foundcontact.contacts[j];
-      alphabetListBox.innerHTML += generateContactListHTML(eachFoundContact);
+    if (foundcontact !== null) {
+      scrollableContainer.innerHTML +=
+        generateContactAlphabetListHTML(foundcontact);
+      let alphabetListBox = document.getElementById(
+        `alphabetList${foundcontact.letter}`
+      );
+      alphabetListBox.innerHTML = "";
+      for (let j = 0; j < foundcontact.contacts.length; j++) {
+        let eachFoundContact = foundcontact.contacts[j];
+        alphabetListBox.innerHTML += generateContactListHTML(eachFoundContact);
+      }
     }
   }
 }

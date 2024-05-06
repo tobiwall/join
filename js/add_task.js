@@ -18,7 +18,10 @@ async function createTask(status) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
+  let subtasks = {""};
+
   taskId++;
+debugger;
   let newTask = {
     id: taskId,
     status: status,
