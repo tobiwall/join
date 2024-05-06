@@ -98,10 +98,20 @@ h1 {
     height: 48px;
     width: 160px;
     font-size: 21px;
+    gap: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addTaskBtn img {
+    height: 32px;
+    width: 32px;
 }
 
 #addTaskBtn:hover {
     cursor: pointer;
+    background-color: #29ABE2;
 }
 
 .plus {
@@ -112,17 +122,20 @@ h1 {
 .table-head {
     width: 252px;
     height: 24px;
+    font-size: 20px;
+    font-weight: 700;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 .table-plus {
-    height: 18px;
+    height: 24px;
 }
 
 .table-plus:hover {
     cursor: pointer;
+    content:url("../assets/icons/plusbutton_lightblue.png");
 }
 
 .board {
@@ -264,210 +277,6 @@ h1 {
     justify-content: center;
     padding-top: 16px;
     z-index: 101;
-}
-
-.task-popup {
-    width: 525px;
-    max-height: 931px;
-    padding: 40px;
-    border-radius: 30px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(255, 255, 255);
-    display: none;
-    flex-direction: column;
-    z-index: 500;
-    gap: 24px;
-    box-shadow: 0px 0px 4px 0px #00000029;
-}
-
-.task-popup-top-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.popupCategory {
-    color: white;
-    max-width: fit-content;
-    padding: 4px 24px;
-    border-radius: 8px;
-    font-size: 23px;
-    font-weight: 400;
-    line-height: 27.6px;
-}
-
-.task-popup-top-section img {
-    cursor: pointer;
-}
-
-.task-popup-top-section img:hover {
-    background-color: #D9D9D9;
-    border-radius: 12px;
-}
-
-.task-popup h3 {
-    word-break: break-all;
-    font-size: 61px;
-    font-weight: 700;
-    line-height: 73.2px;
-}
-
-.task-popup p {
-    word-break: break-all;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-}
-
-.task-popup span {
-    color: #42526E;
-}
-
-.popup-prio-container {
-    display: flex;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-}
-
-.popup-user-container {
-    display: flex;
-    flex-direction: column;
-    gap: 11px;
-}
-
-.popup-user {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 19px;
-    font-weight: 400;
-    line-height: 22.8px;
-}
-
-.popuser-initials-card {
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14.4px;
-}
-
-.task-popup-subtask-container{
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.popup-subtask-container {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 6px 16px;
-}
-
-.task-popup-bottom-section {
-    display: flex;
-    gap: 10px;
-    align-items: end;
-    justify-content: end;
-}
-
-.task-popup-bottom-section div {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.task-popup-bottom-section div:hover {
-    color: #29abe2;
-    scale: 1.05;
-}
-
-.edit-task-popup form {
-    width: 525px;
-    padding: 40px;
-    border-radius: 30px;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgb(255, 255, 255);
-    flex-direction: column;
-    z-index: 500;
-    gap: 24px;
-    box-shadow: 0px 0px 4px 0px #00000029;
-}
-
-.edit-subtask-icon-container {
-    position: absolute;
-    right: 10px;
-    top: 24%;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .edit-subtask-icon-container div {
-    cursor: pointer;
-    height: 24px;
-  }
-  
-  .edit-subtask-icon-container div:hover {
-    background-color: #D9D9D9;
-    border-radius: 12px;
-  }
-
-.edit-task-popup-top {
-    display: flex;
-    justify-content: end;
-}
-
-.edit-task-popup-top img:hover {
-    cursor: pointer;
-    background-color: #D9D9D9;
-    border-radius: 12px;
-}
-
-.edit-task-bottom-section {
-    display: flex;
-    justify-content: end;
-}
-
-.edit-task-button {
-    cursor: pointer;
-    color: white;
-    background-color: #2A3647;
-    width: 89px;
-    height: 57px;
-    padding: 16px;
-    gap: 4px;
-    border-radius: 10px;
-    font-size: 21px;
-    font-weight: 700;
-    line-height: 25.2px;
-    display: flex;
-    align-items: center;
-}
-
-.edit-task-button img {
-    margin-left: 4px;
-}
-
-.edit-task-button:hover {
-    background-color: #29abe2;
-}
-
-#edit-popup-contentSubtasks {
-    gap: 4px;
-    margin-top: 4px;
 }
 
 .taskRow {

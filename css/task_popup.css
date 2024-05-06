@@ -1,0 +1,123 @@
+.task-popup {
+  width: 525px;
+  max-height: 931px;
+  padding: 40px;
+  border-radius: 30px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  display: none;
+  flex-direction: column;
+  z-index: 500;
+  gap: 24px;
+  box-shadow: 0px 0px 4px 0px #00000029;
+}
+
+.task-popup-top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.popupCategory {
+  color: white;
+  max-width: fit-content;
+  padding: 4px 24px;
+  border-radius: 8px;
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 27.6px;
+}
+
+.task-popup-top-section img {
+  cursor: pointer;
+}
+
+.task-popup-top-section img:hover {
+  background-color: #D9D9D9;
+  border-radius: 12px;
+}
+
+.task-popup h3 {
+  word-break: break-all;
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.task-popup p {
+  word-break: break-all;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.task-popup span {
+  font-size: 20px;
+  font-weight: 400;
+  color: #42526E;
+}
+
+.popup-prio-container {
+  display: flex;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.popup-user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.popup-user {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 22.8px;
+}
+
+.popuser-initials-card {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.4px;
+}
+
+.task-popup-subtask-container{
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.popup-subtask-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 16px;
+}
+
+.task-popup-bottom-section {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  justify-content: end;
+}
+
+.task-popup-bottom-section div {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.task-popup-bottom-section div:hover {
+  color: #29abe2;
+  scale: 1.05;
+}

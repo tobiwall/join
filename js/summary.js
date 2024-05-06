@@ -3,6 +3,7 @@ let dueDates = [];
 async function initSummary() {
   includeHTML();
   await loadCurrentUsers();
+  await loadAllTasks();
   //load();
   loadTodoTasks();
   loadTaskInProgress();
@@ -92,7 +93,7 @@ function loadUpcomingDeadline() {
   if (dueDates.length > 0) {
     deadlineContainer.innerHTML = `
       <span class="deadline-date">${deadline}</span>
-      <span>Upcoming deadline</span>
+      <span >Upcoming deadline</span>
     `;
     setInterval(function() {
       deadlineContainer.classList.toggle('blinking');

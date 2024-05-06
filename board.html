@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="./css/sideboard.css">
     <link rel="stylesheet" href="./css/add_task.css">
     <link rel="stylesheet" href="./css/scrollbar.css">
+    <link rel="stylesheet" href="./css/task_popup.css">
+    <link rel="stylesheet" href="./css/edit_task.css">
 
     <script src="./js/board.js"></script>
     <script src="./js/json_cards.js"></script>
@@ -43,7 +45,7 @@
               </div>
             </div>
             <button id="addTaskBtn" onclick="openAddTask('todo')">
-              Add task <img class="plus" src="./assets/img/add.svg" alt="" />
+              Add task <img class="plus" src="./assets/icons/add_white.png" alt="" />
             </button>
           </div>
         </div>
@@ -52,14 +54,14 @@
           <div class="taskContainer">
             <div class="table-head">
               <span>To do</span>
-              <img onclick="openAddTask('todo')" class="table-plus" src="./assets/img/plus.svg" alt="" />
+              <img onclick="openAddTask('todo')" class="table-plus" src="./assets/icons/plusbutton.png" alt="" />
             </div>
             <div class="taskRow" id="toDoContainer" ondrop="moveTo('todo', 'toDoContainer')" ondragover="allowDrop(event); addHighlight('toDoContainer')" ondragleave="removeHighlight('toDoContainer')"></div>
           </div>
           <div class="taskContainer">
             <div class="table-head">
               <span>In progress</span>
-              <img onclick="openAddTask('progress')" class="table-plus" src="./assets/img/plus.svg" alt="" />
+              <img onclick="openAddTask('progress')" class="table-plus" src="./assets/icons/plusbutton.png" alt="" />
             </div>
             <div class="taskRow" id="inProgressContainer" ondrop="moveTo('progress', 'inProgressContainer')" ondragover="allowDrop(event); addHighlight('inProgressContainer')" ondragleave="removeHighlight('inProgressContainer')"></div>
           </div>
