@@ -37,6 +37,12 @@ textarea {
   margin-bottom: 32px;
 }
 
+textarea::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: #D1D1D1;
+}
+
 textarea:focus {
   outline-color: #29ABE2;
 }
@@ -52,6 +58,12 @@ input {
   font-weight: 400;
   line-height: 24px;
   border: 1px solid #D1D1D1;
+}
+
+input::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: #D1D1D1;
 }
 
 input:focus {
@@ -128,6 +140,12 @@ select:focus {
   position: relative;
 }
 
+#userInput::placeholder {
+  font-size: 20px;
+  font-weight: 400;
+  color: black;
+}
+
 .assigned-icon {
   cursor: pointer;
   position: absolute;
@@ -194,6 +212,12 @@ select:focus {
 
 #taskDate {
   margin-bottom: 40px;
+}
+
+#taskDate::placeholder {
+  font-size: 20px !important;
+  font-weight: 400 !important;
+  color: #D1D1D1 !important;
 }
 
 .prio-container {

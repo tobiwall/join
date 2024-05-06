@@ -181,7 +181,9 @@ async function loadContacts() {
 
 function showUsers() {
   let userList = document.getElementById("dropdown-users");
+  let icon = document.getElementById("openUserIcon");
   userList.innerHTML = "";
+  icon.style.transform = "rotate(180deg)";
   loadContacts();
   if (!assignedContainerClicked) {
     displayUserList(userList);
@@ -227,6 +229,8 @@ function userTemplate(contact) {
 function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("dropdown-users");
+  let icon = document.getElementById("openUserIcon");
+  icon.style.transform = "rotate(180deg)";
   userList.innerHTML = "";
 }
 
