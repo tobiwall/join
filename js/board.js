@@ -217,7 +217,7 @@ function generateCardHTML(task, i, taskId) {
           <div class="progressbar-text-container">
             <span id="doneSubtasks${i}">${doneSubtasks}</span>
             <span>/</span>
-            <span>${task["subtasks"].length}</span> 
+            <span></span> 
             <span>Subtasks</span> 
           </div>
         </div>

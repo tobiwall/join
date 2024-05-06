@@ -68,7 +68,6 @@ function getCurrentDate() {
   if (day < 10) {
       day = '0' + day;
   }
-
   return `${year}-${month}-${day}`;
 }
 
@@ -95,6 +94,9 @@ function loadUpcomingDeadline() {
       <span class="deadline-date">${deadline}</span>
       <span>Upcoming deadline</span>
     `;
+    setInterval(function() {
+      deadlineContainer.classList.toggle('blinking');
+    }, 1000);
   } else {
     deadlineContainer.innerHTML = `
       <span>No upcoming Deadline</span>

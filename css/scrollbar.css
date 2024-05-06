@@ -1,23 +1,41 @@
 /* Breite und Farbe des Scrollbalkens */
-.content::-webkit-scrollbar {
-  width: 10px; /* Breite des Scrollbalkens */
+.content::-webkit-scrollbar,
+.content-addtask::-webkit-scrollbar,
+.dropdown-users::-webkit-scrollbar,
+#contentSubtasks::-webkit-scrollbar {
+  width: 12px; /* Breite des Scrollbalkens */
   background: #CDCDCD;
+  border-radius: 7px;
 }
 
 /* Track (Hintergrund des Scrollbalkens) */
-.content::-webkit-scrollbar-track {
-  background: #CDCDCD;/* Hintergrundfarbe des Scrollbalkens */
+.content::-webkit-scrollbar-track,
+.content-addtask::-webkit-scrollbar-track,
+.dropdown-users::-webkit-scrollbar-track,
+#contentSubtasks::-webkit-scrollbar-track {
+  background: white;/* Hintergrundfarbe des Scrollbalkens */
+  border: 1px solid #CDCDCD;
+  border-radius: 7px;
 }
 
 /* Griff des Scrollbalkens */
-.content::-webkit-scrollbar-thumb {
+.content::-webkit-scrollbar-thumb, 
+.content-addtask::-webkit-scrollbar-thumb,
+.dropdown-users::-webkit-scrollbar-thumb,
+#contentSubtasks::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  min-height: 30px;
+  border: 1px solid #CDCDCD;
   background: #2A3647; /* Farbe des Griffs des Scrollbalkens */
-  border-radius: 5px; /* Radius des Griffs des Scrollbalkens */
+  border-radius: 7px; /* Radius des Griffs des Scrollbalkens */
 }
 
 /* Hover-Effekt des Griffs des Scrollbalkens */
-.content::-webkit-scrollbar-thumb:hover {
-  background: #CDCDCD; /* Farbe des Griffs des Scrollbalkens bei Hover */
+.content::-webkit-scrollbar-thumb:hover,
+.content-addtask::-webkit-scrollbar-thumb:hover,
+.dropdown-users::-webkit-scrollbar-thumb:hover,
+#contentSubtasks::-webkit-scrollbar-thumb:hover {
+  background: #29ABE2; /* Farbe des Griffs des Scrollbalkens bei Hover */
 }
 
 

@@ -133,6 +133,16 @@ h2 {
   gap: 13px;
 }
 
+@keyframes blink {
+  0% { background-color: #FF3D00; }
+  50% { background-color: white; }
+  100% { background-color: #FF3D00; }
+}
+
+.blinking {
+  animation: blink 0.8s infinite;
+}
+
 .deadline-date {
   font-size: 21px;
   font-weight: 700;

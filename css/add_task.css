@@ -139,7 +139,8 @@ select:focus {
   z-index: 50;
   width: 100%;
   background-color: white;
-  border-radius: 15px;
+  border: 1px solid #CDCDCD;
+  border-radius: 12px 8px 8px 12px;
   max-height: 120px;
   overflow-y: auto;
   position: absolute;
