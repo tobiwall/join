@@ -322,6 +322,10 @@ h1 {
     line-height: 24px;
 }
 
+.task-popup span {
+    color: #42526E;
+}
+
 .popup-prio-container {
     display: flex;
     font-size: 20px;

@@ -99,16 +99,23 @@ function renderPopupUsers(i) {
 
 function renderPopupSubtasks(i) {
   let subtaskContainer = document.getElementById(`task-popup-subtask-container${i}`);
+  const subtasks = allTasks[i]["subtasks"];
   subtaskContainer.innerHTML = "";
 
-  for (let j = 0; j < allTasks[i]["subtasks"].length; j++) {
-    const subtask = allTasks[i].subtasks[j];
+  if (subtasks.length > 0) {
+    for (let j = 0; j < subtasks.length; j++) {
+      const subtask = subtasks[j];
 
-    subtaskContainer.innerHTML += `
+      subtaskContainer.innerHTML += `
       <div class="popup-subtask-container">
         <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${subtask}" onclick="toggleSubtask(${i}, ${j})" ${subtask.completed ? 'checked' : ''}></div>
         <div>${subtask.name}</div>
       </div>
+    `;
+    } 
+  } else {
+    subtaskContainer.innerHTML = `
+      <span>Es sind keine Subtasks vorhanden!</span>
     `;
   }
 }
@@ -127,5 +134,5 @@ function toggleSubtask(i, j) {
   } else {
     doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
   }
-  generateProgressbar(i);
+  updateProgressbar(i);
 }

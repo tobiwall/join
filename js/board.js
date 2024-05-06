@@ -127,6 +127,7 @@ function renderToDoCards() {
     if (task.status === "todo") {
       toDoContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
+      generateProgressbar(i, task);
       renderUsers(i, taskId);
       generateCardPrio(task, i, taskId);
     }
@@ -144,6 +145,7 @@ function renderInProgressCards() {
     if (task.status === "progress") {
       inProgressContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
+      generateProgressbar(i, task);
       renderUsers(i, taskId);
       generateCardPrio(task, i, taskId);
     }
@@ -163,6 +165,7 @@ function renderAwaitFeedbackCards() {
     if (task.status === "feedback") {
       awaitFeedbackContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
+      generateProgressbar(i, task);
       renderUsers(i, taskId);
       generateCardPrio(task, i, taskId);
     }
@@ -180,6 +183,7 @@ function renderDoneCards() {
     if (task.status === "done") {
       doneContainer.innerHTML += generateCardHTML(task, i, taskId);
       categoryColor(i, taskId);
+      generateProgressbar(i, task);
       renderUsers(i, taskId);
       generateCardPrio(task, i, taskId);
     }
@@ -210,16 +214,7 @@ function generateCardHTML(task, i, taskId) {
         <div class="small-card-category" id="category${i}_${taskId}">${task["category"]}</div>
         <h3>${task["title"]}</h3>
         <p>${task["description"]}</p>
-        <div class="subtasks-info">
-          <div class="progressbar">
-            <div id="subtaskProgressbar${i}" class="done-subtask-progressbar" style="width:0%"></div>
-          </div>
-          <div class="progressbar-text-container">
-            <span id="doneSubtasks${i}">${doneSubtasks}</span>
-            <span>/</span>
-            <span></span> 
-            <span>Subtasks</span> 
-          </div>
+        <div id="subtaskProgressbarContainer${i}" class="subtasks-info"> 
         </div>
         <div class="card-bottom-section">
           <div class="userContainer" id="userContainer${i}_${taskId}">
@@ -230,14 +225,34 @@ function generateCardHTML(task, i, taskId) {
     `;
 }
 
-function generateProgressbar(i) {
-  let progressbar = document.getElementById(`subtaskProgressbar${i}`);
-  let amountSubtasks = parseInt(allTasks[i]["subtasks"].length);
-  let amountDoneSubtasks = parseInt(
-    document.getElementById(`doneSubtasks${i}`).innerHTML
-  );
+function generateProgressbar(i, task) {
+  let subtaskAmount = task.subtasks.length;
+  let subtaskProgressbarContainer = document.getElementById(`subtaskProgressbarContainer${i}`);
+  
+  if (subtaskAmount > 0) {
+    subtaskProgressbarContainer.innerHTML = `
+      <div class="progressbar">
+        <div id="subtaskProgressbar${i}" class="done-subtask-progressbar" style="width:0%"></div>
+      </div>
+      <div class="progressbar-text-container">
+        <span id="doneSubtasks${i}">${doneSubtasks}</span>
+        <span>/</span>
+        <span>${task["subtasks"].length}</span> 
+        <span>Subtasks</span> 
+      </div>
+    `;
+    updateProgressbar(i);
+  }
+}
 
-  progressbar.style.width = (amountDoneSubtasks / amountSubtasks) * 100 + "%";
+function updateProgressbar(i) {
+  let subtaskAmount = allTasks[i].subtasks.length;
+  let progressbar = document.getElementById(`subtaskProgressbar${i}`);
+  let amountSubtaskString = parseInt(subtaskAmount);
+  let amountDoneSubtasks = parseInt(
+      document.getElementById(`doneSubtasks${i}`).innerHTML
+    );
+    progressbar.style.width = (amountDoneSubtasks / amountSubtaskString) * 100 + "%";
 }
 
 function categoryColor(i, taskId) {
