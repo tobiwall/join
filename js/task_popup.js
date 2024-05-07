@@ -130,15 +130,19 @@ function toggleSubtask(i, j) {
   const subtaskCheckbox = document.getElementById(`subtaskCheckbox${i}_${j}`);
   const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
   const subtask = allTasks[i].subtasks[j];
-
+  let updateSubtask;
   subtask.completed = !subtask.completed;
   subtaskCheckbox.checked = subtask.completed;
 
   if (subtaskCheckbox.checked) {
     doneSubtasksContainer.innerHTML =
     doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
+    updateSubtask = completed = true;
   } else {
     doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
+    updateSubtask = completed = false;
   }
   updateProgressbar(i);
+  let taskId = allTasks[i].idKey;
+  updateTask(taskId, updateSubtask, j)
 }

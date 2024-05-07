@@ -77,10 +77,16 @@ async function loadAllTasks() {
   let loadedAllTasks = await getData("/allTasks");
   for (const key in loadedAllTasks) {
     if (Object.hasOwnProperty.call(loadedAllTasks, key)) {
-      allTasks.push(loadedAllTasks[key]);
+      // Erhalte die automatisch generierte ID
+      const taskKey = key;
+      // Holen Sie sich die Aufgabe mit dieser ID
+      const task = loadedAllTasks[key];
+      // Füge die Aufgabe zusammen mit ihrer ID dem Array allTasks hinzu
+      allTasks.push({ idKey: taskKey, ...task });
     }
   }
 }
+
 
 async function loadAllContacts() {
   let loadedContacts = await getData("/contacts");
@@ -90,4 +96,20 @@ async function loadAllContacts() {
       }
   }*/
   return loadedContacts;
+}
+
+async function updateTask(taskId, updateSubTask, j) {
+  try {
+    const response = await fetch(`${STORAGE_URL}/allTasks/${taskId}/subtasks/${j}/completed.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateSubTask),
+    });
+
+
+  } catch (error) {
+    
+  }
 }

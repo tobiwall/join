@@ -414,9 +414,10 @@ async function saveAndDisplayContacts(nameInput, emailInput, phoneInput) {
   displayContactsList();
   let newContactId = newContact.id;
   newContact = findContactById(newContactId);
-  debugger;
   await addContactToFirebase(newContact);
   clearInput();
+  closeContactPopup();
+  renderContacts();
 }
 
 function findHighestId() {
@@ -458,12 +459,13 @@ function deleteContact(id) {
   let contactId = findIndexById(openContact);
   let editContact = document.getElementById("editContact");
   contacts.splice(contactId, 1);
-  saveContactsLocal();
+  deleteData(`/contacts/${id}`);
   renderContacts();
   if (editContact.style.display !== "none") {
     closeContactPopup();
   }
   closeContactBox();
+  renderContacts();
 }
 
 function findIndexById(openContact) {
