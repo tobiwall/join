@@ -113,3 +113,19 @@ async function updateTask(taskId, updateSubTask, j) {
     
   }
 }
+
+async function updateStatusTask(taskId, updateStatusTask) {
+  try {
+    const response = await fetch(`${STORAGE_URL}/allTasks/${taskId}/status.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateStatusTask),
+    });
+
+
+  } catch (error) {
+    
+  }
+}

@@ -352,12 +352,14 @@ function allowDrop(ev) {
   ev.preventDefault();
 }
 
-function moveTo(statusContainer, index) {
-  let id = findTaskById();
-  id.status = statusContainer;
+async function moveTo(statusContainer, index) {
+  let task = findTaskById();
+  let taskId = task.idKey;
+  await updateStatusTask(taskId, statusContainer);
+  task.status = statusContainer;
   renderCards();
+  renderSubtasksOnload();
   removeHighlight(index);
-  save();
 }
 
 function findTaskById() {
