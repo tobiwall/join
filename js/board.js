@@ -11,6 +11,7 @@ async function init() {
   taskId = findHighestTaskId();
   await renderCards();
   showHeaderUser();
+  renderSubtasksOnload();
 }
 
 async function initHeader() {

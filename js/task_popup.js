@@ -133,7 +133,6 @@ function toggleSubtask(i, j) {
   let updateSubtask;
   subtask.completed = !subtask.completed;
   subtaskCheckbox.checked = subtask.completed;
-
   if (subtaskCheckbox.checked) {
     doneSubtasksContainer.innerHTML =
     doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
@@ -145,4 +144,14 @@ function toggleSubtask(i, j) {
   updateProgressbar(i);
   let taskId = allTasks[i].idKey;
   updateTask(taskId, updateSubtask, j)
+}
+
+function renderSubtasksOnload() {
+  for (let i = 0; i < allTasks.length; i++) {
+    const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
+    if (Array.isArray(allTasks[i].subtasks)) {
+      doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
+      updateProgressbar(i);
+    }
+  }
 }
