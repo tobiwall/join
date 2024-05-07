@@ -1,7 +1,9 @@
 function openTaskPopup(i) {
   let taskContainer = document.getElementById("taskPopup");
+  let content = document.querySelector('.content');
   taskContainer.innerHTML = "";
-  taskContainer.style.display = "flex";
+  taskContainer.style.right = "50%";
+  content.style.opacity = "0.4";
   const task = allTasks[i];
   const taskId = allTasks[i].id;
   const prio =
@@ -21,10 +23,12 @@ function taskPopup(task, i, taskId, prio) {
     </div>
     <h3>${task["title"]}</h3>
     <p>${task["description"]}</p>
-    <p>Due Date: ${task["dueDate"]}</p>
-    <div class"popup-prio-container">
-      <span>Priority: ${prio}</span>
-      <img id="popupCardPrioImg${(task, i)}" src="" alt="PRIO">
+    <div class="popup-duedate-container">
+      <span>Due Date:</span><div>${task["dueDate"]}</div>
+    </div>
+    <div class="popup-prio-container">
+      <span>Priority:</span>
+      <div>${prio}<img id="popupCardPrioImg${(task, i)}" src="" alt="PRIO"></div>
     </div>
     <span>Assigned to:</span>
     <div class="popup-user-container" id="popupUserContainer${i}"></div>
@@ -40,7 +44,9 @@ function taskPopup(task, i, taskId, prio) {
 
 function closeTaskPopup() {
   let taskContainer = document.getElementById("taskPopup");
-  taskContainer.style.display = "none";
+  taskContainer.style.right = "-300px";
+  let content = document.querySelector('.content');
+  content.style.opacity = "1";
 }
 
 function popupCategoryColor(i) {
@@ -115,7 +121,7 @@ function renderPopupSubtasks(i) {
     } 
   } else {
     subtaskContainer.innerHTML = `
-      <span>Es sind keine Subtasks vorhanden!</span>
+      <span>Keine Subtasks vorhanden!</span>
     `;
   }
 }

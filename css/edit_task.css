@@ -1,5 +1,5 @@
 .edit-task-popup form {
-  width: 525px;
+  width: 500px;
   padding: 40px;
   border-radius: 30px;
   position: fixed;
@@ -11,6 +11,8 @@
   z-index: 500;
   gap: 24px;
   box-shadow: 0px 0px 4px 0px #00000029;
+  overflow-y: scroll;
+  max-height: 80vh;
 }
 
 .edit-subtask-icon-container {
@@ -73,6 +75,9 @@
 }
 
 #edit-popup-contentSubtasks {
+  height: 130px;
+  max-height: 130px;
+  overflow-y: auto;
   gap: 4px;
   margin-top: 4px;
 }

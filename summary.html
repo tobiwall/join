@@ -28,23 +28,23 @@
     <div class="summary-display">
       <div class="summary-container">
         <div class="summary-top-section">
-          <div class="top-card" onmouseover="changeTodoCard(this, './assets/icons/summary_icons/check_whiteb.png')" onmouseout="resetTodoCard(this, './assets/icons/summary_icons/check_blueb.png')">
+          <a href="./board.html#toDoContainer"><div class="top-card" onmouseover="changeTodoCard(this, './assets/icons/summary_icons/check_whiteb.png')" onmouseout="resetTodoCard(this, './assets/icons/summary_icons/check_blueb.png')">
             <img src="./assets/icons/summary_icons/check_blueb.png" alt="EDIT">
             <div class="card-numb-text">
               <span id="toDoAmount" class="number">0</span>
               <span class="task-text">To-do</span>
             </div>
-          </div>
-          <div class="top-card" onmouseover="changeDoneCard(this, './assets/icons/summary_icons/edit_whiteb.png')" onmouseout="resetDoneCard(this, './assets/icons/summary_icons/edit_blueb.png')">
+          </div></a>
+          <a href="./board.html#doneContainer"><div class="top-card" onmouseover="changeDoneCard(this, './assets/icons/summary_icons/edit_whiteb.png')" onmouseout="resetDoneCard(this, './assets/icons/summary_icons/edit_blueb.png')">
             <img src="./assets/icons/summary_icons/edit_blueb.png" alt="CHECK">
             <div class="card-numb-text">
               <span id="doneAmount" class="number">0</span>
               <span class="task-text">Done</span>
             </div>
-          </div>
+          </div></a>
         </div>
         <div class="summary-mid-section">
-          <div class="mid-card">
+          <a href="./board.html"><div class="mid-card">
             <div><img src="./assets/icons/summary_icons/urgent.png" alt="URGENT"></div>
             <div class="card-numb-text">
               <span id="urgentAmount" class="number">0</span>
@@ -53,21 +53,21 @@
             <img src="./assets/icons/grey_seperator.png" alt="LINE">
             <div id="deadlineContainer">
             </div>
-          </div>
+          </div></a>
         </div>
         <div class="summary-bot-section">
-          <div class="bot-card">
+          <a href="./board.html"><div class="bot-card">
             <span id="allAmount" class="number">0</span>
             <span class="task-text">Task in<br>Board</span>
-          </div>
-          <div class="bot-card">
+          </div></a>
+          <a href="./board.html#inProgressContainer"><div class="bot-card">
             <span id="progressAmount" class="number">0</span>
             <span class="task-text">Task in<br>Progress</span>
-          </div>
-          <div class="bot-card">
+          </div></a>
+          <a href="./board.html#awaitFeedbackContainer"><div class="bot-card">
             <span id="feedbackAmount" class="number">0</span>
             <span class="task-text">Awaiting<br>Feedback</span>
-          </div>
+          </div></a>
         </div>
       </div>
       <div class="summary-greeting">

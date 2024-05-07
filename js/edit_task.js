@@ -196,11 +196,11 @@ function editTaskPopup(task, taskIndex, taskId) {
     <div class="edit-task-popup-top"><img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeEditTaskPopup()"></div>
     <div>
       <label for="">Title<span style="color: #FF8190">*</span></label>
-      <input required id="editTaskTitle" type="text" value="${task.title}">
+      <input required id="editTaskTitle" type="text" value="${task.title}" placeholder="Enter a title">
     </div>
     <div>
       <label for="">Description</label>
-      <textarea name="" id="editTaskDescription" cols="30" rows="10">${task.description}</textarea>
+      <textarea name="" id="editTaskDescription" cols="30" rows="10" placeholder="Enter a Description">${task.description}</textarea>
     </div>
     <div>
       <label for="">Due Date<span style="color: #FF8190">*</span></label>
@@ -228,7 +228,7 @@ function editTaskPopup(task, taskIndex, taskId) {
             <img src="./assets/icons/subtask_icons/add.png" onclick="enableSubtaskIcons(${taskIndex}, ${taskId})"></img>
           </div>
         </div>
-        <ul id="edit-popup-contentSubtasks">${task.subtasks}</ul>
+        <ul id="edit-popup-contentSubtasks"></ul>
     </div>
     <div class="edit-task-bottom-section"><button type="submit" class="edit-task-button" onclick="submitChanges(${taskIndex})">OK<img src="./assets/icons/check_white1.png" alt=""></button></div>
   </form>
@@ -324,6 +324,8 @@ function addChangedPopupSubtask(taskIndex, subtaskId, taskId) {
 function closeEditTaskPopup() {
   let taskContainer = document.getElementById("editTaskPopup");
   taskContainer.style.display = "none";
+  let content = document.querySelector('.content');
+  content.style.opacity = "1";
 }
 
 function deleteTask(i) {

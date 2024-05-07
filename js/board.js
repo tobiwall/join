@@ -194,14 +194,27 @@ function renderUsers(i, taskId) {
   let userContainer = document.getElementById(`userContainer${i}_${taskId}`);
   userContainer.innerHTML = "";
 
-  // Überprüfe, ob cardsToDo[i].users definiert ist, bevor du versuchst, über sie zu iterieren
+  // Überprüfe, ob allTasks[i] definiert ist, bevor du versuchst, über sie zu iterieren
   if (allTasks[i] !== undefined) {
-    for (let j = 0; j < allTasks[i].users.length; j++) {
-      const user = allTasks[i].users[j];
+    const users = allTasks[i].users;
+    const totalUsers = users.length;
 
+    // Rendern der ersten fünf Benutzer
+    for (let j = 0; j < Math.min(5, totalUsers); j++) {
+      const user = users[j];
       userContainer.innerHTML += `
         <div class="user-initials-card" style="background-color: ${user.color};">
           ${user.initials}
+        </div>
+      `;
+    }
+
+    // Wenn es mehr als fünf Benutzer gibt, zeige die Gesamtanzahl der restlichen Benutzer an
+    if (totalUsers > 5) {
+      const remainingUsers = totalUsers - 5;
+      userContainer.innerHTML += `
+        <div class="rest-user-amount">
+          + ${remainingUsers}
         </div>
       `;
     }
