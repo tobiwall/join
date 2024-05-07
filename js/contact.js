@@ -307,8 +307,11 @@ function generateContactListHTML(contact) {
 
 function findContactById(id) {
   for (let i = 0; i < contacts.length; i++) {
-    if (contacts[i].id === id) {
-      return contacts[i];
+    let contact = contacts[i];
+    if (contact !== null) {
+      if (contacts[i].id === id) {
+        return contacts[i];
+      }
     }
   }
   return null;
@@ -419,8 +422,11 @@ async function saveAndDisplayContacts(nameInput, emailInput, phoneInput) {
 function findHighestId() {
   let maxId = contacts[0].id;
   for (let i = 1; i < contacts.length; i++) {
-    if (contacts[i].id > maxId) {
-      maxId = contacts[i].id;
+    let contact = contacts[i];
+    if (contact !== null) {
+      if (contacts[i].id > maxId) {
+        maxId = contacts[i].id;
+      }
     }
   }
   return maxId;
