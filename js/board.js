@@ -311,7 +311,7 @@ function generateCardPrio(task, i, taskId) {
   }
 }
 
-function openAddTask() {
+function openAddTask(status) {
   let content = document.querySelector('.content');
   let addTaskTemplate = document.getElementById("addTaskTemplate");
   let closeIcon = document.getElementById("close-task-popup-img");
@@ -319,6 +319,8 @@ function openAddTask() {
   
   addTaskTemplate.style.right = "50%";
   content.style.opacity = "0.4";
+
+  document.querySelector('form').setAttribute('onsubmit', `createTask('${status}')`);
 }
 
 function closeAddTaskPopup() {

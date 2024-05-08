@@ -29,7 +29,6 @@ async function createTask(status) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
-  debugger;
   if (subtasks.length == 0) {
     subtasks = "";
   }
@@ -50,15 +49,6 @@ async function createTask(status) {
   };
 
   await postData("/allTasks", newTask);
-
-  title.value = "";
-  discription.value = "";
-  date.value = "";
-  category.value = "";
-  selectedPriority = selectedPriority;
-  subtasks = [""];
-  users = [""];
-  subtasksList.innerHTML = "";
 
   window.location.href = "./board.html";
 }
