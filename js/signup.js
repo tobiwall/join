@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         userData.id = generateRandomId();        
         
         await postData("users", userData);
-
+        await addContactToFirebase(userData);
         document.getElementById('popup-container').classList.add('show');
         document.getElementById('popup').classList.add('show');
         
