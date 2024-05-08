@@ -434,12 +434,22 @@ function findHighestId() {
 }
 
 function createNewContact(nameInput, emailInput, phoneInput) {
+  if (phoneInput == null) {
+    phoneInput = "";
+    newBuildContacts = buildContact(nameInput, emailInput, phoneInput);
+  } else {
+    newBuildContacts = buildContact(nameInput, emailInput, phoneInput.value);
+  }
+  return newBuildContacts;
+}
+
+function buildContact(nameInput, emailInput, phoneInput) {
   lastContactId = findHighestId();
   lastContactId++;
   let newContact = {
     name: nameInput.value,
     email: emailInput.value,
-    phone: phoneInput.value,
+    phone: phoneInput,
     id: lastContactId,
   };
   return newContact;

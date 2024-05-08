@@ -1,5 +1,9 @@
 const users = [];
 
+async function initSignUp() {
+    contacts = await loadAllContacts();
+}
+
 function userEmailExists(email) {
     return users.some(user => user.user_email === email);
 }
@@ -39,8 +43,8 @@ document.addEventListener("DOMContentLoaded", async function () {
             emailExistError();
             return;
         }
-
-        //await createContactUser();
+        debugger;
+        await createContactUser();
         const userData = {};
         formData.forEach((value, id) => userData[id] = value);
         userData.id = generateRandomId();        
@@ -79,6 +83,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function createContactUser() {
     const name = document.getElementById('user_name');
     const email = document.getElementById('user_email');
-    const number = "";
-    await saveAndDisplayContacts(name, email, number);
+    debugger;
+    let newContact = createNewContact(name, email);
+        contacts.push(newContact);
+        orderContacts();
+        let newContactId = newContact.id;
+        newContact = findContactById(newContactId);
+        await addContactToFirebase(newContact);
 }
