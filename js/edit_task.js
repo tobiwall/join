@@ -329,13 +329,11 @@ function closeEditTaskPopup() {
 }
 
 function deleteTask(i) {
+  let taskIdKey = allTasks[i].idKey;
+  deleteData(`/allTasks/${taskIdKey}`);
   allTasks.splice(i, 1);
   closeTaskPopup();
   renderCards();
-  let id = allTasks[i].id
-  debugger;
-  let taskId = allTasks[i].idKey;
-  deleteData(`/allTasks/${taskId}`);
 }
 
 function submitChanges(i) {
@@ -349,7 +347,6 @@ function submitChanges(i) {
   task.description = description;
   task.dueDate = date;
 
-  debugger;
   updateEditTask(taskIdKey, task);
   renderCards();
   closeEditTaskPopup();
