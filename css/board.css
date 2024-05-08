@@ -161,21 +161,17 @@ h1 {
     border-radius: 24px;
     padding: 16px;
     margin: 16px 0px;
+    transition: transform 0.5s ease;
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }
 
-@keyframes wobble {
+@keyframes rotate {
     0% { transform: rotate(0deg); }
-    15% { transform: rotate(-2deg); }
-    30% { transform: rotate(1deg); }
-    45% { transform: rotate(-1deg); }
-    60% { transform: rotate(0.5deg); } 
-    75% { transform: rotate(-0.5deg); } 
-    100% { transform: rotate(0deg); }
+    100% { transform: rotate(6deg); }
   }
 
 .card:hover {
-    animation: wobble 0.7s ease-in-out;
+    transform: rotate(6deg);
 }
 
 .small-card-category {
