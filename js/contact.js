@@ -514,7 +514,7 @@ async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
   contact.name = `${nameInput}`;
   contact.email = `${emailInput}`;
   contact.phone = `${phoneInput}`;
-  await saveContactsLocal();
+  await updateContacts(contact, id);
   renderContacts();
   closeContactPopup();
 }

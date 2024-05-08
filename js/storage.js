@@ -87,6 +87,21 @@ async function loadAllTasks() {
   }
 }
 
+async function updateContacts(contact, id) {
+  try {
+    const response = await fetch(`${STORAGE_URL}/contacts/${id}.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact),
+    });
+
+
+  } catch (error) {
+    
+  }
+}
 
 async function loadAllContacts() {
   let loadedContacts = await getData("/contacts");
