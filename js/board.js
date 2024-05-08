@@ -216,7 +216,6 @@ function renderUsers(i, taskId) {
         </div>
       `;
     }
-
     // Wenn es mehr als fünf Benutzer gibt, zeige die Gesamtanzahl der restlichen Benutzer an
     if (totalUsers > 5) {
       const remainingUsers = totalUsers - 5;
@@ -312,36 +311,21 @@ function generateCardPrio(task, i, taskId) {
   }
 }
 
-function openAddTask(taskContainer) {
+function openAddTask() {
+  let content = document.querySelector('.content');
   let addTaskTemplate = document.getElementById("addTaskTemplate");
-  let overlay = document.getElementById("overlayAddTask");
-  let buttonContainer = document.getElementById("buttonContainer");
-  addTaskTemplate.style.display = "flex";
-  overlay.style.display = "block";
-  //overlay.addEventListener("click", closeContactPopupByOverlay);
-  buttonContainer.innerHTML = "";
-  buttonContainer.innerHTML += generateButtonAddTaskHTML(taskContainer);
-}
-
-function generateButtonAddTaskHTML(taskContainer) {
-  return /*html*/ `
-        <img onclick="closeAddTaskPopup()" class="add-contact-close" src="./assets/icons/Close.png" alt="">
-
-        <div class="bottom-content">
-        <span><span style="color: #FF8190">*</span>This field is required</span>
-        <div>
-            <button class="clear-button" onclick="clearAddTaskInput()">CLEAR<img src="./assets/icons/subtask_icons/close.png" alt="X"></button>
-            <button class="task-button" onclick="createTaskOnBoard('${taskContainer}')">CREATE TASK<img src="./assets/icons/check_white1.png" alt="OK"></button>
-        </div>
-    </div>
-  `;
+  let closeIcon = document.getElementById("close-task-popup-img");
+  closeIcon.style.display = "flex";
+  
+  addTaskTemplate.style.right = "50%";
+  content.style.opacity = "0.4";
 }
 
 function closeAddTaskPopup() {
+  let content = document.querySelector('.content');
   let addTaskTemplate = document.getElementById("addTaskTemplate");
-  let overlay = document.getElementById("overlay");
-  addTaskTemplate.style.display = "none";
-  overlay.style.display = "none";
+  addTaskTemplate.style.right = "-600px";
+  content.style.opacity = "1";
 }
 
 function addHighlight(id) {

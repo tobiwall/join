@@ -77,13 +77,12 @@
             </div>
             <div class="taskRow" id="doneContainer" ondrop="moveTo('done', 'doneContainer')" ondragover="allowDrop(event); addHighlight('doneContainer')" ondragleave="removeHighlight('doneContainer')"></div>
           </div>
-          <div id="overlayAddTask"></div>
-        </div>
-        <div id="addTaskTemplate" class="add-task-popup">
-          <div class="addTaskInBoard" w3-include-html="./assets/templates/task_templates.html"></div>
         </div>
       </div>
     </div>
+  </div>
+  <div id="addTaskTemplate" class="add-task-popup">
+    <div class="addTaskInBoard" w3-include-html="./assets/templates/task_templates.html"></div>
   </div>
     <div id="taskPopup" class="task-popup"></div>
     <div id="editTaskPopup" class="edit-task-popup"></div>

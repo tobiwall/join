@@ -39,18 +39,18 @@ function togglePrioButton(priority, i) {
   const task = allTasks[i];
 
   if (priority === "urgent") {
-    prioUrgent(priority);
+    editPrioUrgent(priority);
     task.prio = priority;
   } else if (priority === "medium") {
-    prioMedium(priority);
+    editPrioMedium(priority);
     task.prio = priority;
   } else if (priority === "low") {
-    prioLow(priority);
+    editPrioLow(priority);
     task.prio = priority;
   }
 }
 
-function prioUrgent(priority) {
+function editPrioUrgent(priority) {
   document.getElementById(priority + "Edit").classList.add("urgent-active");
   document.getElementById(priority + "ImgEdit").src =
     "./assets/icons/prio_buttons/prio_urgent.png";
@@ -62,7 +62,7 @@ function prioUrgent(priority) {
     "./assets/icons/prio_buttons/prio_low_green.png";
 }
 
-function prioMedium(priority) {
+function editPrioMedium(priority) {
   document.getElementById(priority + "Edit").classList.add("medium-active");
   document.getElementById(priority + "ImgEdit").src =
     "./assets/icons/prio_buttons/prio_medium.png";
@@ -74,7 +74,7 @@ function prioMedium(priority) {
     "./assets/icons/prio_buttons/prio_low_green.png";
 }
 
-function prioLow(priority) {
+function editPrioLow(priority) {
   document.getElementById(priority + "Edit").classList.add("low-active");
   document.getElementById(priority + "ImgEdit").src =
     "./assets/icons/prio_buttons/prio_low.png";

@@ -1,74 +1,77 @@
-<h2>Add Task</h1>
+<div class="add-task-top-section">
+    <h2>Add Task</h1>
+    <img id="close-task-popup-img" onclick="closeAddTaskPopup()" class="close-task-popup-img" src="./assets/icons/Close.png" alt="" style="display: none;">
+</div>
 <form action="displayNewCard(0)">
-    <div class="form-left-section">
-        <div>
-            <label>Title<span style="color: #FF8190">*</span></label>
-            <input required id="taskTitle" type="text" placeholder="Enter a title">
-        </div>
-        <div>
-            <label>Discription</label>
-            <textarea name="" id="taskDiscription" cols="30" rows="10" placeholder="Enter a Description"></textarea>
-        </div>
-        <div class="assignedto-container">
-            <label>Assigned to</label>
-            <div class="assigned-container" id="assignedContainer">
-                <input id="userInput" type="text" onkeyup="searchUser()" onclick="showUsers()" placeholder="Select contacts to assign">
-                <img id="openUserIcon" class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showUsers()">
+    <div class="form-field-container">
+        <div class="form-left-section">
+            <div>
+                <label>Title<span style="color: #FF8190">*</span></label>
+                <input required id="taskTitle" type="text" placeholder="Enter a title">
             </div>
-            <div id="dropdown-users" class="dropdown-users">  
+            <div>
+                <label>Discription</label>
+                <textarea name="" id="taskDiscription" cols="30" rows="10" placeholder="Enter a Description"></textarea>
             </div>
-            <div id="contentAssignedUsers">
-            </div>    
-        </div>
-    </div>
-    <div class="addtask-seperator">
-        <img src="./assets/icons/long_seperator.png" alt="">
-    </div>
-    <div class="form-right-section">
-        <div>
-            <label>Due date<span style="color: #FF8190">*</span></label>
-            <input required id="taskDate" type="date">
-        </div>
-        <div class="prio-container">
-            <label>Prio</label>
-            <div class="buttons-container">
-                <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_buttons/prio_urgent_red.png" alt=""></button>
-                <button type="button" class="prio-button medium-active" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_buttons/prio_medium.png" alt=""></button>
-                <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_buttons/prio_low_green.png" alt=""></button>
+            <div class="assignedto-container">
+                <label>Assigned to</label>
+                <div class="assigned-container" id="assignedContainer">
+                    <input id="userInput" type="text" onkeyup="searchUser()" onclick="showUsers()" placeholder="Select contacts to assign">
+                    <img id="openUserIcon" class="assigned-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="showUsers()">
+                </div>
+                <div id="dropdown-users" class="dropdown-users">  
+                </div>
+                <div id="contentAssignedUsers">
+                </div>    
             </div>
         </div>
-        <div>
-            <label>Category<span style="color: #FF8190">*</span></label>
-            <select required name="category-input" id="categoryInput" class="category-input">
-                <option value="1" disabled selected hidden>Select task category</option>
-                <option value="User Story">User Story</option>
-                <option value="Technical Task">Technical Task</option>
-                <option value="Feature">Feature</option>
-                <option value="Bug">Bug</option>
-                <option value="Documentation">Documentation</option>
-                <option value="Design">Design</option>
-                <option value="Testing QA">Testing QA</option>
-                <option value="Analyse/Research">Analyse/Research</option>
-            </select>
-            <!-- 
-            <label>Category<span style="color: #FF8190">*</span></label>
-            <div required id="selectedCategory" onclick="renderCategorys()">Select task category</div>
-            <div id="dropdown-categorys" class="dropdown-categorys"></div>
-            -->
+        <div class="addtask-seperator">
+            <img src="./assets/icons/long_seperator.png" alt="">
         </div>
-        <div>
-            <label>Subtasks</label>
-            <div class="subtask-container">
-                <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" onclick="enableIcons()">
-                <div class="subtask-icon-container">
-                    <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
+        <div class="form-right-section">
+            <div>
+                <label>Due date<span style="color: #FF8190">*</span></label>
+                <input required id="taskDate" type="date">
+            </div>
+            <div class="prio-container">
+                <label>Prio</label>
+                <div class="buttons-container">
+                    <button type="button" class="prio-button" id="urgent" onclick="toggleButton('urgent')">Urgent<img id="urgentImg" src="./assets/icons/prio_buttons/prio_urgent_red.png" alt=""></button>
+                    <button type="button" class="prio-button medium-active" id="medium" onclick="toggleButton('medium')">Medium<img id="mediumImg" src="./assets/icons/prio_buttons/prio_medium.png" alt=""></button>
+                    <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_buttons/prio_low_green.png" alt=""></button>
                 </div>
             </div>
-            <ul id="contentSubtasks"></ul>
+            <div>
+                <label>Category<span style="color: #FF8190">*</span></label>
+                <select required name="category-input" id="categoryInput" class="category-input">
+                    <option value="1" disabled selected hidden>Select task category</option>
+                    <option value="User Story">User Story</option>
+                    <option value="Technical Task">Technical Task</option>
+                    <option value="Feature">Feature</option>
+                    <option value="Bug">Bug</option>
+                    <option value="Documentation">Documentation</option>
+                    <option value="Design">Design</option>
+                    <option value="Testing QA">Testing QA</option>
+                    <option value="Analyse/Research">Analyse/Research</option>
+                </select>
+                <!-- 
+                <label>Category<span style="color: #FF8190">*</span></label>
+                <div required id="selectedCategory" onclick="renderCategorys()">Select task category</div>
+                <div id="dropdown-categorys" class="dropdown-categorys"></div>
+                -->
+            </div>
+            <div>
+                <label>Subtasks</label>
+                <div class="subtask-container">
+                    <input id="subtasksInput" type="text" class="subtask-input" placeholder="Add new subtask" onclick="enableIcons()">
+                    <div class="subtask-icon-container">
+                        <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
+                    </div>
+                </div>
+                <ul id="contentSubtasks"></ul>
+            </div>
         </div>
     </div>
-</form>
-<div id="buttonContainer">
     <div class="bottom-content">
         <span><span style="color: #FF8190">*</span>This field is required</span>
         <div>
@@ -76,4 +79,4 @@
             <button type="submit" id="createTaskButton" class="task-button" onclick="createTask('todo')">CREATE TASK<img src="./assets/icons/check_white1.png" alt="OK"></button>
         </div>
     </div>
-</div>
+</form>

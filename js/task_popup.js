@@ -121,7 +121,7 @@ function renderPopupSubtasks(i) {
     } 
   } else {
     subtaskContainer.innerHTML = `
-      <span>Keine Subtasks vorhanden!</span>
+      <span style="color:black">Keine Subtasks vorhanden!</span>
     `;
   }
 }
