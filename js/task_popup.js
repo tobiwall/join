@@ -42,6 +42,17 @@ function taskPopup(task, i, taskId, prio) {
   `;
 }
 
+function handleClickOutside(event) {
+  let taskContainer = document.getElementById("taskPopup");
+  let content = document.querySelector('.content');
+  if (!taskContainer.contains(event.target) && !content.contains(event.target)) {
+    closeTaskPopup();
+  }
+}
+
+// Event-Listener hinzufügen, um auf Klicks im Dokument zu reagieren
+document.addEventListener("click", handleClickOutside);
+
 function closeTaskPopup() {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.style.right = "-300px";
@@ -113,8 +124,8 @@ function renderPopupSubtasks(i) {
       const subtask = subtasks[j];
 
       subtaskContainer.innerHTML += `
-      <div class="popup-subtask-container">
-        <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${subtask}" onclick="toggleSubtask(${i}, ${j})" ${subtask.completed ? 'checked' : ''}></div>
+      <div class="popup-subtask-container" onclick="toggleSubtask(${i}, ${j})">
+        <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${subtask.name}" ${subtask.completed ? 'checked' : ''}></div>
         <div>${subtask.name}</div>
       </div>
     `;

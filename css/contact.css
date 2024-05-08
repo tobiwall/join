@@ -199,7 +199,7 @@ body {
     transition: .5s ease;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
-    z-index: 101;
+    z-index: 500;
 }
 
 .add-contact-left-section {
@@ -345,8 +345,6 @@ body {
     display: block;
 }
 
-
-
 .create-contact:hover {
     cursor: pointer;
     background-color: rgb(42, 171, 226);
@@ -357,17 +355,31 @@ body {
     cursor: pointer;
 }
 
+.contact-container {
+  transform: translateX(300%);
+}
+
+@keyframes slideFromRightToLeft {
+  from {
+    transform: translateX(300%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
 .edit_contact {
     width: 1212px;
     min-width: fit-content;
     height: 592px;
-    position: absolute;
-    left: calc(50% - 606px);
-    top: calc(50vh - 292px);
+    position: fixed;
+    top: 50%;
+    right: -1200px;
+    transform: translate(50%, -50%);
+    transition: .5s ease;
     border-radius: 30px;
     background-color: rgb(255, 255, 255);
-    display: none;
-    z-index: 101;
+    z-index: 500;
 }
 
 #overlay {

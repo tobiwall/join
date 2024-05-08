@@ -318,9 +318,12 @@ function findContactById(id) {
 }
 
 function openContact(id) {
+  let contactContainer = document.getElementById('contact-container');
   let klickedContact = findContactById(id);
   let contactBoxName = document.getElementById("contactBoxName");
   let contactInformation = document.getElementById("contactInformation");
+  contactContainer.style.animation = contactContainer.style.animation ? "" : "slideFromRightToLeft 0.5s forwards";
+  
   contactBoxName.innerHTML = "";
   contactBoxName.innerHTML += generateContactBoxHTML(klickedContact, id);
   contactInformation.innerHTML = "";
@@ -355,7 +358,6 @@ function generateContactBoxHTML(contact, id) {
             </div>
           </div>
         </div>
-        
     `;
 }
 
@@ -375,7 +377,6 @@ function openAddContact() {
   let addContact = document.getElementById("addContact");
   let overlay = document.getElementById("overlay");
   addContact.style.right = "50%";
-  addContact.style.right = "0";
   overlay.style.display = "block";
   overlay.addEventListener("click", closeContactPopupByOverlay);
 }
@@ -385,8 +386,8 @@ function closeContactPopup() {
   let addContact = document.getElementById("addContact");
   let editContact = document.getElementById("editContact");
   let overlay = document.getElementById("overlay");
-  addContact.style.right = "-300px";
-  editContact.style.right = "-300px";
+  addContact.style.right = "-1200px";
+  editContact.style.right = "-1200px";
   overlay.style.display = "none";
 }
 
@@ -485,7 +486,7 @@ function findIndexById(openContact) {
 function editContact(id) {
   let editContact = document.getElementById("editContact");
   let overlay = document.getElementById("overlay");
-  editContact.style.display = "block";
+  editContact.style.right = "50%";
   overlay.style.display = "block";
   overlay.addEventListener("click", closeContactPopupByOverlay);
   createInputValue(id);

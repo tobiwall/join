@@ -122,6 +122,7 @@
 .task-popup-subtask-container{
   font-size: 16px;
   font-weight: 400;
+  gap: 6px;
 }
 
 .popup-subtask-container {
@@ -131,6 +132,12 @@
   padding: 6px 16px;
   font-size: 16px;
   font-weight: 400;
+  border-radius: 10px;
+}
+
+.popup-subtask-container:hover {
+  cursor: pointer;
+  background-color: #D9D9D9;
 }
 
 .task-popup-bottom-section {
