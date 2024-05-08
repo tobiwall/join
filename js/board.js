@@ -8,6 +8,7 @@ async function init() {
   await includeHTML();
   await loadCurrentUsers();
   await loadAllTasks();
+  contacts = await loadAllContacts();
   taskId = findHighestTaskId();
   await renderCards();
   showHeaderUser();
