@@ -18,6 +18,7 @@ async function initAddTask() {
   await includeHTML();
   await loadCurrentUsers();
   await loadAllTasks();
+  contacts = await loadAllContacts();
   taskId = findHighestTaskId();
   showHeaderUser();
 }
