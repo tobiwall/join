@@ -343,12 +343,14 @@ function submitChanges(i) {
   let title = document.getElementById('editTaskTitle').value;
   let description = document.getElementById('editTaskDescription').value;
   let date = document.getElementById('editTaskDate').value;
-  
+  let taskIdKey = task.idKey;
+
   task.title = title;
   task.description = description;
   task.dueDate = date;
 
-  save();
+  debugger;
+  updateEditTask(taskIdKey, task);
   renderCards();
   closeEditTaskPopup();
 }

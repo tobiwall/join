@@ -129,3 +129,19 @@ async function updateStatusTask(taskId, updateStatusTask) {
     
   }
 }
+
+async function updateEditTask(taskIdKey, updateTask) {
+  try {
+    const response = await fetch(`${STORAGE_URL}/allTasks/${taskIdKey}.json`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateTask),
+    });
+
+
+  } catch (error) {
+    
+  }
+}
