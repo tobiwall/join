@@ -332,7 +332,10 @@ function deleteTask(i) {
   allTasks.splice(i, 1);
   closeTaskPopup();
   renderCards();
-  save();
+  let id = allTasks[i].id
+  debugger;
+  let taskId = allTasks[i].idKey;
+  deleteData(`/allTasks/${taskId}`);
 }
 
 function submitChanges(i) {

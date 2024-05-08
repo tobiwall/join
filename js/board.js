@@ -66,6 +66,12 @@ async function createTaskOnBoard(status) {
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
   let assignedUsers = document.getElementById("contentAssignedUsers");
+  if (subtasks.length == 0) {
+    subtasks = "";
+  }
+  if (users.length == 0) {
+    users = "";
+  }
   taskId++;
   let newTask = {
     id: taskId,
