@@ -216,7 +216,9 @@ function displayUserList(userList) {
   assignedContainerClicked = true;
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
-    userList.innerHTML += userTemplate(contact);
+    if (contact !== null) {
+      userList.innerHTML += userTemplate(contact);
+    }
   }
   // Wiederherstellen des Status der ausgewählten Benutzer
   selectedUsers.forEach((user) => {

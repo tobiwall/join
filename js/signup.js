@@ -40,12 +40,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
+        //await createContactUser();
         const userData = {};
         formData.forEach((value, id) => userData[id] = value);
         userData.id = generateRandomId();        
         
         await postData("users", userData);
-        await addContactToFirebase(userData);
         document.getElementById('popup-container').classList.add('show');
         document.getElementById('popup').classList.add('show');
         
@@ -75,3 +75,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 });
+
+async function createContactUser() {
+    const name = document.getElementById('user_name');
+    const email = document.getElementById('user_email');
+    const number = "";
+    await saveAndDisplayContacts(name, email, number);
+}

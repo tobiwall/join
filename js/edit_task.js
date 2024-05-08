@@ -1,8 +1,8 @@
 function renderPrioButton(task, i) {
-  buttonContainer = document.getElementById('edit-prio-buttons-container');
+  buttonContainer = document.getElementById("edit-prio-buttons-container");
   taskPrio = task.prio;
 
-  if (taskPrio === 'urgent') {
+  if (taskPrio === "urgent") {
     buttonContainer.innerHTML = prioEditUrgent(i);
   } else if (taskPrio === "medium") {
     buttonContainer.innerHTML = prioEditMedium(i);
@@ -108,8 +108,10 @@ function displayEditUserList(j, userList) {
     userList.innerHTML += editUserTemplate(j, contact);
   }
   // Wiederherstellen des Status der ausgewählten Benutzer
-  selectedUsers.forEach(user => {
-    const checkbox = document.querySelector(`input[data-contact='${JSON.stringify(user)}']`);
+  selectedUsers.forEach((user) => {
+    const checkbox = document.querySelector(
+      `input[data-contact='${JSON.stringify(user)}']`
+    );
     if (checkbox) {
       checkbox.checked = true;
     }
@@ -118,7 +120,7 @@ function displayEditUserList(j, userList) {
 
 function editUserTemplate(j, contact) {
   const task = allTasks[j];
-  const isChecked = task.users.some(user => user.name === contact.name);
+  const isChecked = task.users.some((user) => user.name === contact.name);
   return `
   <div class="user-container">
       <div class="user">
@@ -130,7 +132,13 @@ function editUserTemplate(j, contact) {
         </div>
       </div>
       <div>
-        <input type="checkbox" name="assignedUser" value="${contact.name}" data-contact='${JSON.stringify(contact)}' onchange="handleCheckboxChangeEditTask(${j}, event)" ${isChecked ? 'checked' : ''}>
+        <input type="checkbox" name="assignedUser" value="${
+          contact.name
+        }" data-contact='${JSON.stringify(
+    contact
+  )}' onchange="handleCheckboxChangeEditTask(${j}, event)" ${
+    isChecked ? "checked" : ""
+  }>
       </div>
     </div>
   `;
@@ -140,8 +148,10 @@ function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("editDropdownUsers");
   let icon = document.getElementById("openEditUserIcon");
-  icon.style.transform = "rotate(0deg)";
-  userList.innerHTML = "";
+  if (icon !== null) {
+    icon.style.transform = "rotate(0deg)";
+    userList.innerHTML = "";
+  }
 }
 
 function handleCheckboxChangeEditTask(j, event) {
@@ -152,7 +162,9 @@ function handleCheckboxChangeEditTask(j, event) {
   if (checkbox.checked) {
     task.users.push(contactData);
   } else {
-    const userIndex = task.users.findIndex(user => user.name === contactData.name);
+    const userIndex = task.users.findIndex(
+      (user) => user.name === contactData.name
+    );
     if (userIndex !== -1) {
       task.users.splice(userIndex, 1);
     }
@@ -179,8 +191,8 @@ function searchEditUser() {
 function editTask(taskIndex, taskId) {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.style.display = "none";
-  let editTaskContainer = document.getElementById('editTaskPopup');
-  editTaskContainer.innerHTML = '';
+  let editTaskContainer = document.getElementById("editTaskPopup");
+  editTaskContainer.innerHTML = "";
   editTaskContainer.style.display = "flex";
 
   const task = allTasks[taskIndex];
@@ -190,7 +202,7 @@ function editTask(taskIndex, taskId) {
 }
 
 function editTaskPopup(task, taskIndex, taskId) {
-  return /*html*/`
+  return /*html*/ `
   
   <form action="">
     <div class="edit-task-popup-top"><img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeEditTaskPopup()"></div>
@@ -236,8 +248,8 @@ function editTaskPopup(task, taskIndex, taskId) {
 }
 
 function enableSubtaskIcons(taskIndex, taskId) {
-  let iconContainer = document.querySelector('.edit-subtask-icon-container');
-  iconContainer.querySelector('img').removeAttribute('onclick');
+  let iconContainer = document.querySelector(".edit-subtask-icon-container");
+  iconContainer.querySelector("img").removeAttribute("onclick");
 
   iconContainer.innerHTML = `
     <div onclick="clearEditSubtaskInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
@@ -247,8 +259,8 @@ function enableSubtaskIcons(taskIndex, taskId) {
 }
 
 function clearEditSubtaskInput() {
-  input = document.getElementById('editSubtasksInput');
-  input.value = '';
+  input = document.getElementById("editSubtasksInput");
+  input.value = "";
 }
 
 function addSubtaskInPopup(taskIndex, taskId) {
@@ -257,22 +269,25 @@ function addSubtaskInPopup(taskIndex, taskId) {
   const task = allTasks[taskIndex];
 
   if (subtaskText !== "") {
-    task.subtasks.push({name: subtaskText, completed: false});
+    task.subtasks.push({ name: subtaskText, completed: false });
     input.value = "";
   }
   renderEditPopupSubtasks(task, taskIndex, taskId);
 }
 
 function renderEditPopupSubtasks(task, taskIndex, taskId) {
-  let subtaskContainer = document.getElementById(
-    `edit-popup-contentSubtasks`
-  );
+  let subtaskContainer = document.getElementById(`edit-popup-contentSubtasks`);
   subtaskContainer.innerHTML = "";
 
   for (let subtaskId = 0; subtaskId < task.subtasks.length; subtaskId++) {
     const subtask = task.subtasks[subtaskId];
 
-    subtaskContainer.innerHTML += editSubtaskTamplete(taskIndex, subtaskId, subtask, taskId);
+    subtaskContainer.innerHTML += editSubtaskTamplete(
+      taskIndex,
+      subtaskId,
+      subtask,
+      taskId
+    );
   }
 }
 
@@ -316,7 +331,7 @@ function addChangedPopupSubtask(taskIndex, subtaskId, taskId) {
   const task = allTasks[taskIndex];
   let input = document.getElementById(`changedSubtask${subtaskId}_${taskId}`);
   let subtaskText = input.value.trim();
-  task.subtasks[subtaskId]['name'] = subtaskText;
+  task.subtasks[subtaskId]["name"] = subtaskText;
   input.value = "";
   renderEditPopupSubtasks(task, taskIndex, taskId);
 }
@@ -324,7 +339,7 @@ function addChangedPopupSubtask(taskIndex, subtaskId, taskId) {
 function closeEditTaskPopup() {
   let taskContainer = document.getElementById("editTaskPopup");
   taskContainer.style.display = "none";
-  let content = document.querySelector('.content');
+  let content = document.querySelector(".content");
   content.style.opacity = "1";
 }
 
@@ -338,9 +353,9 @@ function deleteTask(i) {
 
 function submitChanges(i) {
   const task = allTasks[i];
-  let title = document.getElementById('editTaskTitle').value;
-  let description = document.getElementById('editTaskDescription').value;
-  let date = document.getElementById('editTaskDate').value;
+  let title = document.getElementById("editTaskTitle").value;
+  let description = document.getElementById("editTaskDescription").value;
+  let date = document.getElementById("editTaskDate").value;
   let taskIdKey = task.idKey;
 
   task.title = title;
@@ -351,4 +366,3 @@ function submitChanges(i) {
   renderCards();
   closeEditTaskPopup();
 }
-
