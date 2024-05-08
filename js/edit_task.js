@@ -105,6 +105,9 @@ function displayEditUserList(j, userList) {
   assignedContainerClicked = true;
   for (let i = 0; i < contacts.length; i++) {
     const contact = contacts[i];
+    if (contact === null) {
+      continue;
+    }
     userList.innerHTML += editUserTemplate(j, contact);
   }
   // Wiederherstellen des Status der ausgewählten Benutzer
