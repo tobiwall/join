@@ -153,7 +153,7 @@ h1 {
 }
 
 .taskRow {
-    min-height: 100vh;
+    height: 100%;
     min-width: 252px;
     border-radius: 16px;
 }
@@ -298,4 +298,19 @@ h1 {
 
 .highlightContainer {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropPlace {
+    width: 252px;
+    border: dotted 2px lightgray;
+    border-radius: 24px;
+    height: 228px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.d-none {
+    display: none;
 }

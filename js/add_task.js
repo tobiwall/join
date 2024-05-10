@@ -1,5 +1,5 @@
 let selectedPriority = "medium";
-let subtasks = [];
+let subtasks;
 let users = [];
 let selectedUsers = [];
 let categorys = [
@@ -29,8 +29,9 @@ async function createTask(status) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
-  if (subtasks.length == 0) {
-    subtasks = "";
+  debugger;
+  if (!subtasks) {
+    subtasks = [];
   }
   if (users.length == 0) {
     users = "";
@@ -47,7 +48,6 @@ async function createTask(status) {
     category: category.value,
     subtasks: subtasks,
   };
-
   await postData("/allTasks", newTask);
 
   window.location.href = "./board.html";

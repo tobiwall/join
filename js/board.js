@@ -140,6 +140,7 @@ function renderToDoCards() {
       generateCardPrio(task, i, taskId);
     }
   }
+  toDoContainer.innerHTML += generateDropPlaceHTML("toDoContainer");
 }
 
 function renderInProgressCards() {
@@ -158,6 +159,7 @@ function renderInProgressCards() {
       generateCardPrio(task, i, taskId);
     }
   }
+  inProgressContainer.innerHTML += generateDropPlaceHTML("inProgressContainer");
 }
 
 function renderAwaitFeedbackCards() {
@@ -178,6 +180,7 @@ function renderAwaitFeedbackCards() {
       generateCardPrio(task, i, taskId);
     }
   }
+  awaitFeedbackContainer.innerHTML += generateDropPlaceHTML("awaitFeedbackContainer");
 }
 
 function renderDoneCards() {
@@ -196,6 +199,7 @@ function renderDoneCards() {
       generateCardPrio(task, i, taskId);
     }
   }
+  doneContainer.innerHTML += generateDropPlaceHTML("doneContainer");
 }
 
 function renderUsers(i, taskId) {
@@ -332,13 +336,24 @@ function closeAddTaskPopup() {
 
 function addHighlight(id) {
   let container = document.getElementById(id);
+  let dropPlace = document.getElementById(`dropPlace${id}`);
+  //container.classList.add("highlightContainer");
+  dropPlace.classList.remove("d-none");
+}
 
-  container.classList.add("highlightContainer");
+function generateDropPlaceHTML(containerStatus) {
+  return /*html*/`
+    <div ondragover="allowDrop(event)" id="dropPlace${containerStatus}" class="dropPlace d-none">
+      <h3>Drop here</h3>
+    </div>
+  `;
 }
 
 function removeHighlight(id) {
   let container = document.getElementById(id);
-  container.classList.remove("highlightContainer");
+  let dropPlace = document.getElementById(`dropPlace${id}`);
+  //container.classList.remove("highlightContainer");
+  dropPlace.classList.add("d-none");
 }
 
 function allowDrop(ev) {
