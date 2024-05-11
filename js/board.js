@@ -349,9 +349,16 @@ function closeAddTaskPopup() {
 
 function addHighlight(id) {
   let container = document.getElementById(id);
-  let dropPlace = document.getElementById(`dropPlace${id}`);
+  let currentContainer = document.getElementById(`dropPlace${id}`);
+  let dropPlace = document.getElementsByClassName("dropPlace");
   //container.classList.add("highlightContainer");
-  dropPlace.classList.remove("d-none");
+  for (let i = 0; i < dropPlace.length; i++) {
+    if (dropPlace[i] === currentContainer) {
+      continue;
+    } else {
+      dropPlace[i].classList.remove("d-none");
+    }
+  }
 }
 
 function generateDropPlaceHTML(containerStatus) {
