@@ -318,8 +318,13 @@ function enableIcons() {
 }
 
 function clearSubtaskInput() {
+  let iconContainer = document.querySelector(".subtask-icon-container");
   input = document.getElementById("subtasksInput");
   input.value = "";
+
+  iconContainer.innerHTML = `
+    <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
+  `;
 }
 
 function changeClearButton(button, newSrc) {

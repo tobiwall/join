@@ -67,6 +67,7 @@ textarea:focus {
 input {
   cursor: pointer;
 	font-size: 20px;
+  min-width: 440px;
 	width: 100%;
   border-radius: 10px;
 	padding: 12px 21px;
@@ -510,9 +511,12 @@ li:hover {
     height: calc(100vh - 350px);
   }
 
-  form {
+  .form-field-container {
     display: flex;
     flex-direction: column;
+  }
+
+  form {
     width: 90%;
   }
 
