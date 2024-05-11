@@ -44,6 +44,7 @@ form {
 textarea {
   cursor: pointer;
 	width: 100%;
+  min-width: 440px;
   margin-top: 8px;
 	height: 120px;
 	border: 1px solid #d1d1d1;
@@ -67,7 +68,6 @@ textarea:focus {
 input {
   cursor: pointer;
 	font-size: 20px;
-  min-width: 440px;
 	width: 100%;
   border-radius: 10px;
 	padding: 12px 21px;
@@ -509,6 +509,10 @@ li:hover {
     left: 35%;
     overflow-y: auto;
     height: calc(100vh - 350px);
+  }
+
+  .textarea {
+    min-width: 0px;
   }
 
   .form-field-container {
