@@ -511,7 +511,7 @@ li:hover {
     height: calc(100vh - 350px);
   }
 
-  .textarea {
+  textarea {
     min-width: 0px;
   }
 
@@ -570,15 +570,15 @@ li:hover {
   .content-addtask {
     position: fixed;
     top: 10%;
-    left: 70%;
-    transform: translate(-70%);
+    left: 5%;
+    transform: translate(0);
     overflow-y: auto;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    width: 60%;
   }
 }
 
