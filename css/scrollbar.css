@@ -8,7 +8,8 @@
 #edit-popup-contentSubtasks::-webkit-scrollbar,
 .popup-user-container::-webkit-scrollbar,
 #scrollable-container::-webkit-scrollbar,
-.add-task-popup::-webkit-scrollbar {
+.add-task-popup::-webkit-scrollbar,
+.info-content::-webkit-scrollbar {
   width: 12px; /* Breite des Scrollbalkens */
   background: #CDCDCD;
   border-radius: 7px;
@@ -24,7 +25,8 @@
 #edit-popup-contentSubtasks::-webkit-scrollbar-track,
 .popup-user-container::-webkit-scrollbar-track,
 #scrollable-container::-webkit-scrollbar-track,
-.add-task-popup::-webkit-scrollbar {
+.add-task-popup::-webkit-scrollbar-track,
+.info-content::-webkit-scrollbar-track {
   background: white;/* Hintergrundfarbe des Scrollbalkens */
   border: 1px solid #CDCDCD;
   border-radius: 7px;
@@ -40,7 +42,8 @@
 #edit-popup-contentSubtasks::-webkit-scrollbar-thumb,
 .popup-user-container::-webkit-scrollbar-thumb,
 #scrollable-container::-webkit-scrollbar-thumb,
-.add-task-popup::-webkit-scrollbar {
+.add-task-popup::-webkit-scrollbar-thumb,
+.info-content::-webkit-scrollbar-thumb {
   cursor: pointer;
   min-height: 30px;
   border: 1px solid #CDCDCD;
@@ -57,7 +60,8 @@
 .edit-task-popup form::-webkit-scrollbar-thumb:hover,#edit-popup-contentSubtasks::-webkit-scrollbar-thumb:hover,
 .popup-user-container::-webkit-scrollbar-thumb:hover,
 #scrollable-container::-webkit-scrollbar-thumb:hover,
-.add-task-popup::-webkit-scrollbar {
+.add-task-popup::-webkit-scrollbar-thumb:hover,
+.info-content::-webkit-scrollbar-thumb:hover{
   background: #29ABE2; /* Farbe des Griffs des Scrollbalkens bei Hover */
 }
 
