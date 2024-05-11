@@ -119,7 +119,7 @@ function renderPopupSubtasks(i) {
   const subtasks = allTasks[i]["subtasks"];
   subtaskContainer.innerHTML = "";
 
-  if (subtasks.length > 0) {
+  if (subtasks) {
     for (let j = 0; j < subtasks.length; j++) {
       const subtask = subtasks[j];
 

@@ -9,6 +9,7 @@ async function init() {
   await loadCurrentUsers();
   await loadAllTasks();
   contacts = await loadAllContacts();
+  orderContacts();
   taskId = findHighestTaskId();
   await renderCards();
   showHeaderUser();
@@ -57,7 +58,8 @@ function showHeaderUser() {
   let names = currentUser.user_name.split(" ");
   let firstNameInitial = names[0].charAt(0).toUpperCase();
   let lastNameInitial = names[names.length - 1].charAt(0).toUpperCase();
-  document.getElementById('headerInitialUser').innerHTML = firstNameInitial + lastNameInitial;
+  document.getElementById("headerInitialUser").innerHTML =
+    firstNameInitial + lastNameInitial;
 }
 
 async function createTaskOnBoard(status) {
@@ -100,7 +102,7 @@ async function createTaskOnBoard(status) {
   selectedUsers = [""];
   renderCards();
   save();
-  renderCards(); 
+  renderCards();
 }
 
 function findHighestTaskId() {
@@ -180,7 +182,9 @@ function renderAwaitFeedbackCards() {
       generateCardPrio(task, i, taskId);
     }
   }
-  awaitFeedbackContainer.innerHTML += generateDropPlaceHTML("awaitFeedbackContainer");
+  awaitFeedbackContainer.innerHTML += generateDropPlaceHTML(
+    "awaitFeedbackContainer"
+  );
 }
 
 function renderDoneCards() {
@@ -250,11 +254,16 @@ function generateCardHTML(task, i, taskId) {
 }
 
 function generateProgressbar(i, task) {
-  let subtaskAmount = task.subtasks.length;
-  let subtaskProgressbarContainer = document.getElementById(`subtaskProgressbarContainer${i}`);
-  
-  if (subtaskAmount > 0) {
-    subtaskProgressbarContainer.innerHTML = `
+  if (!task.subtasks) {
+    return;
+  } else {
+    let subtaskAmount = task.subtasks.length;
+    let subtaskProgressbarContainer = document.getElementById(
+      `subtaskProgressbarContainer${i}`
+    );
+
+    if (subtaskAmount > 0) {
+      subtaskProgressbarContainer.innerHTML = `
       <div class="progressbar">
         <div id="subtaskProgressbar${i}" class="done-subtask-progressbar" style="width:0%"></div>
       </div>
@@ -265,7 +274,8 @@ function generateProgressbar(i, task) {
         <span>Subtasks</span> 
       </div>
     `;
-    updateProgressbar(i);
+      updateProgressbar(i);
+    }
   }
 }
 
@@ -274,9 +284,10 @@ function updateProgressbar(i) {
   let progressbar = document.getElementById(`subtaskProgressbar${i}`);
   let amountSubtaskString = parseInt(subtaskAmount);
   let amountDoneSubtasks = parseInt(
-      document.getElementById(`doneSubtasks${i}`).innerHTML
-    );
-    progressbar.style.width = (amountDoneSubtasks / amountSubtaskString) * 100 + "%";
+    document.getElementById(`doneSubtasks${i}`).innerHTML
+  );
+  progressbar.style.width =
+    (amountDoneSubtasks / amountSubtaskString) * 100 + "%";
 }
 
 function categoryColor(i, taskId) {
@@ -316,19 +327,21 @@ function generateCardPrio(task, i, taskId) {
 }
 
 function openAddTask(status) {
-  let content = document.querySelector('.content');
+  let content = document.querySelector(".content");
   let addTaskTemplate = document.getElementById("addTaskTemplate");
   let closeIcon = document.getElementById("close-task-popup-img");
   closeIcon.style.display = "flex";
-  
+
   addTaskTemplate.style.right = "50%";
   content.style.opacity = "0.4";
 
-  document.querySelector('form').setAttribute('onsubmit', `createTask('${status}')`);
+  document
+    .querySelector("form")
+    .setAttribute("onsubmit", `createTask('${status}')`);
 }
 
 function closeAddTaskPopup() {
-  let content = document.querySelector('.content');
+  let content = document.querySelector(".content");
   let addTaskTemplate = document.getElementById("addTaskTemplate");
   addTaskTemplate.style.right = "-600px";
   content.style.opacity = "1";
@@ -342,7 +355,7 @@ function addHighlight(id) {
 }
 
 function generateDropPlaceHTML(containerStatus) {
-  return /*html*/`
+  return /*html*/ `
     <div ondragover="allowDrop(event)" id="dropPlace${containerStatus}" class="dropPlace d-none">
       <h3>Drop here</h3>
     </div>
@@ -389,7 +402,7 @@ function filterTitle(search) {
   let progress = document.getElementById("inProgressContainer");
   let feedback = document.getElementById("awaitFeedbackContainer");
   let done = document.getElementById("doneContainer");
-  clearTaskContainer(todo, progress, feedback, done)
+  clearTaskContainer(todo, progress, feedback, done);
   displayFilteredTasks(todo, progress, feedback, done, search);
 }
 

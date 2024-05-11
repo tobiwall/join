@@ -123,7 +123,12 @@ function displayEditUserList(j, userList) {
 
 function editUserTemplate(j, contact) {
   const task = allTasks[j];
-  const isChecked = task.users.some((user) => user.name === contact.name);
+  let isChecked;
+  if (!task.users) {
+    isChecked = false;
+  } else {
+    isChecked = task.users.some((user) => user.name === contact.name);
+  }
   return `
   <div class="user-container">
       <div class="user">
@@ -135,13 +140,9 @@ function editUserTemplate(j, contact) {
         </div>
       </div>
       <div>
-        <input type="checkbox" name="assignedUser" value="${
-          contact.name
-        }" data-contact='${JSON.stringify(
-    contact
-  )}' onchange="handleCheckboxChangeEditTask(${j}, event)" ${
-    isChecked ? "checked" : ""
-  }>
+        <input type="checkbox" name="assignedUser" value="${contact.name}" 
+        data-contact='${JSON.stringify(contact)}' 
+        onchange="handleCheckboxChangeEditTask(${j}, event)" ${isChecked ? "checked" : ""}>
       </div>
     </div>
   `;
@@ -163,6 +164,10 @@ function handleCheckboxChangeEditTask(j, event) {
   const contactData = JSON.parse(checkbox.getAttribute("data-contact"));
 
   if (checkbox.checked) {
+    if (!task.users) {
+      let users = [];
+      task.users = users;
+    }
     task.users.push(contactData);
   } else {
     const userIndex = task.users.findIndex(
@@ -272,6 +277,10 @@ function addSubtaskInPopup(taskIndex, taskId) {
   const task = allTasks[taskIndex];
 
   if (subtaskText !== "") {
+    if (!task.subtasks) {
+      let subtasks = [];
+      task.subtasks = subtasks;
+    }
     task.subtasks.push({ name: subtaskText, completed: false });
     input.value = "";
   }
@@ -281,16 +290,17 @@ function addSubtaskInPopup(taskIndex, taskId) {
 function renderEditPopupSubtasks(task, taskIndex, taskId) {
   let subtaskContainer = document.getElementById(`edit-popup-contentSubtasks`);
   subtaskContainer.innerHTML = "";
+  if (task.subtasks) {
+    for (let subtaskId = 0; subtaskId < task.subtasks.length; subtaskId++) {
+      const subtask = task.subtasks[subtaskId];
 
-  for (let subtaskId = 0; subtaskId < task.subtasks.length; subtaskId++) {
-    const subtask = task.subtasks[subtaskId];
-
-    subtaskContainer.innerHTML += editSubtaskTamplete(
-      taskIndex,
-      subtaskId,
-      subtask,
-      taskId
-    );
+      subtaskContainer.innerHTML += editSubtaskTamplete(
+        taskIndex,
+        subtaskId,
+        subtask,
+        taskId
+      );
+    }
   }
 }
 

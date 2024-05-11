@@ -29,10 +29,9 @@ async function createTask(status) {
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
   let subtasksList = document.getElementById("contentSubtasks");
-  debugger;
+  /*debugger;
   if (!subtasks) {
-    subtasks = [];
-  }
+  }*/
   if (users.length == 0) {
     users = "";
   }
