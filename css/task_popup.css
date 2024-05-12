@@ -42,7 +42,7 @@
 }
 
 .task-popup h3 {
-  word-break: break-all;
+  word-break: break-word;
   font-size: 61px;
   font-weight: 700;
 }

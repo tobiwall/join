@@ -61,7 +61,7 @@
 .popup-user-container::-webkit-scrollbar-thumb:hover,
 #scrollable-container::-webkit-scrollbar-thumb:hover,
 .add-task-popup::-webkit-scrollbar-thumb:hover,
-.info-content::-webkit-scrollbar-thumb:hover{
+.info-content::-webkit-scrollbar-thumb:hover {
   background: #29ABE2; /* Farbe des Griffs des Scrollbalkens bei Hover */
 }
 

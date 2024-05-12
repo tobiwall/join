@@ -1,0 +1,23 @@
+.taskRow::-webkit-scrollbar {
+  height: 10px; /* Breite des Scrollbalkens */
+  background: #CDCDCD;
+  border-radius: 7px;
+}
+
+.taskRow::-webkit-scrollbar-track {
+  background: white;/* Hintergrundfarbe des Scrollbalkens */
+  border: 1px solid #CDCDCD;
+  border-radius: 7px;
+}
+
+.taskRow::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  min-height: 30px;
+  border: 1px solid #CDCDCD;
+  background: #2A3647; /* Farbe des Griffs des Scrollbalkens */
+  border-radius: 7px; /* Radius des Griffs des Scrollbalkens */
+}
+
+.taskRow::-webkit-scrollbar-thumb:hover {
+  background: #29ABE2; /* Farbe des Griffs des Scrollbalkens bei Hover */
+}
