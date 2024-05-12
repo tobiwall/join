@@ -121,6 +121,11 @@ body {
     height: 20px;
 }
 
+#password-input img {
+    height: 26px;
+    margin-right: 2px;
+}
+
 .remember-me {
     display: flex;
     padding: 0px 0px 0px 39px;

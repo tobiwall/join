@@ -74,8 +74,13 @@ body {
     font-size: 20px;
 }
 
-.input-container img {
+.sign-icon {
     height: 20px;
+}
+
+.lock-icon {
+    height: 25px;
+    margin-right: 3px;
 }
 
 .hidden-container {
