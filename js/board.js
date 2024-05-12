@@ -143,6 +143,13 @@ function renderToDoCards() {
       generateCardPrio(task, i, taskId);
     }
   }
+  if (toDoContainer.innerHTML === "") {
+    toDoContainer.innerHTML = /*html*/`
+    <div class="noCardsInContainer">
+      <span>No cards todo</span>
+    </div>
+  `;
+  }
   toDoContainer.innerHTML += generateDropPlaceHTML("toDoContainer");
 }
 
@@ -161,6 +168,13 @@ function renderInProgressCards() {
       renderUsers(i, taskId);
       generateCardPrio(task, i, taskId);
     }
+  }
+  if (inProgressContainer.innerHTML === "") {
+    inProgressContainer.innerHTML = /*html*/`
+    <div class="noCardsInContainer">
+      <span>No cards in progress</span>
+    </div>
+  `;
   }
   inProgressContainer.innerHTML += generateDropPlaceHTML("inProgressContainer");
 }
@@ -183,6 +197,13 @@ function renderAwaitFeedbackCards() {
       generateCardPrio(task, i, taskId);
     }
   }
+  if (awaitFeedbackContainer.innerHTML === "") {
+    awaitFeedbackContainer.innerHTML = /*html*/`
+    <div class="noCardsInContainer">
+      <span>No cards awaiting feedback</span>
+    </div>
+  `;
+  }
   awaitFeedbackContainer.innerHTML += generateDropPlaceHTML(
     "awaitFeedbackContainer"
   );
@@ -203,6 +224,13 @@ function renderDoneCards() {
       renderUsers(i, taskId);
       generateCardPrio(task, i, taskId);
     }
+  }
+  if (doneContainer.innerHTML === "") {
+    doneContainer.innerHTML = /*html*/`
+      <div class="noCardsInContainer">
+        <span>No cards done</span>
+      </div>
+    `;
   }
   doneContainer.innerHTML += generateDropPlaceHTML("doneContainer");
 }

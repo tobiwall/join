@@ -317,6 +317,17 @@ h1 {
     z-index: 999;
 }
 
+.noCardsInContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    border: dotted 2px lightgray;
+    border-radius: 24px;
+    margin-top: 16px;
+    padding: 16px;
+}
+
 .d-none {
     display: none;
 }
