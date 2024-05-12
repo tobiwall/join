@@ -3,6 +3,7 @@ let tasksColumn;
 let taskId;
 let doneSubtasks = 0;
 let currentDraggedTask;
+let isMobil = false;
 
 async function init() {
   await includeHTML();
@@ -238,7 +239,7 @@ function renderUsers(i, taskId) {
 
 function generateCardHTML(task, i, taskId) {
   return /*html*/ `
-    <div draggable="true" ondragstart="startDragging(${task["id"]})" class="card" id="card${task["id"]}" onclick="openTaskPopup(${i})">
+    <div draggable="true" ondragstart="startDragging(${task["id"]}); addHighlight('${task.status}');" class="card" id="card${task["id"]}" onclick="openTaskPopup(${i})">
         <div class="small-card-category" id="category${i}_${taskId}">${task["category"]}</div>
         <h3>${task["title"]}</h3>
         <p>${task["description"]}</p>
@@ -348,17 +349,56 @@ function closeAddTaskPopup() {
 }
 
 function addHighlight(id) {
+  if (id === "todo") {
+    index = toDoContainer;
+  }
+  if (id === "progress") {
+    index = inProgressContainer;
+  }
+  if (id === "feedback") {
+    index = awaitFeedbackContainer;
+  }
+  if (id === "done") {
+    index = doneContainer;
+  }
   let container = document.getElementById(id);
-  let currentContainer = document.getElementById(`dropPlace${id}`);
+  let currentContainer = document.getElementById(`dropPlace${index.id}`);
   let dropPlace = document.getElementsByClassName("dropPlace");
-  //container.classList.add("highlightContainer");
-  for (let i = 0; i < dropPlace.length; i++) {
-    if (dropPlace[i] === currentContainer) {
-      continue;
-    } else {
-      dropPlace[i].classList.remove("d-none");
+  let currentMobilWidth = checkIsMobil();
+  if (currentMobilWidth) {
+    return;
+  } else {
+    for (let i = 0; i < dropPlace.length; i++) {
+      if (dropPlace[i] === currentContainer) {
+        continue;
+      } else {
+        dropPlace[i].classList.remove("d-none");
+      }
     }
   }
+}
+
+function addHighlightMobil(id) {
+  if (isMobil) {
+    let container = document.getElementById(id);
+    container.classList.add("highlightContainer");
+  }
+}
+
+function removeHighlightMobil(id) {
+  if (isMobil) {
+    let container = document.getElementById(id);
+    container.classList.remove("highlightContainer");
+  }
+}
+
+function checkIsMobil() {
+  isMobil = false;
+  let screenWidth = window.innerWidth;
+  if (screenWidth < 1551) {
+    isMobil = true;
+  }
+  return isMobil;
 }
 
 function generateDropPlaceHTML(containerStatus) {
