@@ -19,6 +19,7 @@ async function initAddTask() {
   await loadCurrentUsers();
   await loadAllTasks();
   contacts = await loadAllContacts();
+  orderContacts();
   taskId = findHighestTaskId();
   showHeaderUser();
 }
@@ -120,6 +121,7 @@ function addSubtask() {
   let subtaskText = input.value.trim();
 
   if (subtaskText !== "") {
+    subtasks = [];
     subtasks.push({ name: subtaskText, completed: false });
     input.value = "";
   }
