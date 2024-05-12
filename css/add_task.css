@@ -2,6 +2,7 @@
     position: fixed;
     top: 14%;
     left: 20%;
+    padding-right: 8px;
 }
 
 .add-task-top-section{
@@ -566,19 +567,85 @@ li:hover {
   }
 }
 
-@media(max-width: 440px) { 
+@media(max-width: 450px) { 
   .content-addtask {
     position: fixed;
     top: 10%;
-    left: 5%;
+    left: 3%;
     transform: translate(0);
+    width: 95%;
     overflow-y: auto;
+    padding-right: 4px;
   }
 
   form {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 100%;
+  }
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  .prio-button {
+    width: 100px;
+    height: 56px;
+    padding: 10px 4px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 4px 0px #0000001A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .bottom-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items:start;
+    padding-bottom: 16px;
+  }
+
+  .clear-button {
+    cursor: pointer;
+    height: 56px;
+    min-width: 50px;
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .clear-button img {
+    height: 20px;
+  }
+    
+  .task-button {
+    cursor: pointer;
+    height: 56px;
+    background-color: #2A3647;
+    border: 1px solid #2A3647;
+    color: white;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 25.2px;
+  }
+
+  .task-button img {
+    height: 10px;
   }
 }
 
