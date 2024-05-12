@@ -488,7 +488,7 @@ h1 {
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 270px;
+        width: 100%;
         margin: 0px;
     }
 }
