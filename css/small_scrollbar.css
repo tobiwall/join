@@ -1,16 +1,23 @@
-.taskRow::-webkit-scrollbar {
+.taskRow::-webkit-scrollbar,
+.popup-user-container::-webkit-scrollbar,
+.task-popup-subtask-container::-webkit-scrollbar {
   height: 10px; /* Breite des Scrollbalkens */
+  width: 8px;
   background: #CDCDCD;
   border-radius: 7px;
 }
 
-.taskRow::-webkit-scrollbar-track {
+.taskRow::-webkit-scrollbar-track,
+.popup-user-container::-webkit-scrollbar-track,
+.task-popup-subtask-container::-webkit-scrollbar-track {
   background: white;/* Hintergrundfarbe des Scrollbalkens */
   border: 1px solid #CDCDCD;
   border-radius: 7px;
 }
 
-.taskRow::-webkit-scrollbar-thumb {
+.taskRow::-webkit-scrollbar-thumb,
+.popup-user-container::-webkit-scrollbar-thumb,
+.task-popup-subtask-container::-webkit-scrollbar-thumb {
   cursor: pointer;
   min-height: 30px;
   border: 1px solid #CDCDCD;
@@ -18,6 +25,8 @@
   border-radius: 7px; /* Radius des Griffs des Scrollbalkens */
 }
 
-.taskRow::-webkit-scrollbar-thumb:hover {
+.taskRow::-webkit-scrollbar-thumb:hover,
+.popup-user-container::-webkit-scrollbar-thumb:hover,
+.task-popup-subtask-container::-webkit-scrollbar-thumb:hover {
   background: #29ABE2; /* Farbe des Griffs des Scrollbalkens bei Hover */
 }
