@@ -60,14 +60,16 @@ body {
 #scrollable-container {
     max-height: calc(100vh - 96px);
     margin-top: 96px;
-    width: fit-content;
+    min-width: fit-content;
     padding: 15px 24px 15px 24px;
-    overflow-y: auto;
     position: absolute;
-    left: 232px;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
 }
 
 .initialien-round-container {
@@ -84,6 +86,7 @@ body {
 
 #contactBox {
     margin-top: 206px;
+    margin-left: 470px;
     max-width: 700px;
 }
 
@@ -91,11 +94,14 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
+    gap: 32px;
+    overflow: hidden;
+    position: relative;
 }
 
 .min-width-contacts {
     width: calc(100% - 260px);
-    margin-left: 260px;
+    margin-left: 232px;
 }
 
 .alphabet-letter {
@@ -421,13 +427,65 @@ body {
     display: none;
   }
 
+  .x-closing-contact {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 124px;
+    right: 16px;
+  }
+
   .img-blue {
     display: none;
   }
 
-  @media (max-width: 1350px) {
+  @media (max-width: 1450px) {
+    .contact-box-name {
+        font-size: 32px;
+    }
+    
+    #contactBox {
+        max-width: 510px;
+    }
+  }
+
+  @media (max-width: 1300px) {
+    .contact-box-name {
+        font-size: 24px;
+    }
+    
+    #contactBox {
+        max-width: 450px;
+    }
+
+    .edit_contact {
+        max-width: 90%;
+    }
+
+    .add-contact-form input {
+        max-width: 50%;
+    }
+
+    .add-contact-right-section {
+        max-width: fit-content;
+    }
+  }
+
+  @media (max-width: 1150px) {
     #contactBox {
         display: none;
+    }
+
+    #contactBox {
+        margin-left: 16px;
+        margin-right: 16px;
+        align-items: center;
+    }
+
+    .initialien-big-round-container {
+        width: 80px;
+        height: 80px;
+        font-size: 38px;
     }
   }
 
@@ -441,5 +499,33 @@ body {
 
     #scrollable-container {
         position: unset;
+    }
+
+    .contact-box-header {
+        flex-direction: column;
+    }
+
+    .blue-vertical-line-contacts {
+        display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #scrollable-container {
+        padding: 15px 4px 15px 4px;
+    }
+
+    .contact {
+        padding: 15px 0 15px 0;
+    }
+
+    .initialien-round-container {
+        margin-right: 8px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .contact-email {
+        font-size: 14px;
     }
   }

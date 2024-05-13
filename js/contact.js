@@ -293,7 +293,7 @@ function generateContactAlphabetListHTML(foundcontact) {
  */
 function generateContactListHTML(contact) {
   return /*html*/ `
-        <div class="contact" onclick="checkContactIsMobile(); openContact(${contact.id});">
+        <div class="contact" onclick="checkContactIsMobile(); openContact(${contact.id}); showClosingX();">
             <div 
             class="initialien-round-container" 
             style="background-color: ${contact.color};">${contact.initials}
@@ -318,45 +318,56 @@ function findContactById(id) {
   return null;
 }
 
-function openContact(id) {
+async function openContact(id) {
   let contactContainer = document.getElementById('contact-container');
   let klickedContact = findContactById(id);
   let contactBoxName = document.getElementById("contactBoxName");
   let contactInformation = document.getElementById("contactInformation");
   if (contactMobile) {
-    showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation);
-
+    await showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation);
     let contactBox = document.getElementById('contactBox');
     let scrollableContainer = document.getElementById('scrollable-container');
-    contactBox.style.display = 'flex';
     scrollableContainer.style.display = 'none';
+    contactBox.style.display = 'flex';
   } else {
   showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation);
   }
 }
 
-function showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation) {
-  // Deaktiviere den horizontalen Scrollbalken während der Animation
+async function showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation) {
   document.body.style.overflowX = "hidden";
 
-  // Entferne das Animationseigenschaft, falls es gesetzt ist
   contactContainer.style.animation = "";
 
-  // Füge eine kurze Verzögerung hinzu, um sicherzustellen, dass die Animation neu angewendet wird
   setTimeout(function() {
-    // Füge die Animation hinzu
     contactContainer.style.animation = "slideFromRightToLeft 0.5s forwards";
-  }, 50); // Eine kurze Verzögerung, um sicherzustellen, dass die Animation neu angewendet wird
+  }, 50);
 
-  // Füge ein Ereignis hinzu, um den horizontalen Scrollbalken nach Abschluss der Animation wieder zu aktivieren
   contactContainer.addEventListener("animationend", function() {
-    document.body.style.overflowX = "auto"; // oder "scroll", je nach Bedarf
-  }, { once: true }); // einmaliges Anhören des Ereignisses
-
+    document.body.style.overflowX = "auto";
+  }, { once: true });
   contactBoxName.innerHTML = "";
   contactBoxName.innerHTML += generateContactBoxHTML(klickedContact, id);
   contactInformation.innerHTML = "";
   contactInformation.innerHTML += displayContactInfo(klickedContact);
+}
+
+function showClosingX() {
+  let xClosingContact = document.getElementById('xClosingContact');
+  if (contactMobile) {
+    xClosingContact.classList.remove('d-none')
+  } else {
+    xClosingContact.classList.add('d-none')
+  }
+}
+
+function closeContactContainer() {
+  let contactBox = document.getElementById('contactBox');
+  let scrollableContainer = document.getElementById('scrollable-container');
+  let xClosingContact = document.getElementById('xClosingContact');
+  contactBox.style.display = 'none';
+  scrollableContainer.style.display = 'flex';
+  xClosingContact.classList.add('d-none');
 }
 
 function closeContactBox() {
@@ -549,9 +560,21 @@ async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
   closeContactPopup();
 }
 
+window.addEventListener("resize", function() {
+  checkContactIsMobile();
+})
+
 function checkContactIsMobile() {
   let screenWidthContacts = window.innerWidth;
-  if (screenWidthContacts < 1351) {
+  let contactBox = document.getElementById('contactBox');
+  let scrollableContainer = document.getElementById('scrollable-container');
+  if (screenWidthContacts < 1151) {
     contactMobile = true;
+    contactBox.style.display = 'none';
+    scrollableContainer.style.display = 'flex';
+  } else {
+    contactMobile = false;
+    contactBox.style.display = 'flex';
+    showClosingX();
   }
 }
