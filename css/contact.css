@@ -83,14 +83,14 @@ body {
 }
 
 #contactBox {
-    position: absolute;
-    left: 743px;
-    top: 206px;
+    margin-top: 206px;
     max-width: 600px;
 }
 
 .flex-box {
+    height: 100vh;
     display: flex;
+    justify-content: center;
 }
 
 .min-width-contacts {
@@ -423,4 +423,23 @@ body {
 
   .img-blue {
     display: none;
+  }
+
+  @media (max-width: 1350px) {
+    #contactBox {
+        display: none;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .min-width-contacts {
+        width: 100%;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    #scrollable-container {
+        position: unset;
+    }
   }

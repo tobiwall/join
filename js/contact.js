@@ -118,6 +118,7 @@ let contacts = [
 let firstLetterArray = [];
 let foundContacts = [];
 let openEditContactId = [];
+let contactMobile = false;
 
 async function initContact() {
   contacts = await loadAllContacts();
@@ -292,7 +293,7 @@ function generateContactAlphabetListHTML(foundcontact) {
  */
 function generateContactListHTML(contact) {
   return /*html*/ `
-        <div class="contact" onclick="openContact(${contact.id})">
+        <div class="contact" onclick="checkContactIsMobile(); openContact(${contact.id});">
             <div 
             class="initialien-round-container" 
             style="background-color: ${contact.color};">${contact.initials}
@@ -322,7 +323,19 @@ function openContact(id) {
   let klickedContact = findContactById(id);
   let contactBoxName = document.getElementById("contactBoxName");
   let contactInformation = document.getElementById("contactInformation");
+  if (contactMobile) {
+    showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation);
 
+    let contactBox = document.getElementById('contactBox');
+    let scrollableContainer = document.getElementById('scrollable-container');
+    contactBox.style.display = 'flex';
+    scrollableContainer.style.display = 'none';
+  } else {
+  showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation);
+  }
+}
+
+function showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation) {
   // Deaktiviere den horizontalen Scrollbalken während der Animation
   document.body.style.overflowX = "hidden";
 
@@ -534,4 +547,11 @@ async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
   await updateContacts(contact, id);
   renderContacts();
   closeContactPopup();
+}
+
+function checkContactIsMobile() {
+  let screenWidthContacts = window.innerWidth;
+  if (screenWidthContacts < 1351) {
+    contactMobile = true;
+  }
 }
