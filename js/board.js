@@ -537,3 +537,8 @@ function filteredDone(task, doneContainer, i, taskId) {
     generateCardPrio(task, i, taskId);
   }
 }
+
+async function logOut() {
+  await deleteData("/currentUser");
+  window.location.href = './index.html';
+}
