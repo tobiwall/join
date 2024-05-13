@@ -308,49 +308,36 @@ select:focus {
   line-height: 25.2px;
 }
 
+.category-input {
+  margin-bottom: 0px;
+  position: relative;
+}
+
 .categories-container {
   position: relative;
-  background-color: white;
-  cursor: pointer;
-	font-size: 20px;
-	width: 100%;
-  border-radius: 10px;
-	padding: 12px 21px;
-	max-height: 48px;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 24px;
-  border: 1px solid #D1D1D1;
-  display: flex;
-  align-items: center;
 }
 
-.categories-container:focus {
-  border-color: #29ABE2;
-}
-
-.categories-container img {
+.categories-icon {
   position: absolute;
   top: 50%;
   right: 10px;
 }
 
 .dropdown-categories {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   background-color: white;
   z-index: 50;
   width: 100%;
   border-radius: 12px 8px 8px 12px;
-  border: 1px solid #D9D9D9;
   max-height: 120px;
   overflow-y: auto;
 }
 
 .task-category {
   font-size: 16px;
-  padding: 8px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
 }
@@ -358,10 +345,6 @@ select:focus {
 .task-category:hover {
   cursor: pointer;
   background-color: #D9D9D9;
-}
-
-.category-input {
-  margin-bottom: 24px;
 }
 
 .subtask-container {
@@ -377,14 +360,14 @@ select:focus {
   gap: 4px;
 }
 
-.subtask-icon-container div {
+.subtask-icon-container img:hover {
   cursor: pointer;
-  height: 24px;
-}
-
-.subtask-icon-container div:hover {
   background-color: #D9D9D9;
   border-radius: 12px;
+}
+
+.subtask-icon-container div {
+  height: 24px;
 }
 
 #contentSubtasks {
@@ -524,6 +507,24 @@ li:hover {
 .task-button:hover {
   background-color: #29ABE2;
   border: 1px solid #29ABE2;
+}
+
+.added-task-popup {
+  position: fixed;
+  bottom: -10%;
+  right: 50%;
+  transform: translate(50%);
+  transition: .5s ease;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 25px 10px;
+  border-radius: 20px;
+  background-color: #2A3647;
+  color: white;
+  font-size: 20px;
 }
 
 @media(max-width: 1350px) { 

@@ -30,10 +30,7 @@ async function createTask(status) {
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
-  let subtasksList = document.getElementById("contentSubtasks");
-  /*debugger;
-  if (!subtasks) {
-  }*/
+
   if (users.length == 0) {
     users = "";
   }
@@ -50,8 +47,66 @@ async function createTask(status) {
     subtasks: subtasks,
   };
   await postData("/allTasks", newTask);
-
+  addedTaskAnimation()
   window.location.href = "./board.html";
+}
+
+function addedTaskAnimation() {
+  let addedTaskPopup = document.getElementById('addedTaskPopup');
+
+  addedTaskPopup.style.bottom = '50%';
+  setTimeout(() => {
+    addedTaskPopup.style.bottom = '110%';
+  }, 1000);
+}
+
+function validateForm(event) {
+  event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+
+  let title = document.getElementById("taskTitle");
+  let dueDate = document.getElementById("taskDate");
+  let category = document.getElementById("categoryInput");
+  let titleError = document.getElementById("errorMessageTitle");
+  let dateError = document.getElementById("errorMessageDate");
+  let categoryError = document.getElementById("errorMessageCategory");
+
+  let isValid = true;
+
+  if (title.value.trim() === "") {
+      title.style.border = "1px solid #FF8190";
+      titleError.innerText = "Please fill out this field.";
+      isValid = false;
+  } else {
+      title.style.border = "";
+      titleError.innerText = "";
+  }
+
+  if (dueDate.value === "") {
+      dueDate.style.border = "1px solid #FF8190";
+      dateError.innerText = "Please fill out this field.";
+      isValid = false;
+  } else {
+      dueDate.style.border = "";
+      dateError.innerText = "";
+  }
+
+  if (category.value.trim() === "") {
+      category.style.border = "1px solid #FF8190";
+      categoryError.innerText = "Please fill out this field.";
+      isValid = false;
+  } else {
+      category.style.border = "";
+      categoryError.innerText = "";
+  }
+
+  if (isValid) {
+      addedTaskAnimation();
+      setTimeout(() => {
+          createTask('todo');
+      }, 1500);
+  }
+
+  return isValid;
 }
 
 function clearAddTaskInput() {
@@ -139,6 +194,27 @@ function renderSubtasks() {
     const task = subtasks[i];
     subtasksList.innerHTML += subtaskTemplate(task, i);
   }
+}
+
+function enableIcons() {
+  let iconContainer = document.querySelector(".subtask-icon-container");
+  iconContainer.querySelector("img").removeAttribute("onclick");
+
+  iconContainer.innerHTML = `
+    <div onclick="clearSubtaskInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
+    <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
+    <div onclick="addSubtask()"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
+  `;
+}
+
+function clearSubtaskInput() {
+  let iconContainer = document.querySelector(".subtask-icon-container");
+  input = document.getElementById("subtasksInput");
+  input.value = "";
+
+  iconContainer.innerHTML = `
+    <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
+  `;
 }
 
 function subtaskTemplate(task, i) {
@@ -322,27 +398,6 @@ function renderAssignedUser() {
   }
 }
 
-function enableIcons() {
-  let iconContainer = document.querySelector(".subtask-icon-container");
-  iconContainer.querySelector("img").removeAttribute("onclick");
-
-  iconContainer.innerHTML = `
-    <div onclick="clearSubtaskInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
-    <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
-    <div onclick="addSubtask()"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
-  `;
-}
-
-function clearSubtaskInput() {
-  let iconContainer = document.querySelector(".subtask-icon-container");
-  input = document.getElementById("subtasksInput");
-  input.value = "";
-
-  iconContainer.innerHTML = `
-    <img src="./assets/icons/subtask_icons/add.png" onclick="enableIcons()"></img>
-  `;
-}
-
 function changeClearButton(button, newSrc) {
   let img = button.querySelector("img");
   img.src = newSrc;
@@ -353,7 +408,6 @@ function resetClearButton(button, newSrc) {
   img.src = newSrc;
 }
 
-/*
 function renderCategories() {
   let categoryContainer = document.getElementById('dropdown-categories');
   categoryContainer.innerHTML = '';
@@ -370,9 +424,12 @@ function renderCategories() {
 }
 
 function selectCategory(categoryText) {
-  let categoryContainer = document.getElementById('selectedCategory');
+  let categoryInput = document.getElementById('categoryInput');
+  let categoryList = document.getElementById("dropdown-categories");
 
-  categoryContainer.innerHTML = categoryText;
+  categoryInput.value = categoryText;
+  hideCategories();
+  categoryList.style.border = "0px";
 }
 
 function openCategories() {
@@ -398,4 +455,3 @@ function hideCategories() {
   icon.style.transform = "rotate(0deg)";
   categoryList.innerHTML = "";
 }
-*/

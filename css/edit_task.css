@@ -24,14 +24,14 @@
   gap: 4px;
 }
 
-.edit-subtask-icon-container div {
+.edit-subtask-icon-container img:hover {
   cursor: pointer;
-  height: 24px;
-}
-
-.edit-subtask-icon-container div:hover {
   background-color: #D9D9D9;
   border-radius: 12px;
+}
+
+.edit-subtask-icon-container div {
+  height: 24px;
 }
 
 .edit-task-popup-top {

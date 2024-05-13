@@ -260,15 +260,20 @@ function enableSubtaskIcons(taskIndex, taskId) {
   iconContainer.querySelector("img").removeAttribute("onclick");
 
   iconContainer.innerHTML = `
-    <div onclick="clearEditSubtaskInput()"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
+    <div onclick="clearEditSubtaskInput(${taskIndex}, ${taskId})"><img src="./assets/icons/subtask_icons/close.png" alt="X"></div>
     <div><img src="./assets/icons/mini_seperator.png" alt="/"></div>
     <div onclick="addSubtaskInPopup(${taskIndex}, ${taskId})"><img src="./assets/icons/subtask_icons/check.png" alt="ADD" ></div>
   `;
 }
 
-function clearEditSubtaskInput() {
+function clearEditSubtaskInput(taskIndex, taskId) {
   input = document.getElementById("editSubtasksInput");
+  let iconContainer = document.querySelector(".edit-subtask-icon-container");
+
   input.value = "";
+  iconContainer.innerHTML = `
+    <img src="./assets/icons/subtask_icons/add.png" onclick="enableSubtaskIcons(${taskIndex}, ${taskId})"></img>
+  `;
 }
 
 function addSubtaskInPopup(taskIndex, taskId) {

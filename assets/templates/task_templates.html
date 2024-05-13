@@ -2,13 +2,16 @@
     <h2>Add Task</h1>
     <img id="close-task-popup-img" onclick="closeAddTaskPopup()" class="close-task-popup-img" src="./assets/icons/Close.png" alt="" style="display: none;">
 </div>
-<form onsubmit="createTask('todo'); return false;">
+<form>
 
     <div class="form-field-container">
         <div class="form-left-section">
             <div>
-                <label>Title<span style="color: #FF8190">*</span></label>
-                <input required id="taskTitle" type="text" placeholder="Enter a title">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <label>Category<span style="color: #FF8190">*</span></label>
+                    <div id="errorMessageTitle" style="color: #FF8190; margin-top: 2px;"></div>
+                </div>
+                <input id="taskTitle" type="text" placeholder="Enter a title">
             </div>
             <div>
                 <label>Discription</label>
@@ -31,8 +34,11 @@
         </div>
         <div class="form-right-section">
             <div>
-                <label>Due date<span style="color: #FF8190">*</span></label>
-                <input required id="taskDate" type="date">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <label>Due date<span style="color: #FF8190">*</span></label>
+                    <div id="errorMessageDate" style="color: #FF8190; margin-top: 2px;"></div>
+                </div>
+                <input id="taskDate" type="date">
             </div>
             <div class="prio-container">
                 <label>Prio</label>
@@ -42,24 +48,16 @@
                     <button type="button" class="prio-button" id="low" onclick="toggleButton('low')">Low<img id="lowImg" src="./assets/icons/prio_buttons/prio_low_green.png" alt=""></button>
                 </div>
             </div>
-            <div>
-                <label>Category<span style="color: #FF8190">*</span></label>
-                <select required name="category-input" id="categoryInput" class="category-input">
-                    <option value="1" disabled selected hidden>Select task category</option>
-                    <option value="User Story">User Story</option>
-                    <option value="Technical Task">Technical Task</option>
-                    <option value="Feature">Feature</option>
-                    <option value="Bug">Bug</option>
-                    <option value="Documentation">Documentation</option>
-                    <option value="Design">Design</option>
-                    <option value="Testing QA">Testing QA</option>
-                    <option value="Analyse/Research">Analyse/Research</option>
-                </select>
-            <!--
-                <label>Category<span style="color: #FF8190">*</span></label>
-                <div required class="categories-container" id="selectedCategory" onclick="openCategories()"><span>Select task category</span><img id="openCategoriesIcon" class="categories-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="openCategories()"></div>
+            <div style="position: relative;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <label>Category<span style="color: #FF8190">*</span></label>
+                    <div id="errorMessageCategory" style="color: #FF8190; margin-top: 2px;"></div>
+                </div>
+                <div class="categories-container" id="selectedCategory">
+                    <input readonly id="categoryInput" class="category-input" type="text" placeholder="Select task category" onclick="openCategories()">
+                    <img id="openCategoriesIcon" class="categories-icon" src="./assets/icons/arrow_drop_down.png" alt="OPEN" onclick="openCategories()">
+                </div>
                 <div id="dropdown-categories" class="dropdown-categories"></div>
-            -->    
             </div>
             <div>
                 <label>Subtasks</label>
@@ -77,7 +75,8 @@
         <span><span style="color: #FF8190">*</span>This field is required</span>
         <div>
             <button class="clear-button" onclick="clearAddTaskInput()" onmouseover="changeClearButton(this, './assets/icons/cancel_blue.png')" onmouseout="resetClearButton(this, './assets/icons/subtask_icons/close.png')">CLEAR<img src="./assets/icons/subtask_icons/close.png" alt="X"></button>
-            <button type="submit" id="createTaskButton" class="task-button">CREATE TASK<img src="./assets/icons/check_white1.png" alt="OK"></button>
+            <button id="createTaskButton" class="task-button" onclick="validateForm(event)">CREATE TASK<img src="./assets/icons/check_white1.png" alt="CREATE TASK"></button>
         </div>
     </div>
 </form>
+<div id="addedTaskPopup" class="added-task-popup"><span>Task added to Board</span><img src="./assets/icons/sidebar_icons/board_icon.png" alt="BOARD"></div>
