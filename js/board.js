@@ -364,9 +364,7 @@ function openAddTask(status) {
   addTaskTemplate.style.right = "50%";
   content.style.opacity = "0.4";
 
-  document
-    .querySelector("form")
-    .setAttribute("onsubmit", `createTask('${status}')`);
+  validateForm(null, status);
 }
 
 function closeAddTaskPopup() {

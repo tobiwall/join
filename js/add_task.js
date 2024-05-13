@@ -84,13 +84,15 @@ function displayNewCard(newTask, container) {
 function addedTaskAnimation() {
   let addedTaskPopup = document.getElementById('addedTaskPopup');
 
+  addedTaskPopup.style.display = 'flex';
   addedTaskPopup.style.bottom = '50%';
   setTimeout(() => {
     addedTaskPopup.style.bottom = '110%';
   }, 1000);
+  addedTaskPopup.style.display = 'none';
 }
 
-function validateForm(event) {
+function validateForm(event, status) {
   event.preventDefault(); // Verhindert das Standardverhalten des Buttons
 
   let title = document.getElementById("taskTitle");
@@ -132,7 +134,7 @@ function validateForm(event) {
   if (isValid) {
       addedTaskAnimation();
       setTimeout(() => {
-          createTask('todo');
+          createTask(status);
       }, 1500);
   }
 
