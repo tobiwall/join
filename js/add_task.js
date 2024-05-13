@@ -57,16 +57,28 @@ async function createTask(status) {
 }
 
 function renderNewCard(newTask) {
+  let toDoContainer = document.getElementById("toDoContainer");
+  let inProgressContainer = document.getElementById("inProgressContainer");
+  let awaitFeedbackContainer = document.getElementById("awaitFeedbackContainer");
   if (newTask.status === 'todo') {
-    let toDoContainer = document.getElementById("toDoContainer");
-    let taskId = newTask.id;
-    const i = allTasks.findIndex(task => task.id === newTask.id);
-    toDoContainer.innerHTML += generateCardHTML(newTask, i, taskId);
-    categoryColor(i, taskId);
-    generateProgressbar(i, newTask);
-    renderUsers(i, taskId);
-    generateCardPrio(newTask, i, taskId);
+    displayNewCard(newTask, toDoContainer);
   }
+  if (newTask.status === 'progress') {
+    displayNewCard(newTask, inProgressContainer);
+  }
+  if (newTask.status === 'feedback') {
+    displayNewCard(newTask, awaitFeedbackContainer);
+  }
+}
+
+function displayNewCard(newTask, container) {
+  let taskId = newTask.id;
+  const i = allTasks.findIndex(task => task.id === newTask.id);
+  container.innerHTML += generateCardHTML(newTask, i, taskId);
+  categoryColor(i, taskId);
+  generateProgressbar(i, newTask);
+  renderUsers(i, taskId);
+  generateCardPrio(newTask, i, taskId);
 }
 
 function addedTaskAnimation() {
