@@ -332,7 +332,7 @@ h1 {
     display: none;
 }
 
-@media(max-width: 1550px) {
+@media(max-width: 1700px) {
     .content {
         position: fixed;
         overflow-y: scroll;
