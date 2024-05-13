@@ -364,7 +364,7 @@ function openAddTask(status) {
   addTaskTemplate.style.right = "50%";
   content.style.opacity = "0.4";
 
-  validateForm(null, status);
+  document.getElementById("createTaskButton").setAttribute("onclick", `validateForm(event, '${status}')`);
 }
 
 function closeAddTaskPopup() {
