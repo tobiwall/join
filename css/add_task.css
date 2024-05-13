@@ -509,7 +509,7 @@ li:hover {
     top: 14%;
     left: 35%;
     overflow-y: auto;
-    height: calc(100vh - 350px);
+    height: 70%;
   }
 
   textarea {
@@ -570,7 +570,7 @@ li:hover {
 @media(max-width: 450px) { 
   .content-addtask {
     position: fixed;
-    top: 10%;
+    top: 18%;
     left: 3%;
     transform: translate(0);
     width: 95%;

@@ -367,7 +367,7 @@ h2 {
 
 @media(max-width: 900px) {
   .summary-content {
-    top: 10%;
+    top: 18%;
     left: 50%;
     transform: translate(-50%);
   }

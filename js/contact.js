@@ -322,8 +322,24 @@ function openContact(id) {
   let klickedContact = findContactById(id);
   let contactBoxName = document.getElementById("contactBoxName");
   let contactInformation = document.getElementById("contactInformation");
-  contactContainer.style.animation = contactContainer.style.animation ? "" : "slideFromRightToLeft 0.5s forwards";
-  
+
+  // Deaktiviere den horizontalen Scrollbalken während der Animation
+  document.body.style.overflowX = "hidden";
+
+  // Entferne das Animationseigenschaft, falls es gesetzt ist
+  contactContainer.style.animation = "";
+
+  // Füge eine kurze Verzögerung hinzu, um sicherzustellen, dass die Animation neu angewendet wird
+  setTimeout(function() {
+    // Füge die Animation hinzu
+    contactContainer.style.animation = "slideFromRightToLeft 0.5s forwards";
+  }, 50); // Eine kurze Verzögerung, um sicherzustellen, dass die Animation neu angewendet wird
+
+  // Füge ein Ereignis hinzu, um den horizontalen Scrollbalken nach Abschluss der Animation wieder zu aktivieren
+  contactContainer.addEventListener("animationend", function() {
+    document.body.style.overflowX = "auto"; // oder "scroll", je nach Bedarf
+  }, { once: true }); // einmaliges Anhören des Ereignisses
+
   contactBoxName.innerHTML = "";
   contactBoxName.innerHTML += generateContactBoxHTML(klickedContact, id);
   contactInformation.innerHTML = "";

@@ -224,16 +224,36 @@ h1 {
     }
 
     .signup-card {
-        padding: 32px 80px;
+        padding: 24px 50px;
     }
 
     .input-container {
-        width: 100%;
+        width: 280px;
     }
 }
 
 @media(max-width: 500px) {
+    .logo {
+        left: 15px;
+        top: 15px;
+        height: 60px;
+    }
+
+    .signup-card {
+        padding: 10px 14px;
+    }
+
+    .input-container {
+        padding: 12px 21px;
+        width: 240px;
+    }
+    
+    .input-container input {
+        width: 100%;
+        font-size: 14px;
+    }
+
     h1 {
-        font-size: 47px;
+        font-size: 35px;
     }
 }
