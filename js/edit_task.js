@@ -350,8 +350,10 @@ function addChangedPopupSubtask(taskIndex, subtaskId, taskId) {
 }
 
 function closeEditTaskPopup() {
+  let taskPopup = document.getElementById("taskPopup");
   let taskContainer = document.getElementById("editTaskPopup");
   taskContainer.style.display = "none";
+  taskPopup.style.display = "block";
   let content = document.querySelector(".content");
   content.style.opacity = "1";
 }
