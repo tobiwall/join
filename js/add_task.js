@@ -255,6 +255,18 @@ function hideUsers() {
   userList.innerHTML = "";
 }
 
+document.addEventListener("click", function(event) {
+  const dropdown = document.getElementById("dropdown-users");
+  const assignedContainer = document.getElementById("assignedContainer");
+  const isClickInsideDropdown = dropdown.contains(event.target);
+  const isClickInsideAssignedContainer = assignedContainer.contains(event.target);
+
+  if (!isClickInsideDropdown && !isClickInsideAssignedContainer) {
+      hideUsers();
+      dropdown.style.border = "0px";
+  }
+});
+
 function handleCheckboxChange(event) {
   const checkbox = event.target;
   const contactData = JSON.parse(checkbox.getAttribute("data-contact"));
