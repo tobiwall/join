@@ -47,8 +47,26 @@ async function createTask(status) {
     subtasks: subtasks,
   };
   await postData("/allTasks", newTask);
-  addedTaskAnimation()
-  window.location.href = "./board.html";
+  addedTaskAnimation();
+  if (window.location.href === 'http://127.0.0.1:5500/add_task.html' || window.location.href === 'https://join-165.developerakademie.net/join_165/add_task.html') {
+    window.location.href = "./board.html";
+  } else {
+    closeAddTaskPopup();
+    renderNewCard(newTask);
+  }
+}
+
+function renderNewCard(newTask) {
+  if (newTask.status === 'todo') {
+    let toDoContainer = document.getElementById("toDoContainer");
+    let taskId = newTask.id;
+    const i = allTasks.findIndex(task => task.id === newTask.id);
+    toDoContainer.innerHTML += generateCardHTML(newTask, i, taskId);
+    categoryColor(i, taskId);
+    generateProgressbar(i, newTask);
+    renderUsers(i, taskId);
+    generateCardPrio(newTask, i, taskId);
+  }
 }
 
 function addedTaskAnimation() {
