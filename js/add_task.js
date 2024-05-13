@@ -121,7 +121,9 @@ function addSubtask() {
   let subtaskText = input.value.trim();
 
   if (subtaskText !== "") {
-    subtasks = [];
+    if (!subtasks) {
+      subtasks = [];
+    }
     subtasks.push({ name: subtaskText, completed: false });
     input.value = "";
   }
