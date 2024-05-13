@@ -2,7 +2,7 @@ let selectedPriority = "medium";
 let subtasks;
 let users = [];
 let selectedUsers = [];
-let categorys = [
+let categories = [
   "User Story",
   "Technical Task",
   "Feature",
@@ -13,6 +13,7 @@ let categorys = [
   "Analyse/Research",
 ];
 let assignedContainerClicked = false;
+let categoriesContainerClicked = false;
 
 async function initAddTask() {
   await includeHTML();
@@ -339,16 +340,17 @@ function resetClearButton(button, newSrc) {
   let img = button.querySelector("img");
   img.src = newSrc;
 }
+
 /*
-function renderCategorys() {
-  let categoryContainer = document.getElementById('dropdown-categorys');
+function renderCategories() {
+  let categoryContainer = document.getElementById('dropdown-categories');
   categoryContainer.innerHTML = '';
 
-  for (let i = 0; i < categorys.length; i++) {
-    const category = categorys[i];
+  for (let i = 0; i < categories.length; i++) {
+    const category = categories[i];
     
     categoryContainer.innerHTML += `
-      <div class="task-category" onclick="selectCategory(${category})">
+      <div class="task-category" onclick="selectCategory('${category}')">
         ${category}
       </div>
     `;
@@ -359,5 +361,29 @@ function selectCategory(categoryText) {
   let categoryContainer = document.getElementById('selectedCategory');
 
   categoryContainer.innerHTML = categoryText;
+}
+
+function openCategories() {
+  let categoryList = document.getElementById("dropdown-categories");
+  let icon = document.getElementById("openCategoriesIcon");
+  icon.style.transform = "rotate(180deg)";
+  categoryList.innerHTML = "";
+  if (!categoriesContainerClicked) {
+    categoriesContainerClicked = true;
+    categoryList.style.border = "1px solid #CDCDCD";
+    renderCategories();
+  } else {
+    categoriesContainerClicked = false;
+    categoryList.style.border = "0px";
+    hideCategories();
+  }
+}
+
+function hideCategories() {
+  categoriesContainerClicked = false;
+  let categoryList = document.getElementById("dropdown-categories");
+  let icon = document.getElementById("openCategoriesIcon");
+  icon.style.transform = "rotate(0deg)";
+  categoryList.innerHTML = "";
 }
 */
