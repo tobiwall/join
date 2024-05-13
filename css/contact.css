@@ -433,6 +433,11 @@ body {
     position: absolute;
     top: 124px;
     right: 16px;
+    z-index: 50;
+  }
+
+  .x-closing-contact:hover {
+    cursor: pointer;
   }
 
   .img-blue {
@@ -486,6 +491,10 @@ body {
         width: 80px;
         height: 80px;
         font-size: 38px;
+    }
+
+    #scrollable-container {
+        padding: 15px 8px 15px 8px;
     }
   }
 

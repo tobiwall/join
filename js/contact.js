@@ -560,18 +560,16 @@ async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
   closeContactPopup();
 }
 
-window.addEventListener("resize", function() {
-  checkContactIsMobile();
-})
-
 function checkContactIsMobile() {
   let screenWidthContacts = window.innerWidth;
   let contactBox = document.getElementById('contactBox');
   let scrollableContainer = document.getElementById('scrollable-container');
+  let xClosingContact = document.getElementById('xClosingContact');
   if (screenWidthContacts < 1151) {
     contactMobile = true;
     contactBox.style.display = 'none';
     scrollableContainer.style.display = 'flex';
+    xClosingContact.classList.add('d-none')
   } else {
     contactMobile = false;
     contactBox.style.display = 'flex';
