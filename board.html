@@ -54,28 +54,31 @@
         <div class="board">
           <div class="taskContainer">
             <div class="table-head">
-              <span>To do</span>
+              <span style="color: #2A3647;">To do</span>
               <img onclick="openAddTask('todo')" class="table-plus" src="./assets/icons/plusbutton.png" alt="" />
             </div>
             <div class="taskRow" id="toDoContainer" ondrop="moveTo('todo', 'toDoContainer'); removeHighlightMobil('toDoContainer')" ondragover="allowDrop(event); addHighlightMobil('toDoContainer');" ondragleave="removeHighlightMobil('toDoContainer')"></div>
           </div>
+          <div class="board-seperator"></div>
           <div class="taskContainer">
             <div class="table-head">
-              <span>In progress</span>
+              <span style="color: #2A3647;">In progress</span>
               <img onclick="openAddTask('progress')" class="table-plus" src="./assets/icons/plusbutton.png" alt="" />
             </div>
             <div class="taskRow" id="inProgressContainer" ondrop="moveTo('progress', 'inProgressContainer'); removeHighlightMobil('inProgressContainer');" ondragover="allowDrop(event); addHighlightMobil('inProgressContainer');" ondragleave="removeHighlightMobil('inProgressContainer')"></div>
           </div>
+          <div class="board-seperator"></div>
           <div class="taskContainer">
             <div class="table-head">
-              <span>Await feedback</span>
+              <span style="color: #2A3647;">Await feedback</span>
               <img onclick="openAddTask('feedback')" class="table-plus" src="./assets/img/plus.svg" alt="" />
             </div>
             <div class="taskRow" id="awaitFeedbackContainer" ondrop="moveTo('feedback', 'awaitFeedbackContainer'); removeHighlightMobil('awaitFeedbackContainer');" ondragover="allowDrop(event); addHighlightMobil('awaitFeedbackContainer');" ondragleave="removeHighlightMobil('awaitFeedbackContainer')"></div>
           </div>
+          <div class="board-seperator"></div>
           <div class="taskContainer">
             <div class="table-head">
-              <span>Done</span>
+              <span style="color: #2A3647;">Done</span>
             </div>
             <div class="taskRow" id="doneContainer" ondrop="moveTo('done', 'doneContainer'); removeHighlightMobil('doneContainer');" ondragover="allowDrop(event); addHighlightMobil('doneContainer');" ondragleave="removeHighlightMobil('doneContainer')"></div>
           </div>
