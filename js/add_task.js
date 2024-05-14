@@ -92,7 +92,7 @@ function addedTaskAnimation() {
 function showPopupAndAnimate() {
   let addedTaskPopup = document.getElementById('addedTaskPopup');
 
-  addedTaskPopup.style.bottom = '50%';
+  addedTaskPopup.style.bottom = '50vh';
   setTimeout(() => {
       addedTaskPopup.style.bottom = '110%';
   }, 1000);
