@@ -494,12 +494,12 @@ li:hover {
 
 .added-task-popup {
   position: fixed;
-  bottom: 50%;
+  bottom: -10%;
   right: 50%;
   transform: translate(50%);
   transition: .5s ease;
   width: 280px;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   gap: 8px;
