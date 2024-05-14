@@ -6,13 +6,13 @@
 }
 
 .content {
+    position: fixed;
+    left: 50%;
     overflow-y: auto;
     height: 80%;
     transform: translate(-50%);
     max-width: 1440px;
-    padding-right: 8px;
-    padding-bottom: 8px;
-    margin-top: 112px;
+    margin: 112px 8px 8px 112px;
 }
 
 h1 {
@@ -351,13 +351,14 @@ h1 {
     .content {
         position: fixed;
         overflow-y: scroll;
-        height: 80%;
+        height: 90%;
         width: 79%;
-        top: 14%;
+        top: 0;
         left: 60%;
         transform: translate(-50%);
         max-width: 1440px;
         padding-right: 8px;
+        margin: 112px 8px 8px 0;
     }
 
     .board {
@@ -416,9 +417,9 @@ h1 {
     .content {
         position: fixed;
         overflow-y: scroll;
-        height: 80%;
+        height: 90%;
         width: 70%;
-        top: 14%;
+        top: 0;
         left: 60%;
         transform: translate(-50%);
         max-width: 1440px;
@@ -439,9 +440,9 @@ h1 {
     .content {
         position: fixed;
         overflow-y: scroll;
-        height: 80%;
+        height: 90%;
         width: 66%;
-        top: 14%;
+        top: 0;
         left: 62%;
         transform: translate(-50%);
         max-width: 1440px;
@@ -453,9 +454,9 @@ h1 {
     .content {
         position: fixed;
         overflow-y: scroll;
-        height: 80%;
+        height: 90%;
         width: 60%;
-        top: 14%;
+        top: 0;
         left: 65%;
         transform: translate(-50%);
         max-width: 1440px;
@@ -483,9 +484,9 @@ h1 {
     .content {
         position: fixed;
         overflow-y: scroll;
-        height: 70%;
+        height: 90%;
         width: 93%;
-        top: 16%;
+        top: 0;
         left: 5%;
         transform: translate(0%);
         max-width: 1440px;
