@@ -5,6 +5,7 @@ async function initSummary() {
   await loadCurrentUsers();
   await loadAllTasks();
   //load();
+  resposiveGreeting()
   loadTodoTasks();
   loadTaskInProgress();
   loadTasksFeedback();
@@ -15,17 +16,26 @@ async function initSummary() {
   loadUpcomingDeadline();
   userName();
   showHeaderUser();
+}
 
-  const greetingContainer = document.getElementById('greetingContainer');
+function resposiveGreeting() {
+  const greetingContainerResponsive = document.getElementById('greetingContainerResponsive');
   const summaryContent = document.getElementById('summaryContent');
 
   if (window.innerWidth <= 1200) {
+    greetingContainerResponsive.classList.remove('hidden');
+    greetingContainerResponsive.classList.add('visible');
     setTimeout(() => {
       summaryContent.classList.remove('hidden');
-    }, 3000);
+      summaryContent.classList.add('visible');
+      greetingContainerResponsive.classList.add('hidden');
+      greetingContainerResponsive.classList.remove('visible');
+    }, 2000);
   } else {
-    greetingContainer.classList.remove('hidden');
-    summaryContent.classList.add('hidden');
+    summaryContent.classList.remove('hidden');
+    summaryContent.classList.add('visible');
+    greetingContainerResponsive.classList.add('hidden');
+    greetingContainerResponsive.classList.remove('visible');
   }
 }
 
