@@ -210,8 +210,8 @@ body {
 
 .add-contact-left-section {
     background-color: rgb(42, 54, 71);
-    width: 467px;
-    height: 592px;
+    width: 40%;
+    height: 100%;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     padding: 66px 48px 66px 48px;
@@ -241,17 +241,28 @@ body {
     width: 90px;
 }
 
-.add-contact-right-section {
+.include-edit-task {
+    display: flex;
+    height: 100%;
+}
 
+.add-contact-right-section {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    gap: 72px;
+}
+
+.add-contact-right-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .add-contact-form {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    position: absolute;
-    top: 137px;
-    left: 742px;
 }
 
 .add-contact-form input {
@@ -271,17 +282,15 @@ body {
 .contact-logo {
     width: 120px;
     height: 120px;
-    position: absolute;
-    top: 204px;
-    left: 550px;
+    margin-left: 80px;
+    margin-top: 204px;
 }
 
 .add-contact-close {
     width: 32px;
     height: 32px;
-    position: absolute;
-    left: 1132px;
-    top: 32px;
+    margin-top: 48px;
+    margin-bottom: 56px;
 }
 
 .add-contact-close:hover {
@@ -290,8 +299,13 @@ body {
     cursor: pointer;
 }
 
+.button-submit-edit-contact {
+    display: flex;
+    gap: 25px;
+}
+
 .create-contact {
-    width: 214px;
+    width: 112px;
     height: 57px;
     padding: 16px;
     gap: 4px;
@@ -303,9 +317,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    left: 150px;
-    top: 250px;
 }
 
 .create-contact img {
@@ -316,9 +327,6 @@ body {
 .cancel-btn {
     width: 126px;
     height: 57px;
-    position: absolute;
-    top: 250px;
-    left: 0;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -463,16 +471,8 @@ body {
         max-width: 450px;
     }
 
-    .edit_contact {
-        max-width: 90%;
-    }
-
-    .add-contact-form input {
-        max-width: 50%;
-    }
-
-    .add-contact-right-section {
-        max-width: fit-content;
+    .include-edit-task {
+        flex-direction: column;
     }
   }
 
