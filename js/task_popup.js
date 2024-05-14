@@ -1,13 +1,12 @@
 function openTaskPopup(i) {
   let taskContainer = document.getElementById("taskPopup");
-  let content = document.querySelector('.content');
+  let content = document.querySelector(".content");
   taskContainer.innerHTML = "";
   taskContainer.style.right = "50%";
   content.style.opacity = "0.4";
   const task = allTasks[i];
   const taskId = allTasks[i].id;
-  const prio =
-    task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
+  const prio = task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
   taskContainer.innerHTML = taskPopup(task, i, taskId, prio);
   popupCategoryColor(i);
   generatepopupCardPrio(task, i);
@@ -16,9 +15,11 @@ function openTaskPopup(i) {
 }
 
 function taskPopup(task, i, taskId, prio) {
-  return /*html*/`
+  return /*html*/ `
     <div class="task-popup-top-section">
-      <div class="popupCategory" id="popupCategory${i}">${task["category"]}</div>
+      <div class="popupCategory" id="popupCategory${i}">${
+    task["category"]
+  }</div>
       <img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeTaskPopup()">
     </div>
     <h3>${task["title"]}</h3>
@@ -28,7 +29,9 @@ function taskPopup(task, i, taskId, prio) {
     </div>
     <div class="popup-prio-container">
       <span>Priority:</span>
-      <div>${prio}<img id="popupCardPrioImg${(task, i)}" src="" alt="PRIO"></div>
+      <div>${prio}<img id="popupCardPrioImg${
+    (task, i)
+  }" src="" alt="PRIO"></div>
     </div>
     <span>Assigned to:</span>
     <div class="popup-user-container" id="popupUserContainer${i}"></div>
@@ -44,8 +47,11 @@ function taskPopup(task, i, taskId, prio) {
 
 function handleClickOutside(event) {
   let taskContainer = document.getElementById("taskPopup");
-  let content = document.querySelector('.content');
-  if (!taskContainer.contains(event.target) && !content.contains(event.target)) {
+  let content = document.querySelector(".content");
+  if (
+    !taskContainer.contains(event.target) &&
+    !content.contains(event.target)
+  ) {
     closeTaskPopup();
   }
 }
@@ -56,7 +62,7 @@ document.addEventListener("click", handleClickOutside);
 function closeTaskPopup() {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.style.right = "-300px";
-  let content = document.querySelector('.content');
+  let content = document.querySelector(".content");
   content.style.opacity = "1";
 }
 
@@ -115,7 +121,9 @@ function renderPopupUsers(i) {
 }
 
 function renderPopupSubtasks(i) {
-  let subtaskContainer = document.getElementById(`task-popup-subtask-container${i}`);
+  let subtaskContainer = document.getElementById(
+    `task-popup-subtask-container${i}`
+  );
   const subtasks = allTasks[i]["subtasks"];
   subtaskContainer.innerHTML = "";
 
@@ -125,11 +133,13 @@ function renderPopupSubtasks(i) {
 
       subtaskContainer.innerHTML += `
       <div class="popup-subtask-container" onclick="toggleSubtask(${i}, ${j})">
-        <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${subtask.name}" ${subtask.completed ? 'checked' : ''}></div>
+        <div><input type="checkbox" id="subtaskCheckbox${i}_${j}" value="${
+        subtask.name
+      }" ${subtask.completed ? "checked" : ""}></div>
         <div>${subtask.name}</div>
       </div>
     `;
-    } 
+    }
   } else {
     subtaskContainer.innerHTML = `
       <span style="color:black">Keine Subtasks vorhanden!</span>
@@ -145,24 +155,30 @@ function toggleSubtask(i, j) {
   subtask.completed = !subtask.completed;
   subtaskCheckbox.checked = subtask.completed;
   if (subtaskCheckbox.checked) {
-    doneSubtasksContainer.innerHTML =
-    doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
+    doneSubtasksContainer.innerHTML = doneSubtasksContainer.innerHTML =
+      allTasks[i].subtasks.filter((sub) => sub.completed).length;
     updateSubtask = completed = true;
   } else {
-    doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
+    doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(
+      (sub) => sub.completed
+    ).length;
     updateSubtask = completed = false;
   }
   updateProgressbar(i);
   let taskId = allTasks[i].idKey;
-  updateTask(taskId, updateSubtask, j)
+  updateTask(taskId, updateSubtask, j);
 }
 
 function renderSubtasksOnload() {
   for (let i = 0; i < allTasks.length; i++) {
     const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
-    if (Array.isArray(allTasks[i].subtasks)) {
-      doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
-      updateProgressbar(i);
+    if (doneSubtasksContainer) {
+      if (Array.isArray(allTasks[i].subtasks)) {
+        doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(
+          (sub) => sub.completed
+        ).length;
+        updateProgressbar(i);
+      }
     }
   }
 }
