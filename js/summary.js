@@ -15,6 +15,14 @@ async function initSummary() {
   loadUpcomingDeadline();
   userName();
   showHeaderUser();
+
+  const greetingContainer = document.getElementById('greetingContainer');
+  const summaryContent = document.getElementById('summaryContent');
+
+  setTimeout(() => {
+    greetingContainer.classList.add('hidden');
+    summaryContent.classList.remove('hidden');
+  }, 3000); // Adjust the time (3000ms = 3 seconds) as needed
 }
 
 function changeTodoCard(card, newSrc) {
