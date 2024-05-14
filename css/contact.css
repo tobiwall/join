@@ -148,7 +148,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 24px;
     font-size: 48px;
     color: white;
 }
@@ -195,6 +194,7 @@ body {
 }
 
 .add-contact {
+    display: flex;
     width: 1212px;
     min-width: fit-content;
     height: 592px;
@@ -210,7 +210,7 @@ body {
 
 .add-contact-left-section {
     background-color: rgb(42, 54, 71);
-    width: 40%;
+    width: 100%;
     height: 100%;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -241,16 +241,14 @@ body {
     width: 90px;
 }
 
-.include-edit-task {
-    display: flex;
-    height: 100%;
-}
-
 .add-contact-right-section {
-    width: 60%;
+    width: 100%;
     height: 100%;
     display: flex;
+    background-color: rgb(255, 255, 255);
     gap: 72px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 .add-contact-right-right {
@@ -263,6 +261,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 32px;
+    margin-right: 32px;
 }
 
 .add-contact-form input {
@@ -284,6 +283,10 @@ body {
     height: 120px;
     margin-left: 80px;
     margin-top: 204px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .add-contact-close {
@@ -291,6 +294,10 @@ body {
     height: 32px;
     margin-top: 48px;
     margin-bottom: 56px;
+    margin-right: 32px;
+    background-image: url(../assets/icons/Close.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 
 .add-contact-close:hover {
@@ -302,10 +309,11 @@ body {
 .button-submit-edit-contact {
     display: flex;
     gap: 25px;
+    margin-bottom: 48px;
 }
 
 .create-contact {
-    width: 112px;
+    width: 200px;
     height: 57px;
     padding: 16px;
     gap: 4px;
@@ -317,6 +325,26 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.edit-contact-btn {
+    width: 99px;
+    height: 57px;
+    padding: 16px;
+    gap: 4px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-contact-btn img {
+    width: 15.49px;
+    height: 11.22px;
 }
 
 .create-contact img {
@@ -383,7 +411,7 @@ body {
 }
 
 .edit_contact {
-    width: 1212px;
+    display: flex;
     min-width: fit-content;
     height: 592px;
     position: fixed;
@@ -391,8 +419,6 @@ body {
     right: -1200px;
     transform: translate(50%, -50%);
     transition: .5s ease;
-    border-radius: 30px;
-    background-color: rgb(255, 255, 255);
     z-index: 500;
 }
 
@@ -470,13 +496,51 @@ body {
     #contactBox {
         max-width: 450px;
     }
-
-    .include-edit-task {
-        flex-direction: column;
-    }
   }
 
   @media (max-width: 1150px) {
+    .edit_contact {
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    .add-contact-left-section {
+        border-bottom-left-radius: 0;
+        border-top-right-radius: 30px;
+    }
+
+    .add-contact-right-section {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 30px;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .add-contact-headline {
+        font-size: 48px;
+    }
+
+    .add-contact-close {
+        margin-top: -320px;
+        margin-bottom: 320px;
+        z-index: 510;
+        background-image: url(../assets/icons/close_white.png);
+    }
+
+    .add-contact-form {
+        margin: 0 8px 0 8px;
+    }
+
+    .contact-logo {
+        margin-top: -60px;
+        margin-left: 0;
+    }
+
+    .button-submit-edit-contact {
+        justify-content: center;
+    }
+
     #contactBox {
         display: none;
     }
@@ -508,6 +572,7 @@ body {
 
     #scrollable-container {
         position: unset;
+        margin-bottom: 80px;
     }
 
     .contact-box-header {
@@ -528,6 +593,15 @@ body {
         padding: 15px 0 15px 0;
     }
 
+    .add-contact-form input {
+        width: 300px;
+        font-size: 16px;
+    }
+
+    .add-contact-headline {
+        font-size: 36px;
+    }
+
     .initialien-round-container {
         margin-right: 8px;
         width: 32px;
@@ -536,5 +610,9 @@ body {
 
     .contact-email {
         font-size: 14px;
+    }
+
+    .btn-d-none {
+        display: none;
     }
   }

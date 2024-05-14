@@ -386,7 +386,7 @@ function generateContactBoxHTML(contact, id) {
         <div class="contact-box-name-container">
           <p class="contact-box-name">${contact.name}</p>
           <div class="contact-box-edit-delete">
-            <div class="edit-delete" id="edit" onclick="editContact(${id})">
+            <div class="edit-delete" id="edit" onclick="editContact(${id}, '${contact.color}', '${contact.initials}')">
               <img class="img-black" src="../assets/img/edit.svg" alt="">
               <img class="img-blue" src="../assets/icons/edit_blue.png" alt="">
               <p>Edit</p>
@@ -523,13 +523,18 @@ function findIndexById(openContact) {
   return contacts.findIndex((contact) => contact === openContact);
 }
 
-function editContact(id) {
+function editContact(id, color, initials) {
   let editContact = document.getElementById("editContact");
+  let contactLogo = document.getElementById('contactLogo');
   let overlay = document.getElementById("overlay");
   editContact.style.right = "50%";
   overlay.style.display = "block";
   overlay.addEventListener("click", closeContactPopupByOverlay);
   createInputValue(id);
+  contactLogo.style.backgroundColor = color;
+  contactLogo.innerHTML = /*html*/`
+    <div class="initialien-big-round-container">${initials}</div>
+  `
 }
 
 function createInputValue(id) {

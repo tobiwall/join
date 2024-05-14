@@ -5,8 +5,9 @@
     <img class="add-contact-vector" src="./assets/icons/Vector 5.png" alt="">
   </div>
   <div class="add-contact-right-section">
-    <img onclick="closeContactPopup()" class="add-contact-close" src="./assets/icons/Close.png" alt="">
     <img src="./assets/icons/contact_logo.png" alt="" class="contact-logo">
+    <div class="add-contact-right-right">
+    <div onclick="closeContactPopup()" class="add-contact-close"></div>
     <form class="add-contact-form" onsubmit="createContact(); return false;">
         <div class="input-container">
           <input id="nameInput" required type="text" placeholder="Name">
@@ -20,8 +21,10 @@
           <input id="phoneInput" required type="tel" placeholder="Phone">
           <img src="./assets/icons/call.png" alt="Phone Icon" class="input-icon">
         </div>
-        <button type="button" onclick="closeContactPopup()" class="cancel-btn">Cancel</button>
+        <div class="button-submit-edit-contact">
+        <button type="button" onclick="closeContactPopup()" class="cancel-btn btn-d-none">Cancel</button>
         <button type="submit" class="create-contact">Create contact <img src="./assets/icons/check.png" alt=""></button>
+        </div>
       </form>
-      
+      </div>
   </div>
