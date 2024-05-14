@@ -177,7 +177,9 @@ h2 {
 .summary-greeting {
   display: flex;
   flex-direction: column;
-  margin-left: 80px;
+  position: fixed;
+  top: 520px;
+  right: 50px;
 }
 
 .greeting-time {
@@ -193,18 +195,6 @@ h2 {
   line-height: 76.8px;
 }
 
-.summary-greeting-responsive {
-  z-index: 500;
-  position: fixed;
-  top: 40%;
-  right: 50%;
-  transform: translate(50%, -50%);
-  transition: .5s ease;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
-
 .hidden {
   opacity: 0;
   visibility: hidden;
@@ -217,34 +207,19 @@ h2 {
   transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
 }
 
-@media (min-width: 1201px) {
-  .summary-greeting-responsive {
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  .summary-content {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-  }  
-}
-
 @media(max-width: 1200px) {
-
   .summary-content {
     position: fixed;
     top: 14%;
     left: 33%;
   }
 
-  .summary-greeting-responsive {
-    display: flex;
-  }
-
   .summary-greeting {
-    display: none;
+    z-index: 500;
+    position: fixed;
+    top: 40%;
+    right: 50%;
+    transform: translate(50%, -50%);
   }
 }
 

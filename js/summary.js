@@ -5,7 +5,7 @@ async function initSummary() {
   await loadCurrentUsers();
   await loadAllTasks();
   //load();
-  resposiveGreeting()
+  resposiveGreeting();
   loadTodoTasks();
   loadTaskInProgress();
   loadTasksFeedback();
@@ -19,23 +19,23 @@ async function initSummary() {
 }
 
 function resposiveGreeting() {
-  const greetingContainerResponsive = document.getElementById('greetingContainerResponsive');
+  const greetingContainer = document.getElementById('summaryGreeting');
   const summaryContent = document.getElementById('summaryContent');
 
   if (window.innerWidth <= 1200) {
-    greetingContainerResponsive.classList.remove('hidden');
-    greetingContainerResponsive.classList.add('visible');
+    greetingContainer.classList.remove('hidden');
+    greetingContainer.classList.add('visible');
     setTimeout(() => {
+      greetingContainer.classList.add('hidden');
+      greetingContainer.classList.remove('visible');
       summaryContent.classList.remove('hidden');
       summaryContent.classList.add('visible');
-      greetingContainerResponsive.classList.add('hidden');
-      greetingContainerResponsive.classList.remove('visible');
     }, 2000);
   } else {
     summaryContent.classList.remove('hidden');
     summaryContent.classList.add('visible');
-    greetingContainerResponsive.classList.add('hidden');
-    greetingContainerResponsive.classList.remove('visible');
+    greetingContainer.classList.add('visible');
+    greetingContainer.classList.remove('hidden');
   }
 }
 
