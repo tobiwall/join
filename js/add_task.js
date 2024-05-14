@@ -47,6 +47,7 @@ async function createTask(status) {
     subtasks: subtasks,
   };
   await postData("/allTasks", newTask);
+  allTasks.push(newTask);
   addedTaskAnimation();
   if (window.location.href === 'http://127.0.0.1:5500/add_task.html' || window.location.href === 'https://join-165.developerakademie.net/join_165/add_task.html') {
     window.location.href = "./board.html";
