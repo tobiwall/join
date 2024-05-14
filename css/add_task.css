@@ -488,12 +488,12 @@ li:hover {
 
 .added-task-popup {
   position: fixed;
-  bottom: -10%;
+  bottom: 50%;
   right: 50%;
   transform: translate(50%);
   transition: .5s ease;
   width: 280px;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -649,6 +649,19 @@ li:hover {
 
   .task-button img {
     height: 10px;
+  }
+
+  #contentSubtasks {
+    height: 75px;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+
+  .added-task-popup {
+    width: 220px;
+    padding: 10px 5px;
+    border-radius: 14px;
+    font-size: 14px;
   }
 }
 
