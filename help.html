@@ -12,13 +12,15 @@
   <link rel="stylesheet" href="./css/sideboard.css">
   <link rel="stylesheet" href="./css/style_infosites.css">
   <link rel="stylesheet" href="./css/scrollbar.css">
+  <link rel="shortcut icon" href="./assets/icons/logo-black.png" type="image/x-icon">
 </head>
-<body onload="init()">
+<body onload="initHeader()">
   <div w3-include-html="./assets/templates/desktop_header.html"></div>
     <div class="sideboard-desktop" w3-include-html="./assets/templates/desktop_sideboard.html">
   </div>
   <div class="info-content">
     <h1>Help</h1>
+    <a href="#" onclick="history.back(); return false;"><img class="info-arrow" src="./assets/icons/arrow_left_blue.png" alt=""></a>
     <p>Welcome to the help page for <a href="#">Join</a>, your guide to using our kanban project management tool. Here, we'll provide an overview of what Join is, how it can benefit you, and how to use it.</p>
     <br>
     <h2>What is Join?</h2>

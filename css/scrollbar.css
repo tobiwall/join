@@ -10,7 +10,8 @@
 .add-task-popup::-webkit-scrollbar,
 .info-content::-webkit-scrollbar,
 .task-popup::-webkit-scrollbar,
-.dropdown-categories::-webkit-scrollbar  {
+.dropdown-categories::-webkit-scrollbar,
+textarea::-webkit-scrollbar  {
   width: 12px; /* Breite des Scrollbalkens */
   background: #CDCDCD;
   border-radius: 7px;
@@ -28,7 +29,8 @@
 .add-task-popup::-webkit-scrollbar-track,
 .info-content::-webkit-scrollbar-track,
 .task-popup::-webkit-scrollbar-track,
-.dropdown-categories::-webkit-scrollbar-track {
+.dropdown-categories::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track {
   background: white;/* Hintergrundfarbe des Scrollbalkens */
   border: 1px solid #CDCDCD;
   border-radius: 7px;
@@ -46,7 +48,8 @@
 .add-task-popup::-webkit-scrollbar-thumb,
 .info-content::-webkit-scrollbar-thumb,
 .task-popup::-webkit-scrollbar-thumb,
-.dropdown-categories::-webkit-scrollbar-thumb  {
+.dropdown-categories::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb  {
   cursor: pointer;
   min-height: 30px;
   border: 1px solid #CDCDCD;
@@ -65,7 +68,8 @@
 .add-task-popup::-webkit-scrollbar-thumb:hover,
 .info-content::-webkit-scrollbar-thumb:hover,
 .task-popup::-webkit-scrollbar-thumb:hover,
-.dropdown-categories::-webkit-scrollbar-thumb:hover  {
+.dropdown-categories::-webkit-scrollbar-thumb:hover,
+textarea::-webkit-scrollbar-thumb:hover {
   background: #29ABE2; /* Farbe des Griffs des Scrollbalkens bei Hover */
 }
 

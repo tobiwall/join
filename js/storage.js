@@ -99,7 +99,8 @@ async function updateContacts(contact, id) {
 
 
   } catch (error) {
-    
+    console.error('Error updating contact:', error);
+    throw error;
   }
 }
 
