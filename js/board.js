@@ -56,11 +56,15 @@ async function includeHTML() {
 }
 
 function showHeaderUser() {
+  if (currentUser) {
   let names = currentUser.user_name.split(" ");
   let firstNameInitial = names[0].charAt(0).toUpperCase();
   let lastNameInitial = names[names.length - 1].charAt(0).toUpperCase();
   document.getElementById("headerInitialUser").innerHTML =
     firstNameInitial + lastNameInitial;
+  } else {
+    document.getElementById("headerInitialUser").innerHTML = 'G';
+  }
 }
 
 async function createTaskOnBoard(status) {
