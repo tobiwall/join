@@ -446,6 +446,27 @@ async function createContact() {
   let emailInput = document.getElementById("emailInput");
   let phoneInput = document.getElementById("phoneInput");
   await saveAndDisplayContacts(nameInput, emailInput, phoneInput);
+  addedContactAnimation();
+}
+
+function addedContactAnimation() {
+  let addedContactPopup = document.getElementById('addedContactPopup');
+
+  addedContactPopup.style.display = 'flex';
+  setTimeout(showContactPopupAndAnimate, 500);
+}
+
+function showContactPopupAndAnimate() {
+  let addedContactPopup = document.getElementById('addedContactPopup');
+
+  addedContactPopup.style.bottom = '50%';
+  setTimeout(() => {
+    addedContactPopup.style.bottom = '110%';
+  }, 1000);
+  setTimeout(() => {
+    addedContactPopup.style.display = 'none';
+    addedContactPopup.style.bottom = '-10%';
+  }, 1500);
 }
 
 async function saveAndDisplayContacts(nameInput, emailInput, phoneInput) {

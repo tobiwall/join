@@ -478,6 +478,22 @@ body {
     display: none;
   }
 
+  .added-contact-popup {
+    position: fixed;
+    bottom: -10%;
+    right: 50%;
+    transform: translate(50%);
+    transition: .5s ease;
+    width: 280px;
+    text-align: center;
+    gap: 8px;
+    padding: 25px 10px;
+    border-radius: 20px;
+    background-color: #2A3647;
+    color: white;
+    font-size: 20px;
+  }
+
   @media (max-width: 1450px) {
     .contact-box-name {
         font-size: 32px;
@@ -615,4 +631,11 @@ body {
     .btn-d-none {
         display: none;
     }
+
+    .added-contact-popup {
+        width: 220px;
+        padding: 10px 5px;
+        border-radius: 14px;
+        font-size: 14px;
+      }
   }
