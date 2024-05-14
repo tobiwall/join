@@ -49,7 +49,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
     });
 
-    document.getElementById("guest-login").addEventListener("click", function () {
+    document.getElementById("guest-login").addEventListener("click", async function () {
+        currentUser = 'guest';
+        await deleteData("/currentUser");
+        await postData("/currentUser", currentUser);
         window.location.href = 'summary.html';
     })
 
