@@ -24,6 +24,7 @@ function resposiveGreeting() {
 
   if (window.innerWidth <= 1200) {
     greetingContainer.classList.remove('hidden');
+    greetingContainer.style.display = 'flex';
     greetingContainer.classList.add('visible');
     setTimeout(() => {
       greetingContainer.classList.add('hidden');
