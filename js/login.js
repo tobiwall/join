@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
 
     document.getElementById("guest-login").addEventListener("click", async function () {
-        currentUser = 'guest';
+        currentUser = { user_name: "Guest User" };
         await deleteData("/currentUser");
         await postData("/currentUser", currentUser);
         window.location.href = 'summary.html';
