@@ -6,15 +6,13 @@
 }
 
 .content {
-    position: fixed;
     overflow-y: auto;
     height: 80%;
-    top: 14%;
-    left: 57%;
     transform: translate(-50%);
     max-width: 1440px;
     padding-right: 8px;
     padding-bottom: 8px;
+    margin-top: 112px;
 }
 
 h1 {
