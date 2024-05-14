@@ -1,3 +1,7 @@
+.align_center {
+  align-items: center;
+}
+
 h2 {
   font-size: 61px;
   font-weight: 700;
@@ -19,9 +23,8 @@ h2 {
 }
 
 .summary-content {
-  position: fixed;
-  top: 14%;
-  left: 20%;
+  margin-left: 232px;
+  margin-top: 112px;
 }
 
 .summary-text-container {
@@ -177,9 +180,6 @@ h2 {
 .summary-greeting {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  top: 520px;
-  right: 50px;
 }
 
 .greeting-time {
@@ -209,9 +209,7 @@ h2 {
 
 @media(max-width: 1200px) {
   .summary-content {
-    position: fixed;
-    top: 14%;
-    left: 33%;
+
   }
 
   .summary-greeting {
@@ -226,9 +224,6 @@ h2 {
 
 @media(max-width: 900px) {
   .summary-content {
-    top: 18%;
-    left: 50%;
-    transform: translate(-50%);
   }
 
   .summary-text-container {
@@ -368,5 +363,11 @@ h2 {
     background-color: #2A3647;
     color: white;
     scale: 1.02;
+  }
+}
+
+@media (max-width: 700px) {
+  .summary-content {
+    margin-left: 0;
   }
 }

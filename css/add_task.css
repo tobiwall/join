@@ -6,9 +6,12 @@
 }
 
 .content-addtask {
-    margin-top: 112px;
     margin-left: 232px;
     padding-right: 8px;
+}
+
+.align_center {
+  align-items: center;
 }
 
 .add-task-top-section{
@@ -514,7 +517,7 @@ li:hover {
 
   .content-addtask {
     overflow-y: auto;
-    height: 77%;
+    height: 80%;
   }
 
   textarea {
@@ -561,7 +564,7 @@ li:hover {
     margin-left: 4px;
     margin-right: 4px;
     overflow-y: auto;
-    height: 85%;
+    height: 80%;
   }
 
   form {
