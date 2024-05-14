@@ -1,7 +1,13 @@
+.fullScreen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
 .content-addtask {
-    position: fixed;
-    top: 14%;
-    left: 20%;
+    margin-top: 112px;
+    margin-left: 232px;
     padding-right: 8px;
 }
 
@@ -507,9 +513,6 @@ li:hover {
 @media(max-width: 1350px) { 
 
   .content-addtask {
-    position: fixed;
-    top: 14%;
-    left: 35%;
     overflow-y: auto;
     height: 77%;
   }
@@ -555,12 +558,10 @@ li:hover {
 
 @media(max-width: 700px) { 
   .content-addtask {
-    position: fixed;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%);
+    margin-left: 4px;
+    margin-right: 4px;
     overflow-y: auto;
-    height: 72%;
+    height: 85%;
   }
 
   form {
@@ -572,10 +573,6 @@ li:hover {
 
 @media(max-width: 450px) { 
   .content-addtask {
-    position: fixed;
-    top: 18%;
-    left: 3%;
-    transform: translate(0);
     width: 95%;
     overflow-y: auto;
     padding-right: 4px;
