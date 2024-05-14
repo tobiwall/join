@@ -536,3 +536,13 @@ h1 {
     }
   }
 
+  @media(max-width: 460px) { 
+    .add-task-popup {
+        min-width: 310px;
+        max-width: 90%;
+        padding: 24px;
+        min-height: 40%;
+        max-height: 75%;
+    }
+  }
+

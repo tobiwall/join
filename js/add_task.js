@@ -86,11 +86,20 @@ function addedTaskAnimation() {
   let addedTaskPopup = document.getElementById('addedTaskPopup');
 
   addedTaskPopup.style.display = 'flex';
+  setTimeout(showPopupAndAnimate, 500);
+}
+
+function showPopupAndAnimate() {
+  let addedTaskPopup = document.getElementById('addedTaskPopup');
+
   addedTaskPopup.style.bottom = '50%';
   setTimeout(() => {
-    addedTaskPopup.style.bottom = '110%';
+      addedTaskPopup.style.bottom = '110%';
   }, 1000);
-  addedTaskPopup.style.display = 'none';
+  setTimeout(() => {
+      addedTaskPopup.style.display = 'none';
+      addedTaskPopup.style.bottom = '-10%';
+  }, 1500);
 }
 
 function validateForm(event, status) {
