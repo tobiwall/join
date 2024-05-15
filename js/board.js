@@ -149,9 +149,7 @@ function renderInProgressCards() {
  * 
  */
 function renderAwaitFeedbackCards() {
-  let awaitFeedbackContainer = document.getElementById(
-    "awaitFeedbackContainer"
-  );
+  let awaitFeedbackContainer = document.getElementById("awaitFeedbackContainer");
   awaitFeedbackContainer.innerHTML = "";
   renderForLoopTasks("feedback", awaitFeedbackContainer);
   if (awaitFeedbackContainer.innerHTML === "") {

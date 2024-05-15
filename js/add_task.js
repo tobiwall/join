@@ -109,7 +109,12 @@ function renderNewCard(newTask) {
 function displayNewCard(newTask, container) {
   let taskId = newTask.id;
   const i = allTasks.findIndex(task => task.id === newTask.id);
-  container.innerHTML += generateCardHTML(newTask, i, taskId);
+  const noCardsDiv = container.querySelector('.noCardsInContainer');
+  if (noCardsDiv) {
+    container.innerHTML = generateCardHTML(newTask, i, taskId);
+  } else {
+    container.innerHTML += generateCardHTML(newTask, i, taskId);
+  }
   categoryColor(i, taskId);
   generateProgressbar(i, newTask);
   renderUsers(i, taskId);
