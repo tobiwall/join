@@ -233,16 +233,11 @@ function findContactsByFirstLetter() {
     for (let j = 0; j < contacts.length; j++) {
       let contact = contacts[j];
       if (contact !== null) {
-        if (contact.name.charAt(0).toUpperCase() === firstLetter) {
-          contactsWithFirstLetter.push(contact);
-        }
+        if (contact.name.charAt(0).toUpperCase() === firstLetter) {contactsWithFirstLetter.push(contact);}
       }
     }
     if (contactsWithFirstLetter.length > 0) {
-      foundContacts.push({
-        letter: firstLetter,
-        contacts: contactsWithFirstLetter,
-      });
+      foundContacts.push({letter: firstLetter, contacts: contactsWithFirstLetter});
     }
   }
   return foundContacts;
@@ -387,13 +382,13 @@ function generateContactBoxHTML(contact, id) {
           <p class="contact-box-name">${contact.name}</p>
           <div class="contact-box-edit-delete">
             <div class="edit-delete" id="edit" onclick="editContact(${id}, '${contact.color}', '${contact.initials}')">
-              <img class="img-black" src="../assets/img/edit.svg" alt="">
-              <img class="img-blue" src="../assets/icons/edit_blue.png" alt="">
+              <img class="img-black" src="./assets/img/edit.svg" alt="">
+              <img class="img-blue" src="./assets/icons/edit_blue.png" alt="">
               <p>Edit</p>
             </div>
             <div class="edit-delete" onclick="deleteContact(${id})" id="delete">
-              <img class="img-black" src="../assets/img/delete.svg" alt="">
-              <img class="img-blue" src="../assets/icons/delete_blue.png" alt="">
+              <img class="img-black" src="./assets/img/delete.svg" alt="">
+              <img class="img-blue" src="./assets/icons/delete_blue.png" alt="">
               <p>Delete</p>
             </div>
           </div>
@@ -592,7 +587,7 @@ function checkContactIsMobile() {
   let contactBox = document.getElementById('contactBox');
   let scrollableContainer = document.getElementById('scrollable-container');
   let xClosingContact = document.getElementById('xClosingContact');
-  if (screenWidthContacts < 1151) {
+  if (screenWidthContacts < 1351) {
     contactMobile = true;
     contactBox.style.display = 'none';
     scrollableContainer.style.display = 'flex';
