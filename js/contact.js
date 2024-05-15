@@ -527,7 +527,6 @@ function deleteContact(id) {
   let editContact = document.getElementById("editContact");
   contacts.splice(contactId, 1);
   deleteData(`/contacts/${id}`);
-  renderContacts();
   if (editContact.style.display !== "none") {
     closeContactPopup();
   }

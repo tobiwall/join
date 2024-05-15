@@ -70,7 +70,7 @@ function clearPopupForm() {
   date.value = "";
   category.value = "";
   contentAssignedUsers.innerHTML = "";
-  contentSubtasksopenCategoriesIcon.innerHTML = "";
+  contentSubtasks.innerHTML = "";
 }
 
 /**
