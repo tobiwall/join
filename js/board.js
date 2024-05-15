@@ -15,12 +15,25 @@ async function init() {
   await renderCards();
   showHeaderUser();
   renderSubtasksOnload();
+  getTodayDate();
 }
 
 async function initHeader() {
   await includeHTML();
   await loadCurrentUsers();
   showHeaderUser();
+}
+
+function getTodayDate() {
+  // Holen Sie sich das heutige Datum im ISO-Format (YYYY-MM-DD)
+const today = new Date().toISOString().split('T')[0];
+
+// Holen Sie sich das input-Element
+const dateInput = document.getElementById('taskDate');
+
+// Setzen Sie das min-Attribut auf das heutige Datum
+dateInput.min = today;
+
 }
 
 async function includeHTML() {

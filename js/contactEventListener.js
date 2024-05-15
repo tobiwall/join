@@ -3,9 +3,9 @@ window.addEventListener("resize", function () {
 });
 
 document.addEventListener("click", function () {
-    const contacts = document.querySelectorAll(".contact");
+    const clickContacts = document.querySelectorAll(".contact");
     let activeElement = null;
-    contacts.forEach((contact) => {
+    clickContacts.forEach((contact) => {
       contact.addEventListener("click", function () {
         if (activeElement !== null) {
           activeElement.classList.remove("active");

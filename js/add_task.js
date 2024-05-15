@@ -23,6 +23,7 @@ async function initAddTask() {
   orderContacts();
   taskId = findHighestTaskId();
   showHeaderUser();
+  getTodayDate();
 }
 
 async function createTask(status) {
