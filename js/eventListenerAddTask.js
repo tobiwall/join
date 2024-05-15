@@ -11,7 +11,9 @@ document.addEventListener("click", function(event) {
   
     if (!isClickInsideDropdown && !isClickInsideInput && !isClickInsideUserContainer) {
         hideUsers();
+        if (categoriesContainerClicked) {
         openCategories();
+        }
         dropdowns.forEach(dropdown => {
             dropdown.style.border = "0px";
             if (userList) {

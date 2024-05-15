@@ -53,8 +53,24 @@ async function createTask(status) {
     window.location.href = "./board.html";
   } else {
     closeAddTaskPopup();
+    clearPopupForm();
     renderNewCard(newTask);
   }
+}
+
+function clearPopupForm() {
+  let title = document.getElementById("taskTitle");
+  let discription = document.getElementById("taskDiscription");
+  let date = document.getElementById("taskDate");
+  let category = document.getElementById("categoryInput");
+  let contentAssignedUsers = document.getElementById("contentAssignedUsers");
+  let contentSubtasks = document.getElementById("contentSubtasks");
+  title.value = "";
+  discription.value = "";
+  date.value = "";
+  category.value = "";
+  contentAssignedUsers.innerHTML = "";
+  contentSubtasksopenCategoriesIcon.innerHTML = "";
 }
 
 function renderNewCard(newTask) {
