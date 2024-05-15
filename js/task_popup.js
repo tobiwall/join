@@ -2,6 +2,7 @@ function openTaskPopup(i) {
   let taskContainer = document.getElementById("taskPopup");
   let content = document.querySelector('.content');
   taskContainer.innerHTML = "";
+  taskContainer.style.display = 'flex';
   taskContainer.style.right = "50%";
   content.style.opacity = "0.4";
   const task = allTasks[i];
@@ -49,9 +50,6 @@ function handleClickOutside(event) {
     closeTaskPopup();
   }
 }
-
-// Event-Listener hinzufügen, um auf Klicks im Dokument zu reagieren
-document.addEventListener("click", handleClickOutside);
 
 function closeTaskPopup() {
   let taskContainer = document.getElementById("taskPopup");
