@@ -1,3 +1,40 @@
+function validateEditForm(event, i) {
+  event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+
+  let title = document.getElementById("editTaskTitle");
+  let dueDate = document.getElementById("editTaskDate");
+  let titleError = document.getElementById("errorMessageEditTitle");
+  let dateError = document.getElementById("errorMessageEditDate");
+
+  let isValid = true;
+
+  if (title.value.trim() === "") {
+      title.style.border = "1px solid #FF8190";
+      titleError.innerText = "Please fill out this field.";
+      isValid = false;
+  } else {
+      title.style.border = "";
+      titleError.innerText = "";
+  }
+
+  if (dueDate.value === "") {
+      dueDate.style.border = "1px solid #FF8190";
+      dateError.innerText = "Please fill out this field.";
+      isValid = false;
+  } else {
+      dueDate.style.border = "";
+      dateError.innerText = "";
+  }
+
+  if (isValid) {
+      setTimeout(() => {
+        submitChanges(i);
+      }, 1500);
+  }
+
+  return isValid;
+}
+
 function renderPrioButton(task, i) {
   buttonContainer = document.getElementById("edit-prio-buttons-container");
   taskPrio = task.prio;
@@ -202,6 +239,7 @@ function editTask(taskIndex, taskId) {
   let editTaskContainer = document.getElementById("editTaskPopup");
   editTaskContainer.innerHTML = "";
   editTaskContainer.style.display = "flex";
+  editTaskContainer.style.left = "50%";
 
   const task = allTasks[taskIndex];
   editTaskContainer.innerHTML = editTaskPopup(task, taskIndex, taskId);
@@ -211,20 +249,24 @@ function editTask(taskIndex, taskId) {
 
 function editTaskPopup(task, taskIndex, taskId) {
   return /*html*/ `
-  
-  <form action="">
     <div class="edit-task-popup-top"><img src="./assets/icons/subtask_icons/close.png" alt="X" onclick="closeEditTaskPopup()"></div>
     <div>
-      <label for="">Title<span style="color: #FF8190">*</span></label>
-      <input required id="editTaskTitle" type="text" value="${task.title}" placeholder="Enter a title">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label>Title<span style="color: #FF8190">*</span></label>
+        <div id="errorMessageEditTitle" style="color: #FF8190; margin-top: 2px;"></div>
+      </div>
+      <input id="editTaskTitle" type="text" value="${task.title}" placeholder="Enter a title">
     </div>
     <div>
       <label for="">Description</label>
       <textarea name="" id="editTaskDescription" cols="30" rows="10" placeholder="Enter a Description">${task.description}</textarea>
     </div>
     <div>
-      <label for="">Due Date<span style="color: #FF8190">*</span></label>
-      <input required id="editTaskDate" type="date" value="${task.dueDate}">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <label>Due date<span style="color: #FF8190">*</span></label>
+        <div id="errorMessageEditDate" style="color: #FF8190; margin-top: 2px;"></div>
+      </div>
+      <input id="editTaskDate" type="date" value="${task.dueDate}">
     </div>
     <div class="prio-container">
       <label>Prio</label>
@@ -250,8 +292,7 @@ function editTaskPopup(task, taskIndex, taskId) {
         </div>
         <ul id="edit-popup-contentSubtasks"></ul>
     </div>
-    <div class="edit-task-bottom-section"><button type="submit" class="edit-task-button" onclick="submitChanges(${taskIndex})">OK<img src="./assets/icons/check_white1.png" alt=""></button></div>
-  </form>
+    <div class="edit-task-bottom-section"><button type="submit" class="edit-task-button" onclick="validateEditForm(event ,${taskIndex})">OK<img src="./assets/icons/check_white1.png" alt=""></button></div>
   `;
 }
 
@@ -357,8 +398,8 @@ function addChangedPopupSubtask(taskIndex, subtaskId, taskId) {
 function closeEditTaskPopup() {
   let taskPopup = document.getElementById("taskPopup");
   let taskContainer = document.getElementById("editTaskPopup");
-  taskContainer.style.display = "none";
-  taskPopup.style.display = "flex";
+  taskContainer.style.left = '150%';
+  taskPopup.style.display = "none";
   let content = document.querySelector(".content");
   content.style.opacity = "1";
 }
