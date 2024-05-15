@@ -227,6 +227,9 @@ function openAddTask(status) {
   function displayFilteredTasks(todo, progress, feedback, done, search) {
     for (let i = 0; i < allTasks.length; i++) {
       const task = allTasks[i];
+      if (!task.title) {
+        continue;
+      }
       const title = task.title;
       const taskId = allTasks[i].id;
       if (title.toLowerCase().includes(search)) {
