@@ -12,7 +12,7 @@
     height: 80%;
     transform: translate(-50%);
     max-width: 1440px;
-    margin: 112px 8px 8px 112px;
+    margin: 150px 8px 8px 112px;
 }
 
 h1 {
@@ -355,7 +355,7 @@ h1 {
         transform: translate(-50%);
         max-width: 1440px;
         padding-right: 8px;
-        margin: 112px 8px 8px 0;
+        margin: 150px 8px 8px 0;
     }
 
     .board {
@@ -484,6 +484,7 @@ h1 {
         transform: translate(0%);
         max-width: 1440px;
         padding-right: 8px;
+        margin-top: 112px;
     }
 
     .board {
