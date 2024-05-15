@@ -1,3 +1,7 @@
+/**
+ * der Eventlistener closes the dropdown if one is open
+ * 
+ */
 document.addEventListener("click", function(event) {
     const dropdowns = document.querySelectorAll(".dropdown");
     const userList = document.getElementById("editDropdownUsers");
