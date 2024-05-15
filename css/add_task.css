@@ -565,8 +565,9 @@ li:hover {
     margin-left: 4px;
     margin-right: 4px;
     overflow-y: auto;
-    height: 70%;
+    height: calc(90% - 140px);
     margin-top: 0px;
+    
   }
 
   form {

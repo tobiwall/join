@@ -477,7 +477,7 @@ h1 {
     .content {
         position: fixed;
         overflow-y: scroll;
-        height: 90%;
+        height: calc(90% - 140px);
         width: 93%;
         top: 0;
         left: 5%;
