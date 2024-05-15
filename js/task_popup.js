@@ -60,13 +60,8 @@ function handleClickOutside(event) {
 function closeTaskPopup() {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.style.right = "-300px";
-<<<<<<< Updated upstream
   let content = document.querySelector('.content');
   content.classList.remove('non-clickable');
-=======
-  let content = document.querySelector(".content");
-  content.style.opacity = "1";
->>>>>>> Stashed changes
 }
 
 function popupCategoryColor(i) {
@@ -177,13 +172,7 @@ function renderSubtasksOnload() {
     const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
     if (doneSubtasksContainer) {
       if (Array.isArray(allTasks[i].subtasks)) {
-<<<<<<< Updated upstream
         doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(sub => sub.completed).length;
-=======
-        doneSubtasksContainer.innerHTML = allTasks[i].subtasks.filter(
-          (sub) => sub.completed
-        ).length;
->>>>>>> Stashed changes
         updateProgressbar(i);
       }
     }
