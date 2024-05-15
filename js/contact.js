@@ -584,6 +584,7 @@ async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
   await updateContacts(contact, id);
   renderContacts();
   closeContactPopup();
+  openContact(id);
 }
 
 function checkContactIsMobile() {
