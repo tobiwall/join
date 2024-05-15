@@ -250,18 +250,19 @@ function renderContactListAlphabet() {
   for (let i = 0; i < foundContacts.length; i++) {
     let foundcontact = foundContacts[i];
     if (foundcontact !== null) {
-      scrollableContainer.innerHTML +=
-        generateContactAlphabetListHTML(foundcontact);
-      let alphabetListBox = document.getElementById(
-        `alphabetList${foundcontact.letter}`
-      );
+      loadFoundContacts(scrollableContainer, foundcontact);
+    }
+  }
+}
+
+function loadFoundContacts(scrollableContainer, foundcontact) {
+  scrollableContainer.innerHTML += generateContactAlphabetListHTML(foundcontact);
+    let alphabetListBox = document.getElementById(`alphabetList${foundcontact.letter}`);
       alphabetListBox.innerHTML = "";
       for (let j = 0; j < foundcontact.contacts.length; j++) {
         let eachFoundContact = foundcontact.contacts[j];
         alphabetListBox.innerHTML += generateContactListHTML(eachFoundContact);
       }
-    }
-  }
 }
 
 function createButtonAddContact() {
@@ -331,12 +332,8 @@ async function openContact(id) {
 
 async function showContactBox(id, contactContainer, klickedContact, contactBoxName, contactInformation) {
   document.body.style.overflowX = "hidden";
-
   contactContainer.style.animation = "";
-
-  setTimeout(function() {
-    contactContainer.style.animation = "slideFromRightToLeft 0.5s forwards";
-  }, 50);
+  setTimeout(function() {contactContainer.style.animation = "slideFromRightToLeft 0.5s forwards";}, 50);
 
   contactContainer.addEventListener("animationend", function() {
     document.body.style.overflowX = "auto";
@@ -446,7 +443,6 @@ async function createContact() {
 
 function addedContactAnimation() {
   let addedContactPopup = document.getElementById('addedContactPopup');
-
   addedContactPopup.style.display = 'flex';
   setTimeout(showContactPopupAndAnimate, 500);
 }
@@ -500,6 +496,14 @@ function createNewContact(nameInput, emailInput, phoneInput) {
   return newBuildContacts;
 }
 
+/**
+ * buildContact builds a new contact
+ * 
+ * @param {*} nameInput is the text from the input
+ * @param {*} emailInput is the text from the input
+ * @param {*} phoneInput is the number from the input
+ * @returns the new contact
+ */
 function buildContact(nameInput, emailInput, phoneInput) {
   lastContactId = findHighestId();
   lastContactId++;
@@ -512,6 +516,10 @@ function buildContact(nameInput, emailInput, phoneInput) {
   return newContact;
 }
 
+/**
+ * clearInput cleares the input after closing a popup
+ * 
+ */
 function clearInput() {
   let nameInput = document.getElementById("nameInput");
   let emailInput = document.getElementById("emailInput");
@@ -521,6 +529,11 @@ function clearInput() {
   phoneInput.value = "";
 }
 
+/**
+ * deteleContact search the right contact and delate it with splice and calls deleteData
+ * 
+ * @param {*} id is the index of the contact from contacts
+ */
 function deleteContact(id) {
   let openContact = findContactById(id);
   let contactId = findIndexById(openContact);
@@ -534,10 +547,23 @@ function deleteContact(id) {
   renderContacts();
 }
 
+/**
+ * findIndexById search the index of the contact
+ * 
+ * @param {*} openContact is the opened contact which you click
+ * @returns the index of the openContact
+ */
 function findIndexById(openContact) {
   return contacts.findIndex((contact) => contact === openContact);
 }
 
+/**
+ * editContact shows the popup and calls createInputValue
+ * 
+ * @param {*} id is the id from the contact
+ * @param {*} color ist the backgroundcolor from the contact logo
+ * @param {*} initials are the first letters from name and sirname
+ */
 function editContact(id, color, initials) {
   let editContact = document.getElementById("editContact");
   let contactLogo = document.getElementById('contactLogo');
@@ -552,6 +578,11 @@ function editContact(id, color, initials) {
   `
 }
 
+/**
+ * createInputValue creates the new inputValue when you edit a contact
+ * 
+ * @param {*} id is the id from the contact
+ */
 function createInputValue(id) {
   let contact = findContactById(id);
   let editNameInput = document.getElementById("editNameInput");
@@ -563,6 +594,11 @@ function createInputValue(id) {
   openEditContactId = contact.id;
 }
 
+/**
+ * changeContact gets the inputvalue and call changeContactDetails to change them
+ * 
+ * @param {*} id is the id from the contact
+ */
 function changeContact(id) {
   let nameInput = document.getElementById("editNameInput").value;
   let emailInput = document.getElementById("editEmailInput").value;
@@ -570,6 +606,14 @@ function changeContact(id) {
   changeContactDetails(nameInput, emailInput, phoneInput, id);
 }
 
+/**
+ * changeContactDetails changes the details an put in the input value
+ * 
+ * @param {*} nameInput is the value of input name
+ * @param {*} emailInput is the value of input email
+ * @param {*} phoneInput is the value of input phone
+ * @param {*} id is the id from the contact
+ */
 async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
   let contact = findContactById(id);
   contact.name = `${nameInput}`;
@@ -581,6 +625,10 @@ async function changeContactDetails(nameInput, emailInput, phoneInput, id) {
   openContact(id);
 }
 
+/**
+ * checkContactIsMobile checks the with of the window and sets contactMobile = true or false
+ * 
+ */
 function checkContactIsMobile() {
   let screenWidthContacts = window.innerWidth;
   let contactBox = document.getElementById('contactBox');

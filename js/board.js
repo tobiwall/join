@@ -23,6 +23,7 @@ async function initHeader() {
   await loadCurrentUsers();
   showHeaderUser();
 }
+
 /**
  * getTodayDate gets the actual date from today for each calendar to block the past
  * 
