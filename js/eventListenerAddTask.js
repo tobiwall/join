@@ -11,6 +11,7 @@ document.addEventListener("click", function(event) {
   
     if (!isClickInsideDropdown && !isClickInsideInput && !isClickInsideUserContainer) {
         hideUsers();
+        openCategories();
         dropdowns.forEach(dropdown => {
             dropdown.style.border = "0px";
             if (userList) {
@@ -22,7 +23,8 @@ document.addEventListener("click", function(event) {
             }
             if (categoryList) {
                 categoryList.style.border = "0px";
-                openCategories();            }
+                categoryList.innerHTML = "";
+            }
         });
     }
 });
