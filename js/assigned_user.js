@@ -5,6 +5,10 @@ async function loadContacts() {
   sortContacts();
 }
 
+/**
+ * showUsers() open the assigned to dropdown 
+ *
+ */
 function showUsers() {
   let userList = document.getElementById("dropdown-users");
   let icon = document.getElementById("openUserIcon");
@@ -20,6 +24,10 @@ function showUsers() {
   }
 }
 
+/**
+ * displayUserList(userList) render the contact list into dropdown
+ *
+ */
 function displayUserList(userList) {
   assignedContainerClicked = true;
   for (let i = 0; i < contacts.length; i++) {
@@ -60,6 +68,10 @@ function userTemplate(contact) {
 `;
 }
 
+/**
+ * hideUsers() close the dropdown of assigned to
+ *
+ */
 function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("dropdown-users");
@@ -68,6 +80,10 @@ function hideUsers() {
   userList.innerHTML = "";
 }
 
+/**
+ * handleCheckboxChange(event) controlls if a user is checked, when so push it into the selected users for the new task
+ *
+ */
 function handleCheckboxChange(event) {
   const checkbox = event.target;
   const contactData = JSON.parse(checkbox.getAttribute("data-contact"));
@@ -91,6 +107,10 @@ function handleCheckboxChange(event) {
   }
 }
 
+/**
+ * searchUser() search for a user in the dropdown by tiping 
+ *
+ */
 function searchUser() {
   let searchValue = document
     .getElementById("userInput")
@@ -108,6 +128,10 @@ function searchUser() {
   }
 }
 
+/**
+ * renderAssignedUser() render the selected users into the container
+ *
+ */
 function renderAssignedUser() {
   let assignedUsers = document.getElementById("contentAssignedUsers");
   assignedUsers.innerHTML = "";

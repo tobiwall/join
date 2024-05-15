@@ -26,6 +26,10 @@ async function initAddTask() {
   getTodayDate();
 }
 
+/**
+ * createTask(status) creates a new task on the board
+ * 
+ */
 async function createTask(status) {
   let title = document.getElementById("taskTitle");
   let discription = document.getElementById("taskDiscription");
@@ -59,6 +63,10 @@ async function createTask(status) {
   }
 }
 
+/**
+ * clearPopupForm() clears the form of the add task popup
+ *
+ */
 function clearPopupForm() {
   let title = document.getElementById("taskTitle");
   let discription = document.getElementById("taskDiscription");
@@ -93,6 +101,11 @@ function renderNewCard(newTask) {
   }
 }
 
+/**
+ * displayNewCard(newTask, container) load a new task and give all the information
+ * 
+ *
+ */
 function displayNewCard(newTask, container) {
   let taskId = newTask.id;
   const i = allTasks.findIndex(task => task.id === newTask.id);
@@ -192,6 +205,10 @@ function toggleButton(priority) {
   }
 }
 
+/**
+ * prioUrgent(priority) change the button on its prio
+ *
+ */
 function prioUrgent(priority) {
   document.getElementById(priority).classList.add("urgent-active");
   document.getElementById(priority + "Img").src =
@@ -241,6 +258,10 @@ function resetClearButton(button, newSrc) {
   img.src = newSrc;
 }
 
+/**
+ * renderCategories() render the categories in the dropdown of category
+ *
+ */
 function renderCategories() {
   let categoryContainer = document.getElementById('dropdown-categories');
   categoryContainer.innerHTML = '';
@@ -256,6 +277,10 @@ function renderCategories() {
   }
 }
 
+/**
+ * selectCategory(categoryText) select a category for the new task
+ *
+ */
 function selectCategory(categoryText) {
   let categoryInput = document.getElementById('categoryInput');
   let categoryList = document.getElementById("dropdown-categories");
@@ -265,6 +290,10 @@ function selectCategory(categoryText) {
   categoryList.style.border = "0px";
 }
 
+/**
+ * openCategories() open the dropdown menu
+ *
+ */
 function openCategories() {
   let categoryList = document.getElementById("dropdown-categories");
   let icon = document.getElementById("openCategoriesIcon");
@@ -281,6 +310,10 @@ function openCategories() {
   }
 }
 
+/**
+ * hideCategories() close the dropdown menu
+ *
+ */
 function hideCategories() {
   categoriesContainerClicked = false;
   let categoryList = document.getElementById("dropdown-categories");

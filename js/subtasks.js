@@ -1,3 +1,7 @@
+/**
+ * addSubtask() add a subtask to the new task
+ *
+ */
 function addSubtask() {
   let input = document.getElementById("subtasksInput");
   let subtaskText = input.value.trim();
@@ -12,6 +16,10 @@ function addSubtask() {
   renderSubtasks();
 }
 
+/**
+ * renderSubtasks() render the subtask into the container
+ *
+ */
 function renderSubtasks() {
   let subtasksList = document.getElementById("contentSubtasks");
   subtasksList.innerHTML = "";
@@ -22,6 +30,10 @@ function renderSubtasks() {
   }
 }
 
+/**
+ * enableIcons() change the icons in the subtasks input
+ *
+ */
 function enableIcons() {
   let iconContainer = document.querySelector(".subtask-icon-container");
   iconContainer.querySelector("img").removeAttribute("onclick");
@@ -33,6 +45,10 @@ function enableIcons() {
   `;
 }
 
+/**
+ * clearSubtaskInput() cleat the input field of subtasks
+ *
+ */
 function clearSubtaskInput() {
   let iconContainer = document.querySelector(".subtask-icon-container");
   input = document.getElementById("subtasksInput");
@@ -73,6 +89,10 @@ function editSubtask(task, i) {
   `;
 }
 
+/**
+ * addChangedSubtask(i) add the changed subtask
+ *
+ */
 function addChangedSubtask(i) {
   let input = document.getElementById(`changedSubtask${i}`);
   let subtaskText = input.value.trim();
@@ -81,6 +101,28 @@ function addChangedSubtask(i) {
   renderSubtasks();
 }
 
+/**
+ * editTask(taskIndex, taskId) open the popup to change the task
+ *
+ */
+function editTask(taskIndex, taskId) {
+  let taskContainer = document.getElementById("taskPopup");
+  taskContainer.style.display = "none";
+  let editTaskContainer = document.getElementById("editTaskPopup");
+  editTaskContainer.innerHTML = "";
+  editTaskContainer.style.display = "flex";
+  editTaskContainer.style.left = "50%";
+
+  const task = allTasks[taskIndex];
+  editTaskContainer.innerHTML = editTaskPopup(task, taskIndex, taskId);
+  renderEditPopupSubtasks(task, taskIndex, taskId);
+  renderPrioButton(task, taskIndex);
+}
+
+/**
+ * deleteSubtask(i) delete a subtask to the new task
+ *
+ */
 function deleteSubtask(i) {
   subtasks.splice(i, 1);
   renderSubtasks();

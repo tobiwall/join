@@ -1,3 +1,7 @@
+/**
+ * validateEditForm(event, i) checks if the required fields are filled
+ *
+ */
 function validateEditForm(event, i) {
   event.preventDefault();
 
@@ -35,6 +39,10 @@ function validateEditForm(event, i) {
   return isValid;
 }
 
+/**
+ * renderPrioButton(task, i) render the chosen prio
+ *
+ */
 function renderPrioButton(task, i) {
   buttonContainer = document.getElementById("edit-prio-buttons-container");
   taskPrio = task.prio;
@@ -72,6 +80,10 @@ function prioEditLow(i) {
   `;
 }
 
+/**
+ * togglePrioButton(priority, i) switch between prios and chose one for the edit task
+ *
+ */
 function togglePrioButton(priority, i) {
   const task = allTasks[i];
 
@@ -123,6 +135,10 @@ function editPrioLow(priority) {
     "./assets/icons/prio_buttons/prio_medium_yellow.png";
 }
 
+/**
+ * showEditUsers(i) open the user dropdown
+ *
+ */
 function showEditUsers(i) {
   let userList = document.getElementById("editDropdownUsers");
   let icon = document.getElementById("openEditUserIcon");
@@ -138,6 +154,10 @@ function showEditUsers(i) {
   }
 }
 
+/**
+ * displayEditUserList(j, userList) render the users
+ *
+ */
 function displayEditUserList(j, userList) {
   assignedContainerClicked = true;
   for (let i = 0; i < contacts.length; i++) {
@@ -184,6 +204,10 @@ function editUserTemplate(j, contact) {
   `;
 }
 
+/**
+ * hideUsers() close the user dropdown
+ *
+ */
 function hideUsers() {
   assignedContainerClicked = false;
   let userList = document.getElementById("editDropdownUsers");
@@ -194,6 +218,10 @@ function hideUsers() {
   }
 }
 
+/**
+ * handleCheckboxChangeEditTask(j, event) controlls which user is checked in push it into the task
+ *
+ */
 function handleCheckboxChangeEditTask(j, event) {
   const task = allTasks[j];
   const checkbox = event.target;
@@ -215,6 +243,10 @@ function handleCheckboxChangeEditTask(j, event) {
   }
 }
 
+/**
+ * searchEditUser() search for user
+ *
+ */
 function searchEditUser() {
   let searchValue = document
     .getElementById("popupUserInput")
@@ -230,20 +262,6 @@ function searchEditUser() {
       userList.innerHTML += userTemplate(contact);
     }
   }
-}
-
-function editTask(taskIndex, taskId) {
-  let taskContainer = document.getElementById("taskPopup");
-  taskContainer.style.display = "none";
-  let editTaskContainer = document.getElementById("editTaskPopup");
-  editTaskContainer.innerHTML = "";
-  editTaskContainer.style.display = "flex";
-  editTaskContainer.style.left = "50%";
-
-  const task = allTasks[taskIndex];
-  editTaskContainer.innerHTML = editTaskPopup(task, taskIndex, taskId);
-  renderEditPopupSubtasks(task, taskIndex, taskId);
-  renderPrioButton(task, taskIndex);
 }
 
 function editTaskPopup(task, taskIndex, taskId) {
@@ -316,6 +334,10 @@ function clearEditSubtaskInput(taskIndex, taskId) {
   `;
 }
 
+/**
+ * addSubtaskInPopup(taskIndex, taskId) add new subtask
+ *
+ */
 function addSubtaskInPopup(taskIndex, taskId) {
   let input = document.getElementById("editSubtasksInput");
   let subtaskText = input.value.trim();
@@ -332,6 +354,10 @@ function addSubtaskInPopup(taskIndex, taskId) {
   renderEditPopupSubtasks(task, taskIndex, taskId);
 }
 
+/**
+ * renderEditPopupSubtasks(task, taskIndex, taskId) render the subtasks
+ *
+ */
 function renderEditPopupSubtasks(task, taskIndex, taskId) {
   let subtaskContainer = document.getElementById(`edit-popup-contentSubtasks`);
   subtaskContainer.innerHTML = "";
@@ -379,12 +405,20 @@ function editPopupSubtask(subtask, taskIndex, subtaskId, taskId) {
   `;
 }
 
+/**
+ * deletePopupSubtask(taskIndex, subtaskId, taskId) delete the subtask
+ *
+ */
 function deletePopupSubtask(taskIndex, subtaskId, taskId) {
   const task = allTasks[taskIndex];
   task.subtasks.splice(subtaskId, 1);
   renderEditPopupSubtasks(task, taskIndex, taskId);
 }
 
+/**
+ * addChangedPopupSubtask(taskIndex, subtaskId, taskId) add the changed subtask
+ *
+ */
 function addChangedPopupSubtask(taskIndex, subtaskId, taskId) {
   const task = allTasks[taskIndex];
   let input = document.getElementById(`changedSubtask${subtaskId}_${taskId}`);
@@ -403,14 +437,10 @@ function closeEditTaskPopup() {
   content.classList.remove('non-clickable');
 }
 
-function deleteTask(i) {
-  let taskIdKey = allTasks[i].idKey;
-  deleteData(`/allTasks/${taskIdKey}`);
-  allTasks.splice(i, 1);
-  closeTaskPopup();
-  renderCards();
-}
-
+/**
+ * submitChanges(i) submit the changed task and update the baord
+ *
+ */
 function submitChanges(i) {
   const task = allTasks[i];
   let title = document.getElementById("editTaskTitle").value;

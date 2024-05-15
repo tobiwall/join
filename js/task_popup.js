@@ -1,3 +1,7 @@
+/**
+ * openTaskPopup(i) open the task in a popup - bigger and detailed version
+ *
+ */
 function openTaskPopup(i) {
   let taskContainer = document.getElementById("taskPopup");
   let content = document.querySelector(".content");
@@ -46,6 +50,10 @@ function taskPopup(task, i, taskId, prio) {
   `;
 }
 
+/**
+ * handleClickOutside(event) check if clicked outside the popup
+ *
+ */
 function handleClickOutside(event) {
   let taskContainer = document.getElementById("taskPopup");
   let content = document.querySelector(".content");
@@ -57,6 +65,10 @@ function handleClickOutside(event) {
   }
 }
 
+/**
+ * closeTaskPopup() close the popup
+ *
+ */
 function closeTaskPopup() {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.style.right = "-300px";
@@ -64,6 +76,10 @@ function closeTaskPopup() {
   content.classList.remove('non-clickable');
 }
 
+/**
+ * popupCategoryColor(i) select a color for the category
+ *
+ */
 function popupCategoryColor(i) {
   let categoryElement = document.getElementById(`popupCategory${i}`);
   let category = document.getElementById(`popupCategory${i}`).innerHTML;
@@ -87,6 +103,10 @@ function popupCategoryColor(i) {
   }
 }
 
+/**
+ * generatepopupCardPrio(task, i) render the task prio
+ *
+ */
 function generatepopupCardPrio(task, i) {
   let prioImage = document.getElementById(`popupCardPrioImg${(task, i)}`);
   let taskPrio = task.prio;
@@ -100,6 +120,10 @@ function generatepopupCardPrio(task, i) {
   }
 }
 
+/**
+ * renderPopupUsers(i) render the users
+ *
+ */
 function renderPopupUsers(i) {
   let userContainer = document.getElementById(`popupUserContainer${i}`);
   userContainer.innerHTML = "";
@@ -118,6 +142,10 @@ function renderPopupUsers(i) {
   }
 }
 
+/**
+ * renderPopupSubtasks(i) render the subtasks
+ *
+ */
 function renderPopupSubtasks(i) {
   let subtaskContainer = document.getElementById(
     `task-popup-subtask-container${i}`
@@ -145,6 +173,10 @@ function renderPopupSubtasks(i) {
   }
 }
 
+/**
+ * toggleSubtask(i, j) controlls if the subtasks are checked, if so then change the status of complete to true
+ *
+ */
 function toggleSubtask(i, j) {
   const subtaskCheckbox = document.getElementById(`subtaskCheckbox${i}_${j}`);
   const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
@@ -167,6 +199,10 @@ function toggleSubtask(i, j) {
   updateTask(taskId, updateSubtask, j);
 }
 
+/**
+ * renderSubtasksOnload() update the done subtasks and update the progressbar of the task card
+ *
+ */
 function renderSubtasksOnload() {
   for (let i = 0; i < allTasks.length; i++) {
     const doneSubtasksContainer = document.getElementById(`doneSubtasks${i}`);
@@ -177,4 +213,16 @@ function renderSubtasksOnload() {
       }
     }
   }
+}
+
+/**
+ * deleteTask(i) delete the whole task from the board
+ *
+ */
+function deleteTask(i) {
+  let taskIdKey = allTasks[i].idKey;
+  deleteData(`/allTasks/${taskIdKey}`);
+  allTasks.splice(i, 1);
+  closeTaskPopup();
+  renderCards();
 }

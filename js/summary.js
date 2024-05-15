@@ -86,6 +86,10 @@ function userName() {
   nameContainer.innerHTML = currentUser.user_name;
 }
 
+/**
+ * getCurrentDate() calc the actual date
+ *
+ */
 function getCurrentDate() {
   const today = new Date();
   const year = today.getFullYear();
