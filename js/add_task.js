@@ -73,6 +73,10 @@ function clearPopupForm() {
   contentSubtasksopenCategoriesIcon.innerHTML = "";
 }
 
+/**
+ * renderNewCard(newTask) renders a new task
+ *
+ */
 function renderNewCard(newTask) {
   let toDoContainer = document.getElementById("toDoContainer");
   let inProgressContainer = document.getElementById("inProgressContainer");
@@ -98,6 +102,10 @@ function displayNewCard(newTask, container) {
   generateCardPrio(newTask, i, taskId);
 }
 
+/**
+ * addedTaskAnimation() animation for popup after added a task
+ *
+ */
 function addedTaskAnimation() {
   let addedTaskPopup = document.getElementById('addedTaskPopup');
 
@@ -116,6 +124,10 @@ function showPopupAndAnimate() {
   }, 2500);
 }
 
+/**
+ * validateForm(event, status) validate the form to controll if required fields are filled
+ *
+ */
 function validateForm(event, status) {
   event.preventDefault();
 
@@ -165,6 +177,10 @@ function validateForm(event, status) {
   return isValid;
 }
 
+/**
+ * toggleButton(priority) switch buttons and give the prio to task
+ *
+ */
 function toggleButton(priority) {
   if (priority === "urgent") {
     prioUrgent(priority);

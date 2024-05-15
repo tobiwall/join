@@ -17,6 +17,10 @@ async function initSummary() {
   showHeaderUser();
 }
 
+/**
+ * resposiveGreeting() animate the greeting
+ *
+ */
 function resposiveGreeting() {
   const greetingContainer = document.getElementById('summaryGreeting');
   const summaryContent = document.getElementById('summaryContent');
@@ -59,6 +63,10 @@ function resetDoneCard(card, newSrc) {
   img.src = newSrc;
 }
 
+/**
+ * greeting() changes the greeting based on the time
+ *
+ */
 function greeting() {
   let greetingContainer = document.querySelector('.greeting-time');
   let date = new Date();
@@ -99,6 +107,10 @@ function formatDate(dateString) {
   return date.toLocaleDateString('en-US', options);
 }
 
+/**
+ * loadUpcomingDeadline() load the nearest deadline of the board
+ *
+ */
 function loadUpcomingDeadline() {
   let deadlineContainer = document.getElementById('deadlineContainer');
   const currentDate = getCurrentDate();
@@ -126,6 +138,10 @@ function loadUpcomingDeadline() {
   }
 }
 
+/**
+ * loadTodoTasks() load the amount of tasks
+ *
+ */
 function loadTodoTasks() {
   let displayedTodo = document.getElementById('toDoAmount');
   let todoCount = 0;

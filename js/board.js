@@ -67,8 +67,7 @@ async function createTaskOnBoard(status) {
   let discription = document.getElementById("taskDiscription");
   let date = document.getElementById("taskDate");
   let category = document.getElementById("categoryInput");
-  let subtasksList = document.getElementById("contentSubtasks");
-  let assignedUsers = document.getElementById("contentAssignedUsers");
+
   if (subtasks.length == 0) {
     subtasks = "";
   }
@@ -90,16 +89,6 @@ async function createTaskOnBoard(status) {
 
   await postData("/allTasks", newTask);
 
-  title.value = "";
-  discription.value = "";
-  date.value = "";
-  category.value = "";
-  selectedPriority = selectedPriority;
-  subtasks = [""];
-  users = [""];
-  subtasksList.innerHTML = "";
-  assignedUsers.innerHTML = "";
-  selectedUsers = [""];
   renderCards();
   save();
   renderCards();
