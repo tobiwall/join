@@ -208,14 +208,10 @@ h2 {
 }
 
 @media(max-width: 1200px) {
-  .summary-content {
-
-  }
-
   .summary-greeting {
     z-index: 500;
     position: fixed;
-    top: 40%;
+    top: 50%;
     right: 50%;
     transform: translate(50%, -50%);
     display: none;
@@ -223,7 +219,10 @@ h2 {
 }
 
 @media(max-width: 900px) {
-  .summary-content {
+  .summary-greeting {
+    top: 40%;
+    right: 40%;
+    transform: translate(50%, 0%);
   }
 
   .summary-text-container {
@@ -367,6 +366,12 @@ h2 {
 }
 
 @media (max-width: 700px) {
+  .summary-greeting {
+    top: 40%;
+    right: 50%;
+    transform: translate(50%, -50%);
+  }
+
   .summary-content {
     margin-left: 0;
   }
