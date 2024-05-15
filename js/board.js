@@ -464,6 +464,13 @@ function filterTitle(search) {
   displayFilteredTasks(todo, progress, feedback, done, search);
 }
 
+function clearTaskContainer(todo, progress, feedback, done) {
+  todo.innerHTML = "";
+  progress.innerHTML = "";
+  feedback.innerHTML = "";
+  done.innerHTML = "";
+}
+
 function displayFilteredTasks(todo, progress, feedback, done, search) {
   for (let i = 0; i < allTasks.length; i++) {
     const task = allTasks[i];

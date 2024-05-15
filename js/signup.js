@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             emailExistError();
             return;
         }
-        debugger;
         await createContactUser();
         const userData = {};
         formData.forEach((value, id) => userData[id] = value);
