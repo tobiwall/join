@@ -1,4 +1,3 @@
-.taskRow::-webkit-scrollbar,
 .popup-user-container::-webkit-scrollbar,
 .task-popup-subtask-container::-webkit-scrollbar,
 .task-popup p::-webkit-scrollbar {
@@ -8,7 +7,6 @@
   border-radius: 7px;
 }
 
-.taskRow::-webkit-scrollbar-track,
 .popup-user-container::-webkit-scrollbar-track,
 .task-popup-subtask-container::-webkit-scrollbar-track,
 .task-popup p::-webkit-scrollbar-track {
@@ -17,7 +15,6 @@
   border-radius: 7px;
 }
 
-.taskRow::-webkit-scrollbar-thumb,
 .popup-user-container::-webkit-scrollbar-thumb,
 .task-popup-subtask-container::-webkit-scrollbar-thumb,
 .task-popup p::-webkit-scrollbar-thumb {
@@ -28,7 +25,6 @@
   border-radius: 7px; /* Radius des Griffs des Scrollbalkens */
 }
 
-.taskRow::-webkit-scrollbar-thumb:hover,
 .popup-user-container::-webkit-scrollbar-thumb:hover,
 .task-popup-subtask-container::-webkit-scrollbar-thumb:hover,
 .task-popup p::-webkit-scrollbar-thumb:hover {

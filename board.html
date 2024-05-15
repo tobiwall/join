@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./css/edit_task.css">
     <link rel="stylesheet" href="./css/small_scrollbar.css">
     <link rel="stylesheet" href="./css/sidebarBoardHighlight.css">
+    <link rel="stylesheet" href="./css/seperator_scrollbar.css">
 
     <script src="./js/board.js"></script>
     <script src="./js/json_cards.js"></script>
@@ -59,7 +60,6 @@
             </div>
             <div class="taskRow" id="toDoContainer" ondrop="moveTo('todo', 'toDoContainer'); removeHighlightMobil('toDoContainer')" ondragover="allowDrop(event); addHighlightMobil('toDoContainer');" ondragleave="removeHighlightMobil('toDoContainer')"></div>
           </div>
-          <div class="board-seperator"></div>
           <div class="taskContainer">
             <div class="table-head">
               <span style="color: #2A3647;">In progress</span>
@@ -67,7 +67,6 @@
             </div>
             <div class="taskRow" id="inProgressContainer" ondrop="moveTo('progress', 'inProgressContainer'); removeHighlightMobil('inProgressContainer');" ondragover="allowDrop(event); addHighlightMobil('inProgressContainer');" ondragleave="removeHighlightMobil('inProgressContainer')"></div>
           </div>
-          <div class="board-seperator"></div>
           <div class="taskContainer">
             <div class="table-head">
               <span style="color: #2A3647;">Await feedback</span>
@@ -75,7 +74,6 @@
             </div>
             <div class="taskRow" id="awaitFeedbackContainer" ondrop="moveTo('feedback', 'awaitFeedbackContainer'); removeHighlightMobil('awaitFeedbackContainer');" ondragover="allowDrop(event); addHighlightMobil('awaitFeedbackContainer');" ondragleave="removeHighlightMobil('awaitFeedbackContainer')"></div>
           </div>
-          <div class="board-seperator"></div>
           <div class="taskContainer">
             <div class="table-head">
               <span style="color: #2A3647;">Done</span>
