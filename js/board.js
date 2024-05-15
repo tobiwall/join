@@ -23,19 +23,21 @@ async function initHeader() {
   await loadCurrentUsers();
   showHeaderUser();
 }
-
+/**
+ * getTodayDate gets the actual date from today for each calendar to block the past
+ * 
+ */
 function getTodayDate() {
-  // Holen Sie sich das heutige Datum im ISO-Format (YYYY-MM-DD)
-const today = new Date().toISOString().split('T')[0];
-
-// Holen Sie sich das input-Element
-const dateInput = document.getElementById('taskDate');
-
-// Setzen Sie das min-Attribut auf das heutige Datum
-dateInput.min = today;
-
+  const today = new Date().toISOString().split('T')[0];
+  const dateInput = document.getElementById('taskDate');
+  dateInput.min = today;
 }
 
+/**
+ * This function includes all templates in every file
+ * @returns 
+ * 
+ */
 async function includeHTML() {
   var z, i, elmnt, file, xhttp;
   z = document.getElementsByTagName("*");
@@ -63,6 +65,10 @@ async function includeHTML() {
   }
 }
 
+/**
+ * showHeaderUser displays the actual user in the header
+ * 
+ */
 function showHeaderUser() {
   if (currentUser) {
   let names = currentUser.user_name.split(" ");
@@ -75,38 +81,11 @@ function showHeaderUser() {
   }
 }
 
-async function createTaskOnBoard(status) {
-  let title = document.getElementById("taskTitle");
-  let discription = document.getElementById("taskDiscription");
-  let date = document.getElementById("taskDate");
-  let category = document.getElementById("categoryInput");
-
-  if (subtasks.length == 0) {
-    subtasks = "";
-  }
-  if (users.length == 0) {
-    users = "";
-  }
-  taskId++;
-  let newTask = {
-    id: taskId,
-    status: status,
-    title: title.value,
-    description: discription.value,
-    users: users,
-    dueDate: date.value,
-    prio: selectedPriority,
-    category: category.value,
-    subtasks: subtasks,
-  };
-
-  await postData("/allTasks", newTask);
-
-  renderCards();
-  save();
-  renderCards();
-}
-
+/**
+ * This function search for the highest Id in allTasks
+ * 
+ * @returns the highestId from allTasks
+ */
 function findHighestTaskId() {
   let highestId = 0;
   for (let i = 0; i < allTasks.length; i++) {
@@ -118,7 +97,7 @@ function findHighestTaskId() {
 }
 
 /**
- * Diese funktion rendert alle Spalten nacheinander
+ * This function render all task columns in board
  *
  */
 async function renderCards() {
@@ -128,22 +107,14 @@ async function renderCards() {
   renderDoneCards();
 }
 
+/**
+ * This function render all todo tasks in board
+ * 
+ */
 function renderToDoCards() {
   let toDoContainer = document.getElementById("toDoContainer");
   toDoContainer.innerHTML = "";
-
-  for (let i = 0; i < allTasks.length; i++) {
-    const task = allTasks[i];
-    const taskId = allTasks[i].id;
-
-    if (task.status === "todo") {
-      toDoContainer.innerHTML += generateCardHTML(task, i, taskId);
-      categoryColor(i, taskId);
-      generateProgressbar(i, task);
-      renderUsers(i, taskId);
-      generateCardPrio(task, i, taskId);
-    }
-  }
+  renderForLoopTasks("todo", toDoContainer);
   if (toDoContainer.innerHTML === "") {
     toDoContainer.innerHTML = /*html*/`
     <div class="noCardsInContainer">
@@ -154,22 +125,14 @@ function renderToDoCards() {
   toDoContainer.innerHTML += generateDropPlaceHTML("toDoContainer");
 }
 
+/**
+ * This function render all inProgress tasks in board
+ * 
+ */
 function renderInProgressCards() {
   let inProgressContainer = document.getElementById("inProgressContainer");
   inProgressContainer.innerHTML = "";
-
-  for (let i = 0; i < allTasks.length; i++) {
-    const task = allTasks[i];
-    const taskId = allTasks[i].id;
-
-    if (task.status === "progress") {
-      inProgressContainer.innerHTML += generateCardHTML(task, i, taskId);
-      categoryColor(i, taskId);
-      generateProgressbar(i, task);
-      renderUsers(i, taskId);
-      generateCardPrio(task, i, taskId);
-    }
-  }
+  renderForLoopTasks("progress", inProgressContainer);
   if (inProgressContainer.innerHTML === "") {
     inProgressContainer.innerHTML = /*html*/`
     <div class="noCardsInContainer">
@@ -180,24 +143,16 @@ function renderInProgressCards() {
   inProgressContainer.innerHTML += generateDropPlaceHTML("inProgressContainer");
 }
 
+/**
+ * This function render all feedback tasks in board
+ * 
+ */
 function renderAwaitFeedbackCards() {
   let awaitFeedbackContainer = document.getElementById(
     "awaitFeedbackContainer"
   );
   awaitFeedbackContainer.innerHTML = "";
-
-  for (let i = 0; i < allTasks.length; i++) {
-    const task = allTasks[i];
-    const taskId = allTasks[i].id;
-
-    if (task.status === "feedback") {
-      awaitFeedbackContainer.innerHTML += generateCardHTML(task, i, taskId);
-      categoryColor(i, taskId);
-      generateProgressbar(i, task);
-      renderUsers(i, taskId);
-      generateCardPrio(task, i, taskId);
-    }
-  }
+  renderForLoopTasks("feedback", awaitFeedbackContainer);
   if (awaitFeedbackContainer.innerHTML === "") {
     awaitFeedbackContainer.innerHTML = /*html*/`
     <div class="noCardsInContainer">
@@ -210,57 +165,89 @@ function renderAwaitFeedbackCards() {
   );
 }
 
+/**
+ * This function render all done tasks in board
+ * 
+ */
 function renderDoneCards() {
   let doneContainer = document.getElementById("doneContainer");
   doneContainer.innerHTML = "";
-
-  for (let i = 0; i < allTasks.length; i++) {
-    const task = allTasks[i];
-    const taskId = allTasks[i].id;
-
-    if (task.status === "done") {
-      doneContainer.innerHTML += generateCardHTML(task, i, taskId);
-      categoryColor(i, taskId);
-      generateProgressbar(i, task);
-      renderUsers(i, taskId);
-      generateCardPrio(task, i, taskId);
-    }
-  }
+  renderForLoopTasks("done", doneContainer);
   if (doneContainer.innerHTML === "") {
     doneContainer.innerHTML = /*html*/`
-      <div class="noCardsInContainer">
-        <span>No cards done</span>
-      </div>
+      <div class="noCardsInContainer"><span>No cards done</span></div>
     `;
   }
   doneContainer.innerHTML += generateDropPlaceHTML("doneContainer");
 }
 
+/**
+ * Thise funktion searches all column task status and renders all tasks
+ * 
+ * @param {*} column is the status of todo, progress, feedback or done
+ * @param {*} container is the div container for cards
+ */
+function renderForLoopTasks(column, container) {
+  for (let i = 0; i < allTasks.length; i++) {
+    const task = allTasks[i];
+    const taskId = allTasks[i].id;
+    if (task.status === column) {
+      container.innerHTML += generateCardHTML(task, i, taskId);
+      renderInnerDetailTask(i, taskId, task);
+    }
+  }
+}
+
+/**
+ * Thise function renders all inner details of ohne task
+ * 
+ * @param {*} i is the index from the loop which renders all tasks
+ * @param {*} taskId is the id in the actual task
+ * @param {*} task id the actual task
+ */
+function renderInnerDetailTask(i, taskId, task) {
+  categoryColor(i, taskId);
+  generateProgressbar(i, task);
+  renderUsers(i, taskId);
+  generateCardPrio(task, i, taskId);
+}
+
+/**
+ * renderUsers renders the select users in each task
+ * 
+ * @param {*} i is the index of the task in allTasks
+ * @param {*} taskId is the id in the task
+ */
 function renderUsers(i, taskId) {
   let userContainer = document.getElementById(`userContainer${i}_${taskId}`);
   userContainer.innerHTML = "";
-
   if (allTasks[i] !== undefined) {
     const users = allTasks[i].users;
     const totalUsers = users.length;
+    userLoop(userContainer, totalUsers, users);
+    countUserTask(userContainer, totalUsers);
+  }
+}
 
-    for (let j = 0; j < Math.min(5, totalUsers); j++) {
-      const user = users[j];
-      userContainer.innerHTML += `
-        <div class="user-initials-card" style="background-color: ${user.color};">
-          ${user.initials}
-        </div>
-      `;
-    }
+function userLoop(userContainer, totalUsers, users) {
+  for (let j = 0; j < Math.min(5, totalUsers); j++) {
+    const user = users[j];
+    userContainer.innerHTML += `
+      <div class="user-initials-card" style="background-color: ${user.color};">
+        ${user.initials}
+      </div>
+    `;
+  }
+}
 
-    if (totalUsers > 5) {
-      const remainingUsers = totalUsers - 5;
-      userContainer.innerHTML += `
-        <div class="rest-user-amount">
-          + ${remainingUsers}
-        </div>
-      `;
-    }
+function countUserTask(userContainer, totalUsers) {
+  if (totalUsers > 5) {
+    const remainingUsers = totalUsers - 5;
+    userContainer.innerHTML += `
+      <div class="rest-user-amount">
+        + ${remainingUsers}
+      </div>
+    `;
   }
 }
 
