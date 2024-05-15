@@ -229,6 +229,13 @@ function renderUsers(i, taskId) {
   }
 }
 
+/**
+ * userLoop showes all select users in card
+ * 
+ * @param {*} userContainer is the div this task
+ * @param {*} totalUsers is the number of all selected users
+ * @param {*} users is the array of all users
+ */
 function userLoop(userContainer, totalUsers, users) {
   for (let j = 0; j < Math.min(5, totalUsers); j++) {
     const user = users[j];
@@ -240,6 +247,12 @@ function userLoop(userContainer, totalUsers, users) {
   }
 }
 
+/**
+ * countUserTask counts showes a number of more users if there are more than five
+ * 
+ * @param {*} userContainer is the div to plase the number
+ * @param {*} totalUsers is the number of selected users
+ */
 function countUserTask(userContainer, totalUsers) {
   if (totalUsers > 5) {
     const remainingUsers = totalUsers - 5;
@@ -308,7 +321,6 @@ function updateProgressbar(i) {
 function categoryColor(i, taskId) {
   let categoryElement = document.getElementById(`category${i}_${taskId}`);
   let category = document.getElementById(`category${i}_${taskId}`).innerHTML;
-
   if (category === "Technical Task") {
     categoryElement.style.backgroundColor = "#1FD7C1";
   } else if (category === "User Story") {
