@@ -1,5 +1,5 @@
 function validateEditForm(event, i) {
-  event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+  event.preventDefault();
 
   let title = document.getElementById("editTaskTitle");
   let dueDate = document.getElementById("editTaskDate");
@@ -147,7 +147,6 @@ function displayEditUserList(j, userList) {
     }
     userList.innerHTML += editUserTemplate(j, contact);
   }
-  // Wiederherstellen des Status der ausgewählten Benutzer
   selectedUsers.forEach((user) => {
     const checkbox = document.querySelector(
       `input[data-contact='${JSON.stringify(user)}']`

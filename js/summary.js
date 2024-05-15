@@ -4,7 +4,6 @@ async function initSummary() {
   includeHTML();
   await loadCurrentUsers();
   await loadAllTasks();
-  //load();
   resposiveGreeting();
   loadTodoTasks();
   loadTaskInProgress();
@@ -82,10 +81,9 @@ function userName() {
 function getCurrentDate() {
   const today = new Date();
   const year = today.getFullYear();
-  let month = today.getMonth() + 1; // Monat ist nullbasiert, daher +1
+  let month = today.getMonth() + 1; 
   let day = today.getDate();
 
-  // Füge eine führende Null hinzu, wenn der Monat oder Tag einstellig ist
   if (month < 10) {
       month = '0' + month;
   }

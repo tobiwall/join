@@ -77,11 +77,8 @@ async function loadAllTasks() {
   let loadedAllTasks = await getData("/allTasks");
   for (const key in loadedAllTasks) {
     if (Object.hasOwnProperty.call(loadedAllTasks, key)) {
-      // Erhalte die automatisch generierte ID
       const taskKey = key;
-      // Holen Sie sich die Aufgabe mit dieser ID
       const task = loadedAllTasks[key];
-      // Füge die Aufgabe zusammen mit ihrer ID dem Array allTasks hinzu
       allTasks.push({ idKey: taskKey, ...task });
     }
   }
@@ -96,7 +93,6 @@ async function updateContacts(contact, id) {
       },
       body: JSON.stringify(contact),
     });
-
 
   } catch (error) {
     console.error('Error updating contact:', error);
@@ -124,7 +120,6 @@ async function updateTask(taskId, updateSubTask, j) {
       body: JSON.stringify(updateSubTask),
     });
 
-
   } catch (error) {
     
   }
@@ -140,7 +135,6 @@ async function updateStatusTask(taskId, updateStatusTask) {
       body: JSON.stringify(updateStatusTask),
     });
 
-
   } catch (error) {
     
   }
@@ -155,7 +149,6 @@ async function updateEditTask(taskIdKey, updateTask) {
       },
       body: JSON.stringify(updateTask),
     });
-
 
   } catch (error) {
     

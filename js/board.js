@@ -25,14 +25,11 @@ async function initHeader() {
 
 async function includeHTML() {
   var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
   z = document.getElementsByTagName("*");
   for (i = 0; i < z.length; i++) {
     elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
     file = elmnt.getAttribute("w3-include-html");
     if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
       xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
@@ -42,14 +39,12 @@ async function includeHTML() {
           if (this.status == 404) {
             elmnt.innerHTML = "Page not found.";
           }
-          /* Remove the attribute, and call this function once more: */
           elmnt.removeAttribute("w3-include-html");
           includeHTML();
         }
       };
       xhttp.open("GET", file, true);
       xhttp.send();
-      /* Exit the function: */
       return;
     }
   }
@@ -243,12 +238,10 @@ function renderUsers(i, taskId) {
   let userContainer = document.getElementById(`userContainer${i}_${taskId}`);
   userContainer.innerHTML = "";
 
-  // Überprüfe, ob allTasks[i] definiert ist, bevor du versuchst, über sie zu iterieren
   if (allTasks[i] !== undefined) {
     const users = allTasks[i].users;
     const totalUsers = users.length;
 
-    // Rendern der ersten fünf Benutzer
     for (let j = 0; j < Math.min(5, totalUsers); j++) {
       const user = users[j];
       userContainer.innerHTML += `
@@ -257,7 +250,7 @@ function renderUsers(i, taskId) {
         </div>
       `;
     }
-    // Wenn es mehr als fünf Benutzer gibt, zeige die Gesamtanzahl der restlichen Benutzer an
+
     if (totalUsers > 5) {
       const remainingUsers = totalUsers - 5;
       userContainer.innerHTML += `
@@ -442,7 +435,6 @@ function generateDropPlaceHTML(containerStatus) {
 function removeHighlight(id) {
   let container = document.getElementById(id);
   let dropPlace = document.getElementById(`dropPlace${id}`);
-  //container.classList.remove("highlightContainer");
   dropPlace.classList.add("d-none");
 }
 

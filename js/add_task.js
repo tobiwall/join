@@ -117,7 +117,7 @@ function showPopupAndAnimate() {
 }
 
 function validateForm(event, status) {
-  event.preventDefault(); // Verhindert das Standardverhalten des Buttons
+  event.preventDefault();
 
   let title = document.getElementById("taskTitle");
   let dueDate = document.getElementById("taskDate");
@@ -332,7 +332,6 @@ function displayUserList(userList) {
       userList.innerHTML += userTemplate(contact);
     }
   }
-  // Wiederherstellen des Status der ausgewählten Benutzer
   selectedUsers.forEach((user) => {
     const checkbox = document.querySelector(
       `input[data-contact='${JSON.stringify(user)}']`
@@ -378,19 +377,19 @@ function handleCheckboxChange(event) {
   const contactData = JSON.parse(checkbox.getAttribute("data-contact"));
 
   if (checkbox.checked) {
-    selectedUsers.push(contactData); // Aktualisieren des Status der ausgewählten Benutzer
-    users.push(contactData); // Hinzufügen des ausgewählten Benutzers zum users-Array
+    selectedUsers.push(contactData);
+    users.push(contactData);
     renderAssignedUser();
   } else {
     const selectedUserIndex = selectedUsers.findIndex(
       (user) => user.name === contactData.name
     );
     if (selectedUserIndex !== -1) {
-      selectedUsers.splice(selectedUserIndex, 1); // Aktualisieren des Status der ausgewählten Benutzer
+      selectedUsers.splice(selectedUserIndex, 1);
     }
     const userIndex = users.findIndex((user) => user.name === contactData.name);
     if (userIndex !== -1) {
-      users.splice(userIndex, 1); // Entfernen des ausgewählten Benutzers aus dem users-Array
+      users.splice(userIndex, 1);
       renderAssignedUser();
     }
   }
