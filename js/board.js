@@ -224,9 +224,11 @@ function renderUsers(i, taskId) {
   userContainer.innerHTML = "";
   if (allTasks[i] !== undefined) {
     const users = allTasks[i].users;
-    const totalUsers = users.length;
-    userLoop(userContainer, totalUsers, users);
-    countUserTask(userContainer, totalUsers);
+    if(users){
+      const totalUsers = users.length;
+      userLoop(userContainer, totalUsers, users);
+      countUserTask(userContainer, totalUsers);
+    }
   }
 }
 
