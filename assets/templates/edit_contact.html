@@ -7,7 +7,7 @@
   <div id="contactLogo" class="contact-logo"></div>
   <div class="add-contact-right-right">
     <div onclick="closeContactPopup()" class="add-contact-close"></div>
-    <form class="add-contact-form" onsubmit="changeContact(openEditContactId)">
+    <form class="add-contact-form" onsubmit="changeContact(openEditContactId); return false;">
       <div class="input-container">
         <input id="editNameInput" required type="text" placeholder="Name" />
         <img src="./assets/icons/person.png" alt="Name Icon" class="input-icon" />
