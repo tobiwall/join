@@ -3,6 +3,13 @@ const STORAGE_URL =
 
 let currentUser = null;
 
+/**
+ * postData() post new data to firebase
+ * 
+ * @param {*} path in firebase
+ * @param {*} data new data to post
+ * @returns data as JSON
+ */
 async function postData(path = "", data = {}) {
   let response = await fetch(STORAGE_URL + path + ".json", {
     method: "POST",
@@ -21,6 +28,11 @@ async function saveContactsOnFirebase() {
   }
 }
 
+/**
+ * addContactToFirebase() put contact to firebase
+ * 
+ * @param {*} contact is the contact which is to put
+ */
 async function addContactToFirebase(contact) {
   try {
     const response = await fetch(`${STORAGE_URL}/contacts/${contact.id}.json`, {
@@ -43,11 +55,23 @@ async function addContactToFirebase(contact) {
   }
 }
 
+/**
+ * getData() gets the data from firebase
+ * 
+ * @param {*} path in firebase
+ * @returns the date from this path
+ */
 async function getData(path = "") {
   let response = await fetch(STORAGE_URL + path + ".json");
   return (responseToJson = await response.json());
 }
 
+/**
+ * deleteData() deletes task
+ * 
+ * @param {*} path in firebase
+ * @returns 
+ */
 async function deleteData(path = "") {
   let response = await fetch(STORAGE_URL + path + ".json", {
     method: "DELETE",
@@ -55,6 +79,10 @@ async function deleteData(path = "") {
   return (responseToJson = await response.json());
 }
 
+/**
+ * loadUsers() loades all users from firebase
+ * 
+ */
 async function loadUsers() {
   let loadedUsers = await getData("/users");
   for (const key in loadedUsers) {
@@ -64,6 +92,10 @@ async function loadUsers() {
   }
 }
 
+/**
+ * loadCurrentUsers() loads the current user from firebase
+ * 
+ */
 async function loadCurrentUsers() {
   let loadedCurrentUser = await getData("/currentUser");
   for (const key in loadedCurrentUser) {
@@ -73,6 +105,10 @@ async function loadCurrentUsers() {
   }
 }
 
+/**
+ * loadAllTasks() gets all data from firebase of allTasks
+ * 
+ */
 async function loadAllTasks() {
   let loadedAllTasks = await getData("/allTasks");
   for (const key in loadedAllTasks) {
@@ -84,6 +120,12 @@ async function loadAllTasks() {
   }
 }
 
+/**
+ * updateContacts() updates the contact from edit contact
+ * 
+ * @param {*} contact is the new input from edit contact
+ * @param {*} id is the id of this contact
+ */
 async function updateContacts(contact, id) {
   try {
     const response = await fetch(`${STORAGE_URL}/contacts/${id}.json`, {
@@ -100,16 +142,23 @@ async function updateContacts(contact, id) {
   }
 }
 
+/**
+ * loadAllContacts() loads all contacts to firebase
+ * 
+ * @returns loaded contacts
+ */
 async function loadAllContacts() {
   let loadedContacts = await getData("/contacts");
-  /*for (const key in loadedContacts) {
-          if (Object.hasOwnProperty.call(loadedContacts, key)) {
-        contacts.push(loadedContacts[key]);
-      }
-  }*/
   return loadedContacts;
 }
 
+/**
+ * updateTask() updates the subtasks
+ * 
+ * @param {*} taskId is the id of the task
+ * @param {*} updateSubTask is the new input from subtasks
+ * @param {*} j is the index of subtask
+ */
 async function updateTask(taskId, updateSubTask, j) {
   try {
     const response = await fetch(`${STORAGE_URL}/allTasks/${taskId}/subtasks/${j}/completed.json`, {
@@ -125,6 +174,12 @@ async function updateTask(taskId, updateSubTask, j) {
   }
 }
 
+/**
+ * updateStatusTask() changes the status if task is move to another container
+ * 
+ * @param {*} taskId is the id of the task
+ * @param {*} updateStatusTask is the new status
+ */
 async function updateStatusTask(taskId, updateStatusTask) {
   try {
     const response = await fetch(`${STORAGE_URL}/allTasks/${taskId}/status.json`, {
@@ -140,6 +195,12 @@ async function updateStatusTask(taskId, updateStatusTask) {
   }
 }
 
+/**
+ * updateEditTask() updates the in firebase
+ * 
+ * @param {*} taskIdKey is the idKey from the task
+ * @param {*} updateTask is the new input from edit Task
+ */
 async function updateEditTask(taskIdKey, updateTask) {
   try {
     const response = await fetch(`${STORAGE_URL}/allTasks/${taskIdKey}.json`, {
