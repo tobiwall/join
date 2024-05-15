@@ -4,7 +4,7 @@ function openTaskPopup(i) {
   taskContainer.innerHTML = "";
   taskContainer.style.display = 'flex';
   taskContainer.style.right = "50%";
-  content.style.opacity = "0.4";
+  content.classList.add('non-clickable');
   const task = allTasks[i];
   const taskId = allTasks[i].id;
   const prio =
@@ -55,7 +55,7 @@ function closeTaskPopup() {
   let taskContainer = document.getElementById("taskPopup");
   taskContainer.style.right = "-300px";
   let content = document.querySelector('.content');
-  content.style.opacity = "1";
+  content.classList.remove('non-clickable');
 }
 
 function popupCategoryColor(i) {

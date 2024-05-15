@@ -149,20 +149,6 @@ function validateForm(event, status) {
   return isValid;
 }
 
-function clearAddTaskInput() {
-  document.getElementById("taskTitle").value = "";
-  document.getElementById("taskDiscription").value = "";
-  document.getElementById("taskDate").value = "";
-  document.getElementById("categoryInput").value = "";
-  document.getElementById("subtasksInput").value = "";
-  subtasks = [""];
-  subtaskId = 0;
-  users = [""];
-
-  renderSubtasks();
-  renderAssignedUser();
-}
-
 function toggleButton(priority) {
   if (priority === "urgent") {
     prioUrgent(priority);

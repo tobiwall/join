@@ -366,7 +366,7 @@ function openAddTask(status) {
   closeIcon.style.display = "flex";
 
   addTaskTemplate.style.right = "50%";
-  content.style.opacity = "0.4";
+  content.classList.add('non-clickable');
 
   document.getElementById("createTaskButton").setAttribute("onclick", `validateForm(event, '${status}')`);
 }
@@ -375,7 +375,7 @@ function closeAddTaskPopup() {
   let content = document.querySelector(".content");
   let addTaskTemplate = document.getElementById("addTaskTemplate");
   addTaskTemplate.style.right = "-600px";
-  content.style.opacity = "1";
+  content.classList.remove('non-clickable');
 }
 
 function addHighlight(id) {
@@ -481,13 +481,6 @@ function filterTitle(search) {
   let done = document.getElementById("doneContainer");
   clearTaskContainer(todo, progress, feedback, done);
   displayFilteredTasks(todo, progress, feedback, done, search);
-}
-
-function clearTaskContainer(todo, progress, feedback, done) {
-  todo.innerHTML = "";
-  progress.innerHTML = "";
-  feedback.innerHTML = "";
-  done.innerHTML = "";
 }
 
 function displayFilteredTasks(todo, progress, feedback, done, search) {

@@ -401,7 +401,7 @@ function closeEditTaskPopup() {
   taskContainer.style.left = '150%';
   taskPopup.style.display = "none";
   let content = document.querySelector(".content");
-  content.style.opacity = "1";
+  content.classList.remove('non-clickable');
 }
 
 function deleteTask(i) {
