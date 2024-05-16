@@ -626,6 +626,7 @@ input[type=number] {
   @media (max-width: 480px) {
     #scrollable-container {
         padding: 15px 4px 15px 4px;
+        width: 100%;
     }
 
     .contact {
