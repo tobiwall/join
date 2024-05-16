@@ -342,6 +342,13 @@ body {
     justify-content: center;
 }
 
+.edit-contact-btn:hover {
+    border: 1px solid rgb(42, 171, 226);
+    background-color: rgb(42, 171, 226);
+    box-shadow: 2px 3px 4px 3px rgb(209, 209, 209);
+    cursor: pointer;
+}
+
 .edit-contact-btn img {
     width: 15.49px;
     height: 11.22px;
@@ -608,7 +615,6 @@ body {
   @media (max-width: 480px) {
     #scrollable-container {
         padding: 15px 4px 15px 4px;
-        margin-left: 0;
     }
 
     .contact {
