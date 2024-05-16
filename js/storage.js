@@ -50,7 +50,6 @@ async function addContactToFirebase(contact) {
     const responseData = await response.json();
     console.log("Kontakt erfolgreich zu Firebase hinzugefügt:", responseData);
   } catch (error) {
-    debugger;
     console.error("Fehler beim Hinzufügen des Kontakts zu Firebase:", error);
   }
 }

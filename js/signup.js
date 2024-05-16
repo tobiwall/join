@@ -82,7 +82,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function createContactUser() {
     const name = document.getElementById('user_name');
     const email = document.getElementById('user_email');
-    debugger;
     let newContact = createNewContact(name, email);
         contacts.push(newContact);
         orderContacts();

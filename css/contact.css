@@ -608,6 +608,7 @@ body {
   @media (max-width: 480px) {
     #scrollable-container {
         padding: 15px 4px 15px 4px;
+        margin-left: 0;
     }
 
     .contact {
@@ -630,7 +631,7 @@ body {
     }
 
     .contact-email {
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .btn-d-none {
