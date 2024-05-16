@@ -4,6 +4,7 @@ let taskId;
 let doneSubtasks = 0;
 let currentDraggedTask;
 let isMobil = false;
+let isTouching = false;
 
 async function init() {
   await includeHTML();
@@ -267,7 +268,7 @@ function countUserTask(userContainer, totalUsers) {
 
 function generateCardHTML(task, i, taskId) {
   return /*html*/ `
-    <div draggable="true" ondragstart="startDragging(${task["id"]}); addHighlight('${task.status}');" class="card" id="card${task["id"]}" onclick="openTaskPopup(${i})">
+    <div draggable="true" ondragstart="startDragging(${task["id"]}); addHighlight('${task.status}');" class="card" id="card${task["id"]}" onclick="openTaskPopup(${i})" ontouchstart="onPressTouchDown(${i}, 'card${task["id"]}'); startDragging(${task["id"]});" ontouchend="onPressTouchUp()">
         <div class="small-card-category" id="category${i}_${taskId}">${task["category"]}</div>
         <h3>${task["title"]}</h3>
         <p>${task["description"]}</p>

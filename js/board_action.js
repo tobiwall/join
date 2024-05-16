@@ -107,7 +107,7 @@ function openAddTask(status) {
     }
     return isMobil;
   }
-  
+
   /**
    * generate the drop place HTML
    * 
@@ -156,6 +156,7 @@ function openAddTask(status) {
     renderCards();
     renderSubtasksOnload();
     removeHighlight(index);
+    isTouching = false;
   }
   
   /**

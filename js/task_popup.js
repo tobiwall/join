@@ -1,14 +1,41 @@
+let touchTimer;
+
 /**
- * openTaskPopup(i) open the task in a popup - bigger and detailed version
- *
+ * open Task if no touch
+ * 
+ * @param {*} i is the index of the task
+ * @returns 
  */
 function openTaskPopup(i) {
+  if (isTouching) {
+    return;
+  } else {
+    openIfScreenDesktop(i);
+  }
+}
+
+/**
+ * openIfScreenDesktop opens and call task information
+ * 
+ * @param {*} i is the index of task
+ */
+function openIfScreenDesktop(i) {
   let taskContainer = document.getElementById("taskPopup");
   let content = document.querySelector(".content");
   taskContainer.innerHTML = "";
   taskContainer.style.display = 'flex';
   taskContainer.style.right = "50%";
   content.classList.add('non-clickable');
+  renderDetailTaskPopup(i, taskContainer);
+}
+
+/**
+ * renderDetailTaskPopup renders the task details
+ * 
+ * @param {*} i is the index of task
+ * @param {*} taskContainer is the container for tasks
+ */
+function renderDetailTaskPopup(i, taskContainer) {
   const task = allTasks[i];
   const taskId = allTasks[i].id;
   const prio = task.prio.charAt(0).toUpperCase() + task.prio.slice(1);
@@ -19,6 +46,60 @@ function openTaskPopup(i) {
   renderPopupSubtasks(i);
 }
 
+/**
+ * onPressTouchDown checks if the task is touchted
+ * 
+ * @param {*} i is the index of task
+ * @param {*} containerid is the id of the task
+ */
+function onPressTouchDown(i, containerid) {
+  touchTimer = setTimeout(() => {
+    let container = document.getElementById(containerid);
+    const task = allTasks[i];
+    const taskId = allTasks[i].id;
+    isTouching = true;
+    container.innerHTML = "";
+    container.innerHTML += generateMobileCardHTML(task, i, taskId);
+  }, 500);
+}
+
+/**
+ * onPressTouchUp clears the timeout
+ * 
+ */
+function onPressTouchUp() {
+  clearTimeout(touchTimer);
+}
+
+/**
+ * generateMobileCardHTML generates the touched card to move
+ * 
+ * @param {*} task is the touched task
+ * @param {*} i is the index of task
+ * @param {*} taskId is the id of the task
+ * @returns the html template
+ */
+function generateMobileCardHTML(task, i, taskId) {
+  return /*html*/`
+    <div class="moveCardTo">Move card to</div>
+    <ul>
+      <li onclick="moveTo('todo', 'toDoContainer')">To do</li>
+      <li onclick="moveTo('progress', 'inProgressContainer')">In Progress</li>
+      <li onclick="moveTo('feedback', 'awaitFeedbackContainer')">Await Feedback</li>
+      <li onclick="moveTo('done', 'doneContainer')">Done</li>
+    </ul>
+  `
+}
+
+/**
+ * renders the taskPopup
+ * 
+ * @param {*} task is the current task
+ * @param {*} i is the index of the task
+ * @param {*} taskId is the id of the task
+ * @param {*} prio is the selected prioraty
+ * @returns the html template
+ */
 function taskPopup(task, i, taskId, prio) {
   return /*html*/ `
     <div class="task-popup-top-section">
