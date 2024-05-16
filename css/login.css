@@ -67,7 +67,7 @@ body {
     position: absolute;
     padding-inline: 4px;
     top: 30px;
-    width: 100%;
+    width: 98%;
     display: flex;
     justify-content: flex-end;
 }
@@ -277,9 +277,14 @@ p {
 }
 
 @media(max-width: 400px) {
+    body {
+        height: 90vh;
+        width: 99%;
+    }
+
     .login-card {
         justify-content: center;
-        padding: 16px 19px;
+        padding: 16px 10px;
     }
 
     .input-container {
@@ -306,5 +311,10 @@ p {
 
     h1 {
         font-size: 30px;
+    }
+
+    .login-footer {
+        padding: 20px;
+        gap: 8px;
     }
 }

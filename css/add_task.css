@@ -8,6 +8,8 @@
 .content-addtask {
     margin-left: 232px;
     padding-right: 8px;
+    overflow-y: auto;
+    height: 70%;
 }
 
 .align_center {
@@ -513,8 +515,13 @@ li:hover {
   font-size: 20px;
 }
 
-@media(max-width: 1350px) { 
+@media(max-height: 700px) { 
+  .content-addtask {
+    margin-top: 150px;
+  }
+}
 
+@media(max-width: 1350px) { 
   .content-addtask {
     overflow-y: auto;
     height: 80%;
