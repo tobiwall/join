@@ -8,6 +8,7 @@
 .content {
     position: fixed;
     left: 50%;
+    height: calc(90% - 80px);
     overflow-y: auto;
     transform: translate(-50%);
     max-width: 1440px;
