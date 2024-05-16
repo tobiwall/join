@@ -271,7 +271,18 @@ body {
     border: 1px solid rgb(209, 209, 209);
     padding: 13px 21px 13px 21px;
     font-size: 20px;
+    -webkit-appearance: none;
     outline: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
 }
 
 .add-contact-form input::placeholder {
@@ -372,7 +383,7 @@ body {
     background-image: url(../assets/icons/cancel_black.png);
     background-repeat: no-repeat;
     background-position-x: 96px;
-    background-position-y: 20px;
+    background-position-y: 54%;
     padding-right: 32px;
     background-color: white;
 }
