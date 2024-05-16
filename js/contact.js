@@ -122,7 +122,7 @@ let contactMobile = false;
 
 async function initContact() {
   contacts = await loadAllContacts();
-  includeHTML();
+  await includeHTML();
   await loadCurrentUsers();
   renderContacts();
   showHeaderUser();
