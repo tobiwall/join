@@ -23,6 +23,7 @@ async function renderContacts() {
 
 function orderContacts() {
   sortContacts();
+  contacts = contacts.filter(contact => contact !== null);
   extractInitials(contacts);
   randomBackgroundColor();
   orderFirstLetter();
@@ -41,7 +42,7 @@ function displayContactsList() {
  */
 function sortContacts() {
   contacts.sort((a, b) => {
-    if (a && b !== null) {
+    if (a !== null && b !== null) {
       const nameA = a.name.toUpperCase();
       const nameB = b.name.toUpperCase();
       if (nameA < nameB) {
@@ -50,11 +51,16 @@ function sortContacts() {
       if (nameA > nameB) {
         return 1;
       }
+    } else if (a === null && b !== null) {
+      return 1;
+    } else if (a !== null && b === null) {
+      return -1;
     }
     return 0;
   });
   return contacts;
 }
+
 
 /**
  * This function get the first letter of each name and sirname

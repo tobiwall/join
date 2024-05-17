@@ -170,13 +170,13 @@ function showClosingX() {
   async function saveAndDisplayContacts(nameInput, emailInput, phoneInput) {
     let newContact = createNewContact(nameInput, emailInput, phoneInput);
     contacts.push(newContact);
-    orderContacts();
-    displayContactsList();
     let newContactId = newContact.id;
     newContact = findContactById(newContactId);
     await addContactToFirebase(newContact);
     clearInput();
     closeContactPopup();
+    contacts = await loadAllContacts();
+    contacts = contacts.filter(contact => contact !== null);
     renderContacts();
   }
   
@@ -254,17 +254,17 @@ function showClosingX() {
    * 
    * @param {*} id is the index of the contact from contacts
    */
-  function deleteContact(id) {
+  async function deleteContact(id) {
     let openContact = findContactById(id);
     let contactId = findIndexById(openContact);
     let editContact = document.getElementById("editContact");
     contacts.splice(contactId, 1);
-    deleteData(`/contacts/${id}`);
+    await deleteData(`/contacts/${id}`);
     if (editContact.style.display !== "none") {
       closeContactPopup();
     }
     closeContactBox();
-    renderContacts();
+    await renderContacts();
   }
   
   /**
