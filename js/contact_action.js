@@ -171,6 +171,7 @@ function showClosingX() {
     let newContact = createNewContact(nameInput, emailInput, phoneInput);
     contacts.push(newContact);
     let newContactId = newContact.id;
+    randomBackgroundColor();
     newContact = findContactById(newContactId);
     await addContactToFirebase(newContact);
     clearInput();
