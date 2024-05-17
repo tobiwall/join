@@ -125,6 +125,8 @@ function clearFoundContacts() {
  * @returns the array foundContacts
  */
 function findContactsByFirstLetter() {
+    firstLetterArray = firstLetterArray.sort();
+  foundContacts = [];
   for (let i = 0; i < firstLetterArray.length; i++) {
     let firstLetter = firstLetterArray[i];
     let contactsWithFirstLetter = [];
