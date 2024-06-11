@@ -10,7 +10,7 @@ let currentUser = null;
  * @param {*} data new data to post
  * @returns data as JSON
  */
-async function postData(path = "", data = {}) {
+async function postData( path = "", data = {} )  {
   let response = await fetch(STORAGE_URL + path + ".json", {
     method: "POST",
     header: {
