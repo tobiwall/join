@@ -22,7 +22,7 @@ async function postData(path = "", data = {}) {
 }
 
 async function saveContactsOnFirebase() {
-  for (let i = 0; i < contacts.length; i++) {
+  for (let i = 0; i <= contacts.length-1; i++) {
     const contact = contacts[i];
     await addContactToFirebase(contact);
   }
